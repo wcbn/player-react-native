@@ -30,7 +30,9 @@ export default class Episode extends React.Component {
   renderHeader = () => {
     return (
       <View style={listStyles.sectionHeader}>
-        <Text style={listStyles.sectionHeaderText}>All Songs</Text>
+        <Text style={listStyles.sectionHeaderText}>
+          {this.props.navigation.getParam('date')}
+        </Text>
       </View>
     )
   }

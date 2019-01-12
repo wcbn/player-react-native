@@ -110,9 +110,10 @@ export default class Show extends React.Component {
         onPress={() =>
           this.props.navigation.navigate('Episode', {
             songs: item.songs,
-            title: item.beginning,
+            title: this.props.navigation.getParam('title'),
             dj: item.dj,
-            dj_url: item.dj_url
+            dj_url: item.dj_url,
+            date: item.beginning
           })
         }
       >
