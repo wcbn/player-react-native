@@ -40,7 +40,7 @@ class ScheduleList extends React.PureComponent {
   renderItem = ({ item, index, section }) => (
     <TouchableOpacity
       key={index}
-      style={{ ...listStyles.item, ...styles.listItem }}
+      style={listStyles.item}
       onPress={() =>
         this.props.navigation.navigate('Show', {
           url: item.url,
@@ -147,10 +147,6 @@ export default class Schedule extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  listItem: {
-    borderBottomColor: colors.lightGreen
-    // height: 50
-  },
   showName: {
     color: colors.inactive
   },
