@@ -15,6 +15,7 @@ import {
   listStyles,
   episodeStyles
 } from './styles/components'
+import Moment from 'moment'
 
 export default class Show extends React.Component {
   static navigationOptions = ({ navigation }) => {
@@ -39,26 +40,21 @@ export default class Show extends React.Component {
   }
 
   fetchShow() {
-    const options = { month: 'long', day: 'numeric', year: 'numeric' }
-
     fetch(`https://app.wcbn.org${this.props.navigation.getParam('url')}.json`)
       .then(response => response.json())
-      .then(response =>
+      .then(response => {
+        const now = new Date()
+
         this.setState({
           description: response.description,
           djs: response.djs,
           episodes: response.episodes.reduce((acc, e) => {
-            let today = new Date()
-            let episodeDate = new Date(e.beginning)
-            if (episodeDate < today) {
-              e.beginning = episodeDate.toLocaleDateString('en-US', options)
+            let episodeBegan = new Date(e.beginning)
+            if (episodeBegan < now) {
+              e.beginning = Moment(e.beginning).format('MMMM D, YYYY')
 
               e.songs.forEach(song => {
-                let day = new Date(song.at)
-                song.at = day.toLocaleTimeString([], {
-                  hour: '2-digit',
-                  minute: '2-digit'
-                })
+                song.at = Moment(song.at).format('h:mm A')
               })
 
               acc.push(e)
@@ -66,7 +62,7 @@ export default class Show extends React.Component {
             return acc
           }, [])
         })
-      )
+      })
   }
 
   renderShowDescription() {

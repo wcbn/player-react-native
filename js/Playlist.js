@@ -19,6 +19,7 @@ import {
 } from './styles/components'
 import { colors } from './styles/main'
 import { ScrollView } from 'react-native-gesture-handler'
+import Moment from 'moment'
 
 export default class Playlist extends React.Component {
   static navigationOptions = ({ navigation }) => {
@@ -60,11 +61,7 @@ export default class Playlist extends React.Component {
         .then(response => response.json())
         .then(data => {
           data.on_air.songs.forEach(song => {
-            let day = new Date(song.at)
-            song.at = day.toLocaleTimeString([], {
-              hour: '2-digit',
-              minute: '2-digit'
-            })
+            song.at = Moment(song.at).format('h:mm A')
           })
           this.setState({
             on_air: data.on_air
