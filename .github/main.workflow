@@ -5,8 +5,7 @@ workflow "New workflow" {
 
 action "Install dependencies" {
   uses = "dctalbot/ci-expo/cli@master"
-  runs = "npm"
-  args = "ci"
+  runs = "yarn"
 }
 
 action "Login with Expo" {
