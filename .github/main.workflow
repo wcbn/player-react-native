@@ -4,6 +4,6 @@ workflow "New workflow" {
 }
 
 action "Publish to Expo" {
-  uses = "byCedric/ci-expo@HEAD"
+  uses = "byCedric/ci-expo@master"
   args = "publish"
 }
