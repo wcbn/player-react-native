@@ -25,7 +25,7 @@ export const listStyles = StyleSheet.create({
 
   sectionHeaderText: {
     fontWeight: 'bold',
-    color: 'whitesmoke',
+    color: colors.inactive,
     lineHeight: 22
   },
 
