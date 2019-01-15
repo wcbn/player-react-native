@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Image, FlatList, Linking } from 'react-native'
 import HTML from 'react-native-render-html'
 import { windowStyles, headerStyles, listStyles } from './styles/components'
 import { ScrollView } from 'react-native-gesture-handler'
-import { colors } from './styles/main'
+import { colors, dimensions } from './styles/main'
 import Separator from './components/Separator'
 import ShowListing from './components/ShowListing'
 
@@ -95,13 +95,27 @@ export default class Profile extends React.Component {
           <View style={styles.about}>
             {this.renderCover()}
 
-            <HTML html={this.state.about} baseFontStyle={styles.aboutText} />
+            <HTML
+              html={this.state.about}
+              baseFontStyle={styles.aboutText}
+              renderers={renderers}
+              imagesMaxWidth={dimensions.fullWidth}
+              onLinkPress={(evnt, href, attrs) => {
+                Linking.openURL(href)
+              }}
+            />
           </View>
           {this.renderShows()}
         </ScrollView>
       </View>
     )
   }
+}
+
+const renderers = {
+  img: (htmlAttribs, convertedCSSStyles) => (
+    <Image source={{ uri: `https://app.wcbn.org${htmlAttribs.src}` }} />
+  )
 }
 
 const styles = StyleSheet.create({
