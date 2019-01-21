@@ -41,13 +41,7 @@ export default class Profile extends React.Component {
     return (
       <View style={styles.cover}>
         <Image
-          style={{
-            width: 66,
-            height: 66,
-            borderRadius: 20,
-            borderColor: colors.active,
-            borderWidth: 1
-          }}
+          style={styles.coverAvatar}
           source={{ uri: this.state.image_url }}
         />
         <View style={{ flexDirection: 'column', paddingLeft: 15 }}>
@@ -144,6 +138,13 @@ const styles = StyleSheet.create({
   cover: {
     flexDirection: 'row',
     marginBottom: 15
+  },
+  coverAvatar: {
+    width: 66,
+    height: 66,
+    borderRadius: 20,
+    borderColor: colors.active,
+    borderWidth: 1
   },
   coverText: {
     color: colors.active,
