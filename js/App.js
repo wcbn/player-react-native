@@ -49,7 +49,7 @@ const AppNavigator = createBottomTabNavigator(
     Schedule: ScheduleStack,
     Playlist: PlaylistStack,
     Radio: Radio,
-    // Favorites: Favorites,
+    Favorites: Favorites,
     // Settings: Settings
   },
   {
@@ -66,7 +66,7 @@ const AppNavigator = createBottomTabNavigator(
       inactiveBackgroundColor: colors.primary,
       activeBackgroundColor: colors.highlight
     },
-    initialRouteName: 'Radio'
+    initialRouteName: 'Favorites'
   }
 )
 

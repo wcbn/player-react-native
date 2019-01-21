@@ -1,6 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import { windowStyles, headerStyles } from './styles/components';
+import { windowStyles, headerStyles } from './styles/components'
+import Spin from './Spin'
 
 export default class Favorites extends React.Component {
   static navigationOptions = {
@@ -10,13 +11,18 @@ export default class Favorites extends React.Component {
 
   render() {
     return (
-      <View style={windowStyles.container}>
-        <Text>List of favorites coming soon!</Text>
+      <View style={styles.container}>
+        <Spin radius={100} />
       </View>
     )
   }
 }
 
 const styles = StyleSheet.create({
-  
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'black'
+  }
 })
