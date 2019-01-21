@@ -22,10 +22,11 @@ export default class Radio extends React.Component {
   constructor() {
     super()
     this.state = {
-      uri: 'http://floyd.wcbn.org:8000/wcbn-mid.mp3',
+      uri: 'http://floyd.wcbn.org:8000/wcbn-hd.mp3',
       isPlaying: false,
       isBuffering: false,
-      temp: 'temp'
+      isLoading: true,
+      isUnloading: false
     }
 
     this.playbackInstance = null
@@ -46,45 +47,25 @@ export default class Radio extends React.Component {
   async _unloadPlaybackInstance() {
     if (this.playbackInstance != null) {
       this.setState({
-        isPlaying: false
+        isPlaying: false,
+        isLoading: false,
+        isUnloading: true
       })
 
       await this.playbackInstance.unloadAsync()
-
-      // await this.playbackInstance.setStatusAsync({ isPlaying: false })
-
       // this.playbackInstance.setOnPlaybackStatusUpdate(null)
       // this.playbackInstance = null
     }
   }
 
   async _loadNewPlaybackInstance() {
+    this.setState({ isLoading: true })
     const { sound, status } = await Audio.Sound.createAsync(
       { uri: this.state.uri },
-      { shouldPlay: false },
+      { shouldPlay: true },
       this._onPlaybackStatusUpdate
     )
     this.playbackInstance = sound
-
-    // let reader = new FileReader()
-
-    // console.log(reader)
-
-    // reader.onload = function(e) {
-    //   console.log('reading')
-    // }
-
-    // get the metadata for a list of files
-    // RNMusicMetadata.getMetadata(['http://floyd.wcbn.org:8000/wcbn-mid.mp3'])
-    //   .then(tracks => {
-    //     console.log(tracks)
-    //     tracks.forEach(track => {
-    //       console.log(`${track.title} by ${track.artist}`)
-    //     })
-    //   })
-    //   .catch(err => {
-    //     console.error(err)
-    //   })
   }
 
   _onPlaybackStatusUpdate = status => {
@@ -103,10 +84,18 @@ export default class Radio extends React.Component {
     if (this.playbackInstance != null) {
       if (this.state.isPlaying) {
         //unload
-        this._unloadPlaybackInstance()
-      } else {
+        this._unloadPlaybackInstance().then(() => {
+          this.setState({
+            isUnloading: false
+          })
+        })
+      } else if (!this.state.isLoading && !this.state.isUnloading && !this.state.isBuffering) {
         //load and play
-        this._loadNewPlaybackInstance()
+        this._loadNewPlaybackInstance().then(() => {
+          this.setState({
+            isLoading: false
+          })
+        })
       }
     }
   }
@@ -114,13 +103,18 @@ export default class Radio extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.infoText}>
+        {/* <Text style={styles.infoText}>
           Playing: {this.state.isPlaying.toString()}
         </Text>
         <Text style={styles.infoText}>
           Buffering: {this.state.isBuffering.toString()}
         </Text>
-        <Text style={styles.infoText}>Indicator: {this.state.temp}</Text>
+        <Text style={styles.infoText}>
+          Loading: {this.state.isLoading.toString()}
+        </Text>
+        <Text style={styles.infoText}>
+          Unloading: {this.state.isUnloading.toString()}
+        </Text> */}
         <Icon
           name={this.state.isPlaying ? 'ios-pause' : 'ios-play'}
           size={200}
