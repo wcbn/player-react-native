@@ -19,3 +19,12 @@
 //   }
 //   this.setState(data)
 // })
+
+
+// onLayout = { event => {
+//   var { x, y, width, height } = event.nativeEvent.layout
+//   this.setState({
+//     x: x,
+//     y: y
+//   })
+// }}
