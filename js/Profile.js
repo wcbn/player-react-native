@@ -60,7 +60,14 @@ export default class Profile extends React.Component {
           >
             {this.state.website}
           </Text>
-          <Text style={styles.coverText}>{this.state.public_email}</Text>
+          <Text
+            style={styles.coverText}
+            onPress={() => {
+              Linking.openURL(`mailto:${this.state.public_email}`)
+            }}
+          >
+            {this.state.public_email}
+          </Text>
         </View>
       </View>
     )
