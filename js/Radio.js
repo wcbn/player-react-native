@@ -89,7 +89,11 @@ export default class Radio extends React.Component {
             isUnloading: false
           })
         })
-      } else if (!this.state.isLoading && !this.state.isUnloading && !this.state.isBuffering) {
+      } else if (
+        !this.state.isLoading &&
+        !this.state.isUnloading &&
+        !this.state.isBuffering
+      ) {
         //load and play
         this._loadNewPlaybackInstance().then(() => {
           this.setState({
