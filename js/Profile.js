@@ -99,8 +99,9 @@ export default class Profile extends React.Component {
               html={this.state.about}
               baseFontStyle={styles.aboutText}
               renderers={renderers}
+              tagsStyles={tagsStyles}
               imagesMaxWidth={dimensions.fullWidth}
-              onLinkPress={(evnt, href, attrs) => {
+              onLinkPress={(event, href) => {
                 Linking.openURL(href)
               }}
             />
@@ -113,9 +114,23 @@ export default class Profile extends React.Component {
 }
 
 const renderers = {
-  img: (htmlAttribs, convertedCSSStyles) => (
-    <Image source={{ uri: `https://app.wcbn.org${htmlAttribs.src}` }} />
+  img: (htmlAttribs, children, convertedCSSStyles, passProps) => (
+    <Image
+      style={{
+        borderColor: colors.active,
+        height:
+          (parseInt(htmlAttribs.height) * passProps.imagesMaxWidth) /
+          parseInt(htmlAttribs.width),
+        marginTop: 15,
+        marginBottom: 5
+      }}
+      source={{ uri: `https://app.wcbn.org${htmlAttribs.src}` }}
+    />
   )
+}
+
+const tagsStyles = {
+  figcaption: { textAlign: 'center', color: colors.active }
 }
 
 const styles = StyleSheet.create({
