@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { windowStyles, headerStyles } from './styles/components'
-import Spin from './Spin'
+import Spin from 'react-native-spinjs'
 
 export default class Favorites extends React.Component {
   static navigationOptions = {
@@ -12,7 +12,7 @@ export default class Favorites extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Spin/>
+        <Spin />
       </View>
     )
   }

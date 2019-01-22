@@ -9,8 +9,9 @@ import {
 import Settings from './Settings'
 import { Audio } from 'expo'
 import Icon from 'react-native-vector-icons/Ionicons'
-import { colors } from './styles/main'
+import { colors, dimensions } from './styles/main'
 import { windowStyles } from './styles/components'
+import Spin from 'react-native-spinjs';
 // import TrackPlayer from 'react-native-track-player'
 // import RNMusicMetadata from 'react-native-music-metadata'
 
@@ -104,26 +105,25 @@ export default class Radio extends React.Component {
     }
   }
 
+  renderSpinner() {
+    if (this.state.isLoading && !this.state.isPlaying) {
+      return <Spin radius={dimensions.fullWidth / 3} width={3} color={colors.active}></Spin>
+    }
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        {/* <Text style={styles.infoText}>
-          Playing: {this.state.isPlaying.toString()}
-        </Text>
-        <Text style={styles.infoText}>
-          Buffering: {this.state.isBuffering.toString()}
-        </Text>
-        <Text style={styles.infoText}>
-          Loading: {this.state.isLoading.toString()}
-        </Text>
-        <Text style={styles.infoText}>
-          Unloading: {this.state.isUnloading.toString()}
-        </Text> */}
+        {this.renderSpinner()}
         <Icon
           name={this.state.isPlaying ? 'ios-pause' : 'ios-play'}
           size={200}
           color={colors.active}
           onPress={this._onPlayPausePressed}
+          style={{position: 'absolute', 
+            paddingTop: 20,
+          paddingLeft: this.state.isPlaying ? 7 : 35
+        }}
         />
       </View>
     )

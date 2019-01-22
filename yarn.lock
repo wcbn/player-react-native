@@ -4503,6 +4503,11 @@ react-native-segmented-control-tab@^3.3.1:
   dependencies:
     prop-types "^15.5.10"
 
+react-native-spinjs@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/react-native-spinjs/-/react-native-spinjs-1.0.1.tgz#d7332490287068c29b345e49c7cba29f5cfcc4b9"
+  integrity sha512-l+KAdJTUqI2FZMuuAYZdMObUxAkN3RSXaUjFXsO0yeG14z7TAOeK/CJz0ww3LYvuwpISvidngfgs7WnHsXbt4Q==
+
 react-native-svg@8.0.8:
   version "8.0.8"
   resolved "https://registry.yarnpkg.com/react-native-svg/-/react-native-svg-8.0.8.tgz#5d4c636751d9db2d98a9b3cfc4ef45c4eac65d60"
