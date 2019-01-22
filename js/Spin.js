@@ -32,21 +32,21 @@ export default class Spin extends React.Component {
         Animated.sequence([
           Animated.timing(this.animatedValue[item], {
             toValue: 1,
-            duration: 500
+            duration: this.props.lines / 2 * this.props.speed
           }),
           Animated.timing(this.animatedValue[item], {
             toValue: 0,
-            duration: 500
+            duration: this.props.lines / 2 * this.props.speed
           })
         ])
       )
     })
-    Animated.stagger(100, animations).start()
+    Animated.stagger(this.props.speed, animations).start()
   }
 
   render() {
     const animations = arr.map((a, i) => {
-      const angle = (~~((360 / 12) * i) * Math.PI) / 180 //+ opts.rotate
+      const angle = (~~((360 / this.props.lines) * i) * Math.PI) / 180 //+ opts.rotate
       return (
         <Animated.View
           key={i}
@@ -73,7 +73,8 @@ Spin.defaultProps = {
   lines: 12,
   width: 5,
   radius: 50,
-  color: 'lightgray'
+  color: 'lightblue',
+  speed: 100
 }
 
 const styles = StyleSheet.create({

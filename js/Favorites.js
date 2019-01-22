@@ -12,7 +12,7 @@ export default class Favorites extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Spin radius={100} />
+        <Spin  />
       </View>
     )
   }
