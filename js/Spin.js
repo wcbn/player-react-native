@@ -2,24 +2,16 @@ import React from 'react'
 import { StyleSheet, Text, View, Animated } from 'react-native'
 import { windowStyles } from './styles/components'
 
-const arr = []
-for (var i = 0; i < 12; i++) {
-  arr.push(i)
-}
-
 export default class Spin extends React.Component {
   constructor(props) {
     super(props)
-    this.animatedValue = []
-    arr.forEach(value => {
-      this.animatedValue[value] = new Animated.Value(0)
-    })
-
-    this.state = {
-      // opacities: new Array(this.props.lines).fill(new Animated.Value(0)),
-      x: 0,
-      y: 0
+    this.animatedOpacities = new Array(this.props.lines)
+    for (var i = 0; i < this.props.lines; i++) {
+      this.animatedOpacities[i] = new Animated.Value(0)
     }
+
+    // TODO why is this broken!! >:(
+    // this.animatedOpacities = new Array(this.props.lines).fill(new Animated.Value(0))
   }
 
   componentDidMount() {
@@ -27,16 +19,16 @@ export default class Spin extends React.Component {
   }
 
   animate() {
-    const animations = arr.map(item => {
+    const animations = this.animatedOpacities.map((_, i) => {
       return Animated.loop(
         Animated.sequence([
-          Animated.timing(this.animatedValue[item], {
+          Animated.timing(this.animatedOpacities[i], {
             toValue: 1,
-            duration: this.props.lines / 2 * this.props.speed
+            duration: (this.props.lines / 2) * this.props.speed
           }),
-          Animated.timing(this.animatedValue[item], {
+          Animated.timing(this.animatedOpacities[i], {
             toValue: 0,
-            duration: this.props.lines / 2 * this.props.speed
+            duration: (this.props.lines / 2) * this.props.speed
           })
         ])
       )
@@ -45,7 +37,7 @@ export default class Spin extends React.Component {
   }
 
   render() {
-    const animations = arr.map((a, i) => {
+    const animations = this.animatedOpacities.map((_, i) => {
       const angle = (~~((360 / this.props.lines) * i) * Math.PI) / 180 //+ opts.rotate
       return (
         <Animated.View
@@ -60,7 +52,7 @@ export default class Spin extends React.Component {
               { translateX: this.props.radius * Math.sin(angle) },
               { translateY: this.props.radius * Math.cos(angle) }
             ],
-            opacity: this.animatedValue[a]
+            opacity: this.animatedOpacities[i]
           }}
         />
       )
