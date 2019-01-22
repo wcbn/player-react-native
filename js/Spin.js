@@ -51,7 +51,7 @@ export default class Spin extends React.Component {
         <Animated.View
           key={i}
           style={{
-            backgroundColor: 'yellow',
+            backgroundColor: this.props.color,
             borderRadius: '50%',
             position: 'absolute',
             height: this.props.width,
@@ -71,8 +71,9 @@ export default class Spin extends React.Component {
 
 Spin.defaultProps = {
   lines: 12,
+  width: 5,
   radius: 50,
-  width: 2
+  color: 'lightgray'
 }
 
 const styles = StyleSheet.create({
