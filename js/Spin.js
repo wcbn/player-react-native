@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View, Animated } from 'react-native'
+import { StyleSheet, Text, View, Animated, Easing } from 'react-native'
 import { windowStyles } from './styles/components'
 
 export default class Spin extends React.Component {
@@ -9,9 +9,6 @@ export default class Spin extends React.Component {
     for (var i = 0; i < this.props.lines; i++) {
       this.animatedOpacities[i] = new Animated.Value(0)
     }
-
-    // TODO why is this broken!! >:(
-    // this.animatedOpacities = new Array(this.props.lines).fill(new Animated.Value(0))
   }
 
   componentDidMount() {
@@ -24,11 +21,15 @@ export default class Spin extends React.Component {
         Animated.sequence([
           Animated.timing(this.animatedOpacities[i], {
             toValue: 1,
-            duration: (this.props.lines / 2) * this.props.speed
+            duration: (this.props.lines / 2) * this.props.speed,
+            easing: Easing.inOut(Easing.quad),
+            useNativeDriver: true
           }),
           Animated.timing(this.animatedOpacities[i], {
             toValue: 0,
-            duration: (this.props.lines / 2) * this.props.speed
+            duration: (this.props.lines / 2) * this.props.speed,
+            easing: Easing.inOut(Easing.quad),
+            useNativeDriver: true
           })
         ])
       )
@@ -38,7 +39,7 @@ export default class Spin extends React.Component {
 
   render() {
     const animations = this.animatedOpacities.map((_, i) => {
-      const angle = (~~((360 / this.props.lines) * i) * Math.PI) / 180 //+ opts.rotate
+      const angle = ((360 / this.props.lines) * i * Math.PI) / 180 //+ opts.rotate
       return (
         <Animated.View
           key={i}
@@ -50,14 +51,14 @@ export default class Spin extends React.Component {
             width: this.props.width,
             transform: [
               { translateX: this.props.radius * Math.sin(angle) },
-              { translateY: this.props.radius * Math.cos(angle) }
+              { translateY: this.props.radius * -Math.cos(angle) }
             ],
             opacity: this.animatedOpacities[i]
           }}
         />
       )
     })
-    return <View style={styles.container}>{animations}</View>
+    return <View>{animations}</View>
   }
 }
 
@@ -65,10 +66,6 @@ Spin.defaultProps = {
   lines: 12,
   width: 5,
   radius: 50,
-  color: 'lightblue',
+  color: 'gainsboro',
   speed: 100
 }
-
-const styles = StyleSheet.create({
-  container: {}
-})
