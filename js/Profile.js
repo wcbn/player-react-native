@@ -123,7 +123,7 @@ const renderers = {
           (parseInt(htmlAttribs.height) * passProps.imagesMaxWidth) /
           parseInt(htmlAttribs.width),
         marginTop: 15,
-        marginBottom: 5
+        marginBottom: 2
       }}
       source={{ uri: `https://app.wcbn.org${htmlAttribs.src}` }}
     />
@@ -131,7 +131,7 @@ const renderers = {
 }
 
 const tagsStyles = {
-  figcaption: { textAlign: 'center', color: colors.active }
+  figcaption: { textAlign: 'center', fontStyle: 'italic', color: colors.active }
 }
 
 const styles = StyleSheet.create({
