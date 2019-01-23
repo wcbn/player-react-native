@@ -4,7 +4,7 @@ import { windowStyles, listStyles } from '../styles/components'
 import { colors } from '../styles/main'
 
 
-export default class Song extends React.PureComponent {
+export default class ShowListing extends React.PureComponent {
   render() {
     return (
       <View style={windowStyles.container}>
