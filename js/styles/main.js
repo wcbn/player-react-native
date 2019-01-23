@@ -13,6 +13,10 @@ export const colors = {
   accent: '#ffae57',
   grayHighlight: '#2d333f',
   lightGreen: '#bae67e',
+  purple: '#a068ce',
+  red: '#f44336',
+  darkPink: 'rgb(217,84,89)',
+  pink: 'rgb(255, 183, 188)',
 
   stackNav: {
     backgroundColor: '#242b38',
