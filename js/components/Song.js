@@ -3,54 +3,41 @@ import { StyleSheet, Text, View } from 'react-native'
 import { listStyles } from '../styles/components'
 import { colors } from '../styles/main'
 
-const Artist = props => {
-  return <Text style={styles.artist}>{props.artist}: </Text>
-}
+const Artist = props => <Text style={styles.artist}>{props.artist}: </Text>
 
-const SongName = props => {
-  return (
-    <Text style={styles.name}>
-      “{props.name}”{'\n'}
+const SongName = props => (
+  <Text style={styles.name}>
+    “{props.name}”{'\n'}
+  </Text>
+)
+
+const Album = props => (
+  <Text style={styles.album}>
+    {props.album}
+    {'\n'}
+  </Text>
+)
+
+const Label = props =>
+  props.label && props.year ? (
+    <Text style={styles.label}>
+      {props.label} ({props.year})
     </Text>
-  )
-}
+  ) : null
 
-const Album = props => {
-  return (
-    <Text style={styles.album}>
-      {props.album}
-      {'\n'}
+const Time = props => <Text style={styles.time}>{props.at}</Text>
+
+export default (Song = props => (
+  <View style={{ ...listStyles.item, ...styles.listItem }}>
+    <Text style={styles.songText}>
+      <Artist artist={props.data.artist} />
+      <SongName name={props.data.name} />
+      <Album album={props.data.album} />
+      <Label label={props.data.label} year={props.data.year} />
     </Text>
-  )
-}
-
-const Label = props => {
-  if (props.label && props.year) {
-    return (
-      <Text style={styles.label}>
-        {props.label} ({props.year})
-      </Text>
-    )
-  } else return null
-}
-
-const Time = props => {
-  return <Text style={styles.time}>{props.at}</Text>
-}
-
-export default (Song = props => {
-  return (
-    <View style={{ ...listStyles.item, ...styles.listItem }}>
-      <Text style={styles.songText}>
-        <Artist artist={props.data.artist} />
-        <SongName name={props.data.name} />
-        <Album album={props.data.album} />
-        <Label label={props.data.label} year={props.data.year} />
-      </Text>
-      <Time at={props.data.at} />
-    </View>
-  )
-})
+    <Time at={props.data.at} />
+  </View>
+))
 
 const styles = StyleSheet.create({
   listItem: {
