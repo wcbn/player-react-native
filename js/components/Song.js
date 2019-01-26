@@ -28,7 +28,7 @@ const Label = props =>
 const Time = props => <Text style={styles.time}>{props.at}</Text>
 
 export default (Song = props => (
-  <View style={{ ...listStyles.item, ...styles.listItem }}>
+  <View style={listStyles.item }>
     <Text style={styles.songText}>
       <Artist artist={props.data.artist} />
       <SongName name={props.data.name} />
@@ -40,9 +40,6 @@ export default (Song = props => (
 ))
 
 const styles = StyleSheet.create({
-  listItem: {
-    justifyContent: 'space-between'
-  },
   songText: {
     flexWrap: 'wrap',
     maxWidth: '85%',

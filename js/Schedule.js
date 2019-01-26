@@ -6,7 +6,6 @@ import {
   View,
   SectionList
 } from 'react-native'
-import { Constants } from 'expo'
 import sectionListGetItemLayout from 'react-native-section-list-get-item-layout'
 import { colors } from './styles/main'
 import { windowStyles, headerStyles, listStyles } from './styles/components'
@@ -40,7 +39,7 @@ class ScheduleList extends React.PureComponent {
   renderItem = ({ item, index, section }) => (
     <TouchableOpacity
       key={index}
-      style={listStyles.item}
+      style={listStyles.item }
       onPress={() =>
         this.props.navigation.navigate('Show', {
           url: item.url,
