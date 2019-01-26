@@ -30,6 +30,8 @@ export const listStyles = StyleSheet.create({
   },
 
   item: {
+    display: 'flex',
+    flexDirection: 'row',
     padding: 10,
     marginLeft: 5,
     marginRight: 5
