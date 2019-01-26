@@ -66,7 +66,7 @@ const AppNavigator = createBottomTabNavigator(
       inactiveBackgroundColor: colors.primary,
       activeBackgroundColor: colors.highlight
     },
-    initialRouteName: 'Radio'
+    initialRouteName: 'Playlist'
   }
 )
 
