@@ -1,48 +1,62 @@
 import React from 'react'
-import { StyleSheet, Text, View, FlatList } from 'react-native'
-import { windowStyles, listStyles } from '../styles/components'
+import { StyleSheet, Text, View } from 'react-native'
+import { listStyles } from '../styles/components'
 import { colors } from '../styles/main'
 
-function Label(props) {
+const Artist = props => {
+  return <Text style={styles.artist}>{props.artist}: </Text>
+}
+
+const SongName = props => {
+  return (
+    <Text style={styles.name}>
+      “{props.name}”{'\n'}
+    </Text>
+  )
+}
+
+const Album = props => {
+  return (
+    <Text style={styles.album}>
+      {props.album}
+      {'\n'}
+    </Text>
+  )
+}
+
+const Label = props => {
   if (props.label && props.year) {
     return (
       <Text style={styles.label}>
         {props.label} ({props.year})
       </Text>
     )
-  }
-  else return <Text />
+  } else return null
 }
 
-export default class Song extends React.PureComponent {
-
-  render() {
-    return (
-      <View style={windowStyles.container}>
-        <View style={{ ...listStyles.item, ...styles.listItem }}>
-          <Text style={styles.songInfo}>
-            <Text style={styles.artist}>{this.props.data.artist}: </Text>
-            <Text style={styles.name}>
-              “{this.props.data.name}”{'\n'}
-            </Text>
-            <Text style={styles.label}>{this.props.label}</Text>
-            <Label label={this.props.data.label} year={this.props.data.year} />
-          </Text>
-
-          <Text style={styles.time}>{this.props.data.at}</Text>
-        </View>
-      </View>
-    )
-  }
+const Time = props => {
+  return <Text style={styles.time}>{props.at}</Text>
 }
+
+export default (Song = props => {
+  return (
+    <View style={{ ...listStyles.item, ...styles.listItem }}>
+      <Text style={styles.songText}>
+        <Artist artist={props.data.artist} />
+        <SongName name={props.data.name} />
+        <Album album={props.data.album} />
+        <Label label={props.data.label} year={props.data.year} />
+      </Text>
+      <Time at={props.data.at} />
+    </View>
+  )
+})
 
 const styles = StyleSheet.create({
   listItem: {
-    display: 'flex',
-    flexDirection: 'row',
     justifyContent: 'space-between'
   },
-  songInfo: {
+  songText: {
     flexWrap: 'wrap',
     maxWidth: '85%',
     color: colors.inactive
@@ -52,6 +66,9 @@ const styles = StyleSheet.create({
   },
   label: {
     fontStyle: 'italic',
+    fontSize: 13
+  },
+  album: {
     fontSize: 13
   },
   time: {
