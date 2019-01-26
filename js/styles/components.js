@@ -32,6 +32,7 @@ export const listStyles = StyleSheet.create({
   item: {
     display: 'flex',
     flexDirection: 'row',
+    justifyContent: 'space-between',
     padding: 10,
     marginLeft: 5,
     marginRight: 5
@@ -65,8 +66,6 @@ export const basicInfoBoxStyles = {
 
 export const episodeStyles = {
   listing: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
     date: {
       color: colors.inactive,
       lineHeight: 22
