@@ -27,6 +27,7 @@ const TODAY = weekdayIndex == 0 ? 6 : weekdayIndex - 1
 const ITEM_HEIGHT = 50
 const HEADER_HEIGHT = 22
 
+//TODO format time in fetchSchedule() before rendering, this is just easier for now
 const Time = props => (
   <Text style={styles.showTime}>{Moment(props.at).format('h:mm A')}</Text>
 )
@@ -79,12 +80,12 @@ class ScheduleList extends React.PureComponent {
     })
       .then(response => response.json())
       .then(response => response['shows'])
-      .then(response => {
+      .then(data => {
         let fetched = []
         WEEEKDAYS.forEach((day, i) => {
           fetched.push({
             title: day,
-            data: response[i + 1]
+            data: data[i + 1]
           })
         })
         this.setState({
@@ -162,7 +163,6 @@ const styles = StyleSheet.create({
     fontStyle: 'italic',
     color: colors.active
   },
-
   showTime: {
     fontSize: 10,
     color: colors.lightGreen,
