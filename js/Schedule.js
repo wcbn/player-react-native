@@ -9,6 +9,7 @@ import {
 import sectionListGetItemLayout from 'react-native-section-list-get-item-layout'
 import { colors } from './styles/main'
 import { windowStyles, headerStyles, listStyles } from './styles/components'
+import Moment from 'moment'
 
 const WEEEKDAYS = [
   'Monday',
@@ -26,6 +27,10 @@ const TODAY = weekdayIndex == 0 ? 6 : weekdayIndex - 1
 const ITEM_HEIGHT = 50
 const HEADER_HEIGHT = 22
 
+const Time = props => (
+  <Text style={styles.showTime}>{Moment(props.at).format('h:mm A')}</Text>
+)
+
 //pure component for better performance(?)
 class ScheduleList extends React.PureComponent {
   constructor() {
@@ -39,7 +44,7 @@ class ScheduleList extends React.PureComponent {
   renderItem = ({ item, index, section }) => (
     <TouchableOpacity
       key={index}
-      style={listStyles.item }
+      style={listStyles.item}
       onPress={() =>
         this.props.navigation.navigate('Show', {
           url: item.url,
@@ -47,10 +52,11 @@ class ScheduleList extends React.PureComponent {
         })
       }
     >
-      <View>
+      <View style={styles.showText}>
         <Text style={styles.showName}>{item.name}</Text>
         <Text style={styles.showHost}>{item.with}</Text>
       </View>
+      <Time at={item.beginning} />
     </TouchableOpacity>
   )
 
@@ -146,11 +152,21 @@ export default class Schedule extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  showText: {
+    maxWidth: '85%'
+  },
   showName: {
     color: colors.inactive
   },
   showHost: {
     fontStyle: 'italic',
     color: colors.active
+  },
+
+  showTime: {
+    fontSize: 10,
+    color: colors.lightGreen,
+    marginRight: -10,
+    marginTop: -5
   }
 })
