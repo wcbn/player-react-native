@@ -28,7 +28,7 @@ const Label = props =>
 const Time = props => <Text style={styles.time}>{props.at}</Text>
 
 export default (Song = props => (
-  <View style={listStyles.item }>
+  <View style={listStyles.item}>
     <Text style={styles.songText}>
       <Artist artist={props.data.artist} />
       <SongName name={props.data.name} />
@@ -41,7 +41,6 @@ export default (Song = props => (
 
 const styles = StyleSheet.create({
   songText: {
-    flexWrap: 'wrap',
     maxWidth: '85%',
     color: colors.inactive
   },
@@ -49,10 +48,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   label: {
-    fontStyle: 'italic',
     fontSize: 13
   },
   album: {
+    fontStyle: 'italic',
     fontSize: 13
   },
   time: {
