@@ -1,22 +1,16 @@
-workflow "New workflow" {
+workflow "Install and Publish" {
   on = "push"
-  resolves = ["Publish to Expo"]
+  resolves = ["Publish"]
 }
 
-action "Install dependencies" {
-  uses = "bycedric/ci-expo/cli@master"
-  runs = "yarn"
+action "Install" {
+  uses = "actions/npm@master"
+  args = "install"
 }
 
-action "Login with Expo" {
-  uses = "bycedric/ci-expo/cli@master"
-  secrets = ["EXPO_USERNAME", "EXPO_PASSWORD"]
-  needs = ["Install dependencies"]
-  args = "login --username $EXPO_USERNAME --password $EXPO_PASSWORD"
-}
-
-action "Publish to Expo" {
-  uses = "bycedric/ci-expo/cli@master"
-  needs = ["Login with Expo"]
+action "Publish" {
+  needs = "Install"
+  uses = "expo/expo-github-action@2.3.1"
   args = "publish"
+  secrets = ["EXPO_USERNAME", "EXPO_PASSWORD"]
 }
