@@ -21,4 +21,8 @@ Fork this repo
 
 Follow instructions / docs
 
+# GitHub actions
+
+I've also hooked this up to publish with the brand-new GitHub actions workflow (thanks @bycedric !). Check out the fork @dctalbot if you're curious how that works.
+
 contact: dctalbot@umich.edu
