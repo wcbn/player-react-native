@@ -35,7 +35,8 @@ export const listStyles = StyleSheet.create({
     justifyContent: 'space-between',
     padding: 10,
     marginLeft: 5,
-    marginRight: 5
+    marginRight: 5,
+    fontSize: 22
   }
 })
 

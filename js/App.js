@@ -2,8 +2,12 @@ import React from 'react'
 import {
   createAppContainer,
   createBottomTabNavigator,
-  createStackNavigator
+  createStackNavigator,
+  SafeAreaView
 } from 'react-navigation'
+
+import { windowStyles } from './styles/components'
+
 import Icon from 'react-native-vector-icons/Ionicons'
 import Schedule from './Schedule'
 import Radio from './Radio'
@@ -13,22 +17,20 @@ import Show from './Show'
 import Profile from './Profile'
 import Episode from './Episode'
 import Playlist from './Playlist'
-import {colors} from './styles/main'
-
-
+import { colors } from './styles/main'
 
 const getIconName = routeName => {
   switch (routeName) {
     case 'Schedule':
-      return 'calendar'
+      return 'ios-calendar'
     case 'Playlist':
-      return 'musical-notes'
+      return 'ios-musical-notes'
     case 'Radio':
-      return 'radio'
+      return 'ios-radio'
     case 'Favorites':
-      return 'heart'
+      return 'ios-heart'
     case 'Settings':
-      return 'settings'
+      return 'ios-settings'
   }
 }
 
@@ -48,7 +50,7 @@ const AppNavigator = createBottomTabNavigator(
   {
     Schedule: ScheduleStack,
     Playlist: PlaylistStack,
-    Radio: Radio,
+    Radio: Radio
     // Favorites: Favorites,
     // Settings: Settings
   },
@@ -56,7 +58,7 @@ const AppNavigator = createBottomTabNavigator(
     defaultNavigationOptions: ({ navigation }) => ({
       tabBarIcon: ({ focused, horizontal, tintColor }) => {
         const { routeName } = navigation.state
-        const iconName = 'ios-' + getIconName(routeName)
+        const iconName = getIconName(routeName)
         return <Icon name={iconName} size={25} color={tintColor} />
       }
     }),
@@ -64,12 +66,17 @@ const AppNavigator = createBottomTabNavigator(
       activeTintColor: colors.active,
       inactiveTintColor: colors.inactive,
       inactiveBackgroundColor: colors.primary,
-      activeBackgroundColor: colors.highlight
+      activeBackgroundColor: colors.highlight,
+      safeAreaInset: { bottom: 'never', top: 'never' }
     },
     initialRouteName: 'Playlist'
   }
 )
 
+const AppContainer = createAppContainer(AppNavigator)
 
-
-export default createAppContainer(AppNavigator)
+export default () => (
+  <SafeAreaView style={windowStyles.container} forceInset={{ top: 'never' }}>
+    <AppContainer />
+  </SafeAreaView>
+)

@@ -10,8 +10,8 @@ import Settings from './Settings'
 import { Audio } from 'expo'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { colors, dimensions } from './styles/main'
-import { windowStyles } from './styles/components'
-import Spin from 'react-native-spinjs';
+// import { windowStyles } from './styles/components'
+// import Spin from 'react-native-spinjs'
 // import TrackPlayer from 'react-native-track-player'
 // import RNMusicMetadata from 'react-native-music-metadata'
 
@@ -31,7 +31,6 @@ export default class Radio extends React.Component {
     }
 
     this.playbackInstance = null
-    this._loadNewPlaybackInstance()
   }
 
   async componentDidMount() {
@@ -43,6 +42,8 @@ export default class Radio extends React.Component {
       playThroughEarpieceAndroid: false,
       shouldDuckAndroid: true
     })
+
+    this._loadNewPlaybackInstance()
   }
 
   async _unloadPlaybackInstance() {
@@ -81,7 +82,7 @@ export default class Radio extends React.Component {
     }
   }
 
-  _onPlayPausePressed = () => {
+  _onPress = () => {
     if (this.playbackInstance != null) {
       if (this.state.isPlaying) {
         //unload
@@ -107,23 +108,30 @@ export default class Radio extends React.Component {
 
   renderSpinner() {
     if (this.state.isLoading && !this.state.isPlaying) {
-      return <Spin radius={dimensions.fullWidth / 3} width={3} color={colors.active}></Spin>
+      return (
+        <Spin
+          radius={dimensions.fullWidth / 3}
+          width={3}
+          color={colors.active}
+        />
+      )
     }
   }
 
   render() {
     return (
       <View style={styles.container}>
-        {this.renderSpinner()}
+        {/* {this.renderSpinner()} */}
         <Icon
           name={this.state.isPlaying ? 'ios-pause' : 'ios-play'}
           size={200}
           color={colors.active}
-          onPress={this._onPlayPausePressed}
-          style={{position: 'absolute', 
+          onPress={this._onPress}
+          style={{
+            position: 'absolute',
             paddingTop: 20,
-          paddingLeft: this.state.isPlaying ? 7 : 35
-        }}
+            paddingLeft: this.state.isPlaying ? 7 : 35
+          }}
         />
       </View>
     )
