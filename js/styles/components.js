@@ -60,7 +60,6 @@ export const bannerStyles = {
 
 export const basicInfoBoxStyles = {
   height: 50,
-  flexDirection: 'row',
   justifyContent: 'center',
   alignItems: 'center'
 }

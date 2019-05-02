@@ -44,7 +44,6 @@ export default class Playlist extends React.Component {
         songs: [],
         semester_id: -1
       },
-      upcoming_episodes: [],
       refreshing: false
     }
   }
@@ -143,7 +142,7 @@ export default class Playlist extends React.Component {
       <View style={windowStyles.container}>
         {this.renderBanner()}
         <Separator color={colors.inactive} />
-        {this.state.on_air.songs ? this.renderSongs() : this.renderNotice()}
+        {this.state.on_air.songs.length ? this.renderSongs() : this.renderNotice()}
       </View>
     )
   }
