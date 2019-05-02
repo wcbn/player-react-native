@@ -76,17 +76,19 @@ export default class Profile extends React.Component {
   }
 
   renderShows() {
-    return (
-      <FlatList
-        data={this.state.shows}
-        renderItem={({ item }) => <ShowListing data={item} />}
-        keyExtractor={(item, index) => index.toString()}
-        ListHeaderComponent={this.renderHeader}
-        ItemSeparatorComponent={() => (
-          <Separator color={colors.grayHighlight} />
-        )}
-      />
-    )
+    if (this.state.shows.length > 0) {
+      return (
+        <FlatList
+          data={this.state.shows}
+          renderItem={({ item }) => <ShowListing data={item} />}
+          keyExtractor={(item, index) => index.toString()}
+          ListHeaderComponent={this.renderHeader}
+          ItemSeparatorComponent={() => (
+            <Separator color={colors.grayHighlight} />
+          )}
+        />
+      )
+    }
   }
 
   render() {
