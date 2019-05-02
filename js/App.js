@@ -6,6 +6,8 @@ import {
   SafeAreaView
 } from 'react-navigation'
 
+import { StatusBar } from 'react-native'
+
 import { windowStyles } from './styles/components'
 
 import Icon from 'react-native-vector-icons/Ionicons'
@@ -77,6 +79,7 @@ const AppContainer = createAppContainer(AppNavigator)
 
 export default () => (
   <SafeAreaView style={windowStyles.container} forceInset={{ top: 'never' }}>
+    <StatusBar barStyle='light-content' />
     <AppContainer />
   </SafeAreaView>
 )
