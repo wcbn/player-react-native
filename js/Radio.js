@@ -13,8 +13,12 @@ import OnAirStore from './flux/OnAirStore'
 import OnAirDispatcher from './flux/OnAirDispatcher'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { colors, dimensions } from './styles/main'
+<<<<<<< HEAD
 import Moment from 'moment'
 // import { windowStyles } from './styles/components'
+=======
+import { windowStyles } from './styles/components'
+>>>>>>> wip: now playing
 // import Spin from 'react-native-spinjs'
 
 class Radio extends React.Component {
@@ -39,7 +43,14 @@ class Radio extends React.Component {
       isPlaying: false,
       isBuffering: false,
       isLoading: true,
-      isUnloading: false
+      isUnloading: false,
+      nowPlaying: {
+        name: 'Carry the Zero',
+        artist: 'Built to Spill',
+        album: 'Keep it Like a Secret',
+        label: 'Warner Bros',
+        year: 1999
+      }
     }
 
     this.playbackInstance = null
@@ -158,21 +169,40 @@ class Radio extends React.Component {
   //   }
   // }
 
-  render() {
+  renderIcon() {
     return (
-      <View style={styles.container}>
-        {/* {this.renderSpinner()} */}
+      <View>
         <Icon
           name={this.state.isPlaying ? 'ios-pause' : 'ios-play'}
-          size={200}
+          size={150}
           color={colors.active}
           onPress={this._onPress}
-          style={{
-            position: 'absolute',
-            paddingTop: 20,
+          style={{...styles.icon,
             paddingLeft: this.state.isPlaying ? 7 : 35
           }}
         />
+      </View>
+    )
+  }
+
+  renderNowPlaying() {
+    const x = this.state.nowPlaying
+    return (
+      <View style={styles.nowPlaying}>
+        <Text style={styles.nowPlayingText}>{x.name}</Text>
+        <Text style={styles.nowPlayingText}>{x.artist}</Text>
+        <Text style={styles.nowPlayingText}>{x.album}</Text>
+        <Text style={styles.nowPlayingText}>{`(${x.label}) ${x.year}`}</Text>
+      </View>
+    )
+  }
+
+  render() {
+    return (
+      <View style={{ ...windowStyles.container, ...styles.container }}>
+        {/* {this.renderSpinner()} */}
+        {this.renderIcon()}
+        {this.renderNowPlaying()}
       </View>
     )
   }
@@ -180,13 +210,24 @@ class Radio extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
     alignItems: 'center',
     backgroundColor: '#212733'
   },
+  icon: {
+    paddingBottom: 40
+  },
   infoText: {
     color: colors.inactive
+  },
+  nowPlaying: {
+    padding: 25
+  },
+  nowPlayingText: {
+    color: colors.active,
+    fontSize: 20,
+    lineHeight: 30,
+    textAlign: 'center'
   }
 })
 
