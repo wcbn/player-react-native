@@ -62,7 +62,7 @@ class Radio extends React.Component {
       shouldDuckAndroid: true
     })
 
-    this._loadNewPlaybackInstance()
+    // this._loadNewPlaybackInstance()
 
     const pollForNewSong = () => {
       this.fetchPlaylist().then(() => {
@@ -192,7 +192,7 @@ class Radio extends React.Component {
         <Text style={styles.nowPlayingText}>{x.artist || '-'}</Text>
         <Text style={styles.nowPlayingText}>{x.album || '-'}</Text>
         <Text style={styles.nowPlayingText}>
-          {x.label !== '' ? `(${x.label}) ${x.year}` : ''}
+          {x.label + (x.year ? ` (${x.year})` : '')}
         </Text>
       </View>
     )
