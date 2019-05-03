@@ -57,15 +57,17 @@ class Radio extends React.Component {
 
     // this._loadNewPlaybackInstance()
 
-    // poll for new song data
-    setInterval(() => {
+    const pollForNewSong = () => {
       this.fetchPlaylist().then(() => {
         OnAirDispatcher.dispatch({
           type: 'CHECK_FOR_NEW_SONG',
           data: this.state.on_air
         })
       })
-    }, 120000)
+    }
+
+    pollForNewSong()
+    setInterval(pollForNewSong, 60000)
   }
 
   fetchPlaylist() {

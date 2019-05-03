@@ -119,12 +119,12 @@ class Playlist extends React.Component {
   renderSongs() {
     return (
       <ScrollView
-        refreshControl={
-          <RefreshControl
-            refreshing={this.state.refreshing}
-            onRefresh={this._onRefresh}
-          />
-        }
+        // refreshControl={
+        //   <RefreshControl
+        //     refreshing={this.state.refreshing}
+        //     onRefresh={this._onRefresh}
+        //   />
+        // }
       >
         <FlatList
           data={this.state.on_air.songs}

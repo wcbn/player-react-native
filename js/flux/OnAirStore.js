@@ -15,7 +15,7 @@ class OnAirStore extends ReduceStore {
       ending: '',
       times: '',
       show_notes: null,
-      songs: [],
+      songs: [{artist: ''}],
       semester_id: -1
     }
   }
