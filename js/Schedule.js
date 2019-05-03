@@ -10,6 +10,7 @@ import sectionListGetItemLayout from 'react-native-section-list-get-item-layout'
 import { colors } from './styles/main'
 import { windowStyles, headerStyles, listStyles } from './styles/components'
 import Moment from 'moment'
+import ListHeader from './components/ListHeader'
 
 const WEEEKDAYS = [
   'Monday',
@@ -61,11 +62,7 @@ class ScheduleList extends React.PureComponent {
     </TouchableOpacity>
   )
 
-  renderSectionHeader = ({ section: { title } }) => (
-    <View style={listStyles.sectionHeader}>
-      <Text style={listStyles.sectionHeaderText}>{title}</Text>
-    </View>
-  )
+  renderSectionHeader = ({ section: { title } }) => <ListHeader text={title} />
 
   componentDidMount() {
     this.fetchSchedule()
@@ -125,7 +122,7 @@ class ScheduleList extends React.PureComponent {
         renderItem={this.renderItem}
         renderSectionHeader={this.renderSectionHeader}
         sections={this.state.sections}
-        keyExtractor={(item, index) => item + index}
+        keyExtractor={(item, index) => index}
         ref={ref => (this.sectionListRef = ref)}
         getItemLayout={this.getItemLayout}
         ItemSeparatorComponent={this.renderSeparator}

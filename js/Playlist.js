@@ -21,6 +21,7 @@ import {
 import { colors } from './styles/main'
 import { ScrollView } from 'react-native-gesture-handler'
 import Moment from 'moment'
+import ListHeader from './components/ListHeader'
 
 class Playlist extends React.Component {
   static navigationOptions = ({ navigation }) => {
@@ -80,14 +81,6 @@ class Playlist extends React.Component {
     })
   }
 
-  renderHeader = () => {
-    return (
-      <View style={listStyles.sectionHeader}>
-        <Text style={listStyles.sectionHeaderText}>Recent Songs</Text>
-      </View>
-    )
-  }
-
   renderBanner() {
     return (
       <TouchableOpacity
@@ -113,7 +106,7 @@ class Playlist extends React.Component {
           data={this.state.on_air.songs}
           renderItem={({ item }) => <Song data={item} />}
           keyExtractor={(item, index) => index.toString()}
-          ListHeaderComponent={this.renderHeader}
+          ListHeaderComponent={<ListHeader text="Recent Songs" />}
           ItemSeparatorComponent={() => (
             <Separator color={colors.grayHighlight} />
           )}

@@ -16,6 +16,7 @@ import {
   episodeStyles
 } from './styles/components'
 import Moment from 'moment'
+import ListHeader from './components/ListHeader'
 
 export default class Show extends React.Component {
   static navigationOptions = ({ navigation }) => {
@@ -136,21 +137,13 @@ export default class Show extends React.Component {
         data={this.state.episodes}
         renderItem={this.renderEpisode.bind(this)}
         keyExtractor={item => item.beginning}
-        ListHeaderComponent={this.renderHeader}
+        ListHeaderComponent={<ListHeader text="Recent Episodes" />}
         ItemSeparatorComponent={() => (
           <Separator color={colors.grayHighlight} />
         )}
         stickyHeaderIndices={[0]}
         overScrollMode={'never'}
       />
-    )
-  }
-
-  renderHeader = () => {
-    return (
-      <View style={listStyles.sectionHeader}>
-        <Text style={listStyles.sectionHeaderText}>Recent Episodes</Text>
-      </View>
     )
   }
 

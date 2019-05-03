@@ -39,14 +39,7 @@ class Radio extends React.Component {
       isPlaying: false,
       isBuffering: false,
       isLoading: true,
-      isUnloading: false,
-      nowPlaying: {
-        name: 'Carry the Zero',
-        artist: 'Built to Spill',
-        album: 'Keep it Like a Secret',
-        label: 'Warner Bros',
-        year: 1999
-      }
+      isUnloading: false
     }
 
     this.playbackInstance = null

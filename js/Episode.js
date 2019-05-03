@@ -15,6 +15,7 @@ import {
   bannerStyles
 } from './styles/components'
 import Separator from './components/Separator'
+import ListHeader from './components/ListHeader'
 
 // since the only way to get to this screen is from a Show,
 // all of the data is passed in as navigation props, saving us an expensive fetch()
@@ -25,16 +26,6 @@ export default class Episode extends React.Component {
       title: navigation.getParam('title', ''),
       ...headerStyles
     }
-  }
-
-  renderHeader = () => {
-    return (
-      <View style={listStyles.sectionHeader}>
-        <Text style={listStyles.sectionHeaderText}>
-          {this.props.navigation.getParam('date')}
-        </Text>
-      </View>
-    )
   }
 
   renderBanner() {
@@ -63,7 +54,9 @@ export default class Episode extends React.Component {
         data={this.props.navigation.getParam('songs', '')}
         renderItem={({ item }) => <Song data={item} />}
         keyExtractor={(item, index) => index.toString()}
-        ListHeaderComponent={this.renderHeader}
+        ListHeaderComponent={
+          <ListHeader text={this.props.navigation.getParam('date')} />
+        }
         ItemSeparatorComponent={() => (
           <Separator color={colors.grayHighlight} />
         )}

@@ -6,6 +6,7 @@ import { ScrollView } from 'react-native-gesture-handler'
 import { colors, dimensions } from './styles/main'
 import Separator from './components/Separator'
 import ShowListing from './components/ShowListing'
+import ListHeader from './components/ListHeader'
 
 export default class Profile extends React.Component {
   static navigationOptions = ({ navigation }) => {
@@ -19,7 +20,7 @@ export default class Profile extends React.Component {
     super()
     this.state = {
       dj_name: '',
-      about: ' ',
+      about: '',
       shows: [],
       website: '',
       public_email: '',
@@ -67,14 +68,6 @@ export default class Profile extends React.Component {
     )
   }
 
-  renderHeader = () => {
-    return (
-      <View style={listStyles.sectionHeader}>
-        <Text style={listStyles.sectionHeaderText}>Show History</Text>
-      </View>
-    )
-  }
-
   renderShows() {
     if (this.state.shows.length > 0) {
       return (
@@ -82,7 +75,7 @@ export default class Profile extends React.Component {
           data={this.state.shows}
           renderItem={({ item }) => <ShowListing data={item} />}
           keyExtractor={(item, index) => index.toString()}
-          ListHeaderComponent={this.renderHeader}
+          ListHeaderComponent={<ListHeader text="Show History" />}
           ItemSeparatorComponent={() => (
             <Separator color={colors.grayHighlight} />
           )}
@@ -92,22 +85,27 @@ export default class Profile extends React.Component {
   }
 
   render() {
+    let html
+    if (this.state.about) {
+      html = (
+        <HTML
+          html={this.state.about}
+          baseFontStyle={styles.aboutText}
+          renderers={renderers}
+          tagsStyles={tagsStyles}
+          imagesMaxWidth={dimensions.fullWidth}
+          onLinkPress={(event, href) => {
+            Linking.openURL(href)
+          }}
+        />
+      )
+    }
     return (
       <View style={windowStyles.container}>
         <ScrollView>
           <View style={styles.about}>
             {this.renderCover()}
-
-            <HTML
-              html={this.state.about}
-              baseFontStyle={styles.aboutText}
-              renderers={renderers}
-              tagsStyles={tagsStyles}
-              imagesMaxWidth={dimensions.fullWidth}
-              onLinkPress={(event, href) => {
-                Linking.openURL(href)
-              }}
-            />
+            {html}
           </View>
           {this.renderShows()}
         </ScrollView>
