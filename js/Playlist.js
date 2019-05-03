@@ -4,8 +4,7 @@ import {
   Text,
   View,
   TouchableOpacity,
-  FlatList,
-  RefreshControl
+  FlatList
 } from 'react-native'
 
 import { Container } from 'flux/utils'
@@ -55,8 +54,7 @@ class Playlist extends React.Component {
         show_notes: null,
         songs: [],
         semester_id: -1
-      },
-      refreshing: false
+      }
     }
   }
 
@@ -108,24 +106,9 @@ class Playlist extends React.Component {
     )
   }
 
-  _onRefresh = () => {
-    this.setState({ refreshing: true })
-
-    this.fetchPlaylist().then(() => {
-      this.setState({ refreshing: false })
-    })
-  }
-
   renderSongs() {
     return (
-      <ScrollView
-        // refreshControl={
-        //   <RefreshControl
-        //     refreshing={this.state.refreshing}
-        //     onRefresh={this._onRefresh}
-        //   />
-        // }
-      >
+      <ScrollView>
         <FlatList
           data={this.state.on_air.songs}
           renderItem={({ item }) => <Song data={item} />}
