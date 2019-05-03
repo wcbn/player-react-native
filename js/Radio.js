@@ -8,16 +8,28 @@ import {
 } from 'react-native'
 import Settings from './Settings'
 import { Audio } from 'expo'
+import { Container } from 'flux/utils'
+import OnAirStore from './flux/OnAirStore'
+import OnAirDispatcher from './flux/OnAirDispatcher'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { colors, dimensions } from './styles/main'
+import Moment from 'moment'
 // import { windowStyles } from './styles/components'
 // import Spin from 'react-native-spinjs'
-// import TrackPlayer from 'react-native-track-player'
-// import RNMusicMetadata from 'react-native-music-metadata'
 
-export default class Radio extends React.Component {
+class Radio extends React.Component {
   static navigationOptions = {
     title: 'Radio'
+  }
+
+  static getStores() {
+    return [OnAirStore]
+  }
+
+  static calculateState(prevState) {
+    return {
+      on_air: OnAirStore.getState()
+    }
   }
 
   constructor() {
@@ -43,7 +55,33 @@ export default class Radio extends React.Component {
       shouldDuckAndroid: true
     })
 
-    this._loadNewPlaybackInstance()
+    // this._loadNewPlaybackInstance()
+
+    // poll for new song data
+    setInterval(() => {
+      this.fetchPlaylist().then(() => {
+        OnAirDispatcher.dispatch({
+          type: 'CHECK_FOR_NEW_SONG',
+          data: this.state.on_air
+        })
+      })
+    }, 120000)
+  }
+
+  fetchPlaylist() {
+    return new Promise((resolve, reject) => {
+      fetch('https://app.wcbn.org/playlist.json')
+        .then(response => response.json())
+        .then(data => {
+          data.on_air.songs.forEach(song => {
+            song.at = Moment(song.at).format('h:mm A')
+          })
+          this.setState({
+            on_air: data.on_air
+          })
+          resolve()
+        })
+    })
   }
 
   async _unloadPlaybackInstance() {
@@ -106,17 +144,17 @@ export default class Radio extends React.Component {
     }
   }
 
-  renderSpinner() {
-    if (this.state.isLoading && !this.state.isPlaying) {
-      return (
-        <Spin
-          radius={dimensions.fullWidth / 3}
-          width={3}
-          color={colors.active}
-        />
-      )
-    }
-  }
+  // renderSpinner() {
+  //   if (this.state.isLoading && !this.state.isPlaying) {
+  //     return (
+  //       <Spin
+  //         radius={dimensions.fullWidth / 3}
+  //         width={3}
+  //         color={colors.active}
+  //       />
+  //     )
+  //   }
+  // }
 
   render() {
     return (
@@ -149,3 +187,5 @@ const styles = StyleSheet.create({
     color: colors.inactive
   }
 })
+
+export default Container.create(Radio)

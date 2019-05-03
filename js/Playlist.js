@@ -8,6 +8,8 @@ import {
   RefreshControl
 } from 'react-native'
 
+import { Container } from 'flux/utils'
+import OnAirStore from './flux/OnAirStore'
 import Song from './components/Song'
 import Separator from './components/Separator'
 import {
@@ -21,11 +23,21 @@ import { colors } from './styles/main'
 import { ScrollView } from 'react-native-gesture-handler'
 import Moment from 'moment'
 
-export default class Playlist extends React.Component {
+class Playlist extends React.Component {
   static navigationOptions = ({ navigation }) => {
     return {
       title: navigation.getParam('title', 'Playlist'),
       ...headerStyles
+    }
+  }
+
+  static getStores() {
+    return [OnAirStore]
+  }
+
+  static calculateState(prevState) {
+    return {
+      on_air: OnAirStore.getState() //todo create a songs state and only update that
     }
   }
 
@@ -142,8 +154,12 @@ export default class Playlist extends React.Component {
       <View style={windowStyles.container}>
         {this.renderBanner()}
         <Separator color={colors.inactive} />
-        {this.state.on_air.songs.length ? this.renderSongs() : this.renderNotice()}
+        {this.state.on_air.songs.length
+          ? this.renderSongs()
+          : this.renderNotice()}
       </View>
     )
   }
 }
+
+export default Container.create(Playlist)
