@@ -15,14 +15,12 @@ class OnAirStore extends ReduceStore {
       ending: '',
       times: '',
       show_notes: null,
-      songs: [{artist: ''}],
+      songs: [{ name: '', artist: '', album: '', label: '', year: '' }],
       semester_id: -1
     }
   }
 
   reduce(state, action) {
-    console.log(action)
-
     if (action.data !== undefined) {
       return action.data
     }

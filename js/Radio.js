@@ -13,12 +13,8 @@ import OnAirStore from './flux/OnAirStore'
 import OnAirDispatcher from './flux/OnAirDispatcher'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { colors, dimensions } from './styles/main'
-<<<<<<< HEAD
 import Moment from 'moment'
-// import { windowStyles } from './styles/components'
-=======
 import { windowStyles } from './styles/components'
->>>>>>> wip: now playing
 // import Spin from 'react-native-spinjs'
 
 class Radio extends React.Component {
@@ -66,7 +62,7 @@ class Radio extends React.Component {
       shouldDuckAndroid: true
     })
 
-    // this._loadNewPlaybackInstance()
+    this._loadNewPlaybackInstance()
 
     const pollForNewSong = () => {
       this.fetchPlaylist().then(() => {
@@ -177,22 +173,27 @@ class Radio extends React.Component {
           size={150}
           color={colors.active}
           onPress={this._onPress}
-          style={{...styles.icon,
-            paddingLeft: this.state.isPlaying ? 7 : 35
-          }}
+          style={{ ...styles.icon, paddingLeft: this.state.isPlaying ? 7 : 35 }}
         />
       </View>
     )
   }
 
   renderNowPlaying() {
-    const x = this.state.nowPlaying
+    let x = this.state.on_air.songs[0]
+
+    if (x == undefined) {
+      x = { name: '', artist: '', album: '', label: '', year: '' }
+    }
+
     return (
       <View style={styles.nowPlaying}>
-        <Text style={styles.nowPlayingText}>{x.name}</Text>
-        <Text style={styles.nowPlayingText}>{x.artist}</Text>
-        <Text style={styles.nowPlayingText}>{x.album}</Text>
-        <Text style={styles.nowPlayingText}>{`(${x.label}) ${x.year}`}</Text>
+        <Text style={styles.nowPlayingText}>{x.name || '-'}</Text>
+        <Text style={styles.nowPlayingText}>{x.artist || '-'}</Text>
+        <Text style={styles.nowPlayingText}>{x.album || '-'}</Text>
+        <Text style={styles.nowPlayingText}>
+          {x.label !== '' ? `(${x.label}) ${x.year}` : ''}
+        </Text>
       </View>
     )
   }
