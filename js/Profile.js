@@ -128,6 +128,7 @@ const renderers = {
         marginBottom: 2
       }}
       source={{ uri: `https://app.wcbn.org${htmlAttribs.src}` }}
+      key={htmlAttribs.src}
     />
   )
 }
