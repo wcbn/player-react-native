@@ -57,17 +57,17 @@ class Radio extends React.Component {
 
     this._loadNewPlaybackInstance()
 
-    // const pollForNewSong = () => {
-    //   this.fetchPlaylist().then(() => {
-    //     OnAirDispatcher.dispatch({
-    //       type: 'CHECK_FOR_NEW_SONG',
-    //       data: this.state.on_air
-    //     })
-    //   })
-    // }
+    const pollForNewSong = () => {
+      this.fetchPlaylist().then(() => {
+        OnAirDispatcher.dispatch({
+          type: 'CHECK_FOR_NEW_SONG',
+          data: this.state.on_air
+        })
+      })
+    }
 
-    // pollForNewSong()
-    // setInterval(pollForNewSong, 60000)
+    pollForNewSong()
+    setInterval(pollForNewSong, 60000)
   }
 
   fetchPlaylist() {
@@ -196,7 +196,7 @@ class Radio extends React.Component {
       <View style={{ ...windowStyles.container, ...styles.container }}>
         {/* {this.renderSpinner()} */}
         {this.renderIcon()}
-        {/* {this.renderNowPlaying()} */}
+        {this.renderNowPlaying()}
       </View>
     )
   }
