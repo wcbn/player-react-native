@@ -1,6 +1,5 @@
 import React from 'react'
 import {
-  StyleSheet,
   Text,
   View,
   FlatList,
@@ -11,7 +10,6 @@ import { colors } from './styles/main'
 import {
   windowStyles,
   headerStyles,
-  listStyles,
   bannerStyles
 } from './styles/components'
 import Separator from './components/Separator'

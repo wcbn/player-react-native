@@ -68,6 +68,23 @@ export default class Profile extends React.Component {
     )
   }
 
+  renderHtml() {
+    if (this.state.about) {
+      return (
+        <HTML
+          html={this.state.about}
+          baseFontStyle={styles.aboutText}
+          renderers={renderers}
+          tagsStyles={tagsStyles}
+          imagesMaxWidth={dimensions.fullWidth}
+          onLinkPress={(event, href) => {
+            Linking.openURL(href)
+          }}
+        />
+      )
+    }
+  }
+
   renderShows() {
     if (this.state.shows.length > 0) {
       return (
@@ -85,27 +102,12 @@ export default class Profile extends React.Component {
   }
 
   render() {
-    let html
-    if (this.state.about) {
-      html = (
-        <HTML
-          html={this.state.about}
-          baseFontStyle={styles.aboutText}
-          renderers={renderers}
-          tagsStyles={tagsStyles}
-          imagesMaxWidth={dimensions.fullWidth}
-          onLinkPress={(event, href) => {
-            Linking.openURL(href)
-          }}
-        />
-      )
-    }
     return (
       <View style={windowStyles.container}>
         <ScrollView>
           <View style={styles.about}>
             {this.renderCover()}
-            {html}
+            {this.renderHtml()}
           </View>
           {this.renderShows()}
         </ScrollView>

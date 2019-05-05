@@ -55,7 +55,7 @@ class Radio extends React.Component {
       shouldDuckAndroid: true
     })
 
-    // this._loadNewPlaybackInstance()
+    this._loadNewPlaybackInstance()
 
     const pollForNewSong = () => {
       this.fetchPlaylist().then(() => {
