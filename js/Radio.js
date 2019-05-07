@@ -3,8 +3,8 @@ import {
   StyleSheet,
   Text,
   View,
-  TouchableOpacity,
-  AsyncStorage
+  AsyncStorage,
+  TouchableWithoutFeedback
 } from 'react-native'
 import Settings from './Settings'
 import { Audio } from 'expo'
@@ -39,7 +39,9 @@ class Radio extends React.Component {
       isPlaying: false,
       isBuffering: false,
       isLoading: true,
-      isUnloading: false
+      isUnloading: false,
+      albumArtwork:
+        'https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/924faf52097223.590463d34792e.jpg'
     }
 
     this.playbackInstance = null
@@ -165,7 +167,6 @@ class Radio extends React.Component {
           name={this.state.isPlaying ? 'ios-pause' : 'ios-play'}
           size={150}
           color={colors.active}
-          onPress={this._onPress}
           style={{ ...styles.icon, paddingLeft: this.state.isPlaying ? 7 : 35 }}
         />
       </View>
@@ -193,11 +194,13 @@ class Radio extends React.Component {
 
   render() {
     return (
-      <View style={{ ...windowStyles.container, ...styles.container }}>
-        {/* {this.renderSpinner()} */}
-        {this.renderIcon()}
-        {this.renderNowPlaying()}
-      </View>
+      <TouchableWithoutFeedback onPress={this._onPress}>
+        <View style={{ ...windowStyles.container, ...styles.container }}>
+          {/* {this.renderSpinner()} */}
+          {this.renderIcon()}
+          {this.renderNowPlaying()}
+        </View>
+      </TouchableWithoutFeedback>
     )
   }
 }
