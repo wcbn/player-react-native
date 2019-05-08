@@ -17,6 +17,7 @@ import { colors, dimensions } from './styles/main'
 import Moment from 'moment'
 import { windowStyles, headerStyles } from './styles/components'
 import SmsExpo from './components/radio/SmsExpo'
+import ShareWidget from './components/radio/ShareWidget'
 
 class Radio extends React.Component {
   static navigationOptions = {
@@ -281,6 +282,7 @@ class Radio extends React.Component {
           {this.renderAlbumCover()}
           {this.renderNowPlaying()}
           <SmsExpo />
+          <ShareWidget />
         </ImageBackground>
       </TouchableWithoutFeedback>
     )

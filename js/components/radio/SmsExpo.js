@@ -31,7 +31,7 @@ export default class SmsExpo extends React.PureComponent {
         <View style={styles.test}>
           <Icon
             name={'ios-text'}
-            size={40}
+            size={37}
             color={colors.active}
             style={styles.icon}
             onPress={this._onPress}
