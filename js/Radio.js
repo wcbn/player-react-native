@@ -137,10 +137,8 @@ class Radio extends React.Component {
           return
         }
 
-        const artworkUrl = res.artworkUrl100.replace('100x100', '600x600')
-
         this.setState({
-          albumArt: artworkUrl
+          albumArt: res.artworkUrl100.replace('100x100', '600x600')
         })
       })
   }
