@@ -8,7 +8,6 @@ import {
   Image,
   ImageBackground
 } from 'react-native'
-import Settings from './Settings'
 import { Audio } from 'expo'
 import { Container } from 'flux/utils'
 import OnAirStore from './flux/OnAirStore'
@@ -19,16 +18,10 @@ import Moment from 'moment'
 import { windowStyles, headerStyles } from './styles/components'
 
 class Radio extends React.Component {
-  static navigationOptions = () => {
-    return {
-      title: '88.3 FM',
-      ...headerStyles
-    }
+  static navigationOptions = {
+    title: '88.3 FM',
+    ...headerStyles
   }
-
-  // static navigationOptions = {
-  //   title: 'Radio'
-  // }
 
   static getStores() {
     return [OnAirStore]
@@ -80,7 +73,7 @@ class Radio extends React.Component {
     }
 
     pollForNewSong()
-    setInterval(pollForNewSong, 20000)
+    setInterval(pollForNewSong, 30000)
   }
 
   fetchPlaylist() {
@@ -127,8 +120,6 @@ class Radio extends React.Component {
     } else if (song.name) {
       searchTerm += song.name
     }
-
-    console.log(searchTerm)
 
     searchParams = fetch(
       `https://itunes.apple.com/search?limit=1&entity=album&term=${encodeURI(
