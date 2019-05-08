@@ -16,6 +16,7 @@ import Icon from 'react-native-vector-icons/Ionicons'
 import { colors, dimensions } from './styles/main'
 import Moment from 'moment'
 import { windowStyles, headerStyles } from './styles/components'
+import SmsExpo from './components/radio/SmsExpo'
 
 class Radio extends React.Component {
   static navigationOptions = {
@@ -279,6 +280,7 @@ class Radio extends React.Component {
         >
           {this.renderAlbumCover()}
           {this.renderNowPlaying()}
+          <SmsExpo />
         </ImageBackground>
       </TouchableWithoutFeedback>
     )
