@@ -1,3 +1,6 @@
+# Demo
+[View with the Expo app](https://expo.io/@dctalbot/wcbn-app)
+
 # Things you'll need
 
 - yarn
