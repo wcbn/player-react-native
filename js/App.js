@@ -48,11 +48,15 @@ const PlaylistStack = createStackNavigator({
   Profile: Profile
 })
 
+const RadioStack = createStackNavigator({
+  Radio: Radio
+})
+
 const AppNavigator = createBottomTabNavigator(
   {
     Schedule: ScheduleStack,
     Playlist: PlaylistStack,
-    Radio: Radio
+    Radio: RadioStack
     // Favorites: Favorites,
     // Settings: Settings
   },
@@ -79,7 +83,7 @@ const AppContainer = createAppContainer(AppNavigator)
 
 export default () => (
   <SafeAreaView style={windowStyles.container} forceInset={{ top: 'never' }}>
-    <StatusBar barStyle='light-content' />
+    <StatusBar barStyle="light-content" />
     <AppContainer />
   </SafeAreaView>
 )
