@@ -247,7 +247,15 @@ class Radio extends React.Component {
 
     let name = x.name ? <ScrollingText text={x.name} /> : null
     let artist = x.artist ? <ScrollingText text={x.artist} /> : null
-    let album = x.album ? <ScrollingText text={x.album} /> : null
+    let album = x.album ? (
+      <ScrollingText
+        text={
+          x.album +
+          (x.label ? ` — ${x.label} ` : ' ') +
+          (x.year ? ` (${x.year})` : '')
+        }
+      />
+    ) : null
     let label = x.label ? (
       <ScrollingText text={x.label + (x.year ? ` (${x.year})` : '')} />
     ) : null
@@ -257,7 +265,7 @@ class Radio extends React.Component {
         {name}
         {artist}
         {album}
-        {label}
+        {/* {label} */}
       </View>
     )
   }
