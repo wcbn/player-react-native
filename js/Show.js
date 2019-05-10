@@ -18,7 +18,7 @@ import {
 import Moment from 'moment'
 import ListHeader from './components/ListHeader'
 
-export default class Show extends React.Component {
+export default class Show extends React.PureComponent {
   static navigationOptions = ({ navigation }) => {
     return {
       title: navigation.getParam('title', ''),

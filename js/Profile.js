@@ -8,7 +8,7 @@ import Separator from './components/Separator'
 import ShowListing from './components/ShowListing'
 import ListHeader from './components/ListHeader'
 
-export default class Profile extends React.Component {
+export default class Profile extends React.PureComponent {
   static navigationOptions = ({ navigation }) => {
     return {
       title: navigation.getParam('title', ''),

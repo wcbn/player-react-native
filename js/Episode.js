@@ -1,24 +1,15 @@
 import React from 'react'
-import {
-  Text,
-  View,
-  FlatList,
-  TouchableOpacity
-} from 'react-native'
+import { Text, View, FlatList, TouchableOpacity } from 'react-native'
 import Song from './components/Song'
 import { colors } from './styles/main'
-import {
-  windowStyles,
-  headerStyles,
-  bannerStyles
-} from './styles/components'
+import { windowStyles, headerStyles, bannerStyles } from './styles/components'
 import Separator from './components/Separator'
 import ListHeader from './components/ListHeader'
 
 // since the only way to get to this screen is from a Show,
 // all of the data is passed in as navigation props, saving us an expensive fetch()
 
-export default class Episode extends React.Component {
+export default class Episode extends React.PureComponent {
   static navigationOptions = ({ navigation }) => {
     return {
       title: navigation.getParam('title', ''),
