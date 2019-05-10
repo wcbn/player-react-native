@@ -18,6 +18,7 @@ import Moment from 'moment'
 import { windowStyles, headerStyles } from './styles/components'
 import SmsExpo from './components/radio/SmsExpo'
 import ShareWidget from './components/radio/ShareWidget'
+import ScrollingText from './components/radio/ScrollingText'
 
 class Radio extends React.Component {
   static navigationOptions = {
@@ -75,7 +76,7 @@ class Radio extends React.Component {
     }
 
     pollForNewSong()
-    setInterval(pollForNewSong, 30000)
+    setInterval(pollForNewSong, 1200000)
   }
 
   fetchPlaylist() {
@@ -231,9 +232,9 @@ class Radio extends React.Component {
   }
 
   renderNowPlaying() {
-    if (!this.state.isPlaying) {
-      return null
-    }
+    // if (!this.state.isPlaying) {
+    //   return null
+    // }
 
     let x = this.state.on_air.songs[0]
 
@@ -241,19 +242,14 @@ class Radio extends React.Component {
       x = { name: '', artist: '', album: '', label: '', year: '' }
     }
 
-    let name = x.name ? (
-      <Text style={styles.nowPlayingText}>{x.name}</Text>
-    ) : null
-    let artist = x.artist ? (
-      <Text style={styles.nowPlayingText}>{x.artist}</Text>
-    ) : null
-    let album = x.album ? (
-      <Text style={styles.nowPlayingText}>{x.album}</Text>
-    ) : null
+    //NOTE: TEST HARDCODED SONG HERE
+    // x = { name: 'elephant', artist: 'the white stripes', album: '', label: '', year: '' }
+
+    let name = x.name ? <ScrollingText text={x.name} /> : null
+    let artist = x.artist ? <ScrollingText text={x.artist} /> : null
+    let album = x.album ? <ScrollingText text={x.album} /> : null
     let label = x.label ? (
-      <Text style={styles.nowPlayingText}>
-        {x.label + (x.year ? ` (${x.year})` : '')}
-      </Text>
+      <ScrollingText text={x.label + (x.year ? ` (${x.year})` : '')} />
     ) : null
 
     return (
@@ -299,21 +295,21 @@ const styles = StyleSheet.create({
     marginTop: 10
   },
   nowPlaying: {
-    bottom: 40,
+    bottom: 60,
     alignItems: 'center',
-    position: 'absolute'
-  },
-  nowPlayingText: {
-    color: colors.inactive,
-    fontSize: 20,
-    lineHeight: 30
+    position: 'absolute',
+    maxWidth: (dimensions.fullWidth * 3) / 4
   },
   albumCover: {
     width: dimensions.fullWidth / 1.75,
     height: dimensions.fullWidth / 1.75,
+    top: dimensions.fullHeight / 6,
     justifyContent: 'center',
     alignItems: 'center',
     position: 'absolute'
+  },
+  fieldLabels: {
+    color: colors.active
   }
 })
 
