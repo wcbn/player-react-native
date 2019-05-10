@@ -4,7 +4,8 @@ import {
   Text,
   View,
   TouchableOpacity,
-  FlatList
+  FlatList,
+  ScrollView
 } from 'react-native'
 
 import { Container } from 'flux/utils'
@@ -14,13 +15,10 @@ import Separator from './components/Separator'
 import {
   windowStyles,
   headerStyles,
-  listStyles,
   bannerStyles,
   basicInfoBoxStyles
 } from './styles/components'
 import { colors } from './styles/main'
-import { ScrollView } from 'react-native-gesture-handler'
-import Moment from 'moment'
 import ListHeader from './components/ListHeader'
 
 class Playlist extends React.Component {
@@ -41,44 +39,8 @@ class Playlist extends React.Component {
     }
   }
 
-  constructor() {
-    super()
-
-    this.state = {
-      on_air: {
-        name: '',
-        dj: '',
-        dj_url: '',
-        beginning: '',
-        ending: '',
-        times: '',
-        show_notes: null,
-        songs: [],
-        semester_id: -1
-      }
-    }
-  }
-
   componentDidMount() {
-    this.fetchPlaylist().then(() => {
-      this.props.navigation.setParams({ title: this.state.on_air.name })
-    })
-  }
-
-  fetchPlaylist() {
-    return new Promise((resolve, reject) => {
-      fetch('https://app.wcbn.org/playlist.json')
-        .then(response => response.json())
-        .then(data => {
-          data.on_air.songs.forEach(song => {
-            song.at = Moment(song.at).format('h:mm A')
-          })
-          this.setState({
-            on_air: data.on_air
-          })
-          resolve()
-        })
-    })
+    this.props.navigation.setParams({ title: this.state.on_air.name })
   }
 
   renderBanner() {
