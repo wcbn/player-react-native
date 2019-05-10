@@ -101,7 +101,7 @@ export default class Show extends React.Component {
   }
 
   renderEpisode({ item, index }) {
-    //TODO refactor this
+    //TODO refactor this?
     return item.songs.length ? (
       <TouchableOpacity
         onPress={() =>
@@ -114,7 +114,7 @@ export default class Show extends React.Component {
           })
         }
       >
-        <View style={{ ...listStyles.item, ...episodeStyles.listing }}>
+        <View style={[listStyles.item, episodeStyles.listing ]}>
           <Text style={episodeStyles.listing.date}>{item.beginning}</Text>
           <Text style={episodeStyles.listing.numSongs}>
             {item.songs.length} Songs
@@ -122,11 +122,9 @@ export default class Show extends React.Component {
         </View>
       </TouchableOpacity>
     ) : (
-      <View style={{ ...listStyles.item, ...episodeStyles.listing }}>
+      <View style={[listStyles.item, episodeStyles.listing ]}>
         <Text style={episodeStyles.listing.date}>{item.beginning}</Text>
-        <Text style={episodeStyles.listing.numSongs}>
-          {item.songs.length} Songs
-        </Text>
+        <Text style={episodeStyles.listing.numSongs}>0 Songs</Text>
       </View>
     )
   }
@@ -163,7 +161,7 @@ const styles = StyleSheet.create({
     padding: 15,
     fontStyle: 'italic',
     color: colors.inactive,
-    maxHeight: '40%'
+    maxHeight: 200
   },
   dj: {
     flex: 1,
