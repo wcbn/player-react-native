@@ -44,42 +44,53 @@ export default class Settings extends React.Component {
     // AsyncStorage.getItem('STREAM_URL').then(resp => console.log(resp))
   }
 
+  renderStreamOption() {
+    return (
+      <View style={styles.option}>
+        <Text style={styles.optionLabel}>Stream Quality</Text>
+        <SegmentedControlTab
+          values={['Low', 'Medium', 'High']}
+          thumbColor={colors.active}
+          selectedIndex={this.state.selectedStreamIndex}
+          onTabPress={this.setStreamSetting}
+          activeTabStyle={{ backgroundColor: colors.active }}
+          tabStyle={{
+            backgroundColor: colors.primary,
+            borderColor: colors.active
+          }}
+          activeTabTextStyle={{ color: colors.primary }}
+          tabTextStyle={{ color: colors.active }}
+        />
+      </View>
+    )
+  }
+
+  renderThemeOption() {
+    return (
+      <View style={styles.option}>
+        <Text style={styles.optionLabel}>Dark Mode</Text>
+        <Switch
+          value={this.state.darkMode}
+          disabled={true}
+          trackColor={{ true: colors.active }}
+          onValueChange={() => {
+            const newVal = !this.state.darkMode
+            this.setState({
+              darkMode: newVal
+            })
+            AsyncStorage.setItem('DARK_MODE', JSON.stringify(newVal))
+          }}
+        />
+      </View>
+    )
+  }
+
   render() {
     return (
       <View style={windowStyles.container}>
         <View style={styles.content}>
-          <Text style={{ color: colors.active }}>Stream Quality</Text>
-          <SegmentedControlTab
-            values={['Low', 'Medium', 'High']}
-            thumbColor={colors.active}
-            selectedIndex={this.state.selectedStreamIndex}
-            onTabPress={this.setStreamSetting}
-            activeTabStyle={{ backgroundColor: colors.active }}
-            tabStyle={{
-              backgroundColor: colors.primary,
-              borderColor: colors.active
-            }}
-            activeTabTextStyle={{ color: colors.primary }}
-            tabTextStyle={{ color: colors.active }}
-          />
-
-          <View>
-            <Text style={{ color: colors.active, marginTop: 20 }}>
-              Dark Mode
-            </Text>
-            <Switch
-              value={this.state.darkMode}
-              disabled={true}
-              trackColor={{ true: colors.active }}
-              onValueChange={() => {
-                const newVal = !this.state.darkMode
-                this.setState({
-                  darkMode: newVal
-                })
-                AsyncStorage.setItem('DARK_MODE', JSON.stringify(newVal))
-              }}
-            />
-          </View>
+          {this.renderStreamOption()}
+          {this.renderThemeOption()}
         </View>
       </View>
     )
@@ -89,5 +100,9 @@ export default class Settings extends React.Component {
 const styles = StyleSheet.create({
   content: {
     padding: 20
-  }
+  },
+  option: {
+    marginBottom: 10
+  },
+  optionLabel: { color: colors.active, marginBottom: 3 }
 })
