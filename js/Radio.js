@@ -22,7 +22,7 @@ import ScrollingText from './components/radio/ScrollingText'
 
 class Radio extends React.Component {
   static navigationOptions = {
-    title: '88.3 FM',
+    title: 'WCBN-FM Ann Arbor',
     ...headerStyles
   }
 
@@ -122,6 +122,9 @@ class Radio extends React.Component {
     } else if (song.name) {
       searchTerm += song.name
     }
+
+    //TODO try this
+    // let searchTerm = `${song.artist} ${song.album ? song.album : song.name}`
 
     searchParams = fetch(
       `https://itunes.apple.com/search?limit=1&entity=album&term=${encodeURI(
