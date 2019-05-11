@@ -150,6 +150,7 @@ class Radio extends React.Component {
       this.setState({
         isPlaying: false,
         isLoading: false,
+        isBuffering: false,
         isUnloading: true
       })
 
