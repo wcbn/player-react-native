@@ -75,6 +75,7 @@ export default class Profile extends React.PureComponent {
           html={this.state.about}
           baseFontStyle={styles.aboutText}
           renderers={renderers}
+          listsPrefixesRenderers={listsPrefixesRenderers}
           tagsStyles={tagsStyles}
           imagesMaxWidth={dimensions.fullWidth}
           onLinkPress={(event, href) => {
@@ -133,8 +134,22 @@ const renderers = {
   )
 }
 
+const listsPrefixesRenderers = {
+  ul: (htmlAttribs, children, convertedCSSStyles, passProps) => (
+    <Text style={{ color: colors.active, marginRight: 5 }}>•</Text>
+  )
+}
+
 const tagsStyles = {
-  figcaption: { textAlign: 'center', fontStyle: 'italic', color: colors.active }
+  figcaption: {
+    textAlign: 'center',
+    fontStyle: 'italic',
+    color: colors.active
+  },
+  a: {
+    color: colors.active,
+    textDecorationLine: 'none'
+  }
 }
 
 const styles = StyleSheet.create({
