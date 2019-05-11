@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text, View, Image, FlatList, Linking } from 'react-native'
 import HTML from 'react-native-render-html'
-import { windowStyles, headerStyles, listStyles } from './styles/components'
+import { windowStyles, headerStyles } from './styles/components'
 import { ScrollView } from 'react-native-gesture-handler'
 import { colors, dimensions } from './styles/main'
 import Separator from './components/Separator'

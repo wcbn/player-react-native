@@ -16,19 +16,6 @@ export const headerStyles = {
 }
 
 export const listStyles = StyleSheet.create({
-  sectionHeader: {
-    height: 22,
-    paddingLeft: 10,
-    backgroundColor: colors.grayHighlight,
-    color: colors.inactive
-  },
-
-  sectionHeaderText: {
-    fontWeight: 'bold',
-    color: colors.inactive,
-    lineHeight: 22
-  },
-
   item: {
     display: 'flex',
     flexDirection: 'row',
