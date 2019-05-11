@@ -39,7 +39,6 @@ class Radio extends React.Component {
   constructor() {
     super()
     this.state = {
-      uri: 'http://floyd.wcbn.org:8000/wcbn-hd.mp3',
       isPlaying: false,
       isBuffering: false,
       isLoading: true,
@@ -162,8 +161,17 @@ class Radio extends React.Component {
 
   async _loadNewPlaybackInstance() {
     this.setState({ isLoading: true })
+
+    let streamUrl = await AsyncStorage.getItem('STREAM_URL')
+
+    if (streamUrl == null) {
+      // SET DEFAULT
+      streamUrl = 'http://floyd.wcbn.org:8000/wcbn-hd.mp3'
+      AsyncStorage.setItem('STREAM_URL', streamUrl)
+    }
+
     const { sound, status } = await Audio.Sound.createAsync(
-      { uri: this.state.uri },
+      { uri: streamUrl },
       { shouldPlay: true },
       this._onPlaybackStatusUpdate
     )
@@ -275,7 +283,7 @@ class Radio extends React.Component {
     return (
       <TouchableWithoutFeedback onPress={this._onPress}>
         <ImageBackground
-          style={{ ...windowStyles.container, ...styles.container }}
+          style={[windowStyles.container, styles.container]}
           imageStyle={{ opacity: 0.05 }}
           source={background}
         >

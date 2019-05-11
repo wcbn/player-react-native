@@ -52,13 +52,17 @@ const RadioStack = createStackNavigator({
   Radio: Radio
 })
 
+const SettingsStack = createStackNavigator({
+  Settings: Settings
+})
+
 const AppNavigator = createBottomTabNavigator(
   {
     Schedule: ScheduleStack,
     Playlist: PlaylistStack,
-    Radio: RadioStack
+    Radio: RadioStack,
+    Settings: SettingsStack
     // Favorites: Favorites,
-    // Settings: Settings
   },
   {
     defaultNavigationOptions: ({ navigation }) => ({
