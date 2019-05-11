@@ -76,10 +76,10 @@ export default class Show extends React.PureComponent {
     const djButtons = this.state.djs.map(dj => (
       <TouchableOpacity
         key={dj.url}
-        style={{
-          ...styles.dj,
-          ...{ minWidth: dimensions.fullWidth / this.state.djs.length }
-        }}
+        style={[
+          styles.dj,
+          { minWidth: dimensions.fullWidth / this.state.djs.length }
+        ]}
         onPress={() =>
           this.props.navigation.navigate('Profile', {
             url: dj.url,
@@ -114,7 +114,7 @@ export default class Show extends React.PureComponent {
           })
         }
       >
-        <View style={[listStyles.item, episodeStyles.listing ]}>
+        <View style={[listStyles.item, episodeStyles.listing]}>
           <Text style={episodeStyles.listing.date}>{item.beginning}</Text>
           <Text style={episodeStyles.listing.numSongs}>
             {item.songs.length} Songs
@@ -122,7 +122,7 @@ export default class Show extends React.PureComponent {
         </View>
       </TouchableOpacity>
     ) : (
-      <View style={[listStyles.item, episodeStyles.listing ]}>
+      <View style={[listStyles.item, episodeStyles.listing]}>
         <Text style={episodeStyles.listing.date}>{item.beginning}</Text>
         <Text style={episodeStyles.listing.numSongs}>0 Songs</Text>
       </View>
@@ -164,15 +164,11 @@ const styles = StyleSheet.create({
     maxHeight: 200
   },
   dj: {
-    flex: 1,
     backgroundColor: colors.grayHighlight,
-    height: 44, // padding * 2 + djText lineHeight
     padding: 12,
     margin: StyleSheet.hairlineWidth,
-    textAlign: 'center'
   },
   djText: {
-    lineHeight: 20,
     fontSize: 16,
     color: colors.active,
     textAlign: 'center'
