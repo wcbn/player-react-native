@@ -28,11 +28,6 @@ const TODAY = weekdayIndex == 0 ? 6 : weekdayIndex - 1
 const ITEM_HEIGHT = 50
 const HEADER_HEIGHT = 22
 
-//TODO format time in fetchSchedule() before rendering, this is just easier for now
-const Time = props => (
-  <Text style={styles.showTime}>{Moment(props.at).format('h:mm A')}</Text>
-)
-
 //pure component for better performance(?)
 class ScheduleList extends React.PureComponent {
   constructor() {
@@ -41,6 +36,10 @@ class ScheduleList extends React.PureComponent {
     this.state = {
       sections: []
     }
+  }
+
+  componentDidMount() {
+    this.fetchSchedule()
   }
 
   renderItem = ({ item, index, section }) => (
@@ -58,15 +57,11 @@ class ScheduleList extends React.PureComponent {
         <Text style={styles.showName}>{item.name}</Text>
         <Text style={styles.showHost}>{item.with}</Text>
       </View>
-      <Time at={item.beginning} />
+      <Text style={styles.showTime}>{item.beginning}</Text>
     </TouchableOpacity>
   )
 
   renderSectionHeader = ({ section: { title } }) => <ListHeader text={title} />
-
-  componentDidMount() {
-    this.fetchSchedule()
-  }
 
   fetchSchedule() {
     fetch(this.props.url, {
@@ -78,12 +73,14 @@ class ScheduleList extends React.PureComponent {
       .then(response => response.json())
       .then(response => response['shows'])
       .then(data => {
-        let fetched = []
-        WEEEKDAYS.forEach((day, i) => {
-          fetched.push({
+        let fetched = WEEEKDAYS.map((day, i) => {
+          data[i + 1].forEach(show => {
+            show.beginning = Moment(show.beginning).format('h:mm A')
+          })
+          return {
             title: day,
             data: data[i + 1]
-          })
+          }
         })
         this.setState({
           sections: fetched
@@ -131,7 +128,7 @@ class ScheduleList extends React.PureComponent {
   }
 }
 
-export default class Schedule extends React.Component {
+export default class Schedule extends React.PureComponent {
   static navigationOptions = {
     title: 'WCBN Schedule',
     ...headerStyles

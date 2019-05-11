@@ -76,7 +76,7 @@ class Radio extends React.Component {
     }
 
     pollForNewSong()
-    setInterval(pollForNewSong, 1200000)
+    setInterval(pollForNewSong, 30000)
   }
 
   fetchPlaylist() {
@@ -256,16 +256,12 @@ class Radio extends React.Component {
         }
       />
     ) : null
-    let label = x.label ? (
-      <ScrollingText text={x.label + (x.year ? ` (${x.year})` : '')} />
-    ) : null
 
     return (
       <View style={styles.nowPlaying}>
         {name}
         {artist}
         {album}
-        {/* {label} */}
       </View>
     )
   }
