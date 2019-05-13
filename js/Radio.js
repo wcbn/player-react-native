@@ -259,11 +259,7 @@ class Radio extends React.Component {
     let artist = x.artist ? <ScrollingText text={x.artist} /> : null
     let album = x.album ? (
       <ScrollingText
-        text={
-          x.album +
-          (x.label ? ` — ${x.label} ` : ' ') +
-          (x.year ? ` (${x.year})` : '')
-        }
+        text={x.album + (x.label && x.year ? ` — (${x.label},  ${x.year})` : '')}
       />
     ) : null
 

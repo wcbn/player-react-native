@@ -9,7 +9,7 @@ export default (Review = props => {
       style={styles.container}
       onPress={() => Linking.openURL('https://google.com/')} //TODO replace with link to app store
     >
-      <Icon name={'md-quote'} size={30} color={colors.active} />
+      <Icon name={'md-thumbs-up'} size={30} color={colors.active} />
       <View style={styles.textContainer}>
         <Text style={styles.text}>Write a review!</Text>
       </View>
