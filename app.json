@@ -3,6 +3,7 @@
     "name": "WCBN-FM Ann Arbor",
     "description": "Discover new music from the student-run radio station of the University of Michigan.",
     "slug": "wcbn-app",
+    "githubUrl": "https://github.com/wcbn/player-react-native",
     "privacy": "public",
     "sdkVersion": "32.0.0",
     "platforms": ["ios", "android"],
@@ -20,10 +21,10 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "org.wcbn.app"
+      "bundleIdentifier": "org.wcbn"
     },
     "android": {
-      "package": "org.wcbn.app"
+      "package": "org.wcbn"
     }
   }
 }
