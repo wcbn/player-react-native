@@ -16,8 +16,6 @@ import Icon from 'react-native-vector-icons/Ionicons'
 import { colors, dimensions } from './styles/main'
 import Moment from 'moment'
 import { windowStyles, headerStyles } from './styles/components'
-import SmsExpo from './components/radio/SmsExpo'
-import ShareWidget from './components/radio/ShareWidget'
 import ScrollingText from './components/radio/ScrollingText'
 
 class Radio extends React.Component {
@@ -232,7 +230,7 @@ class Radio extends React.Component {
       <TouchableWithoutFeedback onPress={this._onPress}>
         <ImageBackground style={styles.albumCover} source={src}>
           <Icon
-            name={this.state.isPlaying ? null : 'ios-play'}
+            name={this.state.isPlaying ? null : 'md-play'}
             size={150}
             color={colors.active}
             style={styles.icon}
@@ -244,9 +242,9 @@ class Radio extends React.Component {
   }
 
   renderNowPlaying() {
-    // if (!this.state.isPlaying) {
-    //   return null
-    // }
+    if (!this.state.isPlaying) {
+      return null
+    }
 
     let x = this.state.on_air.songs[0]
 
@@ -293,8 +291,6 @@ class Radio extends React.Component {
         >
           {this.renderAlbumCover()}
           {this.renderNowPlaying()}
-          <SmsExpo />
-          <ShareWidget />
         </ImageBackground>
       </TouchableWithoutFeedback>
     )
@@ -317,11 +313,11 @@ const styles = StyleSheet.create({
     maxWidth: (dimensions.fullWidth * 3) / 4
   },
   albumCover: {
-    width: dimensions.fullWidth / 1.75,
-    height: dimensions.fullWidth / 1.75,
-    top: dimensions.fullHeight / 6,
     justifyContent: 'center',
     alignItems: 'center',
+    width: dimensions.fullWidth / 1.75,
+    height: dimensions.fullWidth / 1.75,
+    top: dimensions.fullHeight / 5,
     position: 'absolute'
   },
   fieldLabels: {

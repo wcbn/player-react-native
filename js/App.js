@@ -24,15 +24,15 @@ import { colors } from './styles/main'
 const getIconName = routeName => {
   switch (routeName) {
     case 'Schedule':
-      return 'ios-calendar'
+      return 'md-calendar'
     case 'Playlist':
-      return 'ios-musical-notes'
+      return 'md-musical-notes'
     case 'Radio':
-      return 'ios-radio'
+      return 'md-radio'
     case 'Favorites':
-      return 'ios-heart'
+      return 'md-heart'
     case 'Settings':
-      return 'ios-settings'
+      return 'md-settings'
   }
 }
 

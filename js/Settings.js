@@ -3,6 +3,11 @@ import { StyleSheet, Text, View, Switch, AsyncStorage } from 'react-native'
 import SegmentedControlTab from 'react-native-segmented-control-tab'
 import { windowStyles, headerStyles } from './styles/components'
 import { colors } from './styles/main'
+import Separator from './components/Separator'
+import RequestLine from './components/settings/RequestLine'
+import Share from './components/settings/ShareLink'
+import SmsExpo from './components/settings/SmsExpo'
+import Review from './components/settings/Review'
 
 const STREAMS = [
   'http://floyd.wcbn.org:8000/wcbn-mid.mp3',
@@ -19,22 +24,15 @@ export default class Settings extends React.Component {
   constructor() {
     super()
     this.state = {
-      selectedStreamIndex: null, // fetch ASAP in async componentDidMount ¯\_(ツ)_/¯
-      darkMode: true
+      selectedStreamIndex: null // fetch ASAP in async componentDidMount ¯\_(ツ)_/¯
     }
   }
 
   async componentDidMount() {
     const streamUrl = (await AsyncStorage.getItem('STREAM_URL')) || STREAMS[2]
-    let darkMode = JSON.parse(await AsyncStorage.getItem('DARK_MODE'))
-
-    if (darkMode == null) {
-      darkMode = true // DEFAULT TO TRUE TODO: FLIP ONCE LIGHT MODE IS IMPLEMENTED
-    }
 
     this.setState({
-      selectedStreamIndex: STREAMS.indexOf(streamUrl),
-      darkMode: darkMode
+      selectedStreamIndex: STREAMS.indexOf(streamUrl)
     })
   }
 
@@ -61,6 +59,16 @@ export default class Settings extends React.Component {
           activeTabTextStyle={{ color: colors.primary }}
           tabTextStyle={{ color: colors.active }}
         />
+        <View style={styles.streamInfoView}>
+          <Text style={styles.streamInfoText}>64 kbps</Text>
+          <Text style={styles.streamInfoText}>128 kbps</Text>
+          <Text style={styles.streamInfoText}>320 kbps</Text>
+        </View>
+        <View style={styles.streamInfoView}>
+          <Text style={styles.streamInfoText}>
+            If you're experiencing buffering, try a lower data rate.
+          </Text>
+        </View>
       </View>
     )
   }
@@ -85,12 +93,26 @@ export default class Settings extends React.Component {
     )
   }
 
+  renderWidgetsList() {
+    return (
+      <View style={styles.LinkList}>
+        <RequestLine />
+        <Separator color={colors.active} />
+        <SmsExpo />
+        <Separator color={colors.active} />
+        <ShareLink />
+        {/* <Separator color={colors.active} />
+        <Review /> */}
+      </View>
+    )
+  }
+
   render() {
     return (
       <View style={windowStyles.container}>
         <View style={styles.content}>
           {this.renderStreamOption()}
-          {this.renderThemeOption()}
+          {this.renderWidgetsList()}
         </View>
       </View>
     )
@@ -104,5 +126,17 @@ const styles = StyleSheet.create({
   option: {
     marginBottom: 10
   },
-  optionLabel: { color: colors.active, marginBottom: 3 }
+  optionLabel: { color: colors.active, marginBottom: 4, fontSize: 16 },
+  streamInfoView: { flexDirection: 'row' },
+  streamInfoText: { flex: 1, padding: 3, color: colors.active },
+  LinkList: {
+    marginTop: 25
+  }
 })
+
+//componentdidmount
+// let darkMode = JSON.parse(await AsyncStorage.getItem('DARK_MODE'))
+
+// if (darkMode == null) {
+//   darkMode = true // DEFAULT TO TRUE TODO: FLIP ONCE LIGHT MODE IS IMPLEMENTED
+// }

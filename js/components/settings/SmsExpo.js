@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import { SMS } from 'expo'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { colors } from '../../styles/main'
@@ -28,33 +28,36 @@ export default class SmsExpo extends React.PureComponent {
       return null
     } else {
       return (
-        <View style={styles.test}>
-          <Icon
-            name={'ios-text'}
-            size={37}
-            color={colors.active}
-            style={styles.icon}
-            onPress={this._onPress}
-          />
-        </View>
+        <TouchableOpacity
+      style={styles.container}
+      onPress={this._onPress      }
+    >
+      <Icon name={'md-text'} size={30} color={colors.active} />
+      <View style={styles.textContainer}>
+        <Text style={styles.text}>Message the DJ</Text>
+      </View>
+    </TouchableOpacity>
       )
     }
   }
 }
 
 const styles = StyleSheet.create({
-  test: {
-    width: 30,
-    height: 30,
-    // backgroundColor: 'yellow',
-    padding: 30,
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    justifyContent: 'center',
-    alignItems: 'center'
+  container: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 10,
+    marginTop: 10
   },
-  icon: {
-    position: 'absolute'
+  textContainer: {
+    flex: 1,
+    marginLeft: 20,
+    alignItems: 'center',
+    flexDirection: 'row'
+  },
+  text: {
+    color: colors.active
   }
 })
+
+
