@@ -107,22 +107,10 @@ class Radio extends React.Component {
       return
     }
 
-    let searchTerm = ''
-
+    // NOTE test a hard-coded song here
     // song = { name: 'seven nation army', artist: 'white stripes', album: 'elephant', label: '', year: '' }
 
-    if (song.artist) {
-      searchTerm = song.artist + ' '
-    }
-
-    if (song.album) {
-      searchTerm += song.album
-    } else if (song.name) {
-      searchTerm += song.name
-    }
-
-    //TODO try this
-    // let searchTerm = `${song.artist} ${song.album ? song.album : song.name}`
+    let searchTerm = `${song.artist} ${song.album ? song.album : song.name}`
 
     searchParams = fetch(
       `https://itunes.apple.com/search?limit=1&entity=album&term=${encodeURI(
@@ -259,7 +247,9 @@ class Radio extends React.Component {
     let artist = x.artist ? <ScrollingText text={x.artist} /> : null
     let album = x.album ? (
       <ScrollingText
-        text={x.album + (x.label && x.year ? ` — (${x.label},  ${x.year})` : '')}
+        text={
+          x.album + (x.label && x.year ? ` — (${x.label},  ${x.year})` : '')
+        }
       />
     ) : null
 
