@@ -1,29 +1,29 @@
 {
   "expo": {
-    "name": "wcbn-app",
+    "name": "WCBN-FM Ann Arbor",
+    "description": "Discover new music from the student-run radio station of the University of Michigan.",
     "slug": "wcbn-app",
     "privacy": "public",
     "sdkVersion": "32.0.0",
-    "platforms": [
-      "ios",
-      "android"
-    ],
+    "platforms": ["ios", "android"],
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/logo.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/bw.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": false
+      "supportsTablet": true,
+      "bundleIdentifier": "org.wcbn.app"
+    },
+    "android": {
+      "package": "org.wcbn.app"
     }
   }
 }
