@@ -4,10 +4,9 @@ import SegmentedControlTab from 'react-native-segmented-control-tab'
 import { windowStyles, headerStyles } from './styles/components'
 import { colors } from './styles/main'
 import Separator from './components/Separator'
-import RequestLine from './components/settings/RequestLine'
 import Share from './components/settings/ShareLink'
 import SmsExpo from './components/settings/SmsExpo'
-import Review from './components/settings/Review'
+import ExternalLink from './components/settings/ExternalLink'
 
 const STREAMS = [
   'http://floyd.wcbn.org:8000/wcbn-mid.mp3',
@@ -96,13 +95,29 @@ export default class Settings extends React.Component {
   renderWidgetsList() {
     return (
       <View style={styles.LinkList}>
-        <RequestLine />
+        <ExternalLink
+          url={'tel:17347633500'}
+          text={`Studio Request Line${'\n'}(734) 763-3500`}
+          icon={'md-call'}
+        />
         <Separator color={colors.active} />
         <SmsExpo />
         <Separator color={colors.active} />
         <ShareLink />
-        {/* <Separator color={colors.active} />
-        <Review /> */}
+        <Separator color={colors.active} />
+        {/* <ExternalLink
+          url={'appstore.com/wcbn/review'}
+          text={'Write a Review!'}
+          icon={'md-thumbs-up'}
+        />
+        <Separator color={colors.active} /> */}
+        <ExternalLink
+          url={
+            'https://leadersandbest.umich.edu/find/#!/give/basket/fund/361991'
+          }
+          text={'Give to WCBN'}
+          icon={'md-cash'}
+        />
       </View>
     )
   }
@@ -140,3 +155,5 @@ const styles = StyleSheet.create({
 // if (darkMode == null) {
 //   darkMode = true // DEFAULT TO TRUE TODO: FLIP ONCE LIGHT MODE IS IMPLEMENTED
 // }
+
+// https://leadersandbest.umich.edu/find/#!/give/basket/fund/361991

@@ -19,24 +19,20 @@ export default class SmsExpo extends React.PureComponent {
     })
   }
 
-  _onPress() {
-    SMS.sendSMSAsync(['radio@wcbn.org'], 'Sounds great!')
-  }
-
   render() {
     if (!this.state.available) {
       return null
     } else {
       return (
         <TouchableOpacity
-      style={styles.container}
-      onPress={this._onPress      }
-    >
-      <Icon name={'md-text'} size={30} color={colors.active} />
-      <View style={styles.textContainer}>
-        <Text style={styles.text}>Message the DJ</Text>
-      </View>
-    </TouchableOpacity>
+          style={styles.container}
+          onPress={() => SMS.sendSMSAsync(['radio@wcbn.org'])}
+        >
+          <Icon name={'md-text'} size={30} color={colors.active} />
+          <View style={styles.textContainer}>
+            <Text style={styles.text}>Message the DJ</Text>
+          </View>
+        </TouchableOpacity>
       )
     }
   }
@@ -59,5 +55,3 @@ const styles = StyleSheet.create({
     color: colors.active
   }
 })
-
-

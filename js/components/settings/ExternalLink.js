@@ -3,15 +3,15 @@ import { StyleSheet, Text, View, Linking, TouchableOpacity } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { colors } from '../../styles/main'
 
-export default (Review = props => {
+export default (ExternalLink = props => {
   return (
     <TouchableOpacity
       style={styles.container}
-      onPress={() => Linking.openURL('https://google.com/')} //TODO replace with link to app store
+      onPress={() => Linking.openURL(props.url)} //TODO replace with link to app store
     >
-      <Icon name={'md-thumbs-up'} size={30} color={colors.active} />
+      <Icon name={props.icon} size={30} color={colors.active} />
       <View style={styles.textContainer}>
-        <Text style={styles.text}>Write a review!</Text>
+        <Text style={styles.text}>{props.text}</Text>
       </View>
     </TouchableOpacity>
   )
