@@ -36,6 +36,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
   },
   text: {
-    color: colors.active
+    color: colors.inactive
   }
 })
