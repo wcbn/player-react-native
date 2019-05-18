@@ -50,13 +50,13 @@ export default class Settings extends React.Component {
           thumbColor={colors.active}
           selectedIndex={this.state.selectedStreamIndex}
           onTabPress={this.setStreamSetting}
-          activeTabStyle={{ backgroundColor: colors.active }}
+          activeTabStyle={{ backgroundColor: colors.highlight }}
           tabStyle={{
             backgroundColor: colors.primary,
             borderColor: colors.active
           }}
-          activeTabTextStyle={{ color: colors.primary }}
-          tabTextStyle={{ color: colors.active }}
+          activeTabTextStyle={{ color: colors.active }}
+          tabTextStyle={{ color: colors.inactive }}
         />
         <View style={styles.streamInfoView}>
           <Text style={styles.streamInfoText}>64 kbps</Text>
@@ -92,7 +92,7 @@ export default class Settings extends React.Component {
     )
   }
 
-  renderWidgetsList() {
+  renderLinks() {
     return (
       <View style={styles.LinkList}>
         <ExternalLink
@@ -127,7 +127,7 @@ export default class Settings extends React.Component {
       <View style={windowStyles.container}>
         <View style={styles.content}>
           {this.renderStreamOption()}
-          {this.renderWidgetsList()}
+          {this.renderLinks()}
         </View>
       </View>
     )
@@ -141,11 +141,11 @@ const styles = StyleSheet.create({
   option: {
     marginBottom: 10
   },
-  optionLabel: { color: colors.active, marginBottom: 4, fontSize: 16 },
+  optionLabel: { color: colors.inactive, marginBottom: 4, fontSize: 16 },
   streamInfoView: { flexDirection: 'row' },
-  streamInfoText: { flex: 1, padding: 3, color: colors.active },
+  streamInfoText: { flex: 1, padding: 4, color: colors.inactive },
   LinkList: {
-    marginTop: 25
+    marginTop: 20
   }
 })
 
