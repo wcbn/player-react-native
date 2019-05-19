@@ -14,7 +14,7 @@ import OnAirStore from './flux/OnAirStore'
 import OnAirDispatcher from './flux/OnAirDispatcher'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { colors, dimensions } from './styles/main'
-import Moment from 'moment'
+import dayjs from 'dayjs'
 import { windowStyles, headerStyles } from './styles/components'
 import ScrollingText from './components/radio/ScrollingText'
 
@@ -87,7 +87,7 @@ class Radio extends React.Component {
           // }
 
           data.on_air.songs.forEach(song => {
-            song.at = Moment(song.at).format('h:mm A')
+            song.at = dayjs(song.at).format('h:mm A')
           })
           this.setState({
             on_air: data.on_air

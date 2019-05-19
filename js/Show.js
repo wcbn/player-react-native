@@ -15,7 +15,7 @@ import {
   listStyles,
   episodeStyles
 } from './styles/components'
-import Moment from 'moment'
+import dayjs from 'dayjs'
 import ListHeader from './components/ListHeader'
 
 export default class Show extends React.PureComponent {
@@ -44,24 +44,18 @@ export default class Show extends React.PureComponent {
     fetch(`https://app.wcbn.org${this.props.navigation.getParam('url')}.json`)
       .then(response => response.json())
       .then(response => {
-        const now = new Date()
+        response.episodes.forEach(e => {
+          e.beginning = dayjs(e.beginning).format('MMMM D, YYYY')
+
+          e.songs.forEach(song => {
+            song.at = dayjs(song.at).format('h:mm A')
+          })
+        })
 
         this.setState({
           description: response.description,
           djs: response.djs,
-          episodes: response.episodes.reduce((acc, e) => {
-            let episodeBegan = new Date(e.beginning)
-            if (episodeBegan < now) {
-              e.beginning = Moment(e.beginning).format('MMMM D, YYYY')
-
-              e.songs.forEach(song => {
-                song.at = Moment(song.at).format('h:mm A')
-              })
-
-              acc.push(e)
-            }
-            return acc
-          }, [])
+          episodes: response.episodes
         })
       })
   }
@@ -166,7 +160,7 @@ const styles = StyleSheet.create({
   dj: {
     backgroundColor: colors.grayHighlight,
     padding: 12,
-    margin: StyleSheet.hairlineWidth,
+    margin: StyleSheet.hairlineWidth
   },
   djText: {
     fontSize: 16,

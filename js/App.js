@@ -79,7 +79,7 @@ const AppNavigator = createBottomTabNavigator(
       activeBackgroundColor: colors.highlight,
       safeAreaInset: { bottom: 'never', top: 'never' }
     },
-    initialRouteName: 'Radio'
+    initialRouteName: 'Schedule'
   }
 )
 

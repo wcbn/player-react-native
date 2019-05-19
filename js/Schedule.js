@@ -9,7 +9,7 @@ import {
 import sectionListGetItemLayout from 'react-native-section-list-get-item-layout'
 import { colors } from './styles/main'
 import { windowStyles, headerStyles, listStyles } from './styles/components'
-import Moment from 'moment'
+import dayjs from 'dayjs'
 import ListHeader from './components/ListHeader'
 
 const WEEEKDAYS = [
@@ -75,7 +75,7 @@ class ScheduleList extends React.PureComponent {
       .then(data => {
         let fetched = WEEEKDAYS.map((day, i) => {
           data[i + 1].forEach(show => {
-            show.beginning = Moment(show.beginning).format('h:mm A')
+            show.beginning = dayjs(show.beginning).format('h:mm A')
           })
           return {
             title: day,
