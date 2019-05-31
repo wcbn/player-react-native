@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
-import { SMS } from 'expo'
+import * as SMS from 'expo-sms'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { colors } from '../../styles/main'
 

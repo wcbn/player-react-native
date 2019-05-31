@@ -8,7 +8,7 @@ import {
   Image,
   ImageBackground
 } from 'react-native'
-import { Audio } from 'expo'
+import { Audio } from 'expo-av'
 import { Container } from 'flux/utils'
 import OnAirStore from './flux/OnAirStore'
 import OnAirDispatcher from './flux/OnAirDispatcher'
@@ -49,6 +49,7 @@ class Radio extends React.Component {
 
   async componentDidMount() {
     Audio.setAudioModeAsync({
+      staysActiveInBackground: true,
       allowsRecordingIOS: false,
       interruptionModeIOS: Audio.INTERRUPTION_MODE_IOS_DO_NOT_MIX,
       playsInSilentModeIOS: true,
