@@ -4,7 +4,7 @@ import {
   Text,
   View,
   AsyncStorage,
-  TouchableWithoutFeedback,
+  TouchableOpacity,
   Image,
   ImageBackground
 } from 'react-native'
@@ -58,7 +58,12 @@ class Radio extends React.Component {
       shouldDuckAndroid: true
     })
 
-    this._loadNewPlaybackInstance()
+    //load and play
+    this._loadNewPlaybackInstance().then(() => {
+      this.setState({
+        isLoading: false
+      })
+    })
 
     const pollForNewSong = () => {
       this.fetchPlaylist().then(
@@ -206,6 +211,9 @@ class Radio extends React.Component {
   }
 
   renderOnAirShow() {
+    if (!this.state.isPlaying) {
+      return null
+    }
     return (
       <View
         style={{
@@ -244,24 +252,23 @@ class Radio extends React.Component {
     let src
     if (this.state.albumArt && this.state.isPlaying) {
       src = { uri: this.state.albumArt }
-    } else if (this.state.isPlaying) {
-      src = require('../assets/album.png')
     } else {
-      src = null
+      src = require('../assets/album.png')
     }
 
     return (
-      <TouchableWithoutFeedback onPress={this._onPress}>
-        <ImageBackground style={styles.albumCover} source={src}>
-          <Icon
-            name={this.state.isPlaying ? null : 'md-play'}
-            size={150}
-            color={colors.active}
-            style={styles.icon}
-            onPress={this._onPress}
-          />
-        </ImageBackground>
-      </TouchableWithoutFeedback>
+      <TouchableOpacity
+        disabled={this.state.isLoading}
+        style={{
+          width: dimensions.fullWidth / 1.3,
+          height: dimensions.fullWidth / 1.3,
+          top: dimensions.fullHeight / 5,
+          position: 'absolute'
+        }}
+        onPress={this._onPress}
+      >
+        <ImageBackground style={styles.albumCover} source={src} />
+      </TouchableOpacity>
     )
   }
 
@@ -270,29 +277,26 @@ class Radio extends React.Component {
       return null
     }
 
-    let x = this.state.on_air.songs[0]
-
-    if (x == undefined) {
-      x = { name: '', artist: '', album: '', label: '', year: '' }
+    const x = this.state.on_air.songs[0] || {
+      name: '',
+      artist: '',
+      album: '',
+      label: '',
+      year: ''
     }
 
     //NOTE: TEST HARDCODED SONG HERE
     // x = { name: 'elephant', artist: 'the white stripes', album: '', label: '', year: '' }
-    let name = <ScrollingText text={x.name} />
-    let artist = <ScrollingText text={x.artist} />
-    let album = (
-      <ScrollingText
-        text={
-          x.album + (x.label && x.year ? ` — (${x.label},  ${x.year})` : '')
-        }
-      />
-    )
 
     return (
       <View style={styles.nowPlaying}>
-        {name}
-        {artist}
-        {album}
+        <ScrollingText text={x.name} />
+        <ScrollingText text={x.artist} />
+        <ScrollingText
+          text={
+            x.album + (x.label && x.year ? ` — (${x.label},  ${x.year})` : '')
+          }
+        />
       </View>
     )
   }
@@ -304,17 +308,15 @@ class Radio extends React.Component {
         : require('../assets/album.png')
 
     return (
-      <TouchableWithoutFeedback onPress={this._onPress}>
-        <ImageBackground
-          style={[windowStyles.container, styles.container]}
-          imageStyle={{ opacity: 0.05 }}
-          source={background}
-        >
-          {this.renderOnAirShow()}
-          {this.renderAlbumCover()}
-          {this.renderNowPlaying()}
-        </ImageBackground>
-      </TouchableWithoutFeedback>
+      <ImageBackground
+        style={[windowStyles.container, styles.container]}
+        imageStyle={{ opacity: 0.05 }}
+        source={background}
+      >
+        {this.renderOnAirShow()}
+        {this.renderAlbumCover()}
+        {this.renderNowPlaying()}
+      </ImageBackground>
     )
   }
 }
@@ -332,18 +334,15 @@ const styles = StyleSheet.create({
     bottom: 20,
     alignItems: 'center',
     position: 'absolute',
-    maxWidth: dimensions.fullWidth * 0.8
+    maxWidth: dimensions.fullWidth * 0.9
   },
   albumCover: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    // justifyContent: 'center',
+    // alignItems: 'center',
     width: dimensions.fullWidth / 1.3,
-    height: dimensions.fullWidth / 1.3,
-    top: dimensions.fullHeight / 5,
-    position: 'absolute'
-  },
-  fieldLabels: {
-    color: colors.active
+    height: dimensions.fullWidth / 1.3
+    // top: dimensions.fullHeight / 5,
+    // position: 'absolute'
   }
 })
 
