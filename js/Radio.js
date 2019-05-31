@@ -12,7 +12,6 @@ import { Audio } from 'expo-av'
 import { Container } from 'flux/utils'
 import OnAirStore from './flux/OnAirStore'
 import OnAirDispatcher from './flux/OnAirDispatcher'
-import Icon from 'react-native-vector-icons/Ionicons'
 import { colors, dimensions } from './styles/main'
 import dayjs from 'dayjs'
 import { windowStyles, headerStyles } from './styles/components'
@@ -266,6 +265,7 @@ class Radio extends React.Component {
           position: 'absolute'
         }}
         onPress={this._onPress}
+        accessibilityLabel={"Turn radio on or off"}
       >
         <ImageBackground style={styles.albumCover} source={src} />
       </TouchableOpacity>
@@ -325,10 +325,6 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     alignItems: 'center'
-  },
-  icon: {
-    marginLeft: 10,
-    marginTop: 10
   },
   nowPlaying: {
     bottom: 20,
