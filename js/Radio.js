@@ -204,6 +204,41 @@ class Radio extends React.Component {
     }
   }
 
+  renderOnAirShow() {
+    return (
+      <View
+        style={{
+          top: 10,
+          position: 'absolute',
+          alignItems: 'center'
+        }}
+      >
+        <Text
+          style={{
+            color: colors.inactive,
+            fontSize: 32,
+            paddingLeft: 10,
+            paddingRight: 10,
+            fontWeight: 'bold'
+          }}
+          numberOfLines={2}
+        >
+          {this.state.on_air.name}
+        </Text>
+        <Text
+          style={{
+            color: colors.inactive,
+            fontStyle: 'italic',
+            fontSize: 20
+          }}
+          numberOfLines={1}
+        >
+          {`with ${this.state.on_air.dj}`}
+        </Text>
+      </View>
+    )
+  }
+
   renderAlbumCover() {
     let src
     if (this.state.albumArt && this.state.isPlaying) {
@@ -242,16 +277,15 @@ class Radio extends React.Component {
 
     //NOTE: TEST HARDCODED SONG HERE
     // x = { name: 'elephant', artist: 'the white stripes', album: '', label: '', year: '' }
-
-    let name = x.name ? <ScrollingText text={x.name} /> : null
-    let artist = x.artist ? <ScrollingText text={x.artist} /> : null
-    let album = x.album ? (
+    let name = <ScrollingText text={x.name} />
+    let artist = <ScrollingText text={x.artist} />
+    let album = (
       <ScrollingText
         text={
           x.album + (x.label && x.year ? ` — (${x.label},  ${x.year})` : '')
         }
       />
-    ) : null
+    )
 
     return (
       <View style={styles.nowPlaying}>
@@ -275,6 +309,7 @@ class Radio extends React.Component {
           imageStyle={{ opacity: 0.05 }}
           source={background}
         >
+          {this.renderOnAirShow()}
           {this.renderAlbumCover()}
           {this.renderNowPlaying()}
         </ImageBackground>
@@ -293,16 +328,16 @@ const styles = StyleSheet.create({
     marginTop: 10
   },
   nowPlaying: {
-    bottom: 60,
+    bottom: 20,
     alignItems: 'center',
     position: 'absolute',
-    maxWidth: (dimensions.fullWidth * 3) / 4
+    maxWidth: dimensions.fullWidth * 0.8
   },
   albumCover: {
     justifyContent: 'center',
     alignItems: 'center',
-    width: dimensions.fullWidth / 1.75,
-    height: dimensions.fullWidth / 1.75,
+    width: dimensions.fullWidth / 1.3,
+    height: dimensions.fullWidth / 1.3,
     top: dimensions.fullHeight / 5,
     position: 'absolute'
   },
