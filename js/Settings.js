@@ -66,8 +66,7 @@ export default class Settings extends React.Component {
 
 const styles = StyleSheet.create({
   content: {
-    padding: 15,
-    paddingTop: 5
+    padding: 15
   },
   LinksView: {
     marginTop: 10
