@@ -6,10 +6,13 @@ import Icon from 'react-native-vector-icons/Ionicons'
 export default (Banner = props => (
   <TouchableOpacity style={styles} onPress={props.onPress}>
     <Text style={styles.text}>{`${props.text} `}</Text>
-    <Text style={styles.host}>{`${props.host} `}</Text>
-    <Text style={styles.arrow}>
-      <Icon name={'md-arrow-forward'} size={14} color={colors.lightGreen} />
-    </Text>
+    <Text style={styles.host}>{props.host}</Text>
+    <Icon
+      style={styles.icon}
+      name={'md-arrow-forward'}
+      size={12}
+      color={colors.lightGreen}
+    />
   </TouchableOpacity>
 ))
 
@@ -26,7 +29,7 @@ const styles = {
   host: {
     color: colors.active
   },
-  arrow: {
-    color: colors.lightGreen
+  icon: {
+    marginLeft: 5
   }
 }
