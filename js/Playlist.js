@@ -1,12 +1,5 @@
 import React from 'react'
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  FlatList,
-  ScrollView
-} from 'react-native'
+import { Text, View, FlatList, ScrollView } from 'react-native'
 
 import { Container } from 'flux/utils'
 import OnAirStore from './flux/OnAirStore'
@@ -15,11 +8,11 @@ import Separator from './components/Separator'
 import {
   windowStyles,
   headerStyles,
-  bannerStyles,
   basicInfoBoxStyles
 } from './styles/components'
 import { colors } from './styles/main'
 import ListHeader from './components/ListHeader'
+import Banner from './components/Banner'
 
 class Playlist extends React.Component {
   static navigationOptions = ({ navigation }) => {
@@ -41,24 +34,6 @@ class Playlist extends React.Component {
 
   componentDidMount() {
     this.props.navigation.setParams({ title: this.state.on_air.name })
-  }
-
-  renderBanner() {
-    return (
-      <TouchableOpacity
-        style={bannerStyles}
-        onPress={() =>
-          this.props.navigation.navigate('Profile', {
-            url: this.state.on_air.dj_url,
-            title: this.state.on_air.dj
-          })
-        }
-      >
-        <Text style={bannerStyles.text}>On the air: </Text>
-        <Text style={bannerStyles.host}>{this.state.on_air.dj}</Text>
-        <Text style={bannerStyles.arrow}>→</Text>
-      </TouchableOpacity>
-    )
   }
 
   renderSongs() {
@@ -90,7 +65,16 @@ class Playlist extends React.Component {
   render() {
     return (
       <View style={windowStyles.container}>
-        {this.renderBanner()}
+        <Banner
+          text={'One the air:'}
+          host={this.state.on_air.dj}
+          onPress={() =>
+            this.props.navigation.navigate('Profile', {
+              url: this.state.on_air.dj_url,
+              title: this.state.on_air.dj
+            })
+          }
+        />
         <Separator color={colors.inactive} />
         {this.state.on_air.songs.length
           ? this.renderSongs()
