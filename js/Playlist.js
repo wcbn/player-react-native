@@ -66,7 +66,7 @@ class Playlist extends React.Component {
     return (
       <View style={windowStyles.container}>
         <Banner
-          text={'One the air:'}
+          text={'On the air:'}
           host={this.state.on_air.dj}
           onPress={() =>
             this.props.navigation.navigate('Profile', {
