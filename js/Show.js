@@ -111,7 +111,7 @@ export default class Show extends React.PureComponent {
         <View style={[listStyles.item, episodeStyles.listing]}>
           <Text style={episodeStyles.listing.date}>{item.beginning}</Text>
           <Text style={episodeStyles.listing.numSongs}>
-            {item.songs.length} Songs
+            {item.songs.length ? `${item.songs.length} Songs` : '—'}
           </Text>
         </View>
       </TouchableOpacity>
