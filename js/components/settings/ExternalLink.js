@@ -7,7 +7,7 @@ export default (ExternalLink = props => {
   return (
     <TouchableOpacity
       style={styles.container}
-      onPress={() => Linking.openURL(props.url)} //TODO replace with link to app store
+      onPress={() => Linking.openURL(props.url)}
     >
       <Icon name={props.icon} size={30} color={colors.active} />
       <View style={styles.textContainer}>
