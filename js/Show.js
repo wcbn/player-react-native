@@ -95,9 +95,9 @@ export default class Show extends React.PureComponent {
   }
 
   renderEpisode({ item, index }) {
-    //TODO refactor this?
-    return item.songs.length ? (
+    return (
       <TouchableOpacity
+        disabled={item.songs.length === 0}
         onPress={() =>
           this.props.navigation.navigate('Episode', {
             songs: item.songs,
@@ -115,11 +115,6 @@ export default class Show extends React.PureComponent {
           </Text>
         </View>
       </TouchableOpacity>
-    ) : (
-      <View style={[listStyles.item, episodeStyles.listing]}>
-        <Text style={episodeStyles.listing.date}>{item.beginning}</Text>
-        <Text style={episodeStyles.listing.numSongs}>0 Songs</Text>
-      </View>
     )
   }
 
