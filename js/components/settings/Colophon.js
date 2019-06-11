@@ -12,7 +12,7 @@ export default (Colophon = props => (
   >
     <Text style={styles.text}>
       {'Made with '}
-      <Icon name={'md-heart-empty'} size={12} color={colors.active} />
+      <Icon name={'md-heart-empty'} size={12} color={colors.red} />
       {' by students at the University of Michigan'}
     </Text>
   </TouchableOpacity>
