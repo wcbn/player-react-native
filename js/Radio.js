@@ -103,7 +103,7 @@ class Radio extends React.Component {
   }
 
   fetchAlbumArt() {
-    const song = this.state.on_air.songs[0]
+    let song = this.state.on_air.songs[0]
 
     if (song === undefined) {
       this.setState({
@@ -113,7 +113,13 @@ class Radio extends React.Component {
     }
 
     // NOTE test a hard-coded song here
-    // song = { name: 'seven nation army', artist: 'white stripes', album: 'elephant', label: '', year: '' }
+    // song = {
+    //   name: 'In Care of 8675309',
+    //   artist: 'Lambchop',
+    //   album: 'FLOTUS',
+    //   label: 'Merge',
+    //   year: '2016'
+    // }
 
     let searchTerm = `${song.artist} ${song.album ? song.album : song.name}`
 
@@ -209,45 +215,24 @@ class Radio extends React.Component {
     }
   }
 
-  renderOnAirShow() {
+  renderOnAir() {
     if (!this.state.isPlaying) {
       return null
     }
+
     return (
-      <View
-        style={{
-          top: 10,
-          position: 'absolute',
-          alignItems: 'center'
-        }}
-      >
-        <Text
-          style={{
-            color: colors.inactive,
-            fontSize: 32,
-            paddingLeft: 10,
-            paddingRight: 10,
-            fontWeight: 'bold'
-          }}
-          numberOfLines={2}
-        >
+      <View style={styles.onAirContainer}>
+        <Text numberOfLines={2} style={styles.onAirShowName}>
           {this.state.on_air.name}
         </Text>
-        <Text
-          style={{
-            color: colors.inactive,
-            fontStyle: 'italic',
-            fontSize: 20
-          }}
-          numberOfLines={1}
-        >
-          {`with ${this.state.on_air.dj}`}
+        <Text numberOfLines={1} style={styles.onAirDjName}>
+          {this.state.on_air.name ? `with ${this.state.on_air.dj}` : ' '}
         </Text>
       </View>
     )
   }
 
-  renderAlbumCover() {
+  renderAlbumArt() {
     let src
     if (this.state.albumArt && this.state.isPlaying) {
       src = { uri: this.state.albumArt }
@@ -258,16 +243,11 @@ class Radio extends React.Component {
     return (
       <TouchableOpacity
         disabled={this.state.isLoading}
-        style={{
-          width: dimensions.fullWidth / 1.3,
-          height: dimensions.fullWidth / 1.3,
-          top: dimensions.fullHeight / 5,
-          position: 'absolute'
-        }}
+        style={styles.albumArtContainer}
         onPress={this._onPress}
-        accessibilityLabel={"Turn radio on or off"}
+        accessibilityLabel={'Turn radio on or off'}
       >
-        <ImageBackground style={styles.albumCover} source={src} />
+        <ImageBackground style={styles.albumArtImg} source={src} />
       </TouchableOpacity>
     )
   }
@@ -277,7 +257,7 @@ class Radio extends React.Component {
       return null
     }
 
-    const x = this.state.on_air.songs[0] || {
+    let x = this.state.on_air.songs[0] || {
       name: '',
       artist: '',
       album: '',
@@ -286,7 +266,13 @@ class Radio extends React.Component {
     }
 
     //NOTE: TEST HARDCODED SONG HERE
-    // x = { name: 'elephant', artist: 'the white stripes', album: '', label: '', year: '' }
+    // x = {
+    //   name: 'In Care of 8675309',
+    //   artist: 'Lambchop',
+    //   album: 'FLOTUS',
+    //   label: 'Merge',
+    //   year: '2016'
+    // }
 
     return (
       <View style={styles.nowPlaying}>
@@ -313,8 +299,8 @@ class Radio extends React.Component {
         imageStyle={{ opacity: 0.05 }}
         source={background}
       >
-        {this.renderOnAirShow()}
-        {this.renderAlbumCover()}
+        {this.renderOnAir()}
+        {this.renderAlbumArt()}
         {this.renderNowPlaying()}
       </ImageBackground>
     )
@@ -323,23 +309,32 @@ class Radio extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: 'center',
-    alignItems: 'center'
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 15
+  },
+  albumArtContainer: {
+    width: dimensions.fullWidth / 1.5,
+    flex: 1,
+    justifyContent: 'center'
+  },
+  albumArtImg: {
+    width: dimensions.fullWidth / 1.5,
+    height: dimensions.fullWidth / 1.5
   },
   nowPlaying: {
-    bottom: 20,
+    flex: 0,
     alignItems: 'center',
-    position: 'absolute',
-    maxWidth: dimensions.fullWidth * 0.9
+    justifyContent: 'center',
+    maxWidth: '100%'
   },
-  albumCover: {
-    // justifyContent: 'center',
-    // alignItems: 'center',
-    width: dimensions.fullWidth / 1.3,
-    height: dimensions.fullWidth / 1.3
-    // top: dimensions.fullHeight / 5,
-    // position: 'absolute'
-  }
+  onAirContainer: {
+    width: '100%',
+    alignItems: 'center',
+    flex: 0
+  },
+  onAirShowName: { fontSize: 20, color: '#ffffff', textAlign: 'center' },
+  onAirDjName: { fontSize: 16, fontStyle: 'italic', color: colors.active }
 })
 
 export default Container.create(Radio)
