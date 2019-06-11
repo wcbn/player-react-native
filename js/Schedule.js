@@ -6,7 +6,6 @@ import {
   View,
   SectionList
 } from 'react-native'
-import sectionListGetItemLayout from 'react-native-section-list-get-item-layout'
 import { colors } from './styles/main'
 import { windowStyles, headerStyles, listStyles } from './styles/components'
 import dayjs from 'dayjs'
@@ -97,11 +96,6 @@ class ScheduleList extends React.PureComponent {
     // })
   }
 
-  getItemLayout = sectionListGetItemLayout({
-    getItemHeight: (rowData, sectionIndex, rowIndex) => ITEM_HEIGHT,
-    getSectionHeaderHeight: () => HEADER_HEIGHT
-  })
-
   renderSeparator = () => {
     return (
       <View
@@ -120,8 +114,6 @@ class ScheduleList extends React.PureComponent {
         renderSectionHeader={this.renderSectionHeader}
         sections={this.state.sections}
         keyExtractor={(item, index) => index}
-        ref={ref => (this.sectionListRef = ref)}
-        getItemLayout={this.getItemLayout}
         ItemSeparatorComponent={this.renderSeparator}
       />
     )

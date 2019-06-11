@@ -13,7 +13,6 @@ import { windowStyles } from './styles/components'
 import Icon from 'react-native-vector-icons/Ionicons'
 import Schedule from './Schedule'
 import Radio from './Radio'
-import Favorites from './Favorites'
 import Settings from './Settings'
 import Show from './Show'
 import Profile from './Profile'
@@ -29,8 +28,6 @@ const getIconName = routeName => {
       return 'md-musical-notes'
     case 'Radio':
       return 'md-radio'
-    case 'Favorites':
-      return 'md-heart'
     case 'Settings':
       return 'md-settings'
   }
@@ -62,7 +59,6 @@ const AppNavigator = createBottomTabNavigator(
     Playlist: PlaylistStack,
     Radio: RadioStack,
     Settings: SettingsStack
-    // Favorites: Favorites,
   },
   {
     defaultNavigationOptions: ({ navigation }) => ({
