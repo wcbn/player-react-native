@@ -27,24 +27,6 @@ export const listStyles = StyleSheet.create({
   }
 })
 
-// export const bannerStyles = {
-//   height: 50,
-//   flexDirection: 'row',
-//   justifyContent: 'center',
-//   alignItems: 'center',
-//   // borderBottomColor: colors.inactive,
-//   // borderBottomWidth: StyleSheet.hairlineWidth,
-//   text: {
-//     color: colors.inactive
-//   },
-//   host: {
-//     color: colors.active
-//   },
-//   arrow: {
-//     color: colors.lightGreen
-//   }
-// }
-
 export const basicInfoBoxStyles = {
   height: 50,
   justifyContent: 'center',
