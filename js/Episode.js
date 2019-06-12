@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View, FlatList } from 'react-native'
+import { View, FlatList } from 'react-native'
 import Song from './components/Song'
 import { colors } from './styles/main'
 import { windowStyles, headerStyles } from './styles/components'
@@ -18,22 +18,6 @@ export default class Episode extends React.PureComponent {
     }
   }
 
-  renderSongs() {
-    return (
-      <FlatList
-        data={this.props.navigation.getParam('songs', '')}
-        renderItem={({ item }) => <Song data={item} />}
-        keyExtractor={(item, index) => index.toString()}
-        ListHeaderComponent={
-          <ListHeader text={this.props.navigation.getParam('date')} />
-        }
-        ItemSeparatorComponent={() => (
-          <Separator color={colors.grayHighlight} />
-        )}
-      />
-    )
-  }
-
   render() {
     return (
       <View style={windowStyles.container}>
@@ -48,7 +32,17 @@ export default class Episode extends React.PureComponent {
           }
         />
         <Separator color={colors.inactive} />
-        {this.renderSongs()}
+        <FlatList
+          data={this.props.navigation.getParam('songs', '')}
+          renderItem={({ item }) => <Song data={item} />}
+          keyExtractor={(item, index) => index.toString()}
+          ListHeaderComponent={
+            <ListHeader text={this.props.navigation.getParam('date')} />
+          }
+          ItemSeparatorComponent={() => (
+            <Separator color={colors.grayHighlight} />
+          )}
+        />
       </View>
     )
   }
