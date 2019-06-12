@@ -10,6 +10,7 @@ import { colors } from './styles/main'
 import { windowStyles, headerStyles, listStyles } from './styles/components'
 import dayjs from 'dayjs'
 import ListHeader from './components/ListHeader'
+import Separator from './components/Separator'
 
 const WEEEKDAYS = [
   'Monday',
@@ -24,11 +25,12 @@ const WEEEKDAYS = [
 const weekdayIndex = new Date().getDay()
 const TODAY = weekdayIndex == 0 ? 6 : weekdayIndex - 1
 
-const ITEM_HEIGHT = 50
-const HEADER_HEIGHT = 22
+export default class Schedule extends React.PureComponent {
+  static navigationOptions = {
+    title: 'WCBN Schedule',
+    ...headerStyles
+  }
 
-//pure component for better performance(?)
-class ScheduleList extends React.PureComponent {
   constructor() {
     super()
 
@@ -41,29 +43,8 @@ class ScheduleList extends React.PureComponent {
     this.fetchSchedule()
   }
 
-  renderItem = ({ item, index, section }) => (
-    <TouchableOpacity
-      key={index}
-      style={listStyles.item}
-      onPress={() =>
-        this.props.navigation.navigate('Show', {
-          url: item.url,
-          title: item.name
-        })
-      }
-    >
-      <View style={styles.showText}>
-        <Text style={styles.showName}>{item.name}</Text>
-        <Text style={styles.showHost}>{item.with}</Text>
-      </View>
-      <Text style={styles.showTime}>{item.beginning}</Text>
-    </TouchableOpacity>
-  )
-
-  renderSectionHeader = ({ section: { title } }) => <ListHeader text={title} />
-
   fetchSchedule() {
-    fetch(this.props.url, {
+    fetch('https://app.wcbn.org/semesters', {
       headers: new Headers({
         Accept: 'application/json',
         'Content-Type': 'application/json'
@@ -96,42 +77,38 @@ class ScheduleList extends React.PureComponent {
     // })
   }
 
-  renderSeparator = () => {
-    return (
-      <View
-        style={{
-          height: StyleSheet.hairlineWidth,
-          backgroundColor: colors.grayHighlight
-        }}
-      />
-    )
-  }
-
-  render() {
-    return (
-      <SectionList
-        renderItem={this.renderItem}
-        renderSectionHeader={this.renderSectionHeader}
-        sections={this.state.sections}
-        keyExtractor={(item, index) => index}
-        ItemSeparatorComponent={this.renderSeparator}
-      />
-    )
-  }
-}
-
-export default class Schedule extends React.PureComponent {
-  static navigationOptions = {
-    title: 'WCBN Schedule',
-    ...headerStyles
-  }
+  renderItem = ({ item, index, section }) => (
+    <TouchableOpacity
+      key={index}
+      style={listStyles.item}
+      onPress={() =>
+        this.props.navigation.navigate('Show', {
+          url: item.url,
+          title: item.name
+        })
+      }
+    >
+      <View style={styles.showText}>
+        <Text style={styles.showName}>{item.name}</Text>
+        <Text style={styles.showHost}>{item.with}</Text>
+      </View>
+      <Text style={styles.showTime}>{item.beginning}</Text>
+    </TouchableOpacity>
+  )
 
   render() {
     return (
       <View style={windowStyles.container}>
-        <ScheduleList
-          url="https://app.wcbn.org/semesters"
-          navigation={this.props.navigation}
+        <SectionList
+          renderItem={this.renderItem}
+          renderSectionHeader={({ section: { title } }) => (
+            <ListHeader text={title} />
+          )}
+          sections={this.state.sections}
+          keyExtractor={(item, index) => index}
+          ItemSeparatorComponent={() => (
+            <Separator color={colors.grayHighlight} />
+          )}
         />
       </View>
     )
