@@ -29,10 +29,6 @@ export default class Profile extends React.PureComponent {
   }
 
   componentDidMount() {
-    this.fetchDJ()
-  }
-
-  fetchDJ() {
     fetch(`https://app.wcbn.org${this.props.navigation.getParam('url')}.json`)
       .then(response => response.json())
       .then(data => this.setState(data))
@@ -45,24 +41,36 @@ export default class Profile extends React.PureComponent {
           style={styles.coverAvatar}
           source={{ uri: this.state.image_url }}
         />
-        <View style={{ flexDirection: 'column', paddingLeft: 15 }}>
-          <Text style={styles.coverHeader}>{this.state.real_name}</Text>
-          <Text
-            style={styles.coverText}
-            onPress={() => {
-              Linking.openURL(this.state.website)
-            }}
-          >
-            {this.state.website}
-          </Text>
-          <Text
-            style={styles.coverText}
-            onPress={() => {
-              Linking.openURL(`mailto:${this.state.public_email}`)
-            }}
-          >
-            {this.state.public_email}
-          </Text>
+        <View style={styles.coverContact}>
+          {this.state.real_name ? (
+            <Text style={styles.coverRealName} numberOfLines={1}>
+              {this.state.real_name}
+            </Text>
+          ) : null}
+
+          {this.state.website ? (
+            <Text
+              style={styles.coverText}
+              numberOfLines={1}
+              onPress={() => {
+                Linking.openURL(this.state.website)
+              }}
+            >
+              {this.state.website}
+            </Text>
+          ) : null}
+
+          {this.state.public_email ? (
+            <Text
+              style={styles.coverText}
+              numberOfLines={1}
+              onPress={() => {
+                Linking.openURL(`mailto:${this.state.public_email}`)
+              }}
+            >
+              {this.state.public_email}
+            </Text>
+          ) : null}
         </View>
       </View>
     )
@@ -160,20 +168,19 @@ const styles = StyleSheet.create({
   coverAvatar: {
     width: 66,
     height: 66,
-    borderRadius: 20,
-    borderColor: colors.active,
-    borderWidth: 1
+    borderRadius: 10
   },
+  coverContact: { flexDirection: 'column', marginLeft: 15 },
   coverText: {
     color: colors.active,
     lineHeight: 20
   },
-  coverHeader: {
+  coverRealName: {
     fontSize: 20,
     color: colors.active
   },
   about: {
-    padding: 20
+    padding: 15
   },
   aboutText: {
     color: colors.inactive
