@@ -56,7 +56,7 @@ export default class StreamSelection extends React.PureComponent {
         </View>
         <View style={styles.infoView}>
           <Text style={styles.infoText}>
-            If you are experiencing buffering, try a lower data rate.
+            Experiencing buffering? Try a lower data rate.
           </Text>
         </View>
       </View>
