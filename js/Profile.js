@@ -162,8 +162,7 @@ const tagsStyles = {
 
 const styles = StyleSheet.create({
   cover: {
-    flexDirection: 'row',
-    marginBottom: 15
+    flexDirection: 'row'
   },
   coverAvatar: {
     width: 66,
