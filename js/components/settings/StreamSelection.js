@@ -1,7 +1,6 @@
 import React from 'react'
-import { StyleSheet, Text, View, Switch, AsyncStorage } from 'react-native'
+import { StyleSheet, Text, View, AsyncStorage } from 'react-native'
 import SegmentedControlTab from 'react-native-segmented-control-tab'
-import { windowStyles, headerStyles } from '../../styles/components'
 import { colors } from '../../styles/main'
 
 const STREAMS = [
@@ -14,7 +13,7 @@ export default class StreamSelection extends React.PureComponent {
   constructor() {
     super()
     this.state = {
-      selectedStreamIndex: null // fetch ASAP in async componentDidMount ¯\_(ツ)_/¯
+      selectedStreamIndex: null // fetch ASAP in componentDidMount ¯\_(ツ)_/¯
     }
   }
 
@@ -29,7 +28,6 @@ export default class StreamSelection extends React.PureComponent {
   setStreamSetting = index => {
     AsyncStorage.setItem('STREAM_URL', STREAMS[index])
     this.setState({ selectedStreamIndex: index })
-    // AsyncStorage.getItem('STREAM_URL').then(resp => console.log(resp))
   }
 
   render() {
