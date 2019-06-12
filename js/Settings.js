@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View, Switch, AsyncStorage } from 'react-native'
+import { StyleSheet, Text, View, ScrollView } from 'react-native'
 import { windowStyles, headerStyles } from './styles/components'
 import { colors } from './styles/main'
 import Separator from './components/Separator'
@@ -13,7 +13,7 @@ const GOOGLE_HANGOUTS_URL =
 const DONATION_URL =
   'https://leadersandbest.umich.edu/find/#!/give/basket/fund/361991'
 
-export default class Settings extends React.Component {
+export default class Settings extends React.PureComponent {
   static navigationOptions = {
     title: 'Settings',
     ...headerStyles
@@ -54,11 +54,11 @@ export default class Settings extends React.Component {
   render() {
     return (
       <View style={windowStyles.container}>
-        <View style={styles.content}>
+        <ScrollView style={styles.content}>
           <StreamSelection />
           {this.renderLinks()}
           <Colophon />
-        </View>
+        </ScrollView>
       </View>
     )
   }
