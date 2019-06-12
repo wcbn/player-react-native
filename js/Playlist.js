@@ -36,6 +36,12 @@ class Playlist extends React.Component {
     this.props.navigation.setParams({ title: this.state.on_air.name })
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.on_air.name !== prevState.on_air.name) {
+      this.props.navigation.setParams({ title: this.state.on_air.name })
+    }
+  }
+
   renderSongs() {
     return (
       <ScrollView>
