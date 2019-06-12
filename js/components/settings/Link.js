@@ -1,21 +1,17 @@
 import React from 'react'
-import { StyleSheet, Text, View, Share, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { colors } from '../../styles/main'
 
-export default (ShareLink = props => {
+export default (Link = props => {
   return (
     <TouchableOpacity
       style={styles.container}
-      onPress={() =>
-        Share.share({
-          message: `I'm listening to WCBN-FM Ann Arbor!`
-        })
-      }
+      onPress={props.onPress}
     >
-      <Icon name={'md-share'} size={30} color={colors.active} />
+      <Icon name={props.icon} size={30} color={colors.active} />
       <View style={styles.textContainer}>
-        <Text style={styles.text}>Share on social media</Text>
+        <Text style={styles.text}>{props.text}</Text>
       </View>
     </TouchableOpacity>
   )

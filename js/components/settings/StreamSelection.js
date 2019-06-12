@@ -52,11 +52,6 @@ export default class StreamSelection extends React.PureComponent {
           <Text style={styles.tabCaption}>128 kbps</Text>
           <Text style={styles.tabCaption}>320 kbps</Text>
         </View>
-        <View style={styles.infoView}>
-          <Text style={styles.infoText}>
-            Experiencing buffering? Try a lower data rate.
-          </Text>
-        </View>
       </View>
     )
   }
@@ -70,6 +65,5 @@ const styles = StyleSheet.create({
     fontSize: 11,
     color: colors.inactive
   },
-  infoView: { flexDirection: 'row' },
-  infoText: { flex: 1, padding: 4, color: colors.inactive }
+  infoView: { flexDirection: 'row' }
 })
