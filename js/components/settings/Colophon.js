@@ -12,7 +12,7 @@ export default (Colophon = props => (
   >
     <Text style={styles.text}>
       {'Made with '}
-      <Icon name={'md-heart-empty'} size={12} color={colors.red} />
+      <Icon name={'md-heart-empty'} size={12} color={colors.active} />
       {' by students at the University of Michigan'}
     </Text>
   </TouchableOpacity>
@@ -26,7 +26,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 20
   },
-
   text: {
     textAlign: 'center',
     color: colors.inactive
