@@ -216,26 +216,34 @@ class Radio extends React.Component {
   }
 
   renderOnAir() {
-    if (!this.state.isPlaying) {
-      return null
-    }
+    // if (!this.state.isPlaying) {
+    //   return null
+    // }
 
-    return (
-      <View style={styles.onAirContainer}>
-        <Text numberOfLines={2} style={styles.onAirShowName}>
-          {this.state.on_air.name}
-        </Text>
-        <Text numberOfLines={1} style={styles.onAirDjName}>
-          {this.state.on_air.name ? `with ${this.state.on_air.dj}` : ' '}
-        </Text>
-      </View>
-    )
+    if (this.state.on_air.name) {
+      return (
+        <View style={styles.onAirContainer}>
+          <Text numberOfLines={2} style={styles.onAirShowName}>
+            {this.state.on_air.name}
+          </Text>
+          <Text numberOfLines={1} style={styles.onAirDjName}>
+            {`with ${this.state.on_air.dj}`}
+          </Text>
+        </View>
+      )
+    }
   }
 
   renderAlbumArt() {
     let src
     if (this.state.albumArt && this.state.isPlaying) {
       src = { uri: this.state.albumArt }
+    } else if (
+      !this.state.albumArt &&
+      !this.state.isPlaying &&
+      !this.state.isLoading
+    ) {
+      src = require('../assets/play.jpeg')
     } else {
       src = require('../assets/album.png')
     }
@@ -253,9 +261,9 @@ class Radio extends React.Component {
   }
 
   renderNowPlaying() {
-    if (!this.state.isPlaying) {
-      return null
-    }
+    // if (!this.state.isPlaying) {
+    //   return null
+    // }
 
     let x = this.state.on_air.songs[0] || {
       name: '',
