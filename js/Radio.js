@@ -236,14 +236,15 @@ class Radio extends React.Component {
 
   renderAlbumArt() {
     let src
-    if (this.state.albumArt && this.state.isPlaying) {
-      src = { uri: this.state.albumArt }
-    } else if (
-      !this.state.albumArt &&
+
+    if (
       !this.state.isPlaying &&
-      !this.state.isLoading
+      !this.state.isLoading &&
+      !this.state.isBuffering
     ) {
       src = require('../assets/play.jpeg')
+    } else if (this.state.isPlaying && this.state.albumArt) {
+      src = { uri: this.state.albumArt }
     } else {
       src = require('../assets/album.png')
     }
