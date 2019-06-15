@@ -1,12 +1,16 @@
 import React from 'react'
-import { StyleSheet, Text, View, Share, Easing } from 'react-native'
+import { Easing } from 'react-native'
 import TextTicker from 'react-native-text-ticker'
-import { colors, dimensions } from '../../styles/main'
+import { colors } from '../../styles/main'
 
 export default (ScrollingText = props => {
   return (
     <TextTicker
-      style={styles.nowPlayingText}
+      style={{
+        color: colors.inactive,
+        lineHeight: Math.min(props.lineHeight, 31),
+        fontSize: Math.min(props.lineHeight - 10, 21)
+      }}
       easing={Easing.linear}
       duration={8000}
       scrollingSpeed={30}
@@ -16,12 +20,4 @@ export default (ScrollingText = props => {
       {props.text}
     </TextTicker>
   )
-})
-
-const styles = StyleSheet.create({
-  nowPlayingText: {
-    color: colors.inactive,
-    fontSize: 20,
-    lineHeight: 30
-  }
 })

@@ -40,6 +40,7 @@ class Radio extends React.Component {
       isBuffering: false,
       isLoading: true,
       isUnloading: false,
+      sectionHeight: 0,
       albumArt: null // null or url
     }
 
@@ -57,7 +58,7 @@ class Radio extends React.Component {
       shouldDuckAndroid: true
     })
 
-    //load and play
+    // load and play
     this._loadNewPlaybackInstance().then(() => {
       this.setState({
         isLoading: false
@@ -65,16 +66,18 @@ class Radio extends React.Component {
     })
 
     const pollForNewSong = () => {
-      this.fetchPlaylist().then(
-        () => {
-          OnAirDispatcher.dispatch({
-            type: 'CHECK_FOR_NEW_SONG',
-            data: this.state.on_air
-          })
-          this.fetchAlbumArt()
-        },
-        () => {} //pass on rejection
-      )
+      try {
+        this.fetchPlaylist().then(
+          () => {
+            OnAirDispatcher.dispatch({
+              type: 'CHECK_FOR_NEW_SONG',
+              data: this.state.on_air
+            })
+            this.fetchAlbumArt()
+          },
+          () => {} //pass on rejection
+        )
+      } catch (error) {} //pass on errors
     }
 
     pollForNewSong()
@@ -114,11 +117,11 @@ class Radio extends React.Component {
 
     // NOTE test a hard-coded song here
     // song = {
-    //   name: 'In Care of 8675309',
-    //   artist: 'Lambchop',
-    //   album: 'FLOTUS',
-    //   label: 'Merge',
-    //   year: '2016'
+    //   name: "Magician's Success",
+    //   artist: 'Vanishing Twin',
+    //   album: 'The Age Of Immunology',
+    //   label: 'Fire',
+    //   year: '2019'
     // }
 
     let searchTerm = `${song.artist} ${song.album ? song.album : song.name}`
@@ -215,18 +218,35 @@ class Radio extends React.Component {
     }
   }
 
-  renderOnAir() {
+  renderShowDetails() {
     // if (!this.state.isPlaying) {
     //   return null
     // }
 
     if (this.state.on_air.name) {
       return (
-        <View style={styles.onAirContainer}>
-          <Text numberOfLines={2} style={styles.onAirShowName}>
+        <View
+          style={[
+            styles.showDetailsContainer,
+            { height: this.state.sectionHeight }
+          ]}
+        >
+          <Text
+            numberOfLines={1}
+            style={[
+              styles.showDetailsName,
+              { fontSize: Math.min(this.state.sectionHeight / 2, 23) }
+            ]}
+          >
             {this.state.on_air.name}
           </Text>
-          <Text numberOfLines={1} style={styles.onAirDjName}>
+          <Text
+            numberOfLines={1}
+            style={[
+              styles.showDetailsHost,
+              { fontSize: Math.min(this.state.sectionHeight / 5, 20) }
+            ]}
+          >
             {`with ${this.state.on_air.dj}`}
           </Text>
         </View>
@@ -238,9 +258,9 @@ class Radio extends React.Component {
     let src
 
     if (
+      !this.state.isBuffering &&
       !this.state.isPlaying &&
-      !this.state.isLoading &&
-      !this.state.isBuffering
+      !this.state.isLoading
     ) {
       src = require('../assets/play.jpeg')
     } else if (this.state.isPlaying && this.state.albumArt) {
@@ -261,7 +281,7 @@ class Radio extends React.Component {
     )
   }
 
-  renderNowPlaying() {
+  renderSongDetails() {
     // if (!this.state.isPlaying) {
     //   return null
     // }
@@ -276,21 +296,24 @@ class Radio extends React.Component {
 
     //NOTE: TEST HARDCODED SONG HERE
     // x = {
-    //   name: 'In Care of 8675309',
-    //   artist: 'Lambchop',
-    //   album: 'FLOTUS',
-    //   label: 'Merge',
-    //   year: '2016'
+    //   name: "Magician's Success",
+    //   artist: 'Vanishing Twin',
+    //   album: 'The Age Of Immunology',
+    //   label: 'Fire',
+    //   year: '2019'
     // }
 
     return (
-      <View style={styles.nowPlaying}>
-        <ScrollingText text={x.name} />
-        <ScrollingText text={x.artist} />
+      <View style={[styles.songDetails, { height: this.state.sectionHeight }]}>
         <ScrollingText
-          text={
-            x.album + (x.label && x.year ? ` — (${x.label},  ${x.year})` : '')
-          }
+          text={x.name}
+          lineHeight={this.state.sectionHeight / 2}
+        />
+        <ScrollingText
+          text={`${x.artist}${x.artist && x.album ? ' — ' : ''}${x.album}${
+            x.label && x.year ? ' (' + x.label + ', ' + x.year + ')' : ''
+          }`}
+          lineHeight={this.state.sectionHeight / 2}
         />
       </View>
     )
@@ -307,14 +330,22 @@ class Radio extends React.Component {
         style={[windowStyles.container, styles.container]}
         imageStyle={{ opacity: 0.05 }}
         source={background}
+        onLayout={event => {
+          this.setState({
+            sectionHeight:
+              (event.nativeEvent.layout.height - 30 - album_width) / 2
+          })
+        }}
       >
-        {this.renderOnAir()}
+        {this.renderShowDetails()}
         {this.renderAlbumArt()}
-        {this.renderNowPlaying()}
+        {this.renderSongDetails()}
       </ImageBackground>
     )
   }
 }
+
+const album_width = dimensions.fullWidth / 1.3
 
 const styles = StyleSheet.create({
   container: {
@@ -323,27 +354,26 @@ const styles = StyleSheet.create({
     padding: 15
   },
   albumArtContainer: {
-    width: dimensions.fullWidth / 1.5,
+    width: album_width,
     flex: 1,
     justifyContent: 'center'
   },
   albumArtImg: {
-    width: dimensions.fullWidth / 1.5,
-    height: dimensions.fullWidth / 1.5
+    width: album_width,
+    height: album_width
   },
-  nowPlaying: {
+  songDetails: {
     flex: 0,
     alignItems: 'center',
-    justifyContent: 'center',
-    maxWidth: '100%'
+    paddingTop: 10
   },
-  onAirContainer: {
+  showDetailsContainer: {
     width: '100%',
-    alignItems: 'center',
+    maxWidth: '100%',
     flex: 0
   },
-  onAirShowName: { fontSize: 20, color: '#ffffff', textAlign: 'center' },
-  onAirDjName: { fontSize: 16, fontStyle: 'italic', color: colors.active }
+  showDetailsName: { color: colors.inactive },
+  showDetailsHost: { fontStyle: 'italic', color: colors.active }
 })
 
 export default Container.create(Radio)
