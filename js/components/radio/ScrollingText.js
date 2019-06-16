@@ -9,13 +9,16 @@ export default (ScrollingText = props => {
       style={{
         color: colors.inactive,
         lineHeight: Math.min(props.lineHeight, 31),
-        fontSize: Math.min(props.lineHeight - 10, 21)
+        fontSize: Math.min(props.lineHeight - 10, 21),
+        alignSelf: 'stretch',
+        textAlign: 'center'
       }}
       easing={Easing.linear}
       duration={8000}
       scrollingSpeed={30}
       marqueeDelay={3500}
       bounce={false}
+      marqueeOnMount={true}
     >
       {props.text}
     </TextTicker>
