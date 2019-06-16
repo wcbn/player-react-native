@@ -306,13 +306,15 @@ class Radio extends React.Component {
     return (
       <View style={[styles.songDetails, { height: this.state.sectionHeight }]}>
         <ScrollingText
-          text={x.name}
+          text={x.name || '—'}
           lineHeight={this.state.sectionHeight / 2}
         />
         <ScrollingText
-          text={`${x.artist}${x.artist && x.album ? ' — ' : ''}${x.album}${
-            x.label && x.year ? ' (' + x.label + ', ' + x.year + ')' : ''
-          }`}
+          text={
+            `${x.artist}${x.artist && x.album ? ' — ' : ''}${x.album}${
+              x.label && x.year ? ' (' + x.label + ', ' + x.year + ')' : ''
+            }` || '—'
+          }
           lineHeight={this.state.sectionHeight / 2}
         />
       </View>
@@ -366,7 +368,8 @@ const styles = StyleSheet.create({
     flex: 0,
     alignItems: 'center',
     width: '100%',
-    paddingTop: 10,
+    maxWidth: '100%',
+    marginTop: 10
   },
   showDetailsContainer: {
     width: '100%',
