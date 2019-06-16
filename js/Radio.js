@@ -365,7 +365,8 @@ const styles = StyleSheet.create({
   songDetails: {
     flex: 0,
     alignItems: 'center',
-    paddingTop: 10
+    width: '100%',
+    paddingTop: 10,
   },
   showDetailsContainer: {
     width: '100%',
