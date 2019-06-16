@@ -4,7 +4,7 @@ import {
   Text,
   View,
   AsyncStorage,
-  TouchableOpacity,
+  TouchableWithoutFeedback,
   Image,
   ImageBackground
 } from 'react-native'
@@ -270,14 +270,14 @@ class Radio extends React.Component {
     }
 
     return (
-      <TouchableOpacity
+      <TouchableWithoutFeedback
         disabled={this.state.isLoading}
         style={styles.albumArtContainer}
         onPress={this._onPress}
         accessibilityLabel={'Turn radio on or off'}
       >
         <ImageBackground style={styles.albumArtImg} source={src} />
-      </TouchableOpacity>
+      </TouchableWithoutFeedback>
     )
   }
 
