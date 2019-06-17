@@ -14,7 +14,7 @@ export default (ScrollingText = props => {
         textAlign: 'center'
       }}
       easing={Easing.linear}
-      duration={8000}
+      duration={20000}
       scrollingSpeed={30}
       marqueeDelay={3500}
       bounce={false}
