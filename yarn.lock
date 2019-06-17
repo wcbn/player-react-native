@@ -4887,11 +4887,6 @@ react-native-tab-view@^1.4.1:
   dependencies:
     prop-types "^15.6.1"
 
-react-native-text-ticker@^0.15.0:
-  version "0.15.0"
-  resolved "https://registry.yarnpkg.com/react-native-text-ticker/-/react-native-text-ticker-0.15.0.tgz#8c3a3cfd44b1ef398088509badd5909abb027710"
-  integrity sha512-KSOtx8KSnx3D+mdAVUPFB+1maCHMC1Kfs28Bk/sw3m66DmYF9h9EzZmnBAGTEfsqpez0eNAKSJ+tBZmWGtnP9A==
-
 react-native-view-shot@2.6.0:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/react-native-view-shot/-/react-native-view-shot-2.6.0.tgz#3b23675826f67658366352c4b97b59a6aded2f43"
