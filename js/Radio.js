@@ -4,8 +4,8 @@ import {
   Text,
   View,
   AsyncStorage,
-  TouchableWithoutFeedback,
   Image,
+  TouchableWithoutFeedback,
   ImageBackground
 } from 'react-native'
 import { Audio } from 'expo-av'
@@ -16,6 +16,7 @@ import { colors, dimensions } from './styles/main'
 import dayjs from 'dayjs'
 import { windowStyles, headerStyles } from './styles/components'
 import ScrollingText from './components/radio/ScrollingText'
+import ItunesAlbumArt from './components/radio/ItunesAlbumArt'
 
 class Radio extends React.Component {
   static navigationOptions = {
@@ -41,7 +42,7 @@ class Radio extends React.Component {
       isLoading: true,
       isUnloading: false,
       sectionHeight: 0,
-      albumArt: null // null or url
+      backgroundImg: require('../assets/album.png')
     }
 
     this.playbackInstance = null
@@ -73,7 +74,6 @@ class Radio extends React.Component {
               type: 'CHECK_FOR_NEW_SONG',
               data: this.state.on_air
             })
-            this.fetchAlbumArt()
           },
           () => {} //pass on rejection
         )
@@ -103,49 +103,6 @@ class Radio extends React.Component {
           resolve()
         })
     })
-  }
-
-  fetchAlbumArt() {
-    let song = this.state.on_air.songs[0]
-
-    if (song === undefined) {
-      this.setState({
-        albumArt: null
-      })
-      return
-    }
-
-    // NOTE test a hard-coded song here
-    // song = {
-    //   name: "Magician's Success",
-    //   artist: 'Vanishing Twin',
-    //   album: 'The Age Of Immunology',
-    //   label: 'Fire',
-    //   year: '2019'
-    // }
-
-    let searchTerm = `${song.artist} ${song.album ? song.album : song.name}`
-
-    searchParams = fetch(
-      `https://itunes.apple.com/search?limit=1&entity=album&term=${encodeURI(
-        searchTerm
-      )}`
-    )
-      .then(response => response.json())
-      .then(data => {
-        const res = data.results[0]
-
-        if (res === undefined) {
-          this.setState({
-            albumArt: null
-          })
-          return
-        }
-
-        this.setState({
-          albumArt: res.artworkUrl100.replace('100x100', '600x600')
-        })
-      })
   }
 
   async _unloadPlaybackInstance() {
@@ -255,18 +212,12 @@ class Radio extends React.Component {
   }
 
   renderAlbumArt() {
-    let src
-
-    if (
-      !this.state.isBuffering &&
-      !this.state.isPlaying &&
-      !this.state.isLoading
-    ) {
-      src = require('../assets/play.jpeg')
-    } else if (this.state.isPlaying && this.state.albumArt) {
-      src = { uri: this.state.albumArt }
-    } else {
-      src = require('../assets/album.png')
+    const song = this.state.on_air.songs[0] || {
+      name: '',
+      artist: '',
+      album: '',
+      label: '',
+      year: ''
     }
 
     return (
@@ -274,9 +225,24 @@ class Radio extends React.Component {
         disabled={this.state.isLoading}
         style={styles.albumArtContainer}
         onPress={this._onPress}
-        accessibilityLabel={'Turn radio on or off'}
+        accessibilityLabel={'Press to turn radio on or off'}
       >
-        <ImageBackground style={styles.albumArtImg} source={src} />
+        <View>
+          <ItunesAlbumArt
+            name={song.name}
+            album={song.album}
+            artist={song.artist}
+            default={require('../assets/album.png')}
+            onChange={img => this.setState({ backgroundImg: img })}
+            style={styles.albumArtImg}
+            showPlayButton={
+              !this.state.isBuffering &&
+              !this.state.isPlaying &&
+              !this.state.isLoading
+            }
+            playButton={require('../assets/play.jpeg')}
+          />
+        </View>
       </TouchableWithoutFeedback>
     )
   }
@@ -303,21 +269,18 @@ class Radio extends React.Component {
     //   year: '2019'
     // }
 
-    const firstLine = x.name || '—'
-
-    const secondLine =
-      `${x.artist}${x.artist && x.album ? ' — ' : ''}${x.album}${
-        x.label && x.year ? ' (' + x.label + ', ' + x.year + ')' : ''
-      }` || '—'
-
     return (
       <View style={[styles.songDetails, { height: this.state.sectionHeight }]}>
         <ScrollingText
-          text={firstLine}
+          text={x.name || '—'}
           lineHeight={this.state.sectionHeight / 2}
         />
         <ScrollingText
-          text={secondLine}
+          text={
+            `${x.artist}${x.artist && x.album ? ' — ' : ''}${x.album}${
+              x.label && x.year ? ' (' + x.label + ', ' + x.year + ')' : ''
+            }` || '—'
+          }
           lineHeight={this.state.sectionHeight / 2}
         />
       </View>
@@ -325,16 +288,11 @@ class Radio extends React.Component {
   }
 
   render() {
-    const background =
-      this.state.albumArt && this.state.isPlaying
-        ? { uri: this.state.albumArt }
-        : require('../assets/album.png')
-
     return (
       <ImageBackground
         style={[windowStyles.container, styles.container]}
         imageStyle={{ opacity: 0.05 }}
-        source={background}
+        source={this.state.backgroundImg}
         onLayout={event => {
           this.setState({
             sectionHeight:
@@ -360,6 +318,7 @@ const styles = StyleSheet.create({
   },
   albumArtContainer: {
     width: album_width,
+    height: album_width,
     flex: 1,
     justifyContent: 'center'
   },
