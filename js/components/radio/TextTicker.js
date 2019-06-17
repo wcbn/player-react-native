@@ -71,6 +71,7 @@ export default class TextMarquee extends PureComponent {
     const { marqueeDelay, marqueeOnMount } = this.props
     if (marqueeOnMount) {
       this.startAnimation(marqueeDelay)
+      this.onScroll()
     }
   }
 
