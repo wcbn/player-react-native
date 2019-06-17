@@ -51,9 +51,9 @@ class Radio extends React.Component {
     Audio.setAudioModeAsync({
       staysActiveInBackground: true,
       allowsRecordingIOS: false,
-      interruptionModeIOS: Audio.INTERRUPTION_MODE_IOS_MIX_WITH_OTHERS,
+      interruptionModeIOS: Audio.INTERRUPTION_MODE_IOS_DO_NOT_MIX,
       playsInSilentModeIOS: true,
-      interruptionModeAndroid: Audio.INTERRUPTION_MODE_ANDROID_DUCK_OTHERS,
+      interruptionModeAndroid: Audio.INTERRUPTION_MODE_ANDROID_DO_NOT_MIX,
       playThroughEarpieceAndroid: true,
       shouldDuckAndroid: true
     })
@@ -81,7 +81,7 @@ class Radio extends React.Component {
     }
 
     pollForNewSong()
-    setInterval(pollForNewSong, 30000)
+    setInterval(pollForNewSong, 40000)
   }
 
   fetchPlaylist() {
@@ -303,18 +303,21 @@ class Radio extends React.Component {
     //   year: '2019'
     // }
 
+    const firstLine = x.name || '—'
+
+    const secondLine =
+      `${x.artist}${x.artist && x.album ? ' — ' : ''}${x.album}${
+        x.label && x.year ? ' (' + x.label + ', ' + x.year + ')' : ''
+      }` || '—'
+
     return (
       <View style={[styles.songDetails, { height: this.state.sectionHeight }]}>
         <ScrollingText
-          text={x.name || '—'}
+          text={firstLine}
           lineHeight={this.state.sectionHeight / 2}
         />
         <ScrollingText
-          text={
-            `${x.artist}${x.artist && x.album ? ' — ' : ''}${x.album}${
-              x.label && x.year ? ' (' + x.label + ', ' + x.year + ')' : ''
-            }` || '—'
-          }
+          text={secondLine}
           lineHeight={this.state.sectionHeight / 2}
         />
       </View>

@@ -75,10 +75,8 @@ export default class TextMarquee extends PureComponent {
   }
 
   componentDidUpdate(prevProps) {
-    // Typical usage (don't forget to compare props):
     if (this.props.children !== prevProps.children) {
-      console.log('new')
-      // this.calculateMetrics()
+      this.onScroll()
     }
   }
 
@@ -199,7 +197,6 @@ export default class TextMarquee extends PureComponent {
   }
 
   async calculateMetrics() {
-    // console.log('calculating')
     return new Promise(async (resolve, reject) => {
       try {
         const measureWidth = node =>
@@ -273,7 +270,6 @@ export default class TextMarquee extends PureComponent {
     const { style, children, repeatSpacer, scroll, ...props } = this.props
     const { animating, contentFits, isScrolling } = this.state
 
-    console.log(this.props.marqueeOnMount)
     return (
       <View style={[styles.container]}>
         <Text

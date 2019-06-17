@@ -1,6 +1,6 @@
 import React from 'react'
 import { Easing } from 'react-native'
-import TextTicker from 'react-native-text-ticker'
+import TextTicker from './TextTicker'
 import { colors } from '../../styles/main'
 
 export default (ScrollingText = props => {
