@@ -1,11 +1,10 @@
 import React from 'react'
 import { StyleSheet, Text, View, Image, FlatList, Linking } from 'react-native'
 import HTML from 'react-native-render-html'
-import { windowStyles, headerStyles } from './styles/components'
+import { windowStyles, headerStyles, listStyles } from './styles/components'
 import { ScrollView } from 'react-native-gesture-handler'
 import { colors, dimensions } from './styles/main'
 import Separator from './components/Separator'
-import ShowListing from './components/ShowListing'
 import ListHeader from './components/ListHeader'
 
 export default class Profile extends React.PureComponent {
@@ -94,12 +93,20 @@ export default class Profile extends React.PureComponent {
     }
   }
 
+  renderShowListing = ({ item }) => {
+    return (
+      <View style={listStyles.item}>
+        <Text style={{ color: colors.inactive }}>{item.name}</Text>
+      </View>
+    )
+  }
+
   renderShows() {
     if (this.state.shows.length > 0) {
       return (
         <FlatList
           data={this.state.shows}
-          renderItem={({ item }) => <ShowListing data={item} />}
+          renderItem={this.renderShowListing}
           keyExtractor={(item, index) => index.toString()}
           ListHeaderComponent={<ListHeader text="Show History" />}
           ItemSeparatorComponent={() => (
