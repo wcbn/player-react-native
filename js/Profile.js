@@ -151,7 +151,7 @@ const renderers = {
 
 const listsPrefixesRenderers = {
   ul: (htmlAttribs, children, convertedCSSStyles, passProps) => (
-    <Text style={{ color: colors.active, marginRight: 5 }}>•</Text>
+    <Text style={styles.listsPrefixesRenderers}>•</Text>
   )
 }
 
@@ -177,7 +177,10 @@ const styles = StyleSheet.create({
     height: 66,
     borderRadius: 10
   },
-  coverContact: { flexDirection: 'column', marginLeft: 15 },
+  coverContact: {
+    flexDirection: 'column',
+    marginLeft: 15
+  },
   coverText: {
     color: colors.active,
     lineHeight: 20
@@ -188,5 +191,9 @@ const styles = StyleSheet.create({
   },
   about: {
     padding: 15
+  },
+  listsPrefixesRenderers: {
+    color: colors.active,
+    marginRight: 5
   }
 })
