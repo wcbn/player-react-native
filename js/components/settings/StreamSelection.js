@@ -39,13 +39,10 @@ export default class StreamSelection extends React.PureComponent {
           thumbColor={colors.active}
           selectedIndex={this.state.selectedStreamIndex}
           onTabPress={this.setStreamSetting}
-          activeTabStyle={{ backgroundColor: colors.highlight }}
-          tabStyle={{
-            backgroundColor: colors.primary,
-            borderColor: colors.active
-          }}
-          activeTabTextStyle={{ color: colors.active }}
-          tabTextStyle={{ color: colors.inactive }}
+          activeTabStyle={styles.activeTabStyle}
+          tabStyle={styles.tabStyle}
+          activeTabTextStyle={styles.activeTabTextStyle}
+          tabTextStyle={styles.tabTextStyle}
         />
         <View style={styles.infoView}>
           <Text style={styles.tabCaption}>64 kbps</Text>
@@ -58,12 +55,31 @@ export default class StreamSelection extends React.PureComponent {
 }
 
 const styles = StyleSheet.create({
-  title: { color: colors.inactive, marginBottom: 4, fontSize: 16 },
+  title: {
+    color: colors.inactive,
+    marginBottom: 4,
+    fontSize: 16
+  },
   tabCaption: {
     flex: 1,
     padding: 4,
     fontSize: 11,
     color: colors.inactive
   },
-  infoView: { flexDirection: 'row' }
+  infoView: {
+    flexDirection: 'row'
+  },
+  activeTabStyle: {
+    backgroundColor: colors.highlight
+  },
+  tabStyle: {
+    backgroundColor: colors.primary,
+    borderColor: colors.active
+  },
+  activeTabTextStyle: {
+    color: colors.active
+  },
+  tabTextStyle: {
+    color: colors.inactive
+  }
 })
