@@ -27,15 +27,3 @@ export const listStyles = StyleSheet.create({
   }
 })
 
-export const episodeStyles = {
-  listing: {
-    date: {
-      color: colors.inactive,
-      lineHeight: 22
-    },
-    numSongs: {
-      color: colors.lightGreen,
-      lineHeight: 22
-    }
-  }
-}

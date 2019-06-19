@@ -9,12 +9,7 @@ import {
 import { ScrollView } from 'react-native-gesture-handler'
 import { colors, dimensions } from './styles/main'
 import Separator from './components/Separator'
-import {
-  headerStyles,
-  windowStyles,
-  listStyles,
-  episodeStyles
-} from './styles/components'
+import { headerStyles, windowStyles, listStyles } from './styles/components'
 import dayjs from 'dayjs'
 import ListHeader from './components/ListHeader'
 
@@ -108,9 +103,9 @@ export default class Show extends React.PureComponent {
           })
         }
       >
-        <View style={[listStyles.item, episodeStyles.listing]}>
-          <Text style={episodeStyles.listing.date}>{item.beginning}</Text>
-          <Text style={episodeStyles.listing.numSongs}>
+        <View style={listStyles.item}>
+          <Text style={styles.date}>{item.beginning}</Text>
+          <Text style={styles.numSongs}>
             {item.songs.length ? `${item.songs.length} Songs` : '—'}
           </Text>
         </View>
@@ -161,5 +156,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: colors.active,
     textAlign: 'center'
+  },
+  date: {
+    color: colors.inactive,
+    lineHeight: 22
+  },
+  numSongs: {
+    color: colors.lightGreen,
+    lineHeight: 22
   }
 })
