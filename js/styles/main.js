@@ -24,6 +24,20 @@ export const colors = {
   }
 }
 
+export const colorClass = StyleSheet.create({
+    inactive: {
+      color: colors.inactive
+    }
+  })
+
+// weird idea I had
+// export const colorClass = classname =>
+//   StyleSheet.create({
+//     classname: {
+//       colors[classname]
+//     }
+//   })
+
 //TODO should probably do something like this
 // export const padding = {
 //   sm: 10,
@@ -38,4 +52,3 @@ export const colors = {
 //   lg: 28,
 //   primary: 'Cochin'
 // }
-

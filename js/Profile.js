@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Image, FlatList, Linking } from 'react-native'
 import HTML from 'react-native-render-html'
 import { windowStyles, headerStyles, listStyles } from './styles/components'
 import { ScrollView } from 'react-native-gesture-handler'
-import { colors, dimensions } from './styles/main'
+import { colors, dimensions, colorClass } from './styles/main'
 import Separator from './components/Separator'
 import ListHeader from './components/ListHeader'
 
@@ -80,7 +80,7 @@ export default class Profile extends React.PureComponent {
       return (
         <HTML
           html={this.state.about}
-          baseFontStyle={styles.aboutText}
+          baseFontStyle={colorClass.inactive}
           renderers={renderers}
           listsPrefixesRenderers={listsPrefixesRenderers}
           tagsStyles={tagsStyles}
@@ -96,7 +96,7 @@ export default class Profile extends React.PureComponent {
   renderShowListing = ({ item }) => {
     return (
       <View style={listStyles.item}>
-        <Text style={{ color: colors.inactive }}>{item.name}</Text>
+        <Text style={colorClass.inactive}>{item.name}</Text>
       </View>
     )
   }
@@ -188,8 +188,5 @@ const styles = StyleSheet.create({
   },
   about: {
     padding: 15
-  },
-  aboutText: {
-    color: colors.inactive
   }
 })
