@@ -22,8 +22,9 @@ const WEEEKDAYS = [
   'Sunday'
 ]
 
-const weekdayIndex = new Date().getDay()
-const TODAY = weekdayIndex == 0 ? 6 : weekdayIndex - 1
+// 6 hr offset
+// const weekdayIndex = new Date(new Date().getTime() - 21600000).getDay()
+// const TODAY = weekdayIndex == 0 ? 6 : weekdayIndex - 1
 
 export default class Schedule extends React.PureComponent {
   static navigationOptions = {
