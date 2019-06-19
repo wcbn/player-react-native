@@ -27,12 +27,6 @@ export const listStyles = StyleSheet.create({
   }
 })
 
-export const basicInfoBoxStyles = {
-  height: 50,
-  justifyContent: 'center',
-  alignItems: 'center'
-}
-
 export const episodeStyles = {
   listing: {
     date: {

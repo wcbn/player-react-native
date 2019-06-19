@@ -1,15 +1,11 @@
 import React from 'react'
-import { Text, View, FlatList, ScrollView } from 'react-native'
+import { Text, View, FlatList, ScrollView, StyleSheet } from 'react-native'
 
 import { Container } from 'flux/utils'
 import OnAirStore from './flux/OnAirStore'
 import Song from './components/Song'
 import Separator from './components/Separator'
-import {
-  windowStyles,
-  headerStyles,
-  basicInfoBoxStyles
-} from './styles/components'
+import { windowStyles, headerStyles } from './styles/components'
 import { colors } from './styles/main'
 import ListHeader from './components/ListHeader'
 import Banner from './components/Banner'
@@ -60,10 +56,8 @@ class Playlist extends React.Component {
 
   renderNotice() {
     return (
-      <View style={basicInfoBoxStyles}>
-        <Text style={{ color: colors.inactive }}>
-          No recent songs to display
-        </Text>
+      <View style={styles.infoBox}>
+        <Text style={styles.infoBoxText}>No recent songs to display</Text>
       </View>
     )
   }
@@ -89,5 +83,14 @@ class Playlist extends React.Component {
     )
   }
 }
+
+const styles = StyleSheet.create({
+  infoBox: {
+    height: 50,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  infoBoxText: { color: colors.inactive }
+})
 
 export default Container.create(Playlist)
