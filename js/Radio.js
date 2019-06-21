@@ -11,9 +11,7 @@ import {
 import { Audio } from 'expo-av'
 import { Container } from 'flux/utils'
 import OnAirStore from './flux/OnAirStore'
-import OnAirDispatcher from './flux/OnAirDispatcher'
 import { colors, dimensions } from './styles/main'
-import dayjs from 'dayjs'
 import { windowStyles, headerStyles } from './styles/components'
 import ScrollingText from './components/radio/ScrollingText'
 import ItunesAlbumArt from './components/radio/ItunesAlbumArt'
@@ -64,44 +62,6 @@ class Radio extends React.Component {
       this.setState({
         isLoading: false
       })
-    })
-
-    const pollForNewSong = () => {
-      try {
-        this.fetchPlaylist().then(
-          () => {
-            OnAirDispatcher.dispatch({
-              type: 'CHECK_FOR_NEW_SONG',
-              data: this.state.on_air
-            })
-          },
-          () => {} //pass on rejection
-        )
-      } catch (error) {} //pass on errors
-    }
-
-    pollForNewSong()
-    setInterval(pollForNewSong, 40000)
-  }
-
-  fetchPlaylist() {
-    return new Promise((resolve, reject) => {
-      fetch('https://app.wcbn.org/playlist.json')
-        .then(response => response.json())
-        .then(data => {
-          //if no change, reject
-          // if (data.on_air.songs[0].name == this.state.on_air.songs[0].name) {
-          //   reject('Song has not changed.')
-          // }
-
-          data.on_air.songs.forEach(song => {
-            song.at = dayjs(song.at).format('h:mm A')
-          })
-          this.setState({
-            on_air: data.on_air
-          })
-          resolve()
-        })
     })
   }
 
