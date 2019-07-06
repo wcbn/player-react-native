@@ -75,8 +75,6 @@ class Radio extends React.Component {
       })
 
       await this.playbackInstance.unloadAsync()
-      // this.playbackInstance.setOnPlaybackStatusUpdate(null)
-      // this.playbackInstance = null
     }
   }
 
