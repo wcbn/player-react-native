@@ -66,7 +66,7 @@ class Radio extends React.Component {
   }
 
   async _unloadPlaybackInstance() {
-    if (this.playbackInstance != null) {
+    if (this.playbackInstance !== null) {
       this.setState({
         isPlaying: false,
         isLoading: false,
@@ -83,7 +83,7 @@ class Radio extends React.Component {
 
     let streamUrl = await AsyncStorage.getItem('STREAM_URL')
 
-    if (streamUrl == null) {
+    if (streamUrl === null) {
       // SET DEFAULT
       streamUrl = 'http://floyd.wcbn.org:8000/wcbn-hd.mp3'
       AsyncStorage.setItem('STREAM_URL', streamUrl)
@@ -110,7 +110,7 @@ class Radio extends React.Component {
   }
 
   _onPress = () => {
-    if (this.playbackInstance != null) {
+    if (this.playbackInstance !== null) {
       if (this.state.isPlaying) {
         //unload
         this._unloadPlaybackInstance().then(() => {
