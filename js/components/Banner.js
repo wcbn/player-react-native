@@ -1,12 +1,12 @@
 import React from 'react'
-import { Text, TouchableOpacity } from 'react-native'
-import { colors } from '../styles/main'
+import { Text, TouchableOpacity, StyleSheet } from 'react-native'
+import { colors, dimensions } from '../styles/main'
 import Icon from 'react-native-vector-icons/Ionicons'
 
 export default (Banner = props => (
-  <TouchableOpacity style={styles} onPress={props.onPress}>
+  <TouchableOpacity style={styles.view} onPress={props.onPress}>
     <Text style={styles.text}>{`${props.text} `}</Text>
-    <Text style={styles.host}>{props.host}</Text>
+    <Text style={styles.host} numberOfLines={1}>{props.host}</Text>
     <Icon
       style={styles.icon}
       name={'md-arrow-forward'}
@@ -16,20 +16,21 @@ export default (Banner = props => (
   </TouchableOpacity>
 ))
 
-const styles = {
-  height: 50,
-  flexDirection: 'row',
-  justifyContent: 'center',
-  alignItems: 'center',
-  // borderBottomColor: colors.inactive,
-  // borderBottomWidth: StyleSheet.hairlineWidth,
+const styles = StyleSheet.create({
+  view: {
+    height: 50,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
   text: {
     color: colors.inactive
   },
   host: {
-    color: colors.active
+    color: colors.active,
+    maxWidth: dimensions.fullWidth / 1.75
   },
   icon: {
     marginLeft: 5
   }
-}
+})
