@@ -8,6 +8,7 @@ import {
 
 import { StatusBar } from 'react-native'
 import OnAirPoll from './components/OnAirPoll'
+import NetInfoListener from './components/NetInfoListener'
 
 import { windowStyles } from './styles/components'
 
@@ -86,6 +87,8 @@ export default () => (
   <SafeAreaView style={windowStyles.container} forceInset={{ top: 'never' }}>
     <StatusBar barStyle="light-content" />
     <OnAirPoll />
-    <AppContainer />
+    <NetInfoListener>
+      <AppContainer />
+    </NetInfoListener>
   </SafeAreaView>
 )
