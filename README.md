@@ -1,10 +1,13 @@
 # React-Native WCBN App for Android and iOS
 
+<a href="https://play.google.com/store/apps/details?id=org.wcbn">
+  <img alt="Get it on Google Play" title="Google Play" src="assets/play-store.png" height="40">
+</a>
+
 ![Screenshots](docs/screenshots.png)
 
-[Google Play Store listing](https://play.google.com/store/apps/details?id=org.wcbn)
-
 # Demo
+
 [View with the Expo app](https://expo.io/@dctalbot/wcbn-app)
 
 # Things you'll need
@@ -28,7 +31,6 @@ Fork this repo
     cd player-react-native
     yarn
     yarn start
-
 
 # GitHub Actions
 
