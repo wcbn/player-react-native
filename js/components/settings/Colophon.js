@@ -1,34 +1,36 @@
 import React from 'react'
-import { Text, TouchableOpacity, StyleSheet, Linking } from 'react-native'
-import { colors } from '../../styles/main'
+import { TouchableOpacity, StyleSheet, Linking } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
+import ThemedText from '../ThemedText'
+import { useTheme } from '../../styles/theming'
 
-export default (Colophon = props => (
-  <TouchableOpacity
-    style={styles.container}
-    onPress={() =>
-      Linking.openURL('https://github.com/wcbn/player-react-native')
-    }
-  >
-    <Text style={styles.text}>
-      {'Made with '}
-      <Icon name={'md-heart-empty'} size={12} color={colors.active} />
-      {' by students at the University of Michigan'}
-    </Text>
-  </TouchableOpacity>
-))
+export default (Colophon = props => {
+  const theme = useTheme()
+
+  return (
+    <TouchableOpacity
+      style={styles.container}
+      onPress={() =>
+        Linking.openURL('https://github.com/wcbn/player-react-native')
+      }
+    >
+      <ThemedText style={styles.text}>
+        {'Made with '}
+        <Icon name={'md-heart-empty'} size={12} color={theme.secondary} />
+        {' by students at the University of Michigan'}
+      </ThemedText>
+    </TouchableOpacity>
+  )
+})
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.primary,
-    color: colors.active,
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 20,
     marginBottom: 20
   },
   text: {
-    textAlign: 'center',
-    color: colors.inactive
+    textAlign: 'center'
   }
 })
