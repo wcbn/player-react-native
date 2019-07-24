@@ -35,23 +35,23 @@ const getIconName = routeName => {
 }
 
 const ScheduleStack = createStackNavigator({
-  Schedule: Schedule,
-  Show: Show,
-  Profile: Profile,
-  Episode: Episode
+  Schedule,
+  Show,
+  Profile,
+  Episode
 })
 
 const PlaylistStack = createStackNavigator({
-  Playlist: Playlist,
-  Profile: Profile
+  Playlist,
+  Profile
 })
 
 const RadioStack = createStackNavigator({
-  Radio: Radio
+  Radio
 })
 
 const SettingsStack = createStackNavigator({
-  Settings: Settings
+  Settings
 })
 
 const AppNavigator = createBottomTabNavigator(
