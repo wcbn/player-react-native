@@ -1,7 +1,8 @@
 import React from 'react'
-import { StyleSheet, Text, View, AsyncStorage } from 'react-native'
+import { StyleSheet, View, AsyncStorage } from 'react-native'
 import SegmentedControlTab from 'react-native-segmented-control-tab'
-import { colors } from '../../styles/main'
+import ThemedText from '../ThemedText'
+import { withTheme } from '../../styles/theming'
 
 const STREAMS = [
   'http://floyd.wcbn.org:8000/wcbn-mid.mp3',
@@ -9,7 +10,7 @@ const STREAMS = [
   'http://floyd.wcbn.org:8000/wcbn-hd.mp3'
 ]
 
-export default class StreamSelection extends React.PureComponent {
+class StreamSelection extends React.PureComponent {
   constructor() {
     super()
     this.state = {
@@ -26,28 +27,33 @@ export default class StreamSelection extends React.PureComponent {
   }
 
   setStreamSetting = index => {
-    AsyncStorage.setItem('STREAM_URL', STREAMS[index])
     this.setState({ selectedStreamIndex: index })
+    AsyncStorage.setItem('STREAM_URL', STREAMS[index])
   }
 
   render() {
     return (
       <View>
-        <Text style={styles.title}>Stream Quality</Text>
+        <ThemedText style={styles.title}>Stream Quality</ThemedText>
         <SegmentedControlTab
           values={['Low', 'Medium', 'High']}
-          thumbColor={colors.active}
+          thumbColor={this.props.theme.secondary}
           selectedIndex={this.state.selectedStreamIndex}
           onTabPress={this.setStreamSetting}
-          activeTabStyle={styles.activeTabStyle}
-          tabStyle={styles.tabStyle}
-          activeTabTextStyle={styles.activeTabTextStyle}
-          tabTextStyle={styles.tabTextStyle}
+          activeTabStyle={{
+            backgroundColor: this.props.theme.secondary
+          }}
+          tabStyle={{
+            backgroundColor: 'transparent',
+            borderColor: this.props.theme.secondary
+          }}
+          activeTabTextStyle={{ color: this.props.theme.primary }}
+          tabTextStyle={{ color: this.props.theme.textColor }}
         />
-        <View style={styles.infoView}>
-          <Text style={styles.tabCaption}>64 kbps</Text>
-          <Text style={styles.tabCaption}>128 kbps</Text>
-          <Text style={styles.tabCaption}>320 kbps</Text>
+        <View style={styles.captionView}>
+          <ThemedText style={styles.captionText}>64 kbps</ThemedText>
+          <ThemedText style={styles.captionText}>128 kbps</ThemedText>
+          <ThemedText style={styles.captionText}>320 kbps</ThemedText>
         </View>
       </View>
     )
@@ -56,30 +62,17 @@ export default class StreamSelection extends React.PureComponent {
 
 const styles = StyleSheet.create({
   title: {
-    color: colors.inactive,
     marginBottom: 4,
     fontSize: 16
   },
-  tabCaption: {
-    flex: 1,
-    padding: 4,
-    fontSize: 11,
-    color: colors.inactive
-  },
-  infoView: {
+  captionView: {
     flexDirection: 'row'
   },
-  activeTabStyle: {
-    backgroundColor: colors.highlight
-  },
-  tabStyle: {
-    backgroundColor: colors.primary,
-    borderColor: colors.active
-  },
-  activeTabTextStyle: {
-    color: colors.active
-  },
-  tabTextStyle: {
-    color: colors.inactive
+  captionText: {
+    flex: 1,
+    padding: 4,
+    fontSize: 11
   }
 })
+
+export default withTheme(StreamSelection)
