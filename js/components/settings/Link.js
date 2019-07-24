@@ -1,17 +1,16 @@
 import React from 'react'
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import { StyleSheet, View, TouchableOpacity } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
-import { colors } from '../../styles/main'
+import { useTheme } from '../../styles/theming'
+import ThemedText from '../ThemedText'
 
 export default (Link = props => {
+  const theme = useTheme()
   return (
-    <TouchableOpacity
-      style={styles.container}
-      onPress={props.onPress}
-    >
-      <Icon name={props.icon} size={30} color={colors.active} />
+    <TouchableOpacity style={styles.container} onPress={props.onPress}>
+      <Icon name={props.icon} size={30} color={theme.secondary} />
       <View style={styles.textContainer}>
-        <Text style={styles.text}>{props.text}</Text>
+        <ThemedText>{props.text}</ThemedText>
       </View>
     </TouchableOpacity>
   )
@@ -29,8 +28,5 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     alignItems: 'center',
     flexDirection: 'row'
-  },
-  text: {
-    color: colors.inactive
   }
 })
