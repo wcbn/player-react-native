@@ -32,23 +32,22 @@ class StreamSelection extends React.PureComponent {
   }
 
   render() {
+    const theme = this.props.theme
     return (
       <View>
         <ThemedText style={styles.title}>Stream Quality</ThemedText>
         <SegmentedControlTab
           values={['Low', 'Medium', 'High']}
-          thumbColor={this.props.theme.secondary}
+          thumbColor={theme.secondary}
           selectedIndex={this.state.selectedStreamIndex}
           onTabPress={this.setStreamSetting}
-          activeTabStyle={{
-            backgroundColor: this.props.theme.secondary
-          }}
+          activeTabStyle={{ backgroundColor: theme.secondary }}
           tabStyle={{
             backgroundColor: 'transparent',
-            borderColor: this.props.theme.secondary
+            borderColor: theme.secondary
           }}
-          activeTabTextStyle={{ color: this.props.theme.primary }}
-          tabTextStyle={{ color: this.props.theme.textColor }}
+          activeTabTextStyle={{ color: theme.primary }}
+          tabTextStyle={{ color: theme.textColor, fontFamily: 'Futura' }}
         />
         <View style={styles.captionView}>
           <ThemedText style={styles.captionText}>64 kbps</ThemedText>
