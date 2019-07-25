@@ -45,6 +45,12 @@ export default (LinksList = props => {
       />
       <Separator color={theme.secondary} />
       <Link
+        onPress={props.toggleTheme}
+        text={`Switch to ${theme.opposite} mode`}
+        icon={'md-bulb'}
+      />
+      <Separator color={theme.secondary} />
+      <Link
         onPress={() => Linking.openURL(DONATION_URL)}
         text={'Give to WCBN'}
         icon={'md-cash'}
@@ -58,4 +64,3 @@ const styles = StyleSheet.create({
     marginTop: 10
   }
 })
-
