@@ -1,14 +1,16 @@
 import React from 'react'
-import { Text, View, FlatList, ScrollView, StyleSheet } from 'react-native'
+import { View, FlatList, ScrollView, StyleSheet } from 'react-native'
 
 import { Container } from 'flux/utils'
 import OnAirStore from './flux/OnAirStore'
 import Song from './components/Song'
 import Separator from './components/Separator'
-import { windowStyles, headerStyles } from './styles/components'
-import { colors } from './styles/main'
+import { headerStyles } from './styles/components'
 import ListHeader from './components/ListHeader'
 import Banner from './components/Banner'
+import Screen from './components/Screen';
+import ThemedText from './components/ThemedText';
+import { withTheme } from './styles/theming';
 
 class Playlist extends React.Component {
   static navigationOptions = ({ navigation }) => {
@@ -47,7 +49,7 @@ class Playlist extends React.Component {
           keyExtractor={(item, index) => index.toString()}
           ListHeaderComponent={<ListHeader text="Recent Songs" />}
           ItemSeparatorComponent={() => (
-            <Separator color={colors.grayHighlight} />
+            <Separator color={this.props.theme.muted} />
           )}
         />
       </ScrollView>
@@ -57,14 +59,14 @@ class Playlist extends React.Component {
   renderNotice() {
     return (
       <View style={styles.infoBox}>
-        <Text style={styles.infoBoxText}>No recent songs to display</Text>
+        <ThemedText>No recent songs to display</ThemedText>
       </View>
     )
   }
 
   render() {
     return (
-      <View style={windowStyles.container}>
+      <Screen>
         <Banner
           text={'On the air:'}
           host={this.state.on_air.dj}
@@ -75,11 +77,12 @@ class Playlist extends React.Component {
             })
           }
         />
-        <Separator color={colors.inactive} />
+        <Separator color={this.props.theme.textColor} />
         {this.state.on_air.songs.length
           ? this.renderSongs()
           : this.renderNotice()}
-      </View>
+
+      </Screen>
     )
   }
 }
@@ -90,7 +93,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
-  infoBoxText: { color: colors.inactive }
 })
 
-export default Container.create(Playlist)
+export default withTheme(Container.create(Playlist))
+
+
