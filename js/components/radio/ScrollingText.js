@@ -2,12 +2,14 @@ import React from 'react'
 import { Easing } from 'react-native'
 import TextTicker from './TextTicker'
 import { colors } from '../../styles/main'
+import { useTheme } from '../../styles/theming';
 
 export default (ScrollingText = props => {
+  const theme = useTheme()
   return (
     <TextTicker
       style={{
-        color: colors.inactive,
+        color: theme.textColor,
         lineHeight: Math.min(props.lineHeight, 31),
         fontSize: Math.min(props.lineHeight - 10, 21),
         alignSelf: 'stretch',

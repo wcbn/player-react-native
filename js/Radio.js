@@ -11,15 +11,20 @@ import {
 import { Audio } from 'expo-av'
 import { Container } from 'flux/utils'
 import OnAirStore from './flux/OnAirStore'
-import { colors, dimensions } from './styles/main'
+import { dimensions } from './styles/main'
 import { windowStyles, headerStyles } from './styles/components'
 import ScrollingText from './components/radio/ScrollingText'
 import ItunesAlbumArt from './components/radio/ItunesAlbumArt'
+import { getDefaultNavigationOptions } from './util/navigation'
+import ThemedText from './components/ThemedText'
+import Screen from './components/Screen'
 
 class Radio extends React.Component {
-  static navigationOptions = {
-    title: 'WCBN-FM Ann Arbor',
-    ...headerStyles
+  static navigationOptions = ({ navigation, screenProps }) => {
+    return {
+      title: 'WCBN-FM Ann Arbor',
+      ...getDefaultNavigationOptions(screenProps.theme)
+    }
   }
 
   static getStores() {
@@ -58,11 +63,11 @@ class Radio extends React.Component {
     })
 
     // load and play
-    this._loadNewPlaybackInstance().then(() => {
-      this.setState({
-        isLoading: false
-      })
-    })
+    // this._loadNewPlaybackInstance().then(() => {
+    //   this.setState({
+    //     isLoading: false
+    //   })
+    // })
   }
 
   async _unloadPlaybackInstance() {
@@ -143,19 +148,19 @@ class Radio extends React.Component {
         <View
           style={[
             styles.showDetailsContainer,
-            { height: this.state.sectionHeight }
+            { height: this.state.sectionHeight / 3 }
           ]}
         >
-          <Text
+          <ThemedText
             numberOfLines={1}
-            style={[
-              styles.showDetailsName,
-              { fontSize: Math.min(this.state.sectionHeight / 2, 23) }
-            ]}
+            style={{
+              fontSize: Math.min(this.state.sectionHeight / 2, 23)
+            }}
           >
             {this.state.on_air.name}
-          </Text>
-          <Text
+          </ThemedText>
+          <ThemedText
+            color={'secondary'}
             numberOfLines={1}
             style={[
               styles.showDetailsHost,
@@ -163,7 +168,7 @@ class Radio extends React.Component {
             ]}
           >
             {`with ${this.state.on_air.dj}`}
-          </Text>
+          </ThemedText>
         </View>
       )
     }
@@ -247,32 +252,37 @@ class Radio extends React.Component {
 
   render() {
     return (
-      <ImageBackground
-        style={[windowStyles.container, styles.container]}
-        imageStyle={{ opacity: 0.05 }}
-        source={this.state.backgroundImg}
-        onLayout={event => {
-          this.setState({
-            sectionHeight:
-              (event.nativeEvent.layout.height - 30 - album_width) / 2
-          })
-        }}
-      >
-        {this.renderShowDetails()}
-        {this.renderAlbumArt()}
-        {this.renderSongDetails()}
-      </ImageBackground>
+      <Screen>
+        <ImageBackground
+          style={[styles.container]}
+          imageStyle={{
+            opacity: this.props.screenProps.theme.name === 'light' ? 0.1 : 0.05
+          }}
+          source={this.state.backgroundImg}
+          onLayout={event => {
+            this.setState({
+              sectionHeight:
+                (event.nativeEvent.layout.height - 30 - album_width) / 2
+            })
+          }}
+        >
+          {this.renderShowDetails()}
+          {this.renderAlbumArt()}
+          {this.renderSongDetails()}
+        </ImageBackground>
+      </Screen>
     )
   }
 }
 
-const album_width = dimensions.fullWidth / 1.3
+const album_width = Math.max(dimensions.fullWidth / 1.7, 250)
 
 const styles = StyleSheet.create({
   container: {
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: 15
+    padding: 15,
+    height: '100%'
   },
   albumArtContainer: {
     width: album_width,
@@ -296,8 +306,7 @@ const styles = StyleSheet.create({
     maxWidth: '100%',
     flex: 0
   },
-  showDetailsName: { color: colors.inactive },
-  showDetailsHost: { fontStyle: 'italic', color: colors.active }
+  showDetailsHost: { fontStyle: 'italic' }
 })
 
 export default Container.create(Radio)
