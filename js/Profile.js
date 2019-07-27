@@ -1,36 +1,76 @@
 import React from 'react'
-import { StyleSheet, Text, View, Image, FlatList, Linking } from 'react-native'
+import { StyleSheet, View, Image, FlatList, Linking } from 'react-native'
 import HTML from 'react-native-render-html'
-import { windowStyles, headerStyles, listStyles } from './styles/components'
 import { ScrollView } from 'react-native-gesture-handler'
-import { colors, dimensions, colorClass } from './styles/main'
+import { dimensions } from './styles/main'
 import Separator from './components/Separator'
 import ListHeader from './components/ListHeader'
+import { getDefaultNavigationOptions } from './util/navigation'
+import Screen from './components/Screen'
+import ThemedText from './components/ThemedText'
+import ListItemWrapper from './components/ListItemWrapper'
 
 export default class Profile extends React.PureComponent {
-  static navigationOptions = ({ navigation }) => {
+  static navigationOptions = ({ navigation, screenProps }) => {
     return {
       title: navigation.getParam('title', ''),
-      ...headerStyles
+      ...getDefaultNavigationOptions(screenProps.theme)
     }
   }
 
-  constructor() {
-    super()
-    this.state = {
-      dj_name: '',
-      about: '',
-      shows: [],
-      website: '',
-      public_email: '',
-      real_name: ''
-    }
+  state = {
+    dj_name: '',
+    about: '',
+    shows: [],
+    website: '',
+    public_email: '',
+    real_name: ''
   }
 
   componentDidMount() {
     fetch(`https://app.wcbn.org${this.props.navigation.getParam('url')}.json`)
       .then(response => response.json())
       .then(data => this.setState(data))
+  }
+
+  renderers = {
+    img: (htmlAttribs, children, convertedCSSStyles, passProps) => (
+      <Image
+        style={{
+          borderColor: this.props.screenProps.theme.secondary,
+          height:
+            (parseInt(htmlAttribs.height) * passProps.imagesMaxWidth) /
+            parseInt(htmlAttribs.width),
+          marginTop: 15,
+          marginBottom: 2
+        }}
+        source={{ uri: `https://app.wcbn.org${htmlAttribs.src}` }}
+        key={htmlAttribs.src}
+      />
+    )
+  }
+
+  listsPrefixesRenderers = {
+    ul: (htmlAttribs, children, convertedCSSStyles, passProps) => (
+      <ThemedText style={styles.listsPrefixesRenderers} color={'secondary'}>
+        •
+      </ThemedText>
+    )
+  }
+
+  tagsStyles = {
+    figure: {
+      marginBottom: 15
+    },
+    figcaption: {
+      textAlign: 'center',
+      fontStyle: 'italic',
+      color: this.props.screenProps.theme.secondary
+    },
+    a: {
+      color: this.props.screenProps.theme.anchorColor,
+      textDecorationLine: 'none'
+    }
   }
 
   renderCover() {
@@ -41,14 +81,19 @@ export default class Profile extends React.PureComponent {
           source={{ uri: this.state.image_url }}
         />
         <View style={styles.coverContact}>
-          {this.state.real_name ? (
-            <Text style={styles.coverRealName} numberOfLines={1}>
+          {!!this.state.real_name && (
+            <ThemedText
+              color={'secondary'}
+              style={styles.coverRealName}
+              numberOfLines={1}
+            >
               {this.state.real_name}
-            </Text>
-          ) : null}
+            </ThemedText>
+          )}
 
-          {this.state.website ? (
-            <Text
+          {!!this.state.website && (
+            <ThemedText
+              color={'anchorColor'}
               style={styles.coverText}
               numberOfLines={1}
               onPress={() => {
@@ -56,11 +101,12 @@ export default class Profile extends React.PureComponent {
               }}
             >
               {this.state.website}
-            </Text>
-          ) : null}
+            </ThemedText>
+          )}
 
-          {this.state.public_email ? (
-            <Text
+          {!!this.state.public_email && (
+            <ThemedText
+              color={'anchorColor'}
               style={styles.coverText}
               numberOfLines={1}
               onPress={() => {
@@ -68,8 +114,8 @@ export default class Profile extends React.PureComponent {
               }}
             >
               {this.state.public_email}
-            </Text>
-          ) : null}
+            </ThemedText>
+          )}
         </View>
       </View>
     )
@@ -80,10 +126,13 @@ export default class Profile extends React.PureComponent {
       return (
         <HTML
           html={this.state.about}
-          baseFontStyle={colorClass.inactive}
-          renderers={renderers}
-          listsPrefixesRenderers={listsPrefixesRenderers}
-          tagsStyles={tagsStyles}
+          baseFontStyle={{
+            color: this.props.screenProps.theme.textColor,
+            fontFamily: 'Futura'
+          }}
+          renderers={this.renderers}
+          listsPrefixesRenderers={this.listsPrefixesRenderers}
+          tagsStyles={this.tagsStyles}
           imagesMaxWidth={dimensions.fullWidth}
           onLinkPress={(event, href) => {
             Linking.openURL(href)
@@ -95,9 +144,9 @@ export default class Profile extends React.PureComponent {
 
   renderShowListing = ({ item }) => {
     return (
-      <View style={listStyles.item}>
-        <Text style={colorClass.inactive}>{item.name}</Text>
-      </View>
+      <ListItemWrapper>
+        <ThemedText>{item.name}</ThemedText>
+      </ListItemWrapper>
     )
   }
 
@@ -110,7 +159,7 @@ export default class Profile extends React.PureComponent {
           keyExtractor={(item, index) => index.toString()}
           ListHeaderComponent={<ListHeader text="Show History" />}
           ItemSeparatorComponent={() => (
-            <Separator color={colors.grayHighlight} />
+            <Separator color={this.props.screenProps.theme.muted} />
           )}
         />
       )
@@ -119,7 +168,7 @@ export default class Profile extends React.PureComponent {
 
   render() {
     return (
-      <View style={windowStyles.container}>
+      <Screen>
         <ScrollView>
           <View style={styles.about}>
             {this.renderCover()}
@@ -127,43 +176,8 @@ export default class Profile extends React.PureComponent {
           </View>
           {this.renderShows()}
         </ScrollView>
-      </View>
+      </Screen>
     )
-  }
-}
-
-const renderers = {
-  img: (htmlAttribs, children, convertedCSSStyles, passProps) => (
-    <Image
-      style={{
-        borderColor: colors.active,
-        height:
-          (parseInt(htmlAttribs.height) * passProps.imagesMaxWidth) /
-          parseInt(htmlAttribs.width),
-        marginTop: 15,
-        marginBottom: 2
-      }}
-      source={{ uri: `https://app.wcbn.org${htmlAttribs.src}` }}
-      key={htmlAttribs.src}
-    />
-  )
-}
-
-const listsPrefixesRenderers = {
-  ul: (htmlAttribs, children, convertedCSSStyles, passProps) => (
-    <Text style={styles.listsPrefixesRenderers}>•</Text>
-  )
-}
-
-const tagsStyles = {
-  figcaption: {
-    textAlign: 'center',
-    fontStyle: 'italic',
-    color: colors.active
-  },
-  a: {
-    color: colors.active,
-    textDecorationLine: 'none'
   }
 }
 
@@ -182,18 +196,15 @@ const styles = StyleSheet.create({
     marginLeft: 15
   },
   coverText: {
-    color: colors.active,
     lineHeight: 20
   },
   coverRealName: {
-    fontSize: 20,
-    color: colors.active
+    fontSize: 20
   },
   about: {
     padding: 15
   },
   listsPrefixesRenderers: {
-    color: colors.active,
     marginRight: 5
   }
 })

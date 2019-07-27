@@ -1,34 +1,9 @@
-import { StyleSheet, Dimensions } from 'react-native'
+import { Dimensions } from 'react-native'
 
 export const dimensions = {
   fullHeight: Dimensions.get('window').height,
   fullWidth: Dimensions.get('window').width
 }
-
-export const colors = {
-  primary: '#212733',
-  active: '#5ccfe6',
-  inactive: '#D3D7CE',
-  highlight: '#053e62',
-  accent: '#ffae57',
-  grayHighlight: '#2d333f',
-  lightGreen: '#bae67e',
-  purple: '#a068ce',
-  red: '#f44336',
-  darkPink: 'rgb(217,84,89)',
-  pink: 'rgb(255, 183, 188)',
-
-  stackNav: {
-    backgroundColor: '#242b38',
-    headerTintColor: '#d3d7ce'
-  }
-}
-
-export const colorClass = StyleSheet.create({
-    inactive: {
-      color: colors.inactive
-    }
-  })
 
 // weird idea I had
 // export const colorClass = classname =>
@@ -46,6 +21,7 @@ export const colorClass = StyleSheet.create({
 //   xl: 40
 // }
 
+//TODO and this
 // export const fonts = {
 //   sm: 12,
 //   md: 18,

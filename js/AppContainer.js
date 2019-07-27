@@ -77,7 +77,7 @@ const AppNavigator = createBottomTabNavigator(
       },
     }),
     tabBarComponent: props => <TabBarComponent {...props} />,
-    initialRouteName: 'Playlist'
+    initialRouteName: 'Radio'
   }
 )
 

@@ -61,11 +61,11 @@ class Radio extends React.Component {
     })
 
     // load and play
-    // this._loadNewPlaybackInstance().then(() => {
-    //   this.setState({
-    //     isLoading: false
-    //   })
-    // })
+    this._loadNewPlaybackInstance().then(() => {
+      this.setState({
+        isLoading: false
+      })
+    })
   }
 
   async _unloadPlaybackInstance() {
