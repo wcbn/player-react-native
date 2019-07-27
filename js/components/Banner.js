@@ -37,3 +37,5 @@ const styles = StyleSheet.create({
     marginLeft: 5
   }
 })
+
+//NOTE could sandwich between two <Separator /> components but looked congested to me
