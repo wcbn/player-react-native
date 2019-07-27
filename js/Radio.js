@@ -1,7 +1,6 @@
 import React from 'react'
 import {
   StyleSheet,
-  Text,
   View,
   AsyncStorage,
   Image,
@@ -12,7 +11,6 @@ import { Audio } from 'expo-av'
 import { Container } from 'flux/utils'
 import OnAirStore from './flux/OnAirStore'
 import { dimensions } from './styles/main'
-import { windowStyles, headerStyles } from './styles/components'
 import ScrollingText from './components/radio/ScrollingText'
 import ItunesAlbumArt from './components/radio/ItunesAlbumArt'
 import { getDefaultNavigationOptions } from './util/navigation'
@@ -89,8 +87,7 @@ class Radio extends React.Component {
     let streamUrl = await AsyncStorage.getItem('STREAM_URL')
 
     if (streamUrl === null) {
-      // SET DEFAULT
-      streamUrl = 'http://floyd.wcbn.org:8000/wcbn-hd.mp3'
+      streamUrl = 'http://floyd.wcbn.org:8000/wcbn-hd.mp3' //default
       AsyncStorage.setItem('STREAM_URL', streamUrl)
     }
 
@@ -139,16 +136,12 @@ class Radio extends React.Component {
   }
 
   renderShowDetails() {
-    // if (!this.state.isPlaying) {
-    //   return null
-    // }
-
     if (this.state.on_air.name) {
       return (
         <View
           style={[
             styles.showDetailsContainer,
-            { height: this.state.sectionHeight / 3 }
+            { height: this.state.sectionHeight / 2 }
           ]}
         >
           <ThemedText
@@ -211,10 +204,6 @@ class Radio extends React.Component {
   }
 
   renderSongDetails() {
-    // if (!this.state.isPlaying) {
-    //   return null
-    // }
-
     let x = this.state.on_air.songs[0] || {
       name: '',
       artist: '',
@@ -254,10 +243,8 @@ class Radio extends React.Component {
     return (
       <Screen>
         <ImageBackground
-          style={[styles.container]}
-          imageStyle={{
-            opacity: this.props.screenProps.theme.name === 'light' ? 0.1 : 0.05
-          }}
+          style={styles.container}
+          imageStyle={styles.imageStyle}
           source={this.state.backgroundImg}
           onLayout={event => {
             this.setState({
@@ -275,7 +262,7 @@ class Radio extends React.Component {
   }
 }
 
-const album_width = Math.max(dimensions.fullWidth / 1.7, 250)
+const album_width = Math.max(dimensions.fullWidth / 1.25, 250)
 
 const styles = StyleSheet.create({
   container: {
@@ -293,6 +280,9 @@ const styles = StyleSheet.create({
   albumArtImg: {
     width: album_width,
     height: album_width
+  },
+  imageStyle: {
+    opacity: 0.075
   },
   songDetails: {
     flex: 0,
