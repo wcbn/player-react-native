@@ -5,6 +5,7 @@ import StreamSelection from './components/settings/StreamSelection'
 import LinksList from './components/settings/LinksList'
 import Colophon from './components/settings/Colophon'
 import { getDefaultNavigationOptions } from './util/navigation'
+import { spacing } from './styles/main'
 
 export default class Settings extends React.PureComponent {
   static navigationOptions = ({ navigation, screenProps }) => {
@@ -34,7 +35,7 @@ export default class Settings extends React.PureComponent {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 15,
+    padding: spacing.md,
     paddingTop: 0
   }
 })

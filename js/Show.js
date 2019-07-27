@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, View, TouchableOpacity, FlatList } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
-import { dimensions } from './styles/main'
+import { dimensions, spacing } from './styles/main'
 import Separator from './components/Separator'
 import dayjs from 'dayjs'
 import ListHeader from './components/ListHeader'
@@ -146,7 +146,7 @@ export default class Show extends React.PureComponent {
 
 const styles = StyleSheet.create({
   description: {
-    padding: 15,
+    padding: spacing.md,
     fontStyle: 'italic'
   },
   djText: {

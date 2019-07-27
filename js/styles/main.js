@@ -5,6 +5,15 @@ export const dimensions = {
   fullWidth: Dimensions.get('window').width
 }
 
+// padding, margin etc
+export const spacing = {
+  xs: 5,
+  sm: 10,
+  md: 15,
+  lg: 30,
+  xl: 40
+}
+
 // weird idea I had
 // export const colorClass = classname =>
 //   StyleSheet.create({
