@@ -9,14 +9,14 @@ export default (Banner = props => {
 
   return (
     <TouchableOpacity style={styles.view} onPress={props.onPress}>
-      <ThemedText>{`${props.text} `}</ThemedText>
-      <ThemedText style={styles.host} color={'secondary'} numberOfLines={1}>
+      <ThemedText style={styles.text}>{`${props.text} `}</ThemedText>
+      <ThemedText style={[styles.host, styles.text]} color={'secondary'} numberOfLines={1}>
         {props.host}
       </ThemedText>
       <Icon
         style={styles.icon}
         name={'md-arrow-forward'}
-        size={12}
+        size={16}
         color={theme.accent}
       />
     </TouchableOpacity>
@@ -29,6 +29,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  text: {
+    fontSize: 16
   },
   host: {
     maxWidth: '50%'

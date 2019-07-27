@@ -15,7 +15,8 @@ export const themes = {
     primaryOrSecondary: 'white',
     activeTintColor: 'white',
     inactiveTintColor: 'black',
-    activeBackgroundColor: 'black'
+    activeBackgroundColor: 'black',
+    anchorColor: '#db3334'
   },
   dark: {
     name: 'dark',
@@ -31,7 +32,8 @@ export const themes = {
     primaryOrSecondary: '#5ccfe6',
     activeTintColor: '#5ccfe6',
     inactiveTintColor: '#D3D7CE',
-    activeBackgroundColor: '#053e62'
+    activeBackgroundColor: '#053e62',
+    anchorColor: '#5ccfe6'
     // purple: '#a068ce',
     // red: '#f44336',
   }

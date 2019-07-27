@@ -5,7 +5,7 @@ import ListItemTime from './ListItemTime'
 import ListItemWrapper from './ListItemWrapper'
 
 const SongName = props => (
-  <ThemedText style={styles.songName} numberOfLines={2}>
+  <ThemedText style={styles.songName} numberOfLines={1}>
     {props.name}
   </ThemedText>
 )
@@ -38,11 +38,12 @@ const styles = StyleSheet.create({
     maxWidth: '85%'
   },
   songName: {
-    fontWeight: 'bold',
+    fontWeight: '600',
     fontSize: 15,
     marginBottom: 3
   },
   songDetails: {
+    fontWeight: '300',
     fontSize: 13
   }
 })
