@@ -265,11 +265,19 @@ class Radio extends React.Component {
 const album_width = Math.max(dimensions.fullWidth / 1.25, 250)
 
 const styles = StyleSheet.create({
+
+  //TODO theres a weird bug here if you try paddingTop: x, the background img shifts up
+  // probs something to do with flex
   container: {
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: 15,
+    paddingLeft: 15,
+    paddingRight: 15,
+    bottom: 0,
     height: '100%'
+  },
+  imageStyle: {
+    opacity: 0.075
   },
   albumArtContainer: {
     width: album_width,
@@ -281,9 +289,6 @@ const styles = StyleSheet.create({
     width: album_width,
     height: album_width
   },
-  imageStyle: {
-    opacity: 0.075
-  },
   songDetails: {
     flex: 0,
     alignItems: 'center',
@@ -294,7 +299,8 @@ const styles = StyleSheet.create({
   showDetailsContainer: {
     width: '100%',
     maxWidth: '100%',
-    flex: 0
+    flex: 0,
+    marginTop: 15
   },
   showDetailsHost: { fontStyle: 'italic' }
 })
