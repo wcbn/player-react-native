@@ -1,91 +1,43 @@
 import React from 'react'
-import {
-  createAppContainer,
-  createBottomTabNavigator,
-  createStackNavigator,
-  SafeAreaView
-} from 'react-navigation'
-
-import { StatusBar } from 'react-native'
+import { StatusBar, AsyncStorage } from 'react-native'
+import { SafeAreaView } from 'react-navigation'
+import { ThemeProvider, themes } from './styles/theming'
 import OnAirPoll from './components/OnAirPoll'
+import AppContainer from './AppContainer'
 
-import { windowStyles } from './styles/components'
+export default class App extends React.PureComponent {
+  state = {
+    theme: themes.dark
+  }
 
-import Icon from 'react-native-vector-icons/Ionicons'
-import Schedule from './Schedule'
-import Radio from './Radio'
-import Settings from './Settings'
-import Show from './Show'
-import Profile from './Profile'
-import Episode from './Episode'
-import Playlist from './Playlist'
-import { colors } from './styles/main'
+  componentDidMount = async () => {
+    const themeName = (await AsyncStorage.getItem('THEME')) || 'dark'
+    this.setState({ theme: themes[themeName] })
+  }
 
-const getIconName = routeName => {
-  switch (routeName) {
-    case 'Schedule':
-      return 'md-calendar'
-    case 'Playlist':
-      return 'md-musical-notes'
-    case 'Radio':
-      return 'md-radio'
-    case 'Settings':
-      return 'md-settings'
+  handleThemeChange = () => {
+    const themeName = this.state.theme.opposite
+    this.setState({ theme: themes[themeName] })
+    AsyncStorage.setItem('THEME', themeName)
+  }
+
+  render() {
+    return (
+      <ThemeProvider theme={this.state.theme}>
+        <SafeAreaView
+          style={{ flex: 1, backgroundColor: this.state.theme.primary }}
+          forceInset={{ top: 'never' }}
+        >
+          <StatusBar barStyle={`${this.state.theme.opposite}-content`} />
+          <OnAirPoll />
+          <AppContainer
+            screenProps={{
+              handleThemeChange: this.handleThemeChange,
+              theme: this.state.theme
+            }}
+          />
+        </SafeAreaView>
+      </ThemeProvider>
+    )
   }
 }
-
-const ScheduleStack = createStackNavigator({
-  Schedule,
-  Show,
-  Profile,
-  Episode
-})
-
-const PlaylistStack = createStackNavigator({
-  Playlist,
-  Profile
-})
-
-const RadioStack = createStackNavigator({
-  Radio
-})
-
-const SettingsStack = createStackNavigator({
-  Settings
-})
-
-const AppNavigator = createBottomTabNavigator(
-  {
-    Schedule: ScheduleStack,
-    Playlist: PlaylistStack,
-    Radio: RadioStack,
-    Settings: SettingsStack
-  },
-  {
-    defaultNavigationOptions: ({ navigation }) => ({
-      tabBarIcon: ({ focused, horizontal, tintColor }) => {
-        const { routeName } = navigation.state
-        const iconName = getIconName(routeName)
-        return <Icon name={iconName} size={25} color={tintColor} />
-      }
-    }),
-    tabBarOptions: {
-      activeTintColor: colors.active,
-      inactiveTintColor: colors.inactive,
-      inactiveBackgroundColor: colors.primary,
-      activeBackgroundColor: colors.highlight,
-      safeAreaInset: { bottom: 'never', top: 'never' }
-    },
-    initialRouteName: 'Radio'
-  }
-)
-
-const AppContainer = createAppContainer(AppNavigator)
-
-export default () => (
-  <SafeAreaView style={windowStyles.container} forceInset={{ top: 'never' }}>
-    <StatusBar barStyle="light-content" />
-    <OnAirPoll />
-    <AppContainer />
-  </SafeAreaView>
-)
