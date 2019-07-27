@@ -4,5 +4,15 @@ import { useTheme } from '../styles/theming'
 
 export default (ThemedText = props => {
   const theme = useTheme()
-  return <Text style={[props.style, { color: theme.textColor, fontFamily: 'Futura' }]}>{props.children}</Text>
+  return (
+    <Text
+      {...props}
+      style={[
+        props.style,
+        { color: theme[props.color] || theme.textColor, fontFamily: 'Futura' }
+      ]}
+    >
+      {props.children}
+    </Text>
+  )
 })
