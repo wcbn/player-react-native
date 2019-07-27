@@ -9,7 +9,6 @@ import ListHeader from './components/ListHeader'
 import Banner from './components/Banner'
 import Screen from './components/Screen'
 import ThemedText from './components/ThemedText'
-import { withTheme } from './styles/theming'
 import { getDefaultNavigationOptions } from './util/navigation'
 
 class Playlist extends React.Component {
@@ -49,7 +48,7 @@ class Playlist extends React.Component {
         ListHeaderComponent={<ListHeader text="Recent Songs" />}
         stickyHeaderIndices={[0]}
         ItemSeparatorComponent={() => (
-          <Separator color={this.props.theme.muted} />
+          <Separator color={this.props.screenProps.theme.muted} />
         )}
       />
     )
@@ -92,4 +91,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default withTheme(Container.create(Playlist))
+export default Container.create(Playlist)

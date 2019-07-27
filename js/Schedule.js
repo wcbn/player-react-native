@@ -2,15 +2,20 @@ import React from 'react'
 import {
   StyleSheet,
   TouchableOpacity,
-  Text,
   View,
   SectionList
 } from 'react-native'
-import { colors } from './styles/main'
-import { windowStyles, headerStyles, listStyles } from './styles/components'
 import dayjs from 'dayjs'
 import ListHeader from './components/ListHeader'
 import Separator from './components/Separator'
+import Screen from './components/Screen'
+import ThemedText from './components/ThemedText'
+import ListItemTime from './components/ListItemTime'
+import { getDefaultNavigationOptions } from './util/navigation'
+import {
+  ListItemWrapper,
+  ListItemWrapperStyles
+} from './components/ListItemWrapper'
 
 const WEEEKDAYS = [
   'Monday',
@@ -26,10 +31,12 @@ const WEEEKDAYS = [
 // const weekdayIndex = new Date(new Date().getTime() - 21600000).getDay()
 // const TODAY = weekdayIndex == 0 ? 6 : weekdayIndex - 1
 
-export default class Schedule extends React.PureComponent {
-  static navigationOptions = {
-    title: 'WCBN Schedule',
-    ...headerStyles
+class Schedule extends React.PureComponent {
+  static navigationOptions = ({ navigation, screenProps }) => {
+    return {
+      title: 'WCBN Schedule',
+      ...getDefaultNavigationOptions(screenProps.theme)
+    }
   }
 
   constructor() {
@@ -79,27 +86,29 @@ export default class Schedule extends React.PureComponent {
   }
 
   renderItem = ({ item, index, section }) => (
-    <TouchableOpacity
-      key={index}
-      style={listStyles.item}
-      onPress={() =>
-        this.props.navigation.navigate('Show', {
-          url: item.url,
-          title: item.name
-        })
-      }
-    >
-      <View style={styles.showText}>
-        <Text style={styles.showName}>{item.name}</Text>
-        <Text style={styles.showHost}>{item.with}</Text>
-      </View>
-      <Text style={styles.showTime}>{item.beginning}</Text>
-    </TouchableOpacity>
+      <TouchableOpacity
+        key={index}
+        style={ListItemWrapperStyles.view}
+        onPress={() =>
+          this.props.navigation.navigate('Show', {
+            url: item.url,
+            title: item.name
+          })
+        }
+      >
+        <View style={styles.showText}>
+          <ThemedText>{item.name}</ThemedText>
+          <ThemedText style={styles.showHost} color={'secondary'}>
+            {item.with}
+          </ThemedText>
+        </View>
+        <ListItemTime at={item.beginning} />
+      </TouchableOpacity>
   )
 
   render() {
     return (
-      <View style={windowStyles.container}>
+      <Screen>
         <SectionList
           renderItem={this.renderItem}
           renderSectionHeader={({ section: { title } }) => (
@@ -108,10 +117,10 @@ export default class Schedule extends React.PureComponent {
           sections={this.state.sections}
           keyExtractor={(item, index) => index}
           ItemSeparatorComponent={() => (
-            <Separator color={colors.grayHighlight} />
+            <Separator color={this.props.screenProps.theme.muted} />
           )}
         />
-      </View>
+      </Screen>
     )
   }
 }
@@ -120,17 +129,9 @@ const styles = StyleSheet.create({
   showText: {
     maxWidth: '85%'
   },
-  showName: {
-    color: colors.inactive
-  },
   showHost: {
-    fontStyle: 'italic',
-    color: colors.active
-  },
-  showTime: {
-    fontSize: 10,
-    color: colors.lightGreen,
-    marginRight: -10,
-    marginTop: -5
+    fontStyle: 'italic'
   }
 })
+
+export default Schedule

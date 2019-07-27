@@ -1,34 +1,27 @@
 import React from 'react'
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  FlatList
-} from 'react-native'
+import { StyleSheet, View, TouchableOpacity, FlatList } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
-import { colors, dimensions } from './styles/main'
+import { dimensions } from './styles/main'
 import Separator from './components/Separator'
-import { headerStyles, windowStyles, listStyles } from './styles/components'
 import dayjs from 'dayjs'
 import ListHeader from './components/ListHeader'
+import Screen from './components/Screen'
+import ThemedText from './components/ThemedText'
+import { getDefaultNavigationOptions } from './util/navigation'
+import ListItemWrapper from './components/ListItemWrapper'
 
 export default class Show extends React.PureComponent {
-  static navigationOptions = ({ navigation }) => {
+  static navigationOptions = ({ navigation, screenProps }) => {
     return {
       title: navigation.getParam('title', ''),
-      ...headerStyles
+      ...getDefaultNavigationOptions(screenProps.theme)
     }
   }
 
-  constructor() {
-    super()
-
-    this.state = {
-      description: '',
-      djs: [],
-      episodes: []
-    }
+  state = {
+    description: '',
+    djs: [],
+    episodes: []
   }
 
   componentDidMount() {
@@ -57,7 +50,11 @@ export default class Show extends React.PureComponent {
 
   renderShowDescription() {
     if (this.state.description) {
-      return <Text style={styles.description}>{this.state.description}</Text>
+      return (
+        <ThemedText style={styles.description} numberOfLines={6}>
+          {this.state.description}
+        </ThemedText>
+      )
     }
   }
 
@@ -65,10 +62,12 @@ export default class Show extends React.PureComponent {
     const djButtons = this.state.djs.map(dj => (
       <TouchableOpacity
         key={dj.url}
-        style={[
-          styles.dj,
-          { minWidth: dimensions.fullWidth / this.state.djs.length }
-        ]}
+        style={{
+          padding: 12,
+          backgroundColor: this.props.screenProps.theme.muted,
+          minWidth: dimensions.fullWidth / this.state.djs.length,
+          marginRight: StyleSheet.hairlineWidth
+        }}
         onPress={() =>
           this.props.navigation.navigate('Profile', {
             url: dj.url,
@@ -76,7 +75,9 @@ export default class Show extends React.PureComponent {
           })
         }
       >
-        <Text style={styles.djText}>{dj.name}</Text>
+        <ThemedText style={styles.djText} color={'primaryOrSecondary'}>
+          {dj.name}
+        </ThemedText>
       </TouchableOpacity>
     ))
 
@@ -103,12 +104,14 @@ export default class Show extends React.PureComponent {
           })
         }
       >
-        <View style={listStyles.item}>
-          <Text style={styles.date}>{item.beginning}</Text>
-          <Text style={styles.numSongs}>
+        <ListItemWrapper>
+          <ThemedText style={styles.episodeListingHeight}>
+            {item.beginning}
+          </ThemedText>
+          <ThemedText style={styles.episodeListingHeight} color={'accent'}>
             {item.songs.length ? `${item.songs.length} Songs` : '—'}
-          </Text>
-        </View>
+          </ThemedText>
+        </ListItemWrapper>
       </TouchableOpacity>
     )
   }
@@ -121,7 +124,7 @@ export default class Show extends React.PureComponent {
         keyExtractor={item => item.beginning}
         ListHeaderComponent={<ListHeader text="Recent Episodes" />}
         ItemSeparatorComponent={() => (
-          <Separator color={colors.grayHighlight} />
+          <Separator color={this.props.screenProps.theme.muted} />
         )}
         stickyHeaderIndices={[0]}
         overScrollMode={'never'}
@@ -131,11 +134,12 @@ export default class Show extends React.PureComponent {
 
   render() {
     return (
-      <View style={windowStyles.container}>
+      <Screen>
         {this.renderDjScroll()}
+        <Separator />
         {this.renderShowDescription()}
         {this.renderEpisodeList()}
-      </View>
+      </Screen>
     )
   }
 }
@@ -143,26 +147,13 @@ export default class Show extends React.PureComponent {
 const styles = StyleSheet.create({
   description: {
     padding: 15,
-    fontStyle: 'italic',
-    color: colors.inactive,
-    maxHeight: 200
-  },
-  dj: {
-    backgroundColor: colors.grayHighlight,
-    padding: 12,
-    margin: StyleSheet.hairlineWidth
+    fontStyle: 'italic'
   },
   djText: {
     fontSize: 16,
-    color: colors.active,
     textAlign: 'center'
   },
-  date: {
-    color: colors.inactive,
-    lineHeight: 22
-  },
-  numSongs: {
-    color: colors.lightGreen,
+  episodeListingHeight: {
     lineHeight: 22
   }
 })
