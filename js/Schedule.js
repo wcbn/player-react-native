@@ -1,10 +1,5 @@
 import React from 'react'
-import {
-  StyleSheet,
-  TouchableOpacity,
-  View,
-  SectionList
-} from 'react-native'
+import { StyleSheet, TouchableOpacity, View, SectionList } from 'react-native'
 import dayjs from 'dayjs'
 import ListHeader from './components/ListHeader'
 import Separator from './components/Separator'
@@ -39,12 +34,8 @@ class Schedule extends React.PureComponent {
     }
   }
 
-  constructor() {
-    super()
-
-    this.state = {
-      sections: []
-    }
+  state = {
+    sections: []
   }
 
   componentDidMount() {
@@ -86,24 +77,24 @@ class Schedule extends React.PureComponent {
   }
 
   renderItem = ({ item, index, section }) => (
-      <TouchableOpacity
-        key={index}
-        style={ListItemWrapperStyles.view}
-        onPress={() =>
-          this.props.navigation.navigate('Show', {
-            url: item.url,
-            title: item.name
-          })
-        }
-      >
-        <View style={styles.showText}>
-          <ThemedText>{item.name}</ThemedText>
-          <ThemedText style={styles.showHost} color={'secondary'}>
-            {item.with}
-          </ThemedText>
-        </View>
-        <ListItemTime at={item.beginning} />
-      </TouchableOpacity>
+    <TouchableOpacity
+      key={index}
+      style={ListItemWrapperStyles.view}
+      onPress={() =>
+        this.props.navigation.navigate('Show', {
+          url: item.url,
+          title: item.name
+        })
+      }
+    >
+      <View style={styles.showText}>
+        <ThemedText>{item.name}</ThemedText>
+        <ThemedText style={styles.showHost} color={'secondary'}>
+          {item.with}
+        </ThemedText>
+      </View>
+      <ListItemTime at={item.beginning} />
+    </TouchableOpacity>
   )
 
   render() {
