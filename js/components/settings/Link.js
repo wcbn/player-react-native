@@ -8,7 +8,7 @@ export default (Link = props => {
   const theme = useTheme()
   return (
     <TouchableOpacity style={styles.container} onPress={props.onPress}>
-      <Icon name={props.icon} size={30} color={theme.secondary} />
+      <Icon name={props.icon} size={30} color={theme.secondary} style={styles.icon} />
       <View style={styles.textContainer}>
         <ThemedText>{props.text}</ThemedText>
       </View>
@@ -28,5 +28,8 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     alignItems: 'center',
     flexDirection: 'row'
+  },
+  icon: {
+    minWidth: 25
   }
 })

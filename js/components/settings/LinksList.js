@@ -15,10 +15,10 @@ const GOOGLE_PLAY_URL = 'https://play.google.com/store/apps/details?id=org.wcbn'
 export default (LinksList = props => {
   const theme = useTheme()
   return (
-    <View style={styles.LinksView}>
+    <View style={styles.linksView}>
       <Link
         onPress={() => Linking.openURL('tel:17347633500')}
-        text={`Studio Request Line${'\n'}(734) 763-3500`}
+        text={`Studio request line${'\n'}(734) 763-3500`}
         icon={'md-call'}
       />
       <Separator color={theme.secondary} />
@@ -34,18 +34,18 @@ export default (LinksList = props => {
             message: "I'm listening to WCBN-FM Ann Arbor!"
           })
         }
-        text={'Share on Social Media'}
+        text={'Share on social media'}
         icon={'md-share'}
       />
       <Separator color={theme.secondary} />
       <Link
         onPress={() => Linking.openURL(GOOGLE_PLAY_URL)}
-        text={'Write a Review!'}
+        text={'Write a review!'}
         icon={'md-thumbs-up'}
       />
       <Separator color={theme.secondary} />
       <Link
-        onPress={props.toggleTheme}
+        onPress={props.handleThemeChange}
         text={`Switch to ${theme.opposite} mode`}
         icon={'md-bulb'}
       />
@@ -60,7 +60,7 @@ export default (LinksList = props => {
 })
 
 const styles = StyleSheet.create({
-  LinksView: {
+  linksView: {
     marginTop: 10
   }
 })
