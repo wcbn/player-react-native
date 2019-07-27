@@ -5,7 +5,7 @@ export const getDefaultNavigationOptions = theme => {
       backgroundColor: theme.primary,
       borderBottomColor: 'transparent'
     },
-    headerTitleStyle: { fontFamily: 'Futura' },
+    // headerTitleStyle: { fontFamily: 'Futura' },
     headerTintColor: theme.textColor,
     tabBarOptions: {
       activeTintColor: theme.active,

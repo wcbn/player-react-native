@@ -11,7 +11,7 @@ export default (ScrollingText = props => {
         color: theme.textColor,
         lineHeight: Math.min(props.lineHeight, 31),
         fontSize: Math.min(props.lineHeight - 10, 21),
-        fontFamily: 'Futura',
+        // fontFamily: 'Futura',
         alignSelf: 'stretch',
         textAlign: 'center'
       }}

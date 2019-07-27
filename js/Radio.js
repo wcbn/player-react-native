@@ -61,6 +61,7 @@ class Radio extends React.Component {
     })
 
     // load and play
+    // NOTE comment out to prevent playing during dev
     this._loadNewPlaybackInstance().then(() => {
       this.setState({
         isLoading: false

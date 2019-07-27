@@ -13,7 +13,7 @@ export default (TabBarComponent = props => {
       inactiveBackgroundColor={theme.primary}
       activeBackgroundColor={theme.activeBackgroundColor}
       safeAreaInset={{ bottom: 'never', top: 'never' }}
-      labelStyle={{fontFamily: 'Futura'}}
+      // labelStyle={{fontFamily: 'Futura'}}
     />
   )
 })

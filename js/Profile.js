@@ -127,8 +127,8 @@ export default class Profile extends React.PureComponent {
         <HTML
           html={this.state.about}
           baseFontStyle={{
-            color: this.props.screenProps.theme.textColor,
-            fontFamily: 'Futura'
+            color: this.props.screenProps.theme.textColor
+            // fontFamily: 'Futura'
           }}
           renderers={this.renderers}
           listsPrefixesRenderers={this.listsPrefixesRenderers}
@@ -169,7 +169,7 @@ export default class Profile extends React.PureComponent {
   render() {
     return (
       <Screen>
-        <ScrollView>
+        <ScrollView overScrollMode={'never'}>
           <View style={styles.about}>
             {this.renderCover()}
             {this.renderHtml()}

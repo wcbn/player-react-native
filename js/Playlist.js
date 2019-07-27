@@ -47,6 +47,7 @@ class Playlist extends React.Component {
         keyExtractor={(item, index) => index.toString()}
         ListHeaderComponent={<ListHeader text="Recent Songs" />}
         stickyHeaderIndices={[0]}
+        overScrollMode={'never'}
         ItemSeparatorComponent={() => (
           <Separator color={this.props.screenProps.theme.muted} />
         )}

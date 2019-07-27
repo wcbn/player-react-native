@@ -17,7 +17,10 @@ export default class Settings extends React.PureComponent {
   render() {
     return (
       <Screen>
-        <ScrollView contentContainerStyle={styles.container}>
+        <ScrollView
+          contentContainerStyle={styles.container}
+          overScrollMode={'never'}
+        >
           <StreamSelection />
           <LinksList
             handleThemeChange={this.props.screenProps.handleThemeChange}

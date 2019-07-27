@@ -43,7 +43,7 @@ class StreamSelection extends React.PureComponent {
             borderColor: theme.secondary
           }}
           activeTabTextStyle={{ color: theme.activeTintColor }}
-          tabTextStyle={{ color: theme.textColor, fontFamily: 'Futura' }}
+          tabTextStyle={{ color: theme.textColor }} //fontFamily: 'Futura'
         />
         <View style={styles.captionView}>
           <ThemedText style={styles.captionText}>64 kbps</ThemedText>

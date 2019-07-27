@@ -9,7 +9,7 @@ export default (ThemedText = props => {
       {...props}
       style={[
         props.style,
-        { color: theme[props.color] || theme.textColor, fontFamily: 'Futura' }
+        { color: theme[props.color] || theme.textColor } //, fontFamily: 'Futura'
       ]}
     >
       {props.children}

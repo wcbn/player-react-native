@@ -107,6 +107,7 @@ class Schedule extends React.PureComponent {
           )}
           sections={this.state.sections}
           keyExtractor={(item, index) => index}
+          overScrollMode={'never'}
           ItemSeparatorComponent={() => (
             <Separator color={this.props.screenProps.theme.muted} />
           )}

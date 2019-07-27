@@ -39,6 +39,7 @@ export default class Episode extends React.PureComponent {
             <ListHeader text={this.props.navigation.getParam('date')} />
           }
           stickyHeaderIndices={[0]}
+          overScrollMode={'never'}
           ItemSeparatorComponent={() => (
             <Separator color={this.props.screenProps.theme.muted} />
           )}
