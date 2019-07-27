@@ -11,11 +11,8 @@ const STREAMS = [
 ]
 
 class StreamSelection extends React.PureComponent {
-  constructor() {
-    super()
-    this.state = {
-      selectedStreamIndex: null // fetch ASAP in componentDidMount ¯\_(ツ)_/¯
-    }
+  state = {
+    selectedStreamIndex: 2 // fetch ASAP in componentDidMount, default to high qual
   }
 
   async componentDidMount() {
@@ -38,15 +35,14 @@ class StreamSelection extends React.PureComponent {
         <ThemedText style={styles.title}>Stream Quality</ThemedText>
         <SegmentedControlTab
           values={['Low', 'Medium', 'High']}
-          thumbColor={theme.secondary}
           selectedIndex={this.state.selectedStreamIndex}
           onTabPress={this.setStreamSetting}
-          activeTabStyle={{ backgroundColor: theme.secondary }}
+          activeTabStyle={{ backgroundColor: theme.activeBackgroundColor }}
           tabStyle={{
             backgroundColor: 'transparent',
             borderColor: theme.secondary
           }}
-          activeTabTextStyle={{ color: theme.primary }}
+          activeTabTextStyle={{ color: theme.activeTintColor }}
           tabTextStyle={{ color: theme.textColor, fontFamily: 'Futura' }}
         />
         <View style={styles.captionView}>

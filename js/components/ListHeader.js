@@ -1,24 +1,25 @@
 import React from 'react'
-import { Text, View, StyleSheet } from 'react-native'
-import { colors } from '../styles/main'
+import { View, StyleSheet } from 'react-native'
+import ThemedText from './ThemedText'
+import { useTheme } from '../styles/theming'
 
-export default (ListHeader = props => (
-  <View style={styles.container}>
-    <Text style={styles.text}>{props.text}</Text>
-  </View>
-))
+export default (ListHeader = props => {
+  const theme = useTheme()
+
+  return (
+    <View style={[{ backgroundColor: theme.listHeaderBackground}, styles.container]}>
+      <ThemedText style={styles.text} color={'listHeaderText'}>{props.text}</ThemedText>
+    </View>
+  )
+})
 
 const styles = StyleSheet.create({
   container: {
     paddingLeft: 10,
     padding: 4,
-    backgroundColor: colors.grayHighlight,
-    color: colors.inactive,
     justifyContent: 'center'
   },
-
   text: {
-    fontWeight: 'bold',
-    color: colors.inactive
+    fontWeight: 'bold'
   }
 })
