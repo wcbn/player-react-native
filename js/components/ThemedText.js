@@ -1,17 +1,16 @@
 import React from 'react'
-import { Text } from 'react-native'
+import { Text, StyleSheet } from 'react-native'
 import { useTheme } from '../styles/theming'
 
 export default (ThemedText = props => {
   const theme = useTheme()
+
+  const styles = StyleSheet.create({
+    text: { color: theme[props.color] || theme.textColor } //, fontFamily: 'Futura'
+  })
+
   return (
-    <Text
-      {...props}
-      style={[
-        props.style,
-        { color: theme[props.color] || theme.textColor } //, fontFamily: 'Futura'
-      ]}
-    >
+    <Text {...props} style={[styles.text, props.style]}>
       {props.children}
     </Text>
   )
