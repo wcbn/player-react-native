@@ -1,6 +1,5 @@
 import React from 'react'
-import { Text, TouchableOpacity, StyleSheet } from 'react-native'
-import { colors, dimensions } from '../styles/main'
+import { TouchableOpacity, StyleSheet } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { useTheme } from '../styles/theming'
 import ThemedText from './ThemedText';
@@ -11,9 +10,9 @@ export default (Banner = props => {
   return (
     <TouchableOpacity style={styles.view} onPress={props.onPress}>
       <ThemedText>{`${props.text} `}</ThemedText>
-      <Text style={[styles.host, {color: theme.secondary}]} numberOfLines={1}>
+      <ThemedText style={styles.host} color={'secondary'} numberOfLines={1}>
         {props.host}
-      </Text>
+      </ThemedText>
       <Icon
         style={styles.icon}
         name={'md-arrow-forward'}
@@ -32,8 +31,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   host: {
-    fontFamily: 'Futura',
-    maxWidth: dimensions.fullWidth / 1.75
+    maxWidth: '50%'
   },
   icon: {
     marginLeft: 5
