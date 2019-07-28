@@ -1,7 +1,7 @@
 # React-Native WCBN App for Android and iOS
 
 <a href="https://play.google.com/store/apps/details?id=org.wcbn">
-  <img alt="Get it on Google Play" title="Google Play" src="assets/play-store.png" height="40">
+  <img alt="Get it on Google Play" title="Google Play" src="docs/play-store.png" height="40">
 </a>
 
 ![Screenshots](docs/screenshots.png)
