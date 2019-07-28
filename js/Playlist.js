@@ -25,7 +25,7 @@ class Playlist extends React.Component {
 
   static calculateState(prevState) {
     return {
-      on_air: OnAirStore.getState() //todo create a songs state and only update that
+      on_air: OnAirStore.getState()
     }
   }
 
@@ -39,29 +39,25 @@ class Playlist extends React.Component {
     }
   }
 
-  renderSongs() {
-    return (
-      <FlatList
-        data={this.state.on_air.songs}
-        renderItem={({ item }) => <Song data={item} />}
-        keyExtractor={(item, index) => index.toString()}
-        ListHeaderComponent={<ListHeader text="Recent Songs" />}
-        stickyHeaderIndices={[0]}
-        overScrollMode={'never'}
-        ItemSeparatorComponent={() => (
-          <Separator color={this.props.screenProps.theme.muted} />
-        )}
-      />
-    )
-  }
+  renderSongs = () => (
+    <FlatList
+      data={this.state.on_air.songs}
+      renderItem={({ item }) => <Song data={item} />}
+      keyExtractor={(item, index) => index.toString()}
+      ListHeaderComponent={<ListHeader text="Recent Songs" />}
+      stickyHeaderIndices={[0]}
+      overScrollMode={'never'}
+      ItemSeparatorComponent={() => (
+        <Separator color={this.props.screenProps.theme.muted} />
+      )}
+    />
+  )
 
-  renderNotice() {
-    return (
-      <View style={styles.infoBox}>
-        <ThemedText>No recent songs to display</ThemedText>
-      </View>
-    )
-  }
+  renderNotice = () => (
+    <View style={styles.infoBox}>
+      <ThemedText>No recent songs to display</ThemedText>
+    </View>
+  )
 
   render() {
     return (
