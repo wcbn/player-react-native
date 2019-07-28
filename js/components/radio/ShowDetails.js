@@ -7,10 +7,7 @@ export default (ShowDetails = props => {
   return (
     !!props.djName && (
       <View
-        style={[
-          styles.showDetailsContainer,
-          { height: props.sectionHeight / 2 }
-        ]}
+        style={[styles.showDetailsContainer, { height: props.sectionHeight }]}
       >
         <ThemedText
           numberOfLines={1}
