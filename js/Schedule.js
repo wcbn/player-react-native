@@ -7,10 +7,7 @@ import Screen from './components/Screen'
 import ThemedText from './components/ThemedText'
 import ListItemTime from './components/ListItemTime'
 import { getDefaultNavigationOptions } from './util/navigation'
-import {
-  ListItemWrapper,
-  ListItemWrapperStyles
-} from './components/ListItemWrapper'
+import { ListItemWrapperStyles } from './components/ListItemWrapper'
 
 const WEEEKDAYS = [
   'Monday',

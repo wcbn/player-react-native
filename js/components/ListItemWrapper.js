@@ -1,5 +1,6 @@
 import React from 'react'
 import { View, StyleSheet } from 'react-native'
+import { spacing } from '../styles/main'
 
 export default (ListItemWrapper = props => {
   return <View style={ListItemWrapperStyles.view}>{props.children}</View>
@@ -7,12 +8,12 @@ export default (ListItemWrapper = props => {
 
 export const ListItemWrapperStyles = StyleSheet.create({
   view: {
-    display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    padding: 10,
-    marginLeft: 5,
-    marginRight: 5,
+    paddingLeft: spacing.md,
+    paddingRight: spacing.md,
+    paddingTop: spacing.sm,
+    paddingBottom: spacing.sm,
     fontSize: 22
   }
 })
