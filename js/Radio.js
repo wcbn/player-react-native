@@ -16,6 +16,7 @@ import ItunesAlbumArt from './components/radio/ItunesAlbumArt'
 import { getDefaultNavigationOptions } from './util/navigation'
 import ThemedText from './components/ThemedText'
 import Screen from './components/Screen'
+import { spacing } from './styles/main'
 
 class Radio extends React.Component {
   static navigationOptions = ({ navigation, screenProps }) => {
@@ -266,14 +267,13 @@ class Radio extends React.Component {
 const album_width = Math.max(dimensions.fullWidth / 1.25, 250)
 
 const styles = StyleSheet.create({
-
   //TODO theres a weird bug here if you try paddingTop: x, the background img shifts up
   // probs something to do with flex
   container: {
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingLeft: 15,
-    paddingRight: 15,
+    paddingLeft: spacing.md,
+    paddingRight: spacing.md,
     bottom: 0,
     height: '100%'
   },
@@ -295,13 +295,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '100%',
     maxWidth: '100%',
-    marginTop: 10
+    marginTop: spacing.sm
   },
   showDetailsContainer: {
     width: '100%',
     maxWidth: '100%',
     flex: 0,
-    marginTop: 15
+    marginTop: spacing.md
   },
   showDetailsHost: { fontStyle: 'italic' }
 })
