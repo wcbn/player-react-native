@@ -33,6 +33,7 @@ export default class Settings extends React.PureComponent {
 
 const styles = StyleSheet.create({
   container: {
-    padding: spacing.md
+    padding: spacing.md,
+    paddingTop: 0
   }
 })
