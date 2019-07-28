@@ -12,9 +12,7 @@ const SongName = props => (
 
 const SongDetails = props => (
   <ThemedText style={styles.songDetails} numberOfLines={1}>
-    {props.artist}
-    {props.album ? ` • ${props.album}` : ''}
-    {/* {props.label && props.year ? ` (${props.label}, ${props.year})` : ''} */}
+    {`${props.artist}${props.artist && props.album && ' • '}${props.album}`}
   </ThemedText>
 )
 
