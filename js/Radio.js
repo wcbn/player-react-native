@@ -11,10 +11,8 @@ import { Audio } from 'expo-av'
 import { Container } from 'flux/utils'
 import OnAirStore from './flux/OnAirStore'
 import { dimensions } from './styles/main'
-import ScrollingText from './components/radio/ScrollingText'
-import ItunesAlbumArt from './components/radio/ItunesAlbumArt'
+import { ItunesAlbumArt, ShowDetails, SongDetails } from './components/radio'
 import { getDefaultNavigationOptions } from './util/navigation'
-import ThemedText from './components/ThemedText'
 import Screen from './components/Screen'
 import { spacing } from './styles/main'
 
@@ -137,38 +135,6 @@ class Radio extends React.Component {
     }
   }
 
-  renderShowDetails() {
-    if (this.state.on_air.name) {
-      return (
-        <View
-          style={[
-            styles.showDetailsContainer,
-            { height: this.state.sectionHeight / 2 }
-          ]}
-        >
-          <ThemedText
-            numberOfLines={1}
-            style={{
-              fontSize: Math.min(this.state.sectionHeight / 2, 23)
-            }}
-          >
-            {this.state.on_air.name}
-          </ThemedText>
-          <ThemedText
-            color={'secondary'}
-            numberOfLines={1}
-            style={[
-              styles.showDetailsHost,
-              { fontSize: Math.min(this.state.sectionHeight / 5, 20) }
-            ]}
-          >
-            {`with ${this.state.on_air.dj}`}
-          </ThemedText>
-        </View>
-      )
-    }
-  }
-
   renderAlbumArt() {
     const song = this.state.on_air.songs[0] || {
       name: '',
@@ -205,42 +171,6 @@ class Radio extends React.Component {
     )
   }
 
-  renderSongDetails() {
-    let x = this.state.on_air.songs[0] || {
-      name: '',
-      artist: '',
-      album: '',
-      label: '',
-      year: ''
-    }
-
-    //NOTE: TEST HARDCODED SONG HERE
-    // x = {
-    //   name: "Magician's Success",
-    //   artist: 'Vanishing Twin',
-    //   album: 'The Age Of Immunology',
-    //   label: 'Fire',
-    //   year: '2019'
-    // }
-
-    return (
-      <View style={[styles.songDetails, { height: this.state.sectionHeight }]}>
-        <ScrollingText
-          text={x.name || '—'}
-          lineHeight={this.state.sectionHeight / 2}
-        />
-        <ScrollingText
-          text={
-            `${x.artist}${x.artist && x.album ? ' — ' : ''}${x.album}${
-              x.label && x.year ? ' (' + x.label + ', ' + x.year + ')' : ''
-            }` || '—'
-          }
-          lineHeight={this.state.sectionHeight / 2}
-        />
-      </View>
-    )
-  }
-
   render() {
     return (
       <Screen>
@@ -255,9 +185,16 @@ class Radio extends React.Component {
             })
           }}
         >
-          {this.renderShowDetails()}
+          <ShowDetails
+            showName={this.state.on_air.name}
+            djName={this.state.on_air.dj}
+            sectionHeight={this.state.sectionHeight}
+          />
           {this.renderAlbumArt()}
-          {this.renderSongDetails()}
+          <SongDetails
+            song={this.state.on_air.songs[0]}
+            sectionHeight={this.state.sectionHeight}
+          />
         </ImageBackground>
       </Screen>
     )
@@ -282,28 +219,14 @@ const styles = StyleSheet.create({
   },
   albumArtContainer: {
     width: album_width,
-    height: album_width,
+    aspectRatio: 1,
     flex: 1,
     justifyContent: 'center'
   },
   albumArtImg: {
     width: album_width,
     height: album_width
-  },
-  songDetails: {
-    flex: 0,
-    alignItems: 'center',
-    width: '100%',
-    maxWidth: '100%',
-    marginTop: spacing.sm
-  },
-  showDetailsContainer: {
-    width: '100%',
-    maxWidth: '100%',
-    flex: 0,
-    marginTop: spacing.md
-  },
-  showDetailsHost: { fontStyle: 'italic' }
+  }
 })
 
 export default Container.create(Radio)
