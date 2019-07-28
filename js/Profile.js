@@ -4,9 +4,7 @@ import { ScrollView } from 'react-native-gesture-handler'
 import { getDefaultNavigationOptions } from './util/navigation'
 import Screen from './components/Screen'
 import { spacing } from './styles/main'
-import ShowHistory from './components/profile/ShowHistory'
-import DjCover from './components/profile/DjCover'
-import DjBio from './components/profile/DjBio'
+import { ShowHistory, DjCover, DjBio} from './components/profile'
 
 export default class Profile extends React.PureComponent {
   static navigationOptions = ({ navigation, screenProps }) => {
