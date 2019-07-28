@@ -1,18 +1,17 @@
 import React from 'react'
 import OnAirDispatcher from '../flux/OnAirDispatcher'
-import dayjs from 'dayjs'
+import { humanizeTime } from '../util/datetime'
 
 class OnAirPoll extends React.PureComponent {
   componentDidMount() {
     const pollPlaylist = async () => {
       try {
-
         const data = await this.fetchPlaylist()
 
         OnAirDispatcher.dispatch({
-              type: 'SET_ON_AIR',
-              data
-            })
+          type: 'SET_ON_AIR',
+          data
+        })
       } catch (error) {} //pass on errors
     }
 
@@ -26,7 +25,7 @@ class OnAirPoll extends React.PureComponent {
         .then(response => response.json())
         .then(data => {
           data.on_air.songs.forEach(song => {
-            song.at = dayjs(song.at).format('h:mm A')
+            song.at = humanizeTime(song.at)
           })
           resolve(data.on_air)
         })

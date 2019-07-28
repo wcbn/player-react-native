@@ -1,12 +1,12 @@
 import React from 'react'
 import { StyleSheet, TouchableOpacity, View, SectionList } from 'react-native'
-import dayjs from 'dayjs'
 import ListHeader from './components/ListHeader'
 import Separator from './components/Separator'
 import Screen from './components/Screen'
 import ThemedText from './components/ThemedText'
 import ListItemTime from './components/ListItemTime'
 import { getDefaultNavigationOptions } from './util/navigation'
+import { humanizeTime } from './util/datetime'
 import { ListItemWrapperStyles } from './components/ListItemWrapper'
 
 const WEEEKDAYS = [
@@ -51,7 +51,7 @@ class Schedule extends React.PureComponent {
       .then(data => {
         let fetched = WEEEKDAYS.map((day, i) => {
           data[i + 1].forEach(show => {
-            show.beginning = dayjs(show.beginning).format('h:mm A')
+            show.beginning = humanizeTime(show.beginning)
           })
           return {
             title: day,

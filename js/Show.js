@@ -3,11 +3,11 @@ import { StyleSheet, View, TouchableOpacity, FlatList } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 import { dimensions, spacing } from './styles/main'
 import Separator from './components/Separator'
-import dayjs from 'dayjs'
 import ListHeader from './components/ListHeader'
 import Screen from './components/Screen'
 import ThemedText from './components/ThemedText'
 import { getDefaultNavigationOptions } from './util/navigation'
+import { humanizeTime, humanizeDate } from './util/datetime'
 import ListItemWrapper from './components/ListItemWrapper'
 
 export default class Show extends React.PureComponent {
@@ -33,10 +33,10 @@ export default class Show extends React.PureComponent {
       .then(response => response.json())
       .then(response => {
         response.episodes.forEach(e => {
-          e.beginning = dayjs(e.beginning).format('MMMM D, YYYY')
+          e.beginning = humanizeDate(e.beginning)
 
           e.songs.forEach(song => {
-            song.at = dayjs(song.at).format('h:mm A')
+            song.at = humanizeTime(song.at)
           })
         })
 
