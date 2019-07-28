@@ -11,7 +11,12 @@ import { Audio } from 'expo-av'
 import { Container } from 'flux/utils'
 import OnAirStore from '../flux/OnAirStore'
 import { dimensions } from '../styles/main'
-import { ItunesAlbumArt, ShowDetails, SongDetails } from '../components/radio'
+import {
+  ItunesAlbumArt,
+  ShowDetails,
+  SongDetails,
+  FadeIntoHeader
+} from '../components/radio'
 import { getDefaultNavigationOptions } from '../util/navigation'
 import Screen from '../components/Screen'
 import { spacing } from '../styles/main'
@@ -185,6 +190,7 @@ class Radio extends React.Component {
             })
           }}
         >
+          <FadeIntoHeader color={this.props.screenProps.theme.primary} />
           <ShowDetails
             showName={this.state.on_air.name}
             djName={this.state.on_air.dj}
@@ -215,7 +221,7 @@ const styles = StyleSheet.create({
     height: '100%'
   },
   imageStyle: {
-    opacity: 0.075
+    opacity: 0.1
   },
   albumArtContainer: {
     width: album_width,
