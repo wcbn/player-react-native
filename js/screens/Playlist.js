@@ -2,14 +2,14 @@ import React from 'react'
 import { View, FlatList, StyleSheet } from 'react-native'
 
 import { Container } from 'flux/utils'
-import OnAirStore from './flux/OnAirStore'
-import Song from './components/Song'
-import Separator from './components/Separator'
-import ListHeader from './components/ListHeader'
-import Banner from './components/Banner'
-import Screen from './components/Screen'
-import ThemedText from './components/ThemedText'
-import { getDefaultNavigationOptions } from './util/navigation'
+import OnAirStore from '../flux/OnAirStore'
+import Song from '../components/Song'
+import Separator from '../components/Separator'
+import ListHeader from '../components/ListHeader'
+import Banner from '../components/Banner'
+import Screen from '../components/Screen'
+import ThemedText from '../components/ThemedText'
+import { getDefaultNavigationOptions } from '../util/navigation'
 
 class Playlist extends React.Component {
   static navigationOptions = ({ navigation, screenProps }) => {

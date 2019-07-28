@@ -1,13 +1,13 @@
 import React from 'react'
 import { StyleSheet, TouchableOpacity, View, SectionList } from 'react-native'
-import ListHeader from './components/ListHeader'
-import Separator from './components/Separator'
-import Screen from './components/Screen'
-import ThemedText from './components/ThemedText'
-import ListItemTime from './components/ListItemTime'
-import { getDefaultNavigationOptions } from './util/navigation'
-import { humanizeTime } from './util/datetime'
-import { ListItemWrapperStyles } from './components/ListItemWrapper'
+import ListHeader from '../components/ListHeader'
+import Separator from '../components/Separator'
+import Screen from '../components/Screen'
+import ThemedText from '../components/ThemedText'
+import ListItemTime from '../components/ListItemTime'
+import { getDefaultNavigationOptions } from '../util/navigation'
+import { humanizeTime } from '../util/datetime'
+import { ListItemWrapperStyles } from '../components/ListItemWrapper'
 
 const WEEEKDAYS = [
   'Monday',

@@ -9,12 +9,12 @@ import {
 } from 'react-native'
 import { Audio } from 'expo-av'
 import { Container } from 'flux/utils'
-import OnAirStore from './flux/OnAirStore'
-import { dimensions } from './styles/main'
-import { ItunesAlbumArt, ShowDetails, SongDetails } from './components/radio'
-import { getDefaultNavigationOptions } from './util/navigation'
-import Screen from './components/Screen'
-import { spacing } from './styles/main'
+import OnAirStore from '../flux/OnAirStore'
+import { dimensions } from '../styles/main'
+import { ItunesAlbumArt, ShowDetails, SongDetails } from '../components/radio'
+import { getDefaultNavigationOptions } from '../util/navigation'
+import Screen from '../components/Screen'
+import { spacing } from '../styles/main'
 
 class Radio extends React.Component {
   static navigationOptions = ({ navigation, screenProps }) => {
@@ -42,7 +42,7 @@ class Radio extends React.Component {
       isLoading: true,
       isUnloading: false,
       sectionHeight: 0,
-      backgroundImg: require('../assets/album.png')
+      backgroundImg: require('../../assets/album.png')
     }
 
     this.playbackInstance = null
@@ -156,7 +156,7 @@ class Radio extends React.Component {
             name={song.name}
             album={song.album}
             artist={song.artist}
-            default={require('../assets/album.png')}
+            default={require('../../assets/album.png')}
             onChange={img => this.setState({ backgroundImg: img })}
             style={styles.albumArtImg}
             showPlayButton={
@@ -164,7 +164,7 @@ class Radio extends React.Component {
               !this.state.isPlaying &&
               !this.state.isLoading
             }
-            playButton={require('../assets/play.jpeg')}
+            playButton={require('../../assets/play.jpeg')}
           />
         </View>
       </TouchableWithoutFeedback>

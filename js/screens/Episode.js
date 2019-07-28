@@ -1,11 +1,11 @@
 import React from 'react'
 import { FlatList } from 'react-native'
-import Song from './components/Song'
-import Separator from './components/Separator'
-import ListHeader from './components/ListHeader'
-import Banner from './components/Banner'
-import { getDefaultNavigationOptions } from './util/navigation'
-import Screen from './components/Screen'
+import Song from '../components/Song'
+import Separator from '../components/Separator'
+import ListHeader from '../components/ListHeader'
+import Banner from '../components/Banner'
+import { getDefaultNavigationOptions } from '../util/navigation'
+import Screen from '../components/Screen'
 
 // since the only way to get to this screen is from a Show,
 // all of the data is passed in as navigation props, saving us an expensive fetch()

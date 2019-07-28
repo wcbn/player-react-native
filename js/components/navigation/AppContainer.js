@@ -4,28 +4,17 @@ import {
   createBottomTabNavigator,
   createStackNavigator
 } from 'react-navigation'
-
 import TabBarComponent from './TabBarComponent'
 import Icon from 'react-native-vector-icons/Ionicons'
-
-//TODO move screens into a dir
-// import {
-//   Schedule,
-//   Radio,
-//   Settings,
-//   Show,
-//   Profile,
-//   Episode,
-//   Playlist
-// } from './screens'
-
-import Schedule from '../../Schedule'
-import Radio from '../../Radio'
-import Settings from '../../Settings'
-import Show from '../../Show'
-import Profile from '../../Profile'
-import Episode from '../../Episode'
-import Playlist from '../../Playlist'
+import {
+  Episode,
+  Playlist,
+  Profile,
+  Radio,
+  Schedule,
+  Settings,
+  Show
+} from '../../screens'
 import { getDefaultNavigationOptions } from '../../util/navigation'
 
 const getIconName = routeName => {
@@ -74,7 +63,7 @@ const AppNavigator = createBottomTabNavigator(
         const { routeName } = navigation.state
         const iconName = getIconName(routeName)
         return <Icon name={iconName} size={25} color={tintColor} />
-      },
+      }
     }),
     tabBarComponent: props => <TabBarComponent {...props} />,
     initialRouteName: 'Radio'

@@ -1,14 +1,14 @@
 import React from 'react'
 import { StyleSheet, View, TouchableOpacity, FlatList } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
-import { dimensions, spacing } from './styles/main'
-import Separator from './components/Separator'
-import ListHeader from './components/ListHeader'
-import Screen from './components/Screen'
-import ThemedText from './components/ThemedText'
-import { getDefaultNavigationOptions } from './util/navigation'
-import { humanizeTime, humanizeDate } from './util/datetime'
-import ListItemWrapper from './components/ListItemWrapper'
+import { dimensions, spacing } from '../styles/main'
+import Separator from '../components/Separator'
+import ListHeader from '../components/ListHeader'
+import Screen from '../components/Screen'
+import ThemedText from '../components/ThemedText'
+import { getDefaultNavigationOptions } from '../util/navigation'
+import { humanizeTime, humanizeDate } from '../util/datetime'
+import ListItemWrapper from '../components/ListItemWrapper'
 
 export default class Show extends React.PureComponent {
   static navigationOptions = ({ navigation, screenProps }) => {
