@@ -4,7 +4,7 @@
   <img alt="Get it on Google Play" title="Google Play" src="docs/play-store.png" height="40">
 </a>
 
-![Screenshots](docs/screenshots.png)
+![Screenshots](docs/screenshots.jpg)
 
 ┏┓  <br />
 ┃┃╱╲ &nbsp; in this<br />
