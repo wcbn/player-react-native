@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
   lg: {
     position: 'absolute',
     width: dimensions.fullWidth,
-    height: '80%',
+    height: '100%',
     top: 0,
     left: 0
   }

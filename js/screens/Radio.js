@@ -221,7 +221,7 @@ const styles = StyleSheet.create({
     height: '100%'
   },
   imageStyle: {
-    opacity: 0.1
+    opacity: 0.15
   },
   albumArtContainer: {
     width: album_width,
