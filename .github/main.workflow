@@ -10,7 +10,7 @@ action "Install" {
 
 action "Publish" {
   needs = "Install"
-  uses = "expo/expo-github-action@2.3.1"
+  uses = "expo/expo-github-action@3.0.0"
   args = "publish"
   secrets = [
     "EXPO_USERNAME",
