@@ -57,7 +57,7 @@ class StreamSelection extends React.PureComponent {
 
 const styles = StyleSheet.create({
   title: {
-    marginBottom: 4,
+    marginBottom: 3,
     fontSize: 16
   },
   captionView: {
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
   },
   captionText: {
     flex: 1,
-    padding: 4,
+    padding: 3,
     fontSize: 11
   }
 })

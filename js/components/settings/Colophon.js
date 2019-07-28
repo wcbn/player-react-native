@@ -26,8 +26,7 @@ export default (Colophon = props => {
 const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 10
+    alignItems: 'center'
   },
   text: {
     textAlign: 'center'

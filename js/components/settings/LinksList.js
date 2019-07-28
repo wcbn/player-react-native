@@ -3,6 +3,7 @@ import { StyleSheet, View, Linking, Share } from 'react-native'
 import Separator from '../Separator'
 import Link from './Link'
 import { useTheme } from '../../styles/theming'
+import { spacing } from '../../styles/main';
 
 const GOOGLE_HANGOUTS_URL =
   'https://hangouts.google.com/chat/person/118357885959401668528'
@@ -61,6 +62,7 @@ export default (LinksList = props => {
 
 const styles = StyleSheet.create({
   linksView: {
-    marginTop: 10
+    marginTop: spacing.sm,
+    marginBottom: spacing.sm
   }
 })
