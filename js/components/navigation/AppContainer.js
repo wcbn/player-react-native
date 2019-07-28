@@ -15,7 +15,6 @@ import {
   Settings,
   Show
 } from '../../screens'
-import { getDefaultNavigationOptions } from '../../util/navigation'
 
 const getIconName = routeName => {
   switch (routeName) {
