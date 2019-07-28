@@ -1,9 +1,7 @@
 import React from 'react'
 import { StyleSheet, ScrollView } from 'react-native'
 import Screen from './components/Screen'
-import StreamSelection from './components/settings/StreamSelection'
-import LinksList from './components/settings/LinksList'
-import Colophon from './components/settings/Colophon'
+import { StreamSelection, LinksList, Colophon } from './components/settings'
 import { getDefaultNavigationOptions } from './util/navigation'
 import { spacing } from './styles/main'
 
