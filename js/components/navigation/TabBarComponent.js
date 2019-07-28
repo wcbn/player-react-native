@@ -1,6 +1,6 @@
 import React from 'react'
 import { BottomTabBar } from 'react-navigation-tabs'
-import { useTheme } from '../styles/theming'
+import { useTheme } from '../../styles/theming'
 
 export default (TabBarComponent = props => {
   const theme = useTheme()

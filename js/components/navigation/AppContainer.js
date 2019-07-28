@@ -5,7 +5,7 @@ import {
   createStackNavigator
 } from 'react-navigation'
 
-import TabBarComponent from './components/TabBarComponent'
+import TabBarComponent from './TabBarComponent'
 import Icon from 'react-native-vector-icons/Ionicons'
 
 //TODO move screens into a dir
@@ -19,14 +19,14 @@ import Icon from 'react-native-vector-icons/Ionicons'
 //   Playlist
 // } from './screens'
 
-import Schedule from './Schedule'
-import Radio from './Radio'
-import Settings from './Settings'
-import Show from './Show'
-import Profile from './Profile'
-import Episode from './Episode'
-import Playlist from './Playlist'
-import { getDefaultNavigationOptions } from './util/navigation'
+import Schedule from '../../Schedule'
+import Radio from '../../Radio'
+import Settings from '../../Settings'
+import Show from '../../Show'
+import Profile from '../../Profile'
+import Episode from '../../Episode'
+import Playlist from '../../Playlist'
+import { getDefaultNavigationOptions } from '../../util/navigation'
 
 const getIconName = routeName => {
   switch (routeName) {

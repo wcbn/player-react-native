@@ -3,7 +3,7 @@ import { StatusBar, AsyncStorage } from 'react-native'
 import { SafeAreaView } from 'react-navigation'
 import { ThemeProvider, themes } from './styles/theming'
 import OnAirPoll from './components/OnAirPoll'
-import AppContainer from './AppContainer'
+import {AppContainer} from './components/navigation'
 
 export default class App extends React.PureComponent {
   state = {
