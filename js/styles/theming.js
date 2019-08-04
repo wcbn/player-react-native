@@ -39,6 +39,4 @@ export const themes = {
   }
 }
 
-export const { ThemeProvider, withTheme, useTheme } = createTheming(
-  themes.dark
-)
+export const { ThemeProvider, withTheme, useTheme } = createTheming(themes.dark)
