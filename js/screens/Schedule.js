@@ -36,10 +36,6 @@ class Schedule extends React.PureComponent {
   }
 
   componentDidMount() {
-    this.fetchSchedule()
-  }
-
-  fetchSchedule() {
     fetch('https://app.wcbn.org/semesters', {
       headers: new Headers({
         Accept: 'application/json',

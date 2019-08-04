@@ -25,10 +25,6 @@ export default class Show extends React.PureComponent {
   }
 
   componentDidMount() {
-    this.fetchShow()
-  }
-
-  fetchShow() {
     fetch(`https://app.wcbn.org${this.props.navigation.getParam('url')}.json`)
       .then(response => response.json())
       .then(response => {

@@ -1,6 +1,5 @@
 import React from 'react'
 import { View, FlatList, StyleSheet } from 'react-native'
-
 import { Container } from 'flux/utils'
 import OnAirStore from '../flux/OnAirStore'
 import Song from '../components/Song'

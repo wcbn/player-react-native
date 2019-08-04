@@ -58,7 +58,6 @@ export default (DjBio = props => {
       color: theme.textColor
     },
     image: {
-      borderColor: theme.secondary,
       marginTop: spacing.md,
       marginBottom: 2
     }
