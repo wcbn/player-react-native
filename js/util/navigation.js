@@ -5,10 +5,6 @@ export const getDefaultNavigationOptions = theme => {
       backgroundColor: theme.primary,
       borderBottomColor: 'transparent'
     },
-    // headerTitleStyle: { fontFamily: 'Futura' },
-    headerTintColor: theme.textColor,
-    // headerBackTitleStyle: {
-    //   fontFamily: 'Futura'
-    // }
+    headerTintColor: theme.textColor
   }
 }

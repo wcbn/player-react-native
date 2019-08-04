@@ -56,7 +56,6 @@ export default (DjBio = props => {
     },
     baseFontStyle: {
       color: theme.textColor
-      // fontFamily: 'Futura'
     },
     image: {
       borderColor: theme.secondary,

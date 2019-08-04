@@ -6,7 +6,7 @@ export default (ThemedText = props => {
   const theme = useTheme()
 
   const styles = StyleSheet.create({
-    text: { color: theme[props.color] || theme.textColor } //, fontFamily: 'Futura'
+    text: { color: theme[props.color] || theme.textColor }
   })
 
   return (
