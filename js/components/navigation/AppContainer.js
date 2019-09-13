@@ -1,9 +1,7 @@
 import React from 'react'
-import {
-  createAppContainer,
-  createBottomTabNavigator,
-  createStackNavigator
-} from 'react-navigation'
+import { createAppContainer } from 'react-navigation'
+import { createBottomTabNavigator } from 'react-navigation-tabs'
+import { createStackNavigator } from 'react-navigation-stack'
 import TabBarComponent from './TabBarComponent'
 import Icon from 'react-native-vector-icons/Ionicons'
 import {
@@ -15,6 +13,7 @@ import {
   Settings,
   Show
 } from '../../screens'
+import { getDefaultNavigationOptions } from '../../util/navigation'
 
 const getIconName = routeName => {
   switch (routeName) {
@@ -42,11 +41,23 @@ const PlaylistStack = createStackNavigator({
 })
 
 const RadioStack = createStackNavigator({
-  Radio
+  Radio: {
+    screen: Radio,
+    navigationOptions: ({ navigation, screenProps }) => ({
+      title: 'WCBN-FM Ann Arbor',
+      ...getDefaultNavigationOptions(screenProps.theme)
+    })
+  }
 })
 
 const SettingsStack = createStackNavigator({
-  Settings
+  Settings: {
+    screen: Settings,
+    navigationOptions: ({ navigation, screenProps }) => ({
+      title: 'Settings',
+      ...getDefaultNavigationOptions(screenProps.theme)
+    })
+  }
 })
 
 const AppNavigator = createBottomTabNavigator(

@@ -17,18 +17,10 @@ import {
   SongDetails,
   FadeIntoHeader
 } from '../components/radio'
-import { getDefaultNavigationOptions } from '../util/navigation'
 import Screen from '../components/Screen'
 import { spacing } from '../styles/main'
 
 class Radio extends React.Component {
-  static navigationOptions = ({ navigation, screenProps }) => {
-    return {
-      title: 'WCBN-FM Ann Arbor',
-      ...getDefaultNavigationOptions(screenProps.theme)
-    }
-  }
-
   static getStores() {
     return [OnAirStore]
   }
