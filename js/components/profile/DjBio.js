@@ -4,7 +4,7 @@ import HTML from 'react-native-render-html'
 import { dimensions, spacing } from '../../styles/main'
 import { useTheme } from '../../styles/theming'
 
-export default (DjBio = props => {
+export default DjBio = props => {
   const theme = useTheme()
 
   renderers = {
@@ -32,8 +32,22 @@ export default (DjBio = props => {
       >
         •
       </ThemedText>
+    ),
+    ol: (htmlAttribs, children, convertedCSSStyles, passProps) => (
+      <ThemedText
+        style={this.styles.listsPrefixesRenderers}
+        color={'secondary'}
+      >
+        {`${passProps.index + 1})`}
+      </ThemedText>
     )
   }
+
+  // IMPORTANT NOTE : Do NOT use the StyleSheet API to create the styles you're going 
+  // to feed to tagsStyle and classesStyles. Although it might look like it's working 
+  // at first, the caching logic of react-native makes it impossible for this module 
+  // to deep check each of your style to properly apply the precedence and priorities 
+  // of your nested tags' styles.
 
   tagsStyles = {
     figure: {
@@ -78,4 +92,4 @@ export default (DjBio = props => {
       />
     )
   )
-})
+}
