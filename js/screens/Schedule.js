@@ -1,13 +1,10 @@
 import React from 'react'
-import { StyleSheet, TouchableOpacity, View, SectionList } from 'react-native'
-import ListHeader from '../components/ListHeader'
-import Separator from '../components/Separator'
+import { createMaterialTopTabNavigator } from 'react-navigation-tabs'
 import Screen from '../components/Screen'
-import ThemedText from '../components/ThemedText'
-import ListItemTime from '../components/ListItemTime'
+import ScheduleDay from './ScheduleDay'
 import { getDefaultNavigationOptions } from '../util/navigation'
 import { humanizeTime } from '../util/datetime'
-import { ListItemWrapperStyles } from '../components/ListItemWrapper'
+import MaterialTopTabBarWrapper from '../components/navigation/MaterialTopTabBarWrapper'
 
 const WEEEKDAYS = [
   'Monday',
@@ -19,11 +16,66 @@ const WEEEKDAYS = [
   'Sunday'
 ]
 
-// 6 hr offset
-// const weekdayIndex = new Date(new Date().getTime() - 21600000).getDay()
-// const TODAY = weekdayIndex == 0 ? 6 : weekdayIndex - 1
+//6 hr offset //TODO but only on east coast?? need to check this
+const WEEKDAYINDEX = new Date(new Date().getTime() - 21600000).getDay()
+const TODAY = WEEKDAYINDEX === 0 ? 6 : WEEKDAYINDEX - 1
 
-class Schedule extends React.PureComponent {
+const MONDAY = <ScheduleDay />
+
+const SimpleTabs = createMaterialTopTabNavigator(
+  {
+    Monday: {
+      screen: ScheduleDay,
+      navigationOptions: {
+        tabBarLabel: 'M'
+      }
+    },
+    Tuesday: {
+      screen: ScheduleDay,
+      navigationOptions: {
+        tabBarLabel: 'T'
+      }
+    },
+    Wednesday: {
+      screen: ScheduleDay,
+      navigationOptions: {
+        tabBarLabel: 'W'
+      }
+    },
+    Thursday: {
+      screen: ScheduleDay,
+      navigationOptions: {
+        tabBarLabel: 'H'
+      }
+    },
+    Friday: {
+      screen: ScheduleDay,
+      navigationOptions: {
+        tabBarLabel: 'F'
+      }
+    },
+    Saturday: {
+      screen: ScheduleDay,
+      navigationOptions: {
+        tabBarLabel: 'S'
+      }
+    },
+    Sunday: {
+      screen: ScheduleDay,
+      navigationOptions: {
+        tabBarLabel: 'S'
+      }
+    }
+  },
+  {
+    initialRouteName: WEEEKDAYS[TODAY],
+    lazy: true,
+    // lazyPlaceholderComponent //TODO
+    tabBarComponent: MaterialTopTabBarWrapper
+  }
+)
+
+export default class Schedule extends React.Component {
   static navigationOptions = ({ navigation, screenProps }) => {
     return {
       title: 'WCBN Schedule',
@@ -31,8 +83,10 @@ class Schedule extends React.PureComponent {
     }
   }
 
+  static router = SimpleTabs.router
+
   state = {
-    sections: []
+    data: {}
   }
 
   componentDidMount() {
@@ -45,78 +99,32 @@ class Schedule extends React.PureComponent {
       .then(response => response.json())
       .then(response => response['shows'])
       .then(data => {
-        let fetched = WEEEKDAYS.map((day, i) => {
+        let fetched = {}
+        WEEEKDAYS.forEach((day, i) => {
           data[i + 1].forEach(show => {
             show.beginning = humanizeTime(show.beginning)
           })
-          return {
-            title: day,
-            data: data[i + 1]
-          }
+
+          fetched[day] = data[i + 1]
         })
         this.setState({
-          sections: fetched
+          data: fetched
         })
       })
-    // .then(() => {
-    //   this.sectionListRef.scrollToLocation({
-    //     animated: true,
-    //     sectionIndex: TODAY,
-    //     itemIndex: 0,
-    //     viewPosition: 0,
-    //     viewOffset: 22
-    //   })
-    // })
   }
 
-  renderItem = ({ item, index, section }) => (
-    <TouchableOpacity
-      key={index}
-      style={ListItemWrapperStyles.view}
-      onPress={() =>
-        this.props.navigation.navigate('Show', {
-          url: item.url,
-          title: item.name
-        })
-      }
-    >
-      <View style={styles.showText}>
-        <ThemedText>{item.name}</ThemedText>
-        <ThemedText style={styles.showHost} color={'secondary'}>
-          {item.with}
-        </ThemedText>
-      </View>
-      <ListItemTime at={item.beginning} />
-    </TouchableOpacity>
-  )
-
   render() {
+    const { navigation } = this.props
+    const theme = this.props.screenProps.theme
+    const { routes, index } = navigation.state
+    const activeRoute = routes[index]
     return (
       <Screen>
-        <SectionList
-          renderItem={this.renderItem}
-          renderSectionHeader={({ section: { title } }) => (
-            <ListHeader text={title} />
-          )}
-          sections={this.state.sections}
-          keyExtractor={(item, index) => index}
-          overScrollMode={'never'}
-          ItemSeparatorComponent={() => (
-            <Separator color={this.props.screenProps.theme.muted} />
-          )}
+        <SimpleTabs
+          navigation={navigation}
+          screenProps={{ scheduleData: this.state.data, theme }}
         />
       </Screen>
     )
   }
 }
-
-const styles = StyleSheet.create({
-  showText: {
-    maxWidth: '85%'
-  },
-  showHost: {
-    fontStyle: 'italic'
-  }
-})
-
-export default Schedule
