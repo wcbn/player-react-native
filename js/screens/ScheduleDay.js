@@ -21,13 +21,15 @@ const styles = StyleSheet.create({
   }
 })
 
-export default class ScheduleDay extends React.Component {
-  renderItem = ({ item, index }) => (
+export default function ScheduleDay(props) {
+  const { screenProps, navigation } = props
+
+  const renderItem = ({ item, index }) => (
     <TouchableOpacity
       key={index}
       style={ListItemWrapperStyles.view}
       onPress={() =>
-        this.props.navigation.navigate('Show', {
+        navigation.navigate('Show', {
           url: item.url,
           title: item.name
         })
@@ -43,20 +45,17 @@ export default class ScheduleDay extends React.Component {
     </TouchableOpacity>
   )
 
-  render() {
-    const { screenProps, navigation } = this.props
-    return (
-      <Screen>
-        <FlatList
-          renderItem={this.renderItem}
-          keyExtractor={(item, index) => index.toString()}
-          overScrollMode={'never'}
-          ItemSeparatorComponent={() => (
-            <Separator color={screenProps.theme.muted} />
-          )}
-          data={screenProps.scheduleData[navigation.state.key]}
-        />
-      </Screen>
-    )
-  }
+  return (
+    <Screen>
+      <FlatList
+        renderItem={renderItem}
+        keyExtractor={(item, index) => index.toString()}
+        overScrollMode={'never'}
+        ItemSeparatorComponent={() => (
+          <Separator color={screenProps.theme.muted} />
+        )}
+        data={screenProps.scheduleData[navigation.state.key]}
+      />
+    </Screen>
+  )
 }
