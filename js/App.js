@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { StatusBar, AsyncStorage } from 'react-native'
 import { SafeAreaView } from 'react-navigation'
 import { ThemeProvider, themes } from './styles/theming'
@@ -10,39 +10,33 @@ import { AppContainer } from './components/navigation'
 // migrate flux to redux pub/sub
 console.disableYellowBox = true
 
-export default class App extends React.PureComponent {
-  state = {
-    theme: themes.dark
-  }
+export default function App() {
+  const [theme, setTheme] = useState(themes.dark)
 
-  componentDidMount = async () => {
-    const themeName = (await AsyncStorage.getItem('THEME')) || 'dark'
-    this.setState({ theme: themes[themeName] })
-  }
+  useEffect(() => {
+    async function doAsync() {
+      const themeName = (await AsyncStorage.getItem('THEME')) || 'dark'
+      setTheme(themes[themeName])
+    }
+    doAsync()
+  }, [])
 
-  handleThemeChange = () => {
-    const themeName = this.state.theme.opposite
-    this.setState({ theme: themes[themeName] })
+  const handleThemeChange = () => {
+    const themeName = theme.opposite
+    setTheme(themes[themeName])
     AsyncStorage.setItem('THEME', themeName)
   }
 
-  render() {
-    return (
-      <ThemeProvider theme={this.state.theme}>
-        <SafeAreaView
-          style={{ flex: 1, backgroundColor: this.state.theme.primary }}
-          forceInset={{ top: 'never' }}
-        >
-          <StatusBar barStyle={`${this.state.theme.opposite}-content`} />
-          <OnAirPoll />
-          <AppContainer
-            screenProps={{
-              handleThemeChange: this.handleThemeChange,
-              theme: this.state.theme
-            }}
-          />
-        </SafeAreaView>
-      </ThemeProvider>
-    )
-  }
+  return (
+    <ThemeProvider theme={theme}>
+      <SafeAreaView
+        style={{ flex: 1, backgroundColor: theme.primary }}
+        forceInset={{ top: 'never' }}
+      >
+        <StatusBar barStyle={`${theme.opposite}-content`} />
+        <OnAirPoll />
+        <AppContainer screenProps={{ handleThemeChange, theme }} />
+      </SafeAreaView>
+    </ThemeProvider>
+  )
 }
