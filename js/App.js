@@ -5,6 +5,11 @@ import { ThemeProvider, themes } from './styles/theming'
 import OnAirPoll from './components/OnAirPoll'
 import { AppContainer } from './components/navigation'
 
+// TODO remove this
+// create an UnvirtualizedList component
+// migrate flux to redux pub/sub
+console.disableYellowBox = true
+
 export default class App extends React.PureComponent {
   state = {
     theme: themes.dark
