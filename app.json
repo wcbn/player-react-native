@@ -31,6 +31,7 @@
     },
     "android": {
       "package": "org.wcbn",
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=org.wcbn",
       "versionCode": 5,
       "splash": {
         "backgroundColor": "#212733",
