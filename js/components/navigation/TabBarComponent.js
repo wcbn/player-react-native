@@ -12,7 +12,7 @@ export default (TabBarComponent = props => {
       inactiveTintColor={theme.inactiveTintColor}
       inactiveBackgroundColor={theme.primary}
       activeBackgroundColor={theme.activeBackgroundColor}
-      safeAreaInset={{ bottom: 'never', top: 'never' }}
+      style={{ backgroundColor: theme.primary }}
     />
   )
 })

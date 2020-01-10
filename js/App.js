@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { StatusBar, AsyncStorage } from 'react-native'
-import { SafeAreaView } from 'react-navigation'
 import { ThemeProvider, themes } from './styles/theming'
 import OnAirPoll from './components/OnAirPoll'
 import { AppContainer } from './components/navigation'
@@ -29,14 +28,9 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <SafeAreaView
-        style={{ flex: 1, backgroundColor: theme.primary }}
-        forceInset={{ top: 'never' }}
-      >
-        <StatusBar barStyle={`${theme.opposite}-content`} />
-        <OnAirPoll />
-        <AppContainer screenProps={{ handleThemeChange, theme }} />
-      </SafeAreaView>
+      <StatusBar barStyle={`${theme.opposite}-content`} />
+      <OnAirPoll />
+      <AppContainer screenProps={{ handleThemeChange, theme }} />
     </ThemeProvider>
   )
 }
