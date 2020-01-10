@@ -5,6 +5,7 @@ import ScheduleDay from './ScheduleDay'
 import { getDefaultNavigationOptions } from '../util/navigation'
 import { humanizeTime } from '../util/datetime'
 import MaterialTopTabBarWrapper from '../components/navigation/MaterialTopTabBarWrapper'
+import LazyPlaceholder from '../components/schedule/LazyPlaceholder'
 
 const WEEEKDAYS = [
   'Monday',
@@ -70,7 +71,7 @@ const SimpleTabs = createMaterialTopTabNavigator(
   {
     initialRouteName: WEEEKDAYS[TODAY],
     lazy: true,
-    // lazyPlaceholderComponent //TODO
+    lazyPlaceholderComponent: LazyPlaceholder,
     tabBarComponent: MaterialTopTabBarWrapper
   }
 )
