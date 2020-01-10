@@ -1,9 +1,10 @@
 import React from 'react'
 import { StyleSheet, View, Linking, Share } from 'react-native'
+import * as StoreReview from 'expo-store-review'
 import Separator from '../Separator'
 import Link from './Link'
 import { useTheme } from '../../styles/theming'
-import { spacing } from '../../styles/main';
+import { spacing } from '../../styles/main'
 
 const GOOGLE_HANGOUTS_URL =
   'https://hangouts.google.com/chat/person/118357885959401668528'
@@ -11,9 +12,7 @@ const GOOGLE_HANGOUTS_URL =
 const DONATION_URL =
   'https://leadersandbest.umich.edu/find/#!/give/basket/fund/361991'
 
-const GOOGLE_PLAY_URL = 'https://play.google.com/store/apps/details?id=org.wcbn'
-
-export default (LinksList = props => {
+export default LinksList = props => {
   const theme = useTheme()
   return (
     <View style={styles.linksView}>
@@ -40,7 +39,7 @@ export default (LinksList = props => {
       />
       <Separator color={theme.secondary} />
       <Link
-        onPress={() => Linking.openURL(GOOGLE_PLAY_URL)}
+        onPress={() => StoreReview.requestReview()}
         text={'Write a review!'}
         icon={'md-thumbs-up'}
       />
@@ -58,7 +57,7 @@ export default (LinksList = props => {
       />
     </View>
   )
-})
+}
 
 const styles = StyleSheet.create({
   linksView: {
