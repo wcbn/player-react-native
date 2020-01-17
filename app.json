@@ -6,7 +6,7 @@
     "githubUrl": "https://github.com/wcbn/player-react-native",
     "privacy": "public",
     "sdkVersion": "35.0.0",
-    "version": "4.0.0",
+    "version": "7.0.0",
     "orientation": "portrait",
     "icon": "./assets/logo.png",
     "splash": {
@@ -29,7 +29,7 @@
     },
     "android": {
       "package": "org.wcbn",
-      "versionCode": 5,
+      "versionCode": 7,
       "splash": {
         "backgroundColor": "#212733",
         "resizeMode": "contain",
