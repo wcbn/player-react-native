@@ -4,19 +4,28 @@ import ThemedText from './ThemedText'
 import ListItemTime from './ListItemTime'
 import ListItemWrapper from './ListItemWrapper'
 
-const SongName = props => (
+interface SongProps {
+  data: {
+    name: string
+    artist: string
+    album: string
+    at: string
+  }
+}
+
+const SongName = (props: { name: string }) => (
   <ThemedText style={styles.songName} numberOfLines={1}>
     {props.name}
   </ThemedText>
 )
 
-const SongDetails = props => (
+const SongDetails = (props: { artist: string; album: string }) => (
   <ThemedText style={styles.songDetails} numberOfLines={1}>
     {`${props.artist}${props.artist && props.album && ' • '}${props.album}`}
   </ThemedText>
 )
 
-export default (Song = props => (
+const Song = (props: SongProps) => (
   <ListItemWrapper>
     <View style={styles.textWrapper}>
       <SongName name={props.data.name} />
@@ -29,7 +38,7 @@ export default (Song = props => (
     </View>
     <ListItemTime at={props.data.at} />
   </ListItemWrapper>
-))
+)
 
 const styles = StyleSheet.create({
   textWrapper: {
@@ -45,3 +54,5 @@ const styles = StyleSheet.create({
     fontSize: 13
   }
 })
+
+export default Song
