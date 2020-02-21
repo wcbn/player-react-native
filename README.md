@@ -32,6 +32,7 @@
 - https://docs.expo.io/versions/latest/
 - https://reactnavigation.org/docs/en/getting-started.html
 - https://redux.js.org/
+- https://www.typescriptlang.org/
 
 # Getting started
 
