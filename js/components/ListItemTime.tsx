@@ -2,11 +2,11 @@ import React from 'react'
 import ThemedText from './ThemedText'
 import { StyleSheet } from 'react-native'
 
-export default (ListItemTime = props => (
+const ListItemTime = (props: { at: string }) => (
   <ThemedText style={styles.time} color={'accent'}>
     {props.at}
   </ThemedText>
-))
+)
 
 const styles = StyleSheet.create({
   time: {
@@ -15,3 +15,5 @@ const styles = StyleSheet.create({
     marginTop: -5
   }
 })
+
+export default ListItemTime
