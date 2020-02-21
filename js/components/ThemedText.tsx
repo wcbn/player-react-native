@@ -1,11 +1,10 @@
 import React, { ReactNode } from 'react'
-import { Text, StyleSheet, StyleProp, TextStyle } from 'react-native'
+import { Text, StyleSheet, StyleProp, TextStyle, TextProps } from 'react-native'
 import { useTheme } from '../styles/theming'
 
-interface ThemedTextProps {
+interface ThemedTextProps extends TextProps {
   children: ReactNode,
-  color?: string,
-  style?: StyleProp<TextStyle>
+  color?: string
 }
 
 const ThemedText = (props: ThemedTextProps) => {
