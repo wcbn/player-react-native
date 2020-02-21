@@ -5,7 +5,7 @@
     "slug": "wcbn-app",
     "githubUrl": "https://github.com/wcbn/player-react-native",
     "privacy": "public",
-    "sdkVersion": "35.0.0",
+    "sdkVersion": "36.0.0",
     "version": "7.0.0",
     "orientation": "portrait",
     "icon": "./assets/logo.png",
@@ -17,21 +17,18 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "org.wcbn",
       "infoPlist": {
-        "UIBackgroundModes": [
-          "audio"
-        ]
+        "UIBackgroundModes": ["audio"]
       }
     },
     "android": {
       "package": "org.wcbn",
-      "versionCode": 7,
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=org.wcbn",
+      "versionCode": 8,
       "splash": {
         "backgroundColor": "#212733",
         "resizeMode": "contain",
@@ -42,9 +39,6 @@
         "xxxhdpi": "./assets/splash/xxxhdpi.png"
       }
     },
-    "platforms": [
-      "android",
-      "ios"
-    ]
+    "platforms": ["android", "ios"]
   }
 }
