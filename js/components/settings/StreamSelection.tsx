@@ -1,53 +1,53 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { StyleSheet, View, AsyncStorage } from 'react-native'
 import SegmentedControlTab from 'react-native-segmented-control-tab'
 import ThemedText from '../ThemedText'
-import { withTheme } from '../../styles/theming'
+import { useTheme } from '../../styles/theming'
 import { STREAMS } from '../../config'
 
-class StreamSelection extends React.PureComponent<{theme: any}> {
-  state = {
-    selectedStreamIndex: 2 // fetch ASAP in componentDidMount, default to high qual
-  }
-
-  async componentDidMount() {
-    const streamUrl = (await AsyncStorage.getItem('STREAM_URL')) || STREAMS[2]
-
-    this.setState({
-      selectedStreamIndex: STREAMS.indexOf(streamUrl)
-    })
-  }
-
-  setStreamSetting = index => {
-    this.setState({ selectedStreamIndex: index })
+const StreamSelection = () => {
+  const theme = useTheme()
+  const [selectedStreamIndex, setSelectedStreamIndex] = useState(2) // fetch ASAP, default to high qual
+  const setStreamSetting = (index: 0 | 1 | 2) => {
+    setSelectedStreamIndex(index)
     AsyncStorage.setItem('STREAM_URL', STREAMS[index])
   }
 
-  render() {
-    const theme = this.props.theme
-    return (
-      <View>
-        <ThemedText style={styles.title}>Stream Quality</ThemedText>
-        <SegmentedControlTab
-          values={['Low', 'Medium', 'High']}
-          selectedIndex={this.state.selectedStreamIndex}
-          onTabPress={this.setStreamSetting}
-          activeTabStyle={{ backgroundColor: theme.activeBackgroundColor }}
-          tabStyle={{
-            backgroundColor: 'transparent',
-            borderColor: theme.secondary
-          }}
-          activeTabTextStyle={{ color: theme.activeTintColor }}
-          tabTextStyle={{ color: theme.textColor }}
-        />
-        <View style={styles.captionView}>
-          <ThemedText style={styles.captionText}>64 kbps</ThemedText>
-          <ThemedText style={styles.captionText}>128 kbps</ThemedText>
-          <ThemedText style={styles.captionText}>320 kbps</ThemedText>
-        </View>
+  useEffect(() => {
+    const doAsync = async () => {
+      const streamUrl = (await AsyncStorage.getItem('STREAM_URL')) || STREAMS[2]
+
+      setSelectedStreamIndex(STREAMS.indexOf(streamUrl))
+    }
+    doAsync()
+  }, [])
+
+  return (
+    <View>
+      <ThemedText style={styles.title}>Stream Quality</ThemedText>
+      <SegmentedControlTab
+        values={['Low', 'Medium', 'High']}
+        selectedIndex={selectedStreamIndex}
+        onTabPress={(i: 0 | 1 | 2) => setStreamSetting(i)}
+        activeTabStyle={{
+          backgroundColor: theme.activeBackgroundColor
+        }}
+        tabStyle={{
+          backgroundColor: 'transparent',
+          borderColor: theme.secondary
+        }}
+        activeTabTextStyle={{
+          color: theme.activeTintColor
+        }}
+        tabTextStyle={{ color: theme.textColor }}
+      />
+      <View style={styles.captionView}>
+        <ThemedText style={styles.captionText}>64 kbps</ThemedText>
+        <ThemedText style={styles.captionText}>128 kbps</ThemedText>
+        <ThemedText style={styles.captionText}>320 kbps</ThemedText>
       </View>
-    )
-  }
+    </View>
+  )
 }
 
 const styles = StyleSheet.create({
@@ -65,4 +65,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default withTheme(StreamSelection)
+export default StreamSelection
