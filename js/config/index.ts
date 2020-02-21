@@ -1,1 +1,3 @@
-export const baseUrl = 'https://app.wcbn.org/'
+export const BASE_URL = 'https://app.wcbn.org/'
+
+export const POLL_INTERVAL = 40000

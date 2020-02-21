@@ -1,12 +1,12 @@
 import * as ActionTypes from './ActionTypes'
-import { baseUrl } from '../config'
+import { BASE_URL } from '../config'
 import { humanizeTime } from '../util/datetime'
 
 export const fetchPlaylist = () => dispatch => {
   dispatch(playlistLoading())
 
   return (
-    fetch(baseUrl + 'playlist.json')
+    fetch(BASE_URL + 'playlist.json')
       .then(
         response => {
           if (response.ok) {
