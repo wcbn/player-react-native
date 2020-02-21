@@ -8,8 +8,7 @@ import {
   ImageBackground
 } from 'react-native'
 import { Audio } from 'expo-av'
-import { Container } from 'flux/utils'
-import OnAirStore from '../flux/OnAirStore'
+import { connect } from 'react-redux'
 import { dimensions } from '../styles/main'
 import {
   ItunesAlbumArt,
@@ -20,17 +19,13 @@ import {
 import Screen from '../components/Screen'
 import { spacing } from '../styles/main'
 
+const mapStateToProps = state => {
+  return {
+    playlist: state.playlist
+  }
+}
+
 class Radio extends React.Component {
-  static getStores() {
-    return [OnAirStore]
-  }
-
-  static calculateState(prevState) {
-    return {
-      on_air: OnAirStore.getState()
-    }
-  }
-
   constructor() {
     super()
     this.state = {
@@ -133,7 +128,7 @@ class Radio extends React.Component {
   }
 
   renderAlbumArt() {
-    const song = this.state.on_air.songs[0] || {
+    const song = this.props.playlist.on_air.songs[0] || {
       name: '',
       artist: '',
       album: '',
@@ -184,13 +179,13 @@ class Radio extends React.Component {
         >
           <FadeIntoHeader color={this.props.screenProps.theme.primary} />
           <ShowDetails
-            showName={this.state.on_air.name}
-            djName={this.state.on_air.dj}
+            showName={this.props.playlist.on_air.name}
+            djName={this.props.playlist.on_air.dj}
             sectionHeight={this.state.sectionHeight}
           />
           {this.renderAlbumArt()}
           <SongDetails
-            song={this.state.on_air.songs[0]}
+            song={this.props.playlist.on_air.songs[0]}
             sectionHeight={this.state.sectionHeight}
           />
         </ImageBackground>
@@ -227,4 +222,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default Container.create(Radio)
+export default connect(mapStateToProps)(Radio)

@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { StatusBar, AsyncStorage, StatusBarStyle } from 'react-native'
 import { ThemeProvider, themes } from './styles/theming'
-import OnAirPoll from './components/OnAirPoll'
-import { AppContainer } from './components/navigation'
+import AppContainer from './components/navigation'
+import { Provider } from 'react-redux'
+import { ConfigureStore } from './redux/configureStore'
+
+const store = ConfigureStore()
 
 // TODO remove this
 // create an UnvirtualizedList component
-// migrate flux to redux pub/sub
 console.disableYellowBox = true
 
 export default function App() {
@@ -30,10 +32,11 @@ export default function App() {
     theme.opposite === 'light' ? `light-content` : 'dark-content'
 
   return (
-    <ThemeProvider theme={theme}>
-      <StatusBar barStyle={barStyle} />
-      <OnAirPoll />
-      <AppContainer screenProps={{ handleThemeChange, theme }} />
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <StatusBar barStyle={barStyle} />
+        <AppContainer screenProps={{ handleThemeChange, theme }} />
+      </ThemeProvider>
+    </Provider>
   )
 }
