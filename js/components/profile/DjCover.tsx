@@ -3,7 +3,14 @@ import { Image, View, StyleSheet, Linking } from 'react-native'
 import ThemedText from '../ThemedText'
 import { spacing } from '../../styles/main'
 
-export default (DjCover = props => {
+interface DjCoverProps {
+  image_url: string
+  real_name?: string
+  website?: string
+  public_email?: string
+}
+
+export default function DjCover(props: DjCoverProps) {
   return (
     <View style={styles.cover}>
       <Image style={styles.coverAvatar} source={{ uri: props.image_url }} />
@@ -46,7 +53,7 @@ export default (DjCover = props => {
       </View>
     </View>
   )
-})
+}
 
 const styles = StyleSheet.create({
   cover: {
