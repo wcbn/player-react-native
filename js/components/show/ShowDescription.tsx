@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native'
 import ThemedText from '../ThemedText'
 import { spacing } from '../../styles/main'
 
-export default (ShowDescription = props => {
+const ShowDescription = (props: { text: string }) => {
   const styles = StyleSheet.create({
     text: {
       padding: spacing.md,
@@ -18,4 +18,6 @@ export default (ShowDescription = props => {
       </ThemedText>
     )
   )
-})
+}
+
+export default ShowDescription
