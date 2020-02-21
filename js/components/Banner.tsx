@@ -1,16 +1,30 @@
 import React from 'react'
-import { TouchableOpacity, StyleSheet } from 'react-native'
+import {
+  TouchableOpacity,
+  StyleSheet,
+  GestureResponderEvent
+} from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { useTheme } from '../styles/theming'
-import ThemedText from './ThemedText';
+import ThemedText from './ThemedText'
 
-export default (Banner = props => {
+interface BannerProps {
+  onPress: (event: GestureResponderEvent) => void
+  text: string
+  host: string
+}
+
+const Banner = (props: BannerProps) => {
   const theme = useTheme()
 
   return (
     <TouchableOpacity style={styles.view} onPress={props.onPress}>
       <ThemedText style={styles.text}>{`${props.text} `}</ThemedText>
-      <ThemedText style={[styles.host, styles.text]} color={'secondary'} numberOfLines={1}>
+      <ThemedText
+        style={[styles.host, styles.text]}
+        color={'secondary'}
+        numberOfLines={1}
+      >
         {props.host}
       </ThemedText>
       <Icon
@@ -21,7 +35,7 @@ export default (Banner = props => {
       />
     </TouchableOpacity>
   )
-})
+}
 
 const styles = StyleSheet.create({
   view: {
@@ -40,5 +54,7 @@ const styles = StyleSheet.create({
     marginLeft: 5
   }
 })
+
+export default Banner
 
 //NOTE could sandwich between two <Separator /> components but looked congested to me
