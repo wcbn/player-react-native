@@ -5,8 +5,16 @@ import ListItemWrapper from '../ListItemWrapper'
 import Separator from '../Separator'
 import ListHeader from '../ListHeader'
 import { useTheme } from '../../styles/theming';
+import { NavigationStackProp } from 'react-navigation-stack'
 
-export default (EpisodeList = props => {
+interface EpisodeListProps {
+  navigation: NavigationStackProp,
+  episodes: Object[]
+
+
+}
+
+const EpisodeList = (props: EpisodeListProps) => {
   const theme = useTheme()
 
   const styles = StyleSheet.create({
@@ -15,7 +23,7 @@ export default (EpisodeList = props => {
     }
   })
 
-  renderEpisode = ({ item, index }) => {
+  const renderEpisode = ({ item }) => {
     return (
       <TouchableOpacity
         disabled={item.songs.length === 0}
@@ -44,7 +52,7 @@ export default (EpisodeList = props => {
   return (
     <FlatList
       data={props.episodes}
-      renderItem={this.renderEpisode}
+      renderItem={renderEpisode}
       keyExtractor={item => item.beginning}
       ListHeaderComponent={<ListHeader text="Recent Episodes" />}
       ItemSeparatorComponent={() => (
@@ -54,4 +62,6 @@ export default (EpisodeList = props => {
       overScrollMode={'never'}
     />
   )
-})
+}
+
+export default EpisodeList
