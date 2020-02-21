@@ -12,9 +12,7 @@ class PlaylistPoll extends React.Component<{ fetchPlaylist: Function }> {
     const pollPlaylist = async () => {
       try {
         this.props.fetchPlaylist()
-      } catch (error) {
-        console.log('ERROR', error)
-      } //pass on errors
+      } catch (error) {} //pass on errors
     }
 
     pollPlaylist()
