@@ -3,15 +3,22 @@ import { View, StyleSheet } from 'react-native'
 import ThemedText from './ThemedText'
 import { useTheme } from '../styles/theming'
 
-export default (ListHeader = props => {
+const ListHeader = (props: { text: string }) => {
   const theme = useTheme()
 
   return (
-    <View style={[{ backgroundColor: theme.listHeaderBackground}, styles.container]}>
-      <ThemedText style={styles.text} color={'listHeaderText'}>{props.text}</ThemedText>
+    <View
+      style={[
+        { backgroundColor: theme.listHeaderBackground },
+        styles.container
+      ]}
+    >
+      <ThemedText style={styles.text} color={'listHeaderText'}>
+        {props.text}
+      </ThemedText>
     </View>
   )
-})
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -23,3 +30,5 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   }
 })
+
+export default ListHeader
