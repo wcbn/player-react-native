@@ -8,6 +8,8 @@
   },
   "dependencies": {
     "@callstack/react-theme-provider": "^3.0.5",
+    "@types/react": "^16.9.22",
+    "@types/react-native": "^0.61.16",
     "dayjs": "^1.8.20",
     "expo": "~36.0.0",
     "expo-av": "~8.0.0",
@@ -22,7 +24,8 @@
     "react-native-segmented-control-tab": "^3.4.1",
     "react-navigation": "^4.0.10",
     "react-navigation-stack": "^1.10.3",
-    "react-navigation-tabs": "^2.6.2"
+    "react-navigation-tabs": "^2.6.2",
+    "typescript": "^3.8.2"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
