@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "@callstack/react-theme-provider": "^3.0.5",
-    "dayjs": "^1.8.17",
+    "dayjs": "^1.8.20",
     "expo": "~36.0.0",
     "expo-av": "~8.0.0",
     "expo-store-review": "~2.0.0",
@@ -25,8 +25,8 @@
     "react-navigation-tabs": "^2.6.2"
   },
   "devDependencies": {
-    "babel-preset-expo": "~8.0.0",
-    "@babel/core": "^7.0.0"
+    "@babel/core": "^7.0.0",
+    "babel-preset-expo": "~8.0.0"
   },
   "private": true,
   "prettier": {
