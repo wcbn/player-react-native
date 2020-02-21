@@ -1,4 +1,4 @@
-import React, { ReactChildren } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { fetchPlaylist } from '../redux/actionCreators'
 import { POLL_INTERVAL } from '../config'
