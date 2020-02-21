@@ -3,14 +3,9 @@ import { StyleSheet, View, AsyncStorage } from 'react-native'
 import SegmentedControlTab from 'react-native-segmented-control-tab'
 import ThemedText from '../ThemedText'
 import { withTheme } from '../../styles/theming'
+import { STREAMS } from '../../config'
 
-const STREAMS = [
-  'http://floyd.wcbn.org:8000/wcbn-mid.mp3',
-  'http://floyd.wcbn.org:8000/wcbn-hi.mp3',
-  'http://floyd.wcbn.org:8000/wcbn-hd.mp3'
-]
-
-class StreamSelection extends React.PureComponent {
+class StreamSelection extends React.PureComponent<{theme: any}> {
   state = {
     selectedStreamIndex: 2 // fetch ASAP in componentDidMount, default to high qual
   }

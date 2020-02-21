@@ -1,20 +1,33 @@
 import React from 'react'
-import { StyleSheet, View, TouchableOpacity } from 'react-native'
+import { StyleSheet, View, TouchableOpacity, GestureResponderEvent } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { useTheme } from '../../styles/theming'
 import ThemedText from '../ThemedText'
 
-export default (Link = props => {
+interface LinkProps {
+  onPress: (event: GestureResponderEvent) => void,
+  icon: string,
+  text: string
+}
+
+ const Link = (props: LinkProps) => {
   const theme = useTheme()
   return (
     <TouchableOpacity style={styles.container} onPress={props.onPress}>
-      <Icon name={props.icon} size={30} color={theme.secondary} style={styles.icon} />
+      <Icon
+        name={props.icon}
+        size={30}
+        color={theme.secondary}
+        style={styles.icon}
+      />
       <View style={styles.textContainer}>
         <ThemedText>{props.text}</ThemedText>
       </View>
     </TouchableOpacity>
   )
-})
+}
+
+export default Link
 
 const styles = StyleSheet.create({
   container: {

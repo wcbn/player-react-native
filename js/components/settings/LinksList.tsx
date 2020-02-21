@@ -1,24 +1,34 @@
 import React from 'react'
-import { StyleSheet, View, Linking, Share } from 'react-native'
+import {
+  StyleSheet,
+  View,
+  Linking,
+  Share,
+  GestureResponderEvent
+} from 'react-native'
 import * as StoreReview from 'expo-store-review'
 import Separator from '../Separator'
 import Link from './Link'
 import { useTheme } from '../../styles/theming'
 import { spacing } from '../../styles/main'
+import {
+  GOOGLE_HANGOUTS_URL,
+  DONATION_URL,
+  STUDIO_PHONE_FORMATTED,
+  STUDIO_PHONE_RAW
+} from '../../config'
 
-const GOOGLE_HANGOUTS_URL =
-  'https://hangouts.google.com/chat/person/118357885959401668528'
+interface LinksListProps {
+  handleThemeChange: (event: GestureResponderEvent) => void
+}
 
-const DONATION_URL =
-  'https://leadersandbest.umich.edu/find/#!/give/basket/fund/361991'
-
-export default LinksList = props => {
+const LinksList = (props: LinksListProps) => {
   const theme = useTheme()
   return (
     <View style={styles.linksView}>
       <Link
-        onPress={() => Linking.openURL('tel:17347633500')}
-        text={`Studio request line${'\n'}(734) 763-3500`}
+        onPress={() => Linking.openURL(`tel:${STUDIO_PHONE_RAW}`)}
+        text={`Studio request line${'\n'}${STUDIO_PHONE_FORMATTED}`}
         icon={'md-call'}
       />
       <Separator color={theme.secondary} />
@@ -58,6 +68,8 @@ export default LinksList = props => {
     </View>
   )
 }
+
+export default LinksList
 
 const styles = StyleSheet.create({
   linksView: {

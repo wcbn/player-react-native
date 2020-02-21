@@ -3,15 +3,16 @@ import { TouchableOpacity, StyleSheet, Linking } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
 import ThemedText from '../ThemedText'
 import { useTheme } from '../../styles/theming'
+import { GITHUB_URL } from '../../config'
 
-export default (Colophon = props => {
+const Colophon = () => {
   const theme = useTheme()
 
   return (
     <TouchableOpacity
       style={styles.container}
       onPress={() =>
-        Linking.openURL('https://github.com/wcbn/player-react-native')
+        Linking.openURL(GITHUB_URL)
       }
     >
       <ThemedText style={styles.text}>
@@ -21,7 +22,9 @@ export default (Colophon = props => {
       </ThemedText>
     </TouchableOpacity>
   )
-})
+}
+
+export default Colophon
 
 const styles = StyleSheet.create({
   container: {
