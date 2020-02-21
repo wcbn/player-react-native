@@ -1,16 +1,16 @@
 import React from 'react'
-import {
-  TouchableOpacity,
-  StyleSheet,
-  Linking,
-  View,
-  ScrollView
-} from 'react-native'
+import { TouchableOpacity, StyleSheet, View, ScrollView } from 'react-native'
 import ThemedText from '../ThemedText'
 import { useTheme } from '../../styles/theming'
 import { dimensions } from '../../styles/main'
+import { NavigationStackProp } from 'react-navigation-stack'
 
-export default (DjScroll = props => {
+interface DjScrollProps {
+  navigation: NavigationStackProp
+  djs: { url: string; name: string }[]
+}
+
+const DjScroll = (props: DjScrollProps) => {
   const theme = useTheme()
 
   const styles = StyleSheet.create({
@@ -50,4 +50,6 @@ export default (DjScroll = props => {
       </ScrollView>
     </View>
   )
-})
+}
+
+export default DjScroll
