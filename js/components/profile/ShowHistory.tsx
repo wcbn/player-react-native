@@ -6,10 +6,10 @@ import ListHeader from '../ListHeader'
 import ListItemWrapper from '../ListItemWrapper'
 import ThemedText from '../ThemedText'
 
-export default (ShowHistory = props => {
+export default function ShowHistory(props: { shows: Object[] }) {
   const theme = useTheme()
 
-  renderShowListing = ({ item }) => {
+  const renderShowListing = ({ item }) => {
     return (
       <ListItemWrapper>
         <ThemedText>{item.name}</ThemedText>
@@ -21,11 +21,11 @@ export default (ShowHistory = props => {
     props.shows.length > 0 && (
       <FlatList
         data={props.shows}
-        renderItem={this.renderShowListing}
+        renderItem={renderShowListing}
         keyExtractor={(item, index) => index.toString()}
         ListHeaderComponent={<ListHeader text="Show History" />}
         ItemSeparatorComponent={() => <Separator color={theme.muted} />}
       />
     )
   )
-})
+}
