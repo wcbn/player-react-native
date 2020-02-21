@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { StatusBar, AsyncStorage, StatusBarStyle } from 'react-native'
 import { ThemeProvider, themes } from './styles/theming'
-import AppContainer from './components/navigation'
+import { AppContainer } from './components/navigation'
 import { Provider } from 'react-redux'
 import { ConfigureStore } from './redux/configureStore'
+import PlaylistPoll from './components/PlaylistPoll'
 
 const store = ConfigureStore()
 
@@ -35,7 +36,9 @@ export default function App() {
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <StatusBar barStyle={barStyle} />
-        <AppContainer screenProps={{ handleThemeChange, theme }} />
+        <PlaylistPoll>
+          <AppContainer screenProps={{ handleThemeChange, theme }} />
+        </PlaylistPoll>
       </ThemeProvider>
     </Provider>
   )
