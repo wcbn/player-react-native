@@ -1,8 +1,8 @@
 import React from 'react'
-import { BottomTabBar } from 'react-navigation-tabs'
+import { BottomTabBar, BottomTabBarProps } from 'react-navigation-tabs'
 import { useTheme } from '../../styles/theming'
 
-export default (TabBarComponent = props => {
+export default function TabBarComponent(props: BottomTabBarProps) {
   const theme = useTheme()
 
   return (
@@ -15,4 +15,4 @@ export default (TabBarComponent = props => {
       style={{ backgroundColor: theme.primary }}
     />
   )
-})
+}
