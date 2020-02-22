@@ -5,7 +5,7 @@ import { useTheme } from '../../styles/theming'
 export default function LazyPlaceholder() {
   const theme = useTheme()
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: theme.primary }}>
       <ActivityIndicator size="large" color={theme.textColor} />
     </View>
   )
