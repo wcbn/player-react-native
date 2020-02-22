@@ -1,9 +1,13 @@
 import React from 'react'
 import { useTheme } from '../../styles/theming'
-import { MaterialTopTabBar } from 'react-navigation-tabs'
-import { MaterialTabBarProps } from 'react-navigation-tabs/lib/typescript/src/types'
+import {
+  MaterialTopTabBar,
+  MaterialTopTabBarProps
+} from '@react-navigation/material-top-tabs'
 
-export default function MaterialTopTabBarWrapper(props: MaterialTabBarProps) {
+export default function MaterialTopTabBarWrapper(
+  props: MaterialTopTabBarProps
+) {
   const theme = useTheme()
   return (
     <MaterialTopTabBar
