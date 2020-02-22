@@ -5,35 +5,31 @@ import { humanizeTime } from '../util/datetime'
 export const fetchPlaylist = () => dispatch => {
   dispatch(playlistLoading())
 
-  return (
-    fetch(BASE_URL + 'playlist.json')
-      .then(
-        response => {
-          if (response.ok) {
-            return response
-          } else {
-            const error = new Error(
-              `Error ${response.status}: ${response.statusText}`
-            )
-            throw error
-          }
-        },
-        error => {
-          const errMess = new Error(error.message)
-          throw errMess
+  return fetch(BASE_URL + 'playlist.json')
+    .then(
+      response => {
+        if (response.ok) {
+          return response
+        } else {
+          const error = new Error(
+            `Error ${response.status}: ${response.statusText}`
+          )
+          throw error
         }
-      )
-      .then(response => response.json())
-      .then(data => {
-        data.on_air.songs.forEach(song => {
-          song.at = humanizeTime(song.at)
-        })
-        dispatch(updatePlaylist(data.on_air))
+      },
+      error => {
+        const errMess = new Error(error.message)
+        throw errMess
+      }
+    )
+    .then(response => response.json())
+    .then(data => {
+      data.on_air.songs.forEach(song => {
+        song.at = humanizeTime(song.at)
       })
-
-      // .then(playlist => dispatch(updatePlaylist(playlist)))
-      .catch(error => dispatch(playlistFailed(error.message)))
-  )
+      dispatch(updatePlaylist(data.on_air))
+    })
+    .catch(error => dispatch(playlistFailed(error.message)))
 }
 
 export const playlistLoading = () => ({
