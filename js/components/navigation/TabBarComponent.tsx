@@ -1,5 +1,5 @@
 import React from 'react'
-import { BottomTabBar, BottomTabBarProps } from 'react-navigation-tabs'
+import { BottomTabBar, BottomTabBarProps } from '@react-navigation/bottom-tabs'
 import { useTheme } from '../../styles/theming'
 
 export default function TabBarComponent(props: BottomTabBarProps) {
