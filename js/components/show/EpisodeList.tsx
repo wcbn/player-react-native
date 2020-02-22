@@ -4,18 +4,13 @@ import ThemedText from '../ThemedText'
 import ListItemWrapper from '../ListItemWrapper'
 import Separator from '../Separator'
 import ListHeader from '../ListHeader'
-import { useTheme } from '../../styles/theming';
-import { NavigationStackProp } from 'react-navigation-stack'
+import { useTheme } from '../../styles/theming'
+import { useNavigation, useRoute } from '@react-navigation/native'
 
-interface EpisodeListProps {
-  navigation: NavigationStackProp,
-  episodes: Object[]
-
-
-}
-
-const EpisodeList = (props: EpisodeListProps) => {
+const EpisodeList = props => {
   const theme = useTheme()
+  const navigation = useNavigation()
+  const route = useRoute()
 
   const styles = StyleSheet.create({
     episodeListingHeight: {
@@ -28,9 +23,9 @@ const EpisodeList = (props: EpisodeListProps) => {
       <TouchableOpacity
         disabled={item.songs.length === 0}
         onPress={() =>
-          props.navigation.navigate('Episode', {
+          navigation.navigate('Episode', {
             songs: item.songs,
-            title: props.navigation.getParam('title'),
+            title: route.params['title'],
             dj: item.dj,
             dj_url: item.dj_url,
             date: item.beginning
@@ -55,9 +50,7 @@ const EpisodeList = (props: EpisodeListProps) => {
       renderItem={renderEpisode}
       keyExtractor={item => item.beginning}
       ListHeaderComponent={<ListHeader text="Recent Episodes" />}
-      ItemSeparatorComponent={() => (
-        <Separator color={theme.muted} />
-      )}
+      ItemSeparatorComponent={() => <Separator color={theme.muted} />}
       stickyHeaderIndices={[0]}
       overScrollMode={'never'}
     />
