@@ -5,6 +5,7 @@ import { spacing } from '../../styles/main'
 
 interface DjCoverProps {
   image_url: string
+  dj_name: string
   real_name?: string
   website?: string
   public_email?: string
