@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { FlatList } from 'react-native'
 import Song from '../components/Song'
 import Separator from '../components/Separator'
@@ -12,6 +12,13 @@ import { useTheme } from '../styles/theming'
 
 export default function Episode({ navigation, route }) {
   const theme = useTheme()
+
+  useEffect(() => {
+    navigation.setOptions({
+      title: route.params.title
+    })
+  }, [])
+
   return (
     <Screen>
       <Banner
