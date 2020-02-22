@@ -37,7 +37,7 @@ export default function App() {
       <ThemeProvider theme={theme}>
         <StatusBar barStyle={barStyle} />
         <PlaylistPoll>
-          <AppContainer screenProps={{ handleThemeChange, theme }} />
+          <AppContainer />
         </PlaylistPoll>
       </ThemeProvider>
     </Provider>
