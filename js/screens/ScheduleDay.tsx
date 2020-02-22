@@ -1,16 +1,12 @@
 import React from 'react'
-import {
-  TouchableOpacity,
-  StyleSheet,
-  Text,
-  View,
-  FlatList
-} from 'react-native'
+import { TouchableOpacity, StyleSheet, View, FlatList } from 'react-native'
 import Screen from '../components/Screen'
 import Separator from '../components/Separator'
 import ThemedText from '../components/ThemedText'
 import ListItemTime from '../components/ListItemTime'
 import { ListItemWrapperStyles } from '../components/ListItemWrapper'
+import { useTheme } from '../styles/theming'
+import { useNavigation } from '@react-navigation/native'
 
 const styles = StyleSheet.create({
   showText: {
@@ -21,8 +17,9 @@ const styles = StyleSheet.create({
   }
 })
 
-export default function ScheduleDay(props) {
-  const { screenProps, navigation } = props
+export default function ScheduleDay({ data }) {
+  const theme = useTheme()
+  const navigation = useNavigation()
 
   const renderItem = ({ item, index }) => (
     <TouchableOpacity
@@ -51,10 +48,8 @@ export default function ScheduleDay(props) {
         renderItem={renderItem}
         keyExtractor={(item, index) => index.toString()}
         overScrollMode={'never'}
-        ItemSeparatorComponent={() => (
-          <Separator color={screenProps.theme.muted} />
-        )}
-        data={screenProps.scheduleData[navigation.state.key]}
+        ItemSeparatorComponent={() => <Separator color={theme.muted} />}
+        data={data}
       />
     </Screen>
   )
