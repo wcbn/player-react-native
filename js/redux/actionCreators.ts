@@ -5,7 +5,7 @@ import { humanizeTime } from '../util/datetime'
 export const fetchPlaylist = () => dispatch => {
   dispatch(playlistLoading())
 
-  return fetch(BASE_URL + 'playlist.json')
+  return fetch(BASE_URL + '/playlist.json')
     .then(
       response => {
         if (response.ok) {

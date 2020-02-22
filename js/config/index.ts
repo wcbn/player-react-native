@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://app.wcbn.org/'
+export const BASE_URL = 'https://app.wcbn.org'
 
 export const DONATION_URL =
   'https://leadersandbest.umich.edu/find/#!/give/basket/fund/361991'
