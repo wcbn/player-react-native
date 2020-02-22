@@ -1,10 +1,12 @@
-export const getDefaultNavigationOptions = theme => {
+export const useScreenOptions = theme => {
   return {
     headerStyle: {
-      elevation: 0,
       backgroundColor: theme.primary,
-      borderBottomColor: 'transparent'
+      borderBottomWidth: 0,
+      elevation: 0,
+      shadowOpacity: 0
     },
+    headerHideShadow: true,
     headerTintColor: theme.textColor
   }
 }
