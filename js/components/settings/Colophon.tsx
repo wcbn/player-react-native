@@ -1,12 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { TouchableOpacity, StyleSheet, Linking } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
 import ThemedText from '../ThemedText'
-import { useTheme } from '../../styles/theming'
+import { ThemeContext } from '../../styles/theming'
 import { GITHUB_URL } from '../../config'
 
 const Colophon = () => {
-  const theme = useTheme()
+  const { theme } = useContext(ThemeContext);
 
   return (
     <TouchableOpacity

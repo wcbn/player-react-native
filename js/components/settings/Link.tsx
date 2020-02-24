@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { StyleSheet, View, TouchableOpacity, GestureResponderEvent } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
-import { useTheme } from '../../styles/theming'
+import { ThemeContext } from '../../styles/theming'
 import ThemedText from '../ThemedText'
 
 interface LinkProps {
@@ -11,7 +11,7 @@ interface LinkProps {
 }
 
  const Link = (props: LinkProps) => {
-  const theme = useTheme()
+  const { theme } = useContext(ThemeContext);
   return (
     <TouchableOpacity style={styles.container} onPress={props.onPress}>
       <Icon

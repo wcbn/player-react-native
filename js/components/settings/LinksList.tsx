@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import {
   StyleSheet,
   View,
@@ -9,7 +9,7 @@ import {
 import * as StoreReview from 'expo-store-review'
 import Separator from '../Separator'
 import Link from './Link'
-import { useTheme } from '../../styles/theming'
+import { ThemeContext } from '../../styles/theming'
 import { spacing } from '../../styles/main'
 import {
   GOOGLE_HANGOUTS_URL,
@@ -23,7 +23,7 @@ interface LinksListProps {
 }
 
 const LinksList = (props: LinksListProps) => {
-  const theme = useTheme()
+  const { theme } = useContext(ThemeContext);
   return (
     <View style={styles.linksView}>
       <Link

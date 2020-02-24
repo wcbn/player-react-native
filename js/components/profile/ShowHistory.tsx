@@ -1,13 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { FlatList } from 'react-native'
-import { useTheme } from '../../styles/theming'
+import { ThemeContext } from '../../styles/theming'
 import Separator from '../Separator'
 import ListHeader from '../ListHeader'
 import ListItemWrapper from '../ListItemWrapper'
 import ThemedText from '../ThemedText'
 
 export default function ShowHistory(props: { shows: Object[] }) {
-  const theme = useTheme()
+  const { theme } = useContext(ThemeContext);
 
   const renderShowListing = ({ item }) => {
     return (

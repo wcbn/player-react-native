@@ -1,17 +1,17 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { TouchableOpacity, StyleSheet, View, ScrollView } from 'react-native'
 import ThemedText from '../ThemedText'
-import { useTheme } from '../../styles/theming'
+import { ThemeContext } from '../../styles/theming'
 import { dimensions } from '../../styles/main'
-import { NavigationStackProp } from 'react-navigation-stack'
+// import { NavigationStackProp } from 'react-navigation-stack'
 
 interface DjScrollProps {
-  navigation: NavigationStackProp
+  navigation
   djs: { url: string; name: string }[]
 }
 
 const DjScroll = (props: DjScrollProps) => {
-  const theme = useTheme()
+  const { theme } = useContext(ThemeContext)
 
   const styles = StyleSheet.create({
     button: {

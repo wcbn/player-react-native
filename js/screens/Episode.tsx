@@ -1,17 +1,17 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useContext } from 'react'
 import { FlatList } from 'react-native'
 import Song from '../components/Song'
 import Separator from '../components/Separator'
 import ListHeader from '../components/ListHeader'
 import Banner from '../components/Banner'
 import Screen from '../components/Screen'
-import { useTheme } from '../styles/theming'
+import { ThemeContext } from '../styles/theming'
 
 // since the only way to get to this screen is from a Show,
 // all of the data is passed in as navigation props, saving us an expensive fetch()
 
 export default function Episode({ navigation, route }) {
-  const theme = useTheme()
+  const { theme } = useContext(ThemeContext);
 
   useEffect(() => {
     navigation.setOptions({

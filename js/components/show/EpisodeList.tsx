@@ -1,14 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { StyleSheet, TouchableOpacity, FlatList } from 'react-native'
 import ThemedText from '../ThemedText'
 import ListItemWrapper from '../ListItemWrapper'
 import Separator from '../Separator'
 import ListHeader from '../ListHeader'
-import { useTheme } from '../../styles/theming'
+import { ThemeContext } from '../../styles/theming'
 import { useNavigation, useRoute } from '@react-navigation/native'
 
 const EpisodeList = props => {
-  const theme = useTheme()
+  const { theme } = useContext(ThemeContext);
   const navigation = useNavigation()
   const route = useRoute()
 

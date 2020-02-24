@@ -1,5 +1,5 @@
-import React from 'react'
-import { useTheme } from '../../styles/theming'
+import React, {useContext} from 'react'
+import { ThemeContext } from '../../styles/theming'
 import {
   MaterialTopTabBar,
   MaterialTopTabBarProps
@@ -8,7 +8,7 @@ import {
 export default function MaterialTopTabBarWrapper(
   props: MaterialTopTabBarProps
 ) {
-  const theme = useTheme()
+  const { theme } = useContext(ThemeContext);
   return (
     <MaterialTopTabBar
       {...props}

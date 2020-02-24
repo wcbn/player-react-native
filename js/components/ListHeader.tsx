@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { View, StyleSheet } from 'react-native'
 import ThemedText from './ThemedText'
-import { useTheme } from '../styles/theming'
+import { ThemeContext } from '../styles/theming'
 
 const ListHeader = (props: { text: string }) => {
-  const theme = useTheme()
+  const { theme } = useContext(ThemeContext);
 
   return (
     <View

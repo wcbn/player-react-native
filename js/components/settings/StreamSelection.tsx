@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { StyleSheet, View, AsyncStorage } from 'react-native'
 import SegmentedControlTab from 'react-native-segmented-control-tab'
 import ThemedText from '../ThemedText'
-import { useTheme } from '../../styles/theming'
+import { ThemeContext } from '../../styles/theming'
 import { STREAMS } from '../../config'
 
 const StreamSelection = () => {
-  const theme = useTheme()
+  const { theme } = useContext(ThemeContext);
   const [selectedStreamIndex, setSelectedStreamIndex] = useState(2) // fetch ASAP, default to high qual
   const setStreamSetting = (index: 0 | 1 | 2) => {
     setSelectedStreamIndex(index)

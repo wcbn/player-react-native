@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useContext } from 'react'
 import { View, FlatList, StyleSheet } from 'react-native'
 import { useSelector } from 'react-redux'
 import Song from '../components/Song'
@@ -7,11 +7,11 @@ import ListHeader from '../components/ListHeader'
 import Banner from '../components/Banner'
 import Screen from '../components/Screen'
 import ThemedText from '../components/ThemedText'
-import { useTheme } from '../styles/theming'
+import { ThemeContext } from '../styles/theming'
 // import { PlaylistScreenNavigationProp } from '../components/navigation/types'
 
 export default function Playlist({ navigation }) {
-  const theme = useTheme()
+  const { theme } = useContext(ThemeContext);
   const on_air = useSelector(state => state.playlist.on_air)
 
   useEffect(() => {

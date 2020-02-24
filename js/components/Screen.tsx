@@ -1,6 +1,6 @@
-import React, { ReactNode } from 'react'
+import React, { useContext, ReactNode } from 'react'
 import { View, StyleProp, ViewStyle } from 'react-native'
-import { useTheme } from '../styles/theming'
+import { ThemeContext } from '../styles/theming';
 
 
 interface ScreenProps {
@@ -9,7 +9,7 @@ interface ScreenProps {
 }
 
  const Screen = (props: ScreenProps) => {
-  const theme = useTheme()
+  const { theme } = useContext(ThemeContext);
   return (
     <View style={[props.style, { flex: 1, backgroundColor: theme.primary }]}>
       {props.children}

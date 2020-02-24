@@ -1,12 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import {
   TouchableOpacity,
   StyleSheet,
   GestureResponderEvent
 } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
-import { useTheme } from '../styles/theming'
 import ThemedText from './ThemedText'
+import { ThemeContext } from '../styles/theming'
 
 interface BannerProps {
   onPress: (event: GestureResponderEvent) => void
@@ -15,7 +15,7 @@ interface BannerProps {
 }
 
 const Banner = (props: BannerProps) => {
-  const theme = useTheme()
+  const { theme } = useContext(ThemeContext);
 
   return (
     <TouchableOpacity style={styles.view} onPress={props.onPress}>

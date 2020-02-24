@@ -1,29 +1,25 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { StyleSheet, ScrollView, GestureResponderEvent } from 'react-native'
 import Screen from '../components/Screen'
 import { StreamSelection, LinksList, Colophon } from '../components/settings'
 import { spacing } from '../styles/main'
+import { ThemeContext } from '../styles/theming'
 
-interface SettingsProps {
-  screenProps: {
-    handleThemeChange: (event: GestureResponderEvent) => void
-  }
+export default function Settings() {
+  const { toggleTheme } = useContext(ThemeContext)
+  return (
+    <Screen>
+      <ScrollView
+        contentContainerStyle={styles.container}
+        overScrollMode={'never'}
+      >
+        <StreamSelection />
+        <LinksList handleThemeChange={toggleTheme} />
+        <Colophon />
+      </ScrollView>
+    </Screen>
+  )
 }
-
-const Settings = (props: SettingsProps) => (
-  <Screen>
-    <ScrollView
-      contentContainerStyle={styles.container}
-      overScrollMode={'never'}
-    >
-      <StreamSelection />
-      <LinksList handleThemeChange={props.screenProps.handleThemeChange} />
-      <Colophon />
-    </ScrollView>
-  </Screen>
-)
-
-export default Settings
 
 const styles = StyleSheet.create({
   container: {

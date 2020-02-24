@@ -1,6 +1,6 @@
-import React, { ReactNode } from 'react'
+import React, { useContext, ReactNode } from 'react'
 import { Text, StyleSheet, StyleProp, TextStyle, TextProps } from 'react-native'
-import { useTheme } from '../styles/theming'
+import { ThemeContext } from '../styles/theming';
 
 interface ThemedTextProps extends TextProps {
   children: ReactNode,
@@ -8,7 +8,7 @@ interface ThemedTextProps extends TextProps {
 }
 
 const ThemedText = (props: ThemedTextProps) => {
-  const theme = useTheme()
+  const { theme } = useContext(ThemeContext);
 
   const styles = StyleSheet.create({
     text: { color: theme[props.color] || theme.textColor }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
@@ -14,11 +14,11 @@ import {
   Show
 } from '../../screens'
 import { useScreenOptions } from '../../util/navigation'
-import { useTheme } from '../../styles/theming'
+import { ThemeContext } from '../../styles/theming'
 import { ScheduleStackParamList, PlaylistStackParamList } from './types'
 
 export default function AppContainer() {
-  const theme = useTheme()
+  const { theme } = useContext(ThemeContext);
   const screenOptions = useScreenOptions(theme)
 
   const ScheduleStack = createStackNavigator<ScheduleStackParamList>()
