@@ -1,4 +1,4 @@
-import { createTheming } from '@callstack/react-theme-provider'
+import React from 'react'
 
 export const themes = {
          light: {
@@ -41,4 +41,4 @@ export const themes = {
          }
        }
 
-export const { ThemeProvider, withTheme, useTheme } = createTheming(themes.dark)
+export const ThemeContext = React.createContext({theme: themes.light, toggleTheme: () => {},})
