@@ -25,7 +25,11 @@ export default function AppContainer() {
   function ScheduleStackScreen() {
     return (
       <ScheduleStack.Navigator screenOptions={screenOptions}>
-        <ScheduleStack.Screen name="Schedule" component={Schedule} options={{title: "WCBN-FM Schedule"}} />
+        <ScheduleStack.Screen
+          name="Schedule"
+          component={Schedule}
+          options={{ title: 'WCBN-FM Schedule' }}
+        />
         <ScheduleStack.Screen name="Show" component={Show} />
         <ScheduleStack.Screen name="Profile" component={Profile} />
         <ScheduleStack.Screen name="Episode" component={Episode} />
@@ -73,14 +77,13 @@ export default function AppContainer() {
   return (
     <NavigationContainer>
       <Tab.Navigator
-        initialRouteName="Settings" //TODO radio
+        initialRouteName="Schedule" //TODO radio
         tabBar={props => <TabBarComponent {...props} />}
       >
         <Tab.Screen
           name="Schedule"
           component={ScheduleStackScreen}
           options={{
-            title: "Schedule",
             tabBarIcon: ({ color }) => getIcon('md-calendar', color)
           }}
         />
