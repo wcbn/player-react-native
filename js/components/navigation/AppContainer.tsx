@@ -77,7 +77,7 @@ export default function AppContainer() {
   return (
     <NavigationContainer>
       <Tab.Navigator
-        initialRouteName="Schedule" //TODO radio
+        initialRouteName="Radio"
         tabBar={props => <TabBarComponent {...props} />}
       >
         <Tab.Screen
