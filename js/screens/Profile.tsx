@@ -6,7 +6,7 @@ import { spacing } from '../styles/main'
 import { ShowHistory, DjCover, DjBio } from '../components/profile'
 import { BASE_URL } from '../config'
 
-export default function Profile({ route }) {
+export default function Profile({ route, navigation }) {
   const [state, setState] = useState({
     dj_name: '',
     about: '',
@@ -18,6 +18,7 @@ export default function Profile({ route }) {
   })
 
   useEffect(() => {
+    navigation.setOptions({ title: route.params.title })
     fetch(BASE_URL + `${route.params.url}.json`)
       .then(response => response.json())
       .then(data => setState(data))
