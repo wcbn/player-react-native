@@ -1,4 +1,5 @@
 import * as ActionTypes from './ActionTypes'
+import { defaultSong } from '../types'
 
 export const playlist = (
   state = {
@@ -12,7 +13,7 @@ export const playlist = (
       ending: '',
       times: '',
       show_notes: null,
-      songs: [{ name: '', artist: '', album: '', label: '', year: '' }],
+      songs: [defaultSong],
       semester_id: -1
     }
   },
