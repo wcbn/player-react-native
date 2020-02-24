@@ -7,7 +7,6 @@
     "eject": "expo eject"
   },
   "dependencies": {
-    "@callstack/react-theme-provider": "^3.0.5",
     "@react-native-community/masked-view": "0.1.5",
     "@react-navigation/bottom-tabs": "^5.0.7",
     "@react-navigation/material-top-tabs": "^5.0.7",
