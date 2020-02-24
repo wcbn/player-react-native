@@ -6,17 +6,12 @@ import Separator from '../Separator'
 import ListHeader from '../ListHeader'
 import { ThemeContext } from '../../styles/theming'
 import { useNavigation, useRoute } from '@react-navigation/native'
+import LazyPlaceholder from '../schedule/LazyPlaceholder'
 
-const EpisodeList = props => {
-  const { theme } = useContext(ThemeContext);
+export default function EpisodeList(props) {
+  const { theme } = useContext(ThemeContext)
   const navigation = useNavigation()
   const route = useRoute()
-
-  const styles = StyleSheet.create({
-    episodeListingHeight: {
-      lineHeight: 22
-    }
-  })
 
   const renderEpisode = ({ item }) => {
     return (
@@ -53,8 +48,17 @@ const EpisodeList = props => {
       ItemSeparatorComponent={() => <Separator color={theme.muted} />}
       stickyHeaderIndices={[0]}
       overScrollMode={'never'}
+      ListEmptyComponent={LazyPlaceholder}
+      contentContainerStyle={styles.contentContainer}
     />
   )
 }
 
-export default EpisodeList
+const styles = StyleSheet.create({
+  episodeListingHeight: {
+    lineHeight: 22
+  },
+  contentContainer: {
+    flexGrow: 1
+  }
+})
