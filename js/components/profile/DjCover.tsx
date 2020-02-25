@@ -2,6 +2,7 @@ import React from 'react'
 import { Image, View, StyleSheet, Linking } from 'react-native'
 import ThemedText from '../ThemedText'
 import { spacing } from '../../styles/main'
+import LazyPlaceholder from '../schedule/LazyPlaceholder'
 
 interface DjCoverProps {
   image_url: string
@@ -14,7 +15,14 @@ interface DjCoverProps {
 export default function DjCover(props: DjCoverProps) {
   return (
     <View style={styles.cover}>
-      <Image style={styles.coverAvatar} source={{ uri: props.image_url }} />
+      {props.image_url.length > 0 ? (
+        <Image style={styles.coverAvatar} source={{ uri: props.image_url }} />
+      ) : (
+        <View style={styles.spinnerContainer}>
+          <LazyPlaceholder />
+        </View>
+      )}
+
       <View style={styles.coverContact}>
         {!!props.real_name && (
           <ThemedText
@@ -76,5 +84,11 @@ const styles = StyleSheet.create({
   },
   coverRealName: {
     fontSize: 20
+  },
+  spinnerContainer: {
+    height: 75,
+    width: 75,
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 })
