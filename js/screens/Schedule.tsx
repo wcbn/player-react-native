@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 import Screen from '../components/Screen'
 import ScheduleDay from './ScheduleDay'
@@ -6,6 +6,7 @@ import { humanizeTime } from '../util/datetime'
 import MaterialTopTabBarWrapper from '../components/navigation/MaterialTopTabBarWrapper'
 import LazyPlaceholder from '../components/schedule/LazyPlaceholder'
 import { BASE_URL } from '../config'
+import { ThemeContext } from '../styles/theming'
 
 const WEEEKDAYS = [
   'Monday',
@@ -25,6 +26,7 @@ const Tab = createMaterialTopTabNavigator()
 
 export default function Schedule() {
   const [state, setState] = useState({ data: {} })
+  const { theme } = useContext(ThemeContext)
 
   useEffect(() => {
     fetch(`${BASE_URL}/semesters`, {
@@ -53,6 +55,7 @@ export default function Schedule() {
   return (
     <Screen>
       <Tab.Navigator
+        sceneContainerStyle={{ backgroundColor: theme.primary }}
         initialRouteName={WEEEKDAYS[TODAY]}
         lazy
         lazyPlaceholder={() => <LazyPlaceholder />}
