@@ -12,6 +12,7 @@ import { ThemeContext } from '../styles/theming'
 
 export default function Playlist({ navigation }) {
   const { theme } = useContext(ThemeContext);
+  // @ts-ignore
   const on_air = useSelector(state => state.playlist.on_air)
 
   useEffect(() => {
