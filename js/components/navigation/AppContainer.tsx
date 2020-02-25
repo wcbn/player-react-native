@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React, { useContext } from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
@@ -17,11 +17,20 @@ import { useScreenOptions } from '../../util/navigation'
 import { ThemeContext } from '../../styles/theming'
 import { ScheduleStackParamList, PlaylistStackParamList } from './types'
 
+const ScheduleStack = createStackNavigator<ScheduleStackParamList>()
+const PlaylistStack = createStackNavigator<PlaylistStackParamList>()
+const RadioStack = createStackNavigator()
+const SettingsStack = createStackNavigator()
+const Tab = createBottomTabNavigator()
+
+const getIcon = (name: string, color: string) => (
+  <Icon name={name} size={25} color={color} />
+)
+
 export default function AppContainer() {
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext)
   const screenOptions = useScreenOptions(theme)
 
-  const ScheduleStack = createStackNavigator<ScheduleStackParamList>()
   function ScheduleStackScreen() {
     return (
       <ScheduleStack.Navigator screenOptions={screenOptions}>
@@ -37,7 +46,6 @@ export default function AppContainer() {
     )
   }
 
-  const PlaylistStack = createStackNavigator<PlaylistStackParamList>()
   function PlaylistStackScreen() {
     return (
       <PlaylistStack.Navigator screenOptions={screenOptions}>
@@ -47,7 +55,6 @@ export default function AppContainer() {
     )
   }
 
-  const RadioStack = createStackNavigator()
   function RadioStackScreen() {
     return (
       <RadioStack.Navigator screenOptions={screenOptions}>
@@ -60,7 +67,6 @@ export default function AppContainer() {
     )
   }
 
-  const SettingsStack = createStackNavigator()
   function SettingsStackScreen() {
     return (
       <SettingsStack.Navigator screenOptions={screenOptions}>
@@ -69,11 +75,6 @@ export default function AppContainer() {
     )
   }
 
-  const getIcon = (name: string, color: string) => (
-    <Icon name={name} size={25} color={color} />
-  )
-
-  const Tab = createBottomTabNavigator()
   return (
     <NavigationContainer>
       <Tab.Navigator
