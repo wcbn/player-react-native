@@ -4,7 +4,7 @@ import Screen from '../components/Screen'
 import ScheduleDay from './ScheduleDay'
 import { humanizeTime } from '../util/datetime'
 import MaterialTopTabBarWrapper from '../components/navigation/MaterialTopTabBarWrapper'
-import LazyPlaceholder from '../components/schedule/LazyPlaceholder'
+import LazyPlaceholder from '../components/LazyPlaceholder'
 import { BASE_URL } from '../config'
 import { ThemeContext } from '../styles/theming'
 

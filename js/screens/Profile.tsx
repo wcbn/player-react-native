@@ -9,7 +9,7 @@ import ThemedText from '../components/ThemedText'
 import ListHeader from '../components/ListHeader'
 import Separator from '../components/Separator'
 import { ThemeContext } from '../styles/theming'
-import LazyPlaceholder from '../components/schedule/LazyPlaceholder'
+import LazyPlaceholder from '../components/LazyPlaceholder'
 
 const renderShowListing = ({ item }) => {
   return (

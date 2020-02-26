@@ -2,7 +2,7 @@ import React from 'react'
 import { Image, View, StyleSheet, Linking } from 'react-native'
 import ThemedText from '../ThemedText'
 import { spacing } from '../../styles/main'
-import LazyPlaceholder from '../schedule/LazyPlaceholder'
+import LazyPlaceholder from '../LazyPlaceholder'
 
 interface DjCoverProps {
   image_url: string

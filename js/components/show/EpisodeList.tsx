@@ -6,7 +6,7 @@ import Separator from '../Separator'
 import ListHeader from '../ListHeader'
 import { ThemeContext } from '../../styles/theming'
 import { useNavigation, useRoute } from '@react-navigation/native'
-import LazyPlaceholder from '../schedule/LazyPlaceholder'
+import LazyPlaceholder from '../LazyPlaceholder'
 
 export default function EpisodeList(props) {
   const { theme } = useContext(ThemeContext)

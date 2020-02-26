@@ -6,7 +6,7 @@ import ThemedText from '../components/ThemedText'
 import ListItemTime from '../components/ListItemTime'
 import { ListItemWrapperStyles } from '../components/ListItemWrapper'
 import { useNavigation } from '@react-navigation/native'
-import LazyPlaceholder from '../components/schedule/LazyPlaceholder'
+import LazyPlaceholder from '../components/LazyPlaceholder'
 import { ThemeContext } from '../styles/theming'
 
 const styles = StyleSheet.create({
