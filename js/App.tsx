@@ -8,10 +8,6 @@ import PlaylistPoll from './components/PlaylistPoll'
 
 const store = ConfigureStore()
 
-// TODO remove this
-// create an UnvirtualizedList component
-// console.disableYellowBox = true
-
 export default function App() {
   const [theme, setTheme] = useState(themes.dark)
 
