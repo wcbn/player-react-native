@@ -34,6 +34,16 @@ function TextScroll({ text }) {
   )
 }
 
+function getArtistAlbumLabelYearStr(now_playing: Song) {
+  return (
+    `${now_playing.artist}${now_playing.artist && now_playing.album && ' — '}${
+      now_playing.album
+    }${now_playing.label &&
+      now_playing.year &&
+      ' (' + now_playing.label + ', ' + now_playing.year + ')'}` || '—'
+  )
+}
+
 const mapStateToProps = state => {
   return {
     playlist: state.playlist
@@ -76,6 +86,7 @@ class Radio extends React.Component<any, RadioState> {
       playThroughEarpieceAndroid: false,
       shouldDuckAndroid: true
     })
+    this.setAlbumArtURI()
   }
 
   componentDidUpdate(prevProps) {
@@ -180,13 +191,7 @@ class Radio extends React.Component<any, RadioState> {
     const now_playing: Song =
       on_air.songs.length > 0 ? on_air.songs[0] : defaultSong
     const albumArtSrcObj = albumArtURI ? { uri: albumArtURI } : defaultPNG
-
-    const artistAlbumLabelYearStr =
-      `${now_playing.artist}${now_playing.artist &&
-        now_playing.album &&
-        ' — '}${now_playing.album}${now_playing.label &&
-        now_playing.year &&
-        ' (' + now_playing.label + ', ' + now_playing.year + ')'}` || '—'
+    const artistAlbumLabelYearStr = getArtistAlbumLabelYearStr(now_playing)
 
     return (
       <Screen>
@@ -196,9 +201,9 @@ class Radio extends React.Component<any, RadioState> {
           source={albumArtSrcObj}
         >
           <FadeIntoHeader />
-
-          <Image source={albumArtSrcObj} style={styles.albumArt} />
-
+          <View style={styles.albumArtContainer}>
+            <Image source={albumArtSrcObj} style={styles.albumArt} />
+          </View>
           <View style={styles.songDetails}>
             <TextScroll text={now_playing.name || '—'} />
             <TextScroll text={artistAlbumLabelYearStr} />
@@ -217,9 +222,15 @@ class Radio extends React.Component<any, RadioState> {
 
 export default connect(mapStateToProps)(Radio)
 
-const albumSize = dimensions.fullWidth / 1.3
+const ALBUM_WIDTH = dimensions.fullWidth / 1.5
+const TEXT_HEIGHT = 25
 
 const styles = StyleSheet.create({
+  albumArtContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
   imgBG: {
     height: '100%',
     alignItems: 'center',
@@ -230,22 +241,21 @@ const styles = StyleSheet.create({
     opacity: 0.4
   },
   albumArt: {
-    marginTop: 70,
-    width: albumSize,
-    height: albumSize,
-    maxWidth: albumSize,
-    maxHeight: albumSize,
+    width: ALBUM_WIDTH,
+    height: ALBUM_WIDTH,
+    maxWidth: ALBUM_WIDTH,
+    maxHeight: ALBUM_WIDTH,
     aspectRatio: 1
   },
   songDetails: {
     alignItems: 'center',
-    marginTop: 10
+    width: '100%'
   },
   songView: {
-    height: 35
+    height: TEXT_HEIGHT + 10
   },
   songScroll: {},
   songText: {
-    fontSize: 26
+    fontSize: TEXT_HEIGHT
   }
 })
