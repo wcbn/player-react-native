@@ -27,6 +27,7 @@ function TextScroll({ text }) {
         horizontal
         style={styles.songScroll}
         showsHorizontalScrollIndicator={false}
+        centerContent
       >
         <ThemedText style={styles.songText}>{text}</ThemedText>
       </ScrollView>
