@@ -6,8 +6,10 @@ import {
   StyleSheet
 } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
-import { dimensions } from '../../styles/main'
+import { spacing } from '../../styles/main'
 import { ThemeContext } from '../../styles/theming'
+
+const ICON_SIZE = 60
 
 export default function RadioControls({ disabled, toggleRadio, showPlayBtn }) {
   const { theme } = useContext(ThemeContext)
@@ -18,13 +20,13 @@ export default function RadioControls({ disabled, toggleRadio, showPlayBtn }) {
     x = (
       <Icon
         name={'md-play'}
-        size={60}
+        size={ICON_SIZE}
         color={theme.textColor}
         style={{ marginLeft: 5 }}
       />
     )
   } else {
-    x = <Icon name={'md-square'} size={60} color={theme.textColor} />
+    x = <Icon name={'md-square'} size={ICON_SIZE} color={theme.textColor} />
   }
 
   return (
@@ -38,8 +40,9 @@ export default function RadioControls({ disabled, toggleRadio, showPlayBtn }) {
 
 const styles = StyleSheet.create({
   container: {
-    flexGrow: 1,
-    width: dimensions.fullWidth,
+    minHeight: ICON_SIZE + 10,
+    margin: spacing.md,
+    width: '100%',
     justifyContent: 'center',
     alignItems: 'center'
   }
