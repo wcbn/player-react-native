@@ -63,6 +63,7 @@ export default function Profile({ route, navigation }) {
         ItemSeparatorComponent={() => <Separator color={theme.muted} />}
         ListEmptyComponent={LazyPlaceholder}
         contentContainerStyle={styles.flatList}
+        overScrollMode={'never'}
       />
     </Screen>
   )
