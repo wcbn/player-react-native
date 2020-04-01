@@ -16,7 +16,7 @@ import { dimensions, spacing } from '../styles/main'
 import ThemedText from '../components/ThemedText'
 import { ScrollView } from 'react-native-gesture-handler'
 import { STREAMS } from '../config'
-import { PlaybackStatus, Playback } from 'expo-av/build/AV'
+import { AVPlaybackStatus, Playback } from 'expo-av/build/AV'
 
 const defaultPNG = require('../../assets/album.png')
 
@@ -150,7 +150,7 @@ class Radio extends React.Component<any, RadioState> {
     this.playbackInstance = sound
   }
 
-  _onPlaybackStatusUpdate = (status: PlaybackStatus) => {
+  _onPlaybackStatusUpdate = (status: AVPlaybackStatus) => {
     if (status.isLoaded) {
       this.setState({
         isPlaying: status.isPlaying,
