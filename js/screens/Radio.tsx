@@ -234,6 +234,7 @@ const styles = StyleSheet.create({
   imgBG: {
     height: '100%',
     alignItems: 'center',
+    justifyContent: 'space-between',
     paddingLeft: spacing.md,
     paddingRight: spacing.md
   },
@@ -249,7 +250,9 @@ const styles = StyleSheet.create({
   },
   songDetails: {
     alignItems: 'center',
-    width: '100%'
+    justifyContent: 'center',
+    width: '100%',
+    minHeight: (TEXT_HEIGHT + 10) * 2 + 15
   },
   songText: {
     fontSize: TEXT_HEIGHT

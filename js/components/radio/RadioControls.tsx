@@ -40,7 +40,7 @@ export default function RadioControls({ disabled, toggleRadio, showPlayBtn }) {
 
 const styles = StyleSheet.create({
   container: {
-    minHeight: ICON_SIZE + 10,
+    minHeight: ICON_SIZE + 15,
     margin: spacing.md,
     width: '100%',
     justifyContent: 'center',
