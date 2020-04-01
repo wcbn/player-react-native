@@ -22,10 +22,9 @@ const defaultPNG = require('../../assets/album.png')
 
 function TextScroll({ text }) {
   return (
-    <View style={styles.songView}>
+    <View style={styles.textScroll}>
       <ScrollView
         horizontal
-        style={styles.songScroll}
         showsHorizontalScrollIndicator={false}
         centerContent
       >
@@ -252,11 +251,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '100%'
   },
-  songView: {
-    height: TEXT_HEIGHT + 10
-  },
-  songScroll: {},
   songText: {
     fontSize: TEXT_HEIGHT
+  },
+  textScroll: {
+    height: TEXT_HEIGHT + 10
   }
 })
