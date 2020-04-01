@@ -11,19 +11,20 @@ import { ThemeContext } from '../styles/theming'
 // import { PlaylistScreenNavigationProp } from '../components/navigation/types'
 
 export default function Playlist({ navigation }) {
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext)
   // @ts-ignore
   const on_air = useSelector(state => state.playlist.on_air)
 
   useEffect(() => {
     navigation.setOptions({
-      title: on_air.name
+      title: on_air.name || 'Playlist'
     })
   }, [on_air])
 
   return (
     <Screen>
       <Banner
+        disabled={!on_air.dj_url}
         text={'On the air:'}
         host={on_air.dj}
         onPress={() =>
