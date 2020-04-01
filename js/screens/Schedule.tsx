@@ -35,7 +35,12 @@ export default function Schedule() {
         'Content-Type': 'application/json'
       })
     })
-      .then(response => response.json())
+      .then(response => {
+        if (response.ok) {
+          return response.json()
+        }
+        throw new Error(`Error ${response.status}: cannot fetch schedule`)
+      })
       .then(response => response['shows'])
       .then(data => {
         let fetched = {}
@@ -49,6 +54,9 @@ export default function Schedule() {
         setState({
           data: fetched
         })
+      })
+      .catch(error => {
+        console.log(error)
       })
   }, [])
 
