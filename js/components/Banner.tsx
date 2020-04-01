@@ -12,13 +12,18 @@ interface BannerProps {
   onPress: (event: GestureResponderEvent) => void
   text: string
   host: string
+  disabled?: boolean
 }
 
 const Banner = (props: BannerProps) => {
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext)
 
   return (
-    <TouchableOpacity style={styles.view} onPress={props.onPress}>
+    <TouchableOpacity
+      disabled={props.disabled}
+      style={styles.view}
+      onPress={props.onPress}
+    >
       <ThemedText style={styles.text}>{`${props.text} `}</ThemedText>
       <ThemedText
         style={[styles.host, styles.text]}
