@@ -27,6 +27,7 @@ function TextScroll({ text }) {
         horizontal
         showsHorizontalScrollIndicator={false}
         centerContent
+        overScrollMode="never"
       >
         <ThemedText style={styles.songText}>{text}</ThemedText>
       </ScrollView>
@@ -201,19 +202,26 @@ class Radio extends React.Component<any, RadioState> {
           source={albumArtSrcObj}
         >
           <FadeIntoHeader />
-          <View style={styles.albumArtContainer}>
-            <Image source={albumArtSrcObj} style={styles.albumArt} />
+          <View style={styles.contentWrapper}>
+            <RadioControls
+              showPlayBtn={!isBuffering && !isPlaying && !isLoading}
+              disabled={isLoading}
+              toggleRadio={this._onPress}
+            />
+            <View style={styles.songDetails}>
+              <TextScroll
+                text={
+                  now_playing.name ||
+                  'aefa wef awe wae a wef awe fw sdfsdfsd' ||
+                  '—'
+                }
+              />
+              <TextScroll text={artistAlbumLabelYearStr} />
+            </View>
+            <View style={styles.albumArtContainer}>
+              <Image source={albumArtSrcObj} style={styles.albumArt} />
+            </View>
           </View>
-          <View style={styles.songDetails}>
-            <TextScroll text={now_playing.name || '—'} />
-            <TextScroll text={artistAlbumLabelYearStr} />
-          </View>
-
-          <RadioControls
-            showPlayBtn={!isBuffering && !isPlaying && !isLoading}
-            disabled={isLoading}
-            toggleRadio={this._onPress}
-          />
         </ImageBackground>
       </Screen>
     )
@@ -222,7 +230,7 @@ class Radio extends React.Component<any, RadioState> {
 
 export default connect(mapStateToProps)(Radio)
 
-const ALBUM_WIDTH = dimensions.fullWidth / 1.5
+const ALBUM_WIDTH = dimensions.fullWidth / 1.6
 const TEXT_HEIGHT = 25
 
 const styles = StyleSheet.create({
@@ -231,10 +239,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
+  contentWrapper: {
+    alignItems: 'center',
+    flexDirection: 'column-reverse'
+  },
   imgBG: {
     height: '100%',
     alignItems: 'center',
-    justifyContent: 'space-between',
     paddingLeft: spacing.md,
     paddingRight: spacing.md
   },
