@@ -15,7 +15,7 @@
     "@types/react": "^16.9.11",
     "@types/react-native": "^0.60.22",
     "@types/react-redux": "^7.1.7",
-    "dayjs": "^1.8.20",
+    "dayjs": "^1.8.23",
     "expo": "^37.0.0",
     "expo-av": "~8.1.0",
     "expo-store-review": "~2.1.0",
