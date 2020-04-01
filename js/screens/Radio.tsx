@@ -29,20 +29,18 @@ function TextScroll({ text }) {
         centerContent
         overScrollMode="never"
       >
-        <ThemedText style={styles.songText}>{text}</ThemedText>
+        <ThemedText style={styles.songText}>{text || '—'}</ThemedText>
       </ScrollView>
     </View>
   )
 }
 
 function getArtistAlbumLabelYearStr(now_playing: Song) {
-  return (
-    `${now_playing.artist}${now_playing.artist && now_playing.album && ' — '}${
-      now_playing.album
-    }${now_playing.label &&
-      now_playing.year &&
-      ' (' + now_playing.label + ', ' + now_playing.year + ')'}` || '—'
-  )
+  return `${now_playing.artist}${now_playing.artist &&
+    now_playing.album &&
+    ' — '}${now_playing.album}${now_playing.label &&
+    now_playing.year &&
+    ' (' + now_playing.label + ', ' + now_playing.year + ')'}`
 }
 
 const mapStateToProps = state => {
@@ -209,13 +207,7 @@ class Radio extends React.Component<any, RadioState> {
               toggleRadio={this._onPress}
             />
             <View style={styles.songDetails}>
-              <TextScroll
-                text={
-                  now_playing.name ||
-                  'aefa wef awe wae a wef awe fw sdfsdfsd' ||
-                  '—'
-                }
-              />
+              <TextScroll text={now_playing.name} />
               <TextScroll text={artistAlbumLabelYearStr} />
             </View>
             <View style={styles.albumArtContainer}>
