@@ -37,7 +37,7 @@
     "typescript": "^3.8.3"
   },
   "devDependencies": {
-    "@babel/core": "^7.0.0",
+    "@babel/core": "^7.9.0",
     "babel-preset-expo": "^8.1.0",
     "eslint-plugin-react-hooks": "^2.4.0"
   },
