@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { StatusBar, AsyncStorage, StatusBarStyle } from 'react-native'
-import { ThemeContext, themes } from './styles/theming'
+import { ThemeContext, themes, Themes } from './styles/theming'
 import { AppContainer } from './components/navigation'
 import { Provider } from 'react-redux'
 import { ConfigureStore } from './redux/configureStore'
@@ -14,7 +14,7 @@ export default function App() {
   // immediately get stored theme config,  default to dark
   useEffect(() => {
     async function doAsync() {
-      const themeName = (await AsyncStorage.getItem('THEME')) || 'dark'
+      const themeName = ((await AsyncStorage.getItem('THEME')) || 'dark') as keyof Themes
       setTheme(themes[themeName])
     }
     doAsync()

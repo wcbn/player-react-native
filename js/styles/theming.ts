@@ -1,14 +1,14 @@
 import React from 'react'
 
 export interface Theme {
-  name: string
-  opposite: string
+  name: keyof Themes
+  opposite: keyof Themes
   primary: string
   secondary: string
   textColor: string
   accent: string
   muted: string
-  blackOrNull: string
+  blackOrNull: string | null
   listHeaderBackground: string
   listHeaderText: string
   primaryOrSecondary: string
@@ -19,7 +19,12 @@ export interface Theme {
   onAirBackgroundColor: string
 }
 
-export const themes: { light: Theme; dark: Theme } = {
+export interface Themes {
+  light: Theme
+  dark: Theme
+}
+
+export const themes: Themes = {
   light: {
     name: 'light',
     opposite: 'dark',
