@@ -5,6 +5,7 @@
     "lib": ["dom", "esnext"],
     "moduleResolution": "node",
     "noEmit": true,
+    "noEmitOnError": true,
     "skipLibCheck": true,
     "resolveJsonModule": true
   }
