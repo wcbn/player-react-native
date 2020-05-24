@@ -8,7 +8,7 @@ import { STREAMS } from '../../config'
 const StreamSelection = () => {
   const { theme } = useContext(ThemeContext)
   const [selectedStreamIndex, setSelectedStreamIndex] = useState(2) // fetch ASAP, default to high qual
-  const setStreamSetting = (index: 0 | 1 | 2) => {
+  const setStreamSetting = (index: number) => {
     setSelectedStreamIndex(index)
     AsyncStorage.setItem('STREAM_URL', STREAMS[index])
   }
@@ -28,7 +28,7 @@ const StreamSelection = () => {
       <SegmentedControlTab
         values={['Low', 'Medium', 'High']}
         selectedIndex={selectedStreamIndex}
-        onTabPress={(i: 0 | 1 | 2) => setStreamSetting(i)}
+        onTabPress={(i) => setStreamSetting(i)}
         activeTabStyle={{
           backgroundColor: theme.activeBackgroundColor,
         }}
