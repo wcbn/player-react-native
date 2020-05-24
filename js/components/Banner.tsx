@@ -4,7 +4,7 @@ import {
   StyleSheet,
   GestureResponderEvent,
 } from 'react-native'
-import Icon from 'react-native-vector-icons/Ionicons'
+import { Ionicons } from '@expo/vector-icons'
 import ThemedText from './ThemedText'
 import { ThemeContext } from '../styles/theming'
 
@@ -32,7 +32,7 @@ const Banner = (props: BannerProps) => {
       >
         {props.host}
       </ThemedText>
-      <Icon
+      <Ionicons
         style={styles.icon}
         name={'md-arrow-forward'}
         size={16}

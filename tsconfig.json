@@ -9,7 +9,6 @@
     "moduleResolution": "node",
     "noEmit": true,
     "skipLibCheck": true,
-    "strict": true,
     "target": "esnext"
   },
   "exclude": [

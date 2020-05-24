@@ -4,21 +4,32 @@ import {
   View,
   TouchableOpacity,
   StyleSheet,
+  GestureResponderEvent,
 } from 'react-native'
-import Icon from 'react-native-vector-icons/Ionicons'
+import { Ionicons } from '@expo/vector-icons'
 import { spacing } from '../../styles/main'
 import { ThemeContext } from '../../styles/theming'
 
 const ICON_SIZE = 60
 
-export default function RadioControls({ disabled, toggleRadio, showPlayBtn }) {
+interface RadioControlsProps {
+  disabled: boolean
+  toggleRadio: (event: GestureResponderEvent) => void
+  showPlayBtn: boolean
+}
+
+export default function RadioControls({
+  disabled,
+  toggleRadio,
+  showPlayBtn,
+}: RadioControlsProps) {
   const { theme } = useContext(ThemeContext)
   let x
   if (disabled) {
     x = <ActivityIndicator size="large" color={theme.textColor} />
   } else if (showPlayBtn) {
     x = (
-      <Icon
+      <Ionicons
         name={'md-play'}
         size={ICON_SIZE}
         color={theme.textColor}
@@ -26,7 +37,7 @@ export default function RadioControls({ disabled, toggleRadio, showPlayBtn }) {
       />
     )
   } else {
-    x = <Icon name={'md-square'} size={ICON_SIZE} color={theme.textColor} />
+    x = <Ionicons name={'md-square'} size={ICON_SIZE} color={theme.textColor} />
   }
 
   return (

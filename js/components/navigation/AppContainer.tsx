@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import TabBarComponent from './TabBarComponent'
-import Icon from 'react-native-vector-icons/Ionicons'
+import { Ionicons } from '@expo/vector-icons'
 import {
   Episode,
   Playlist,
@@ -24,7 +24,7 @@ const SettingsStack = createStackNavigator()
 const Tab = createBottomTabNavigator()
 
 const getIcon = (name: string, color: string) => (
-  <Icon name={name} size={25} color={color} />
+  <Ionicons name={name} size={25} color={color} />
 )
 
 export default function AppContainer() {

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { TouchableOpacity, StyleSheet, Linking } from 'react-native'
-import Icon from 'react-native-vector-icons/Ionicons'
+import { Ionicons } from '@expo/vector-icons'
 import ThemedText from '../ThemedText'
 import { ThemeContext } from '../../styles/theming'
 import { GITHUB_URL } from '../../config'
@@ -15,7 +15,7 @@ const Colophon = () => {
     >
       <ThemedText style={styles.text}>
         {'Made with '}
-        <Icon name={'md-heart-empty'} size={12} color={theme.secondary} />
+        <Ionicons name={'md-heart-empty'} size={12} color={theme.secondary} />
         {' by students at the University of Michigan'}
       </ThemedText>
     </TouchableOpacity>

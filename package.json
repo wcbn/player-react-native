@@ -31,7 +31,6 @@
     "react-native-screens": "~2.2.0",
     "react-native-segmented-control-tab": "^3.4.1",
     "react-native-tab-view": "^2.13.0",
-    "react-native-vector-icons": "^6.6.0",
     "react-native-webview": "8.1.1",
     "react-redux": "^7.2.0",
     "redux": "^4.0.5",
