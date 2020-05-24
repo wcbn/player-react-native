@@ -1,4 +1,6 @@
-export const useScreenOptions = (theme) => {
+import { Theme } from '../styles/theming'
+
+export const useScreenOptions = (theme: Theme) => {
   return {
     headerStyle: {
       backgroundColor: theme.primary,

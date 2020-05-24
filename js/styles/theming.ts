@@ -1,6 +1,6 @@
 import React from 'react'
 
-interface Theme {
+export interface Theme {
   name: string
   opposite: string
   primary: string

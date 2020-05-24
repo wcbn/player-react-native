@@ -60,15 +60,12 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "tsc && lint-staged"
     }
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,md,json,yml,yaml}": [
       "prettier --write"
-    ],
-    "*.{ts,tsx}": [
-      "tsc"
     ]
   }
 }
