@@ -1,5 +1,10 @@
 import React, { useContext } from 'react'
-import { TouchableOpacity, StyleSheet, View, FlatList } from 'react-native'
+import {
+  TouchableOpacity,
+  StyleSheet,
+  View,
+  FlatList,
+} from 'react-native'
 import Screen from '../components/Screen'
 import Separator from '../components/Separator'
 import ThemedText from '../components/ThemedText'
@@ -8,6 +13,7 @@ import { ListItemWrapperStyles } from '../components/ListItemWrapper'
 import { useNavigation } from '@react-navigation/native'
 import LazyPlaceholder from '../components/LazyPlaceholder'
 import { ThemeContext } from '../styles/theming'
+import { ShowAPI } from '../types'
 
 const styles = StyleSheet.create({
   showText: {
@@ -21,20 +27,22 @@ const styles = StyleSheet.create({
   },
 })
 
-export default function ScheduleDay({ data }) {
+export default function ScheduleDay({ data }: { data: ShowAPI[] }) {
   const { theme } = useContext(ThemeContext)
   const navigation = useNavigation()
 
-  const renderItem = ({ item, index }) => {
-    const isOnAir: boolean = item.on_air
+  const renderItem = ({ item, index }: { item: ShowAPI; index: number }) => {
+    const style = item.on_air
+      ? {
+          ...ListItemWrapperStyles.view,
+          ...{ backgroundColor: theme.onAirBackgroundColor },
+        }
+      : ListItemWrapperStyles.view
 
     return (
       <TouchableOpacity
         key={index}
-        style={{
-          ...ListItemWrapperStyles.view,
-          backgroundColor: isOnAir && theme.onAirBackgroundColor,
-        }}
+        style={style}
         onPress={() =>
           navigation.navigate('Show', {
             url: item.url,
