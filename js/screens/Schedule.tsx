@@ -7,6 +7,7 @@ import MaterialTopTabBarWrapper from '../components/navigation/MaterialTopTabBar
 import LazyPlaceholder from '../components/LazyPlaceholder'
 import { BASE_URL } from '../config'
 import { ThemeContext } from '../styles/theming'
+import { ShowAPI, SemesterAPI } from '../types'
 
 const WEEEKDAYS = [
   'Monday',
@@ -16,16 +17,20 @@ const WEEEKDAYS = [
   'Friday',
   'Saturday',
   'Sunday',
-]
+] as const
+type Weekday = typeof WEEEKDAYS[number]
+type WeekdayToShows = Record<Weekday, ShowAPI[]>
 
-//6 hr offset //TODO but only on east coast?? need to check this
+//6 hr offset //TODO verify this makes sense outside of EST
 const WEEKDAYINDEX = new Date(new Date().getTime() - 21600000).getDay()
 const TODAY = WEEKDAYINDEX === 0 ? 6 : WEEKDAYINDEX - 1
 
 const Tab = createMaterialTopTabNavigator()
 
 export default function Schedule() {
-  const [state, setState] = useState({ data: {} })
+  const [state, setState] = useState({ data: {} } as {
+    data: Partial<WeekdayToShows>
+  })
   const { theme } = useContext(ThemeContext)
 
   useEffect(() => {
@@ -41,11 +46,11 @@ export default function Schedule() {
         }
         throw new Error(`Error ${response.status}: cannot fetch schedule`)
       })
-      .then((response) => response['shows'])
+      .then((response: SemesterAPI) => response['shows'])
       .then((data) => {
-        let fetched = {}
+        let fetched: Partial<WeekdayToShows> = {}
         WEEEKDAYS.forEach((day, i) => {
-          data[i + 1].forEach((show) => {
+          data[i + 1].forEach((show: ShowAPI) => {
             show.beginning = humanizeTime(show.beginning)
           })
 

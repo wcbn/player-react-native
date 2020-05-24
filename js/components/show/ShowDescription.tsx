@@ -12,11 +12,13 @@ const ShowDescription = (props: { text: string }) => {
   })
 
   return (
-    !!props.text && (
-      <ThemedText style={styles.text} numberOfLines={6}>
-        {props.text}
-      </ThemedText>
-    )
+    <>
+      {!!props.text && (
+        <ThemedText style={styles.text} numberOfLines={6}>
+          {props.text}
+        </ThemedText>
+      )}
+    </>
   )
 }
 

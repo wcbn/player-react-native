@@ -9,7 +9,7 @@ import {
   AsyncStorage,
 } from 'react-native'
 import { Audio } from 'expo-av'
-import { Song, defaultSong } from '../types'
+import { SongAPI, defaultSong } from '../types'
 import { getAlbumArtURI } from '../util/itunes'
 import { FadeIntoHeader, RadioControls } from '../components/radio'
 import { dimensions, spacing } from '../styles/main'
@@ -35,7 +35,7 @@ function TextScroll({ text }) {
   )
 }
 
-function getArtistAlbumLabelYearStr(now_playing: Song) {
+function getArtistAlbumLabelYearStr(now_playing: SongAPI) {
   return `${now_playing.artist}${
     now_playing.artist && now_playing.album && ' — '
   }${now_playing.album}${
@@ -189,7 +189,7 @@ class Radio extends React.Component<any, RadioState> {
   render() {
     const { albumArtURI, isBuffering, isPlaying, isLoading } = this.state
     const on_air = this.props.playlist.on_air
-    const now_playing: Song =
+    const now_playing: SongAPI =
       on_air.songs.length > 0 ? on_air.songs[0] : defaultSong
     const albumArtSrcObj = albumArtURI ? { uri: albumArtURI } : defaultPNG
     const artistAlbumLabelYearStr = getArtistAlbumLabelYearStr(now_playing)

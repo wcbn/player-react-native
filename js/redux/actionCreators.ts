@@ -1,6 +1,7 @@
 import * as ActionTypes from './ActionTypes'
 import { BASE_URL } from '../config'
 import { humanizeTime } from '../util/datetime'
+import { SongAPI } from '../types'
 
 export const fetchPlaylist = () => (dispatch) => {
   dispatch(playlistLoading())
@@ -24,7 +25,7 @@ export const fetchPlaylist = () => (dispatch) => {
     )
     .then((response) => response.json())
     .then((data) => {
-      data.on_air.songs.forEach((song) => {
+      data.on_air.songs.forEach((song: SongAPI) => {
         song.at = humanizeTime(song.at)
       })
       dispatch(updatePlaylist(data.on_air))

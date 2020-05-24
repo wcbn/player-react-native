@@ -6,7 +6,7 @@ import ListHeader from '../components/ListHeader'
 import Banner from '../components/Banner'
 import Screen from '../components/Screen'
 import { ThemeContext } from '../styles/theming'
-import { Song as SongType } from '../types'
+import { SongAPI } from '../types'
 
 // since the only way to get to this screen is from a Show,
 // all of the data is passed in as navigation props, saving us an expensive fetch()
@@ -33,7 +33,7 @@ export default function Episode({ navigation, route }) {
         }
       />
       <FlatList
-        data={route.params.songs as SongType[]}
+        data={route.params.songs as SongAPI[]}
         renderItem={({ item }) => <Song data={item} />}
         keyExtractor={(item, index) => index.toString()}
         ListHeaderComponent={<ListHeader text={route.params.date} />}

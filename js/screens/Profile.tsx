@@ -10,8 +10,9 @@ import ListHeader from '../components/ListHeader'
 import Separator from '../components/Separator'
 import { ThemeContext } from '../styles/theming'
 import LazyPlaceholder from '../components/LazyPlaceholder'
+import { ProfileAPI, ShowAPI } from '../types'
 
-const renderShowListing = ({ item }) => {
+const renderShowListing = ({ item }: { item: ShowAPI }) => {
   return (
     <ListItemWrapper>
       <ThemedText>{item.name}</ThemedText>
@@ -29,7 +30,7 @@ export default function Profile({ route, navigation }) {
     public_email: '',
     real_name: '',
     image_url: '',
-  })
+  } as ProfileAPI)
 
   useEffect(() => {
     navigation.setOptions({ title: route.params.title })
@@ -49,7 +50,6 @@ export default function Profile({ route, navigation }) {
           <>
             <View style={styles.mediumPad}>
               <DjCover
-                dj_name={state.dj_name}
                 website={state.website}
                 public_email={state.public_email}
                 real_name={state.real_name}

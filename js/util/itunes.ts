@@ -1,9 +1,9 @@
-import { Song } from '../types'
+import { SongAPI } from '../types'
 
 const ITUNES_ENDPOINT =
   'https://itunes.apple.com/search?limit=1&entity=album&term='
 
-export async function getAlbumArtURI(song: Song): Promise<string | null> {
+export async function getAlbumArtURI(song: SongAPI): Promise<string | null> {
   return new Promise((resolve) => {
     if (song.name.length === 0) {
       resolve(null)

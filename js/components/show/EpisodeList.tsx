@@ -7,13 +7,18 @@ import ListHeader from '../ListHeader'
 import { ThemeContext } from '../../styles/theming'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import LazyPlaceholder from '../LazyPlaceholder'
+import { EpisodeAPI } from '../../types'
 
-export default function EpisodeList(props) {
+interface EpisodeListProps {
+  episodes: EpisodeAPI[]
+}
+
+export default function EpisodeList(props: EpisodeListProps) {
   const { theme } = useContext(ThemeContext)
   const navigation = useNavigation()
   const route = useRoute()
 
-  const renderEpisode = ({ item }) => {
+  const renderEpisode = ({ item }: { item: EpisodeAPI }) => {
     return (
       <TouchableOpacity
         disabled={item.songs.length === 0}

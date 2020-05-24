@@ -3,11 +3,7 @@ import { StyleSheet, View } from 'react-native'
 import ThemedText from './ThemedText'
 import ListItemTime from './ListItemTime'
 import ListItemWrapper from './ListItemWrapper'
-import { Song as SongType } from '../types'
-
-interface SongProps {
-  data: SongType
-}
+import { SongAPI } from '../types'
 
 const SongName = (props: { name: string }) => (
   <ThemedText style={styles.songName} numberOfLines={1}>
@@ -21,7 +17,7 @@ const SongDetails = (props: { artist: string; album: string }) => (
   </ThemedText>
 )
 
-const Song = (props: SongProps) => (
+const Song = (props: { data: SongAPI }) => (
   <ListItemWrapper>
     <View style={styles.textWrapper}>
       <SongName name={props.data.name} />

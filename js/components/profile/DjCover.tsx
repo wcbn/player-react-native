@@ -3,14 +3,12 @@ import { Image, View, StyleSheet, Linking } from 'react-native'
 import ThemedText from '../ThemedText'
 import { spacing } from '../../styles/main'
 import LazyPlaceholder from '../LazyPlaceholder'
+import { ProfileAPI } from '../../types'
 
-interface DjCoverProps {
-  image_url: string
-  dj_name: string
-  real_name?: string
-  website: string
-  public_email: string
-}
+type DjCoverProps = Pick<
+  ProfileAPI,
+  'real_name' | 'image_url' | 'website' | 'public_email'
+>
 
 export default function DjCover(props: DjCoverProps) {
   return (

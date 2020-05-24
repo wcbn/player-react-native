@@ -73,18 +73,20 @@ export default DjBio = (props) => {
   }
 
   return (
-    !!props.about && (
-      <HTML
-        html={props.about}
-        baseFontStyle={styles.baseFontStyle}
-        renderers={renderers}
-        listsPrefixesRenderers={listsPrefixesRenderers}
-        tagsStyles={tagsStyles}
-        imagesMaxWidth={dimensions.fullWidth}
-        onLinkPress={(event, href) => {
-          Linking.openURL(href)
-        }}
-      />
-    )
+    <>
+      {!!props.about && (
+        <HTML
+          html={props.about}
+          baseFontStyle={styles.baseFontStyle}
+          renderers={renderers}
+          listsPrefixesRenderers={listsPrefixesRenderers}
+          tagsStyles={tagsStyles}
+          imagesMaxWidth={dimensions.fullWidth}
+          onLinkPress={(event, href) => {
+            Linking.openURL(href)
+          }}
+        />
+      )}
+    </>
   )
 }

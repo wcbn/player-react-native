@@ -4,6 +4,7 @@ import Screen from '../components/Screen'
 import { humanizeTime, humanizeDate } from '../util/datetime'
 import { DjScroll, ShowDescription, EpisodeList } from '../components/show'
 import { BASE_URL } from '../config'
+import { SongAPI, EpisodeAPI } from '../types'
 
 export default function Show({ route, navigation }) {
   const [state, setState] = useState({
@@ -20,10 +21,10 @@ export default function Show({ route, navigation }) {
     fetch(BASE_URL + `${route.params.url}.json`)
       .then((response) => response.json())
       .then((response) => {
-        response.episodes.forEach((e) => {
+        response.episodes.forEach((e: EpisodeAPI) => {
           e.beginning = humanizeDate(e.beginning)
 
-          e.songs.forEach((song) => {
+          e.songs.forEach((song: SongAPI) => {
             song.at = humanizeTime(song.at)
           })
         })
