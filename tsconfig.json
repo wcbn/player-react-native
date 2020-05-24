@@ -1,12 +1,21 @@
 {
   "compilerOptions": {
+    "allowJs": true,
     "allowSyntheticDefaultImports": true,
-    "jsx": "react-native",
-    "lib": ["dom", "esnext"],
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "jsx": "react",
+    "lib": ["es6"],
     "moduleResolution": "node",
     "noEmit": true,
-    "noEmitOnError": true,
     "skipLibCheck": true,
-    "resolveJsonModule": true
-  }
+    "target": "esnext"
+  },
+  "exclude": [
+    "legacy",
+    "node_modules",
+    "babel.config.js",
+    "metro.config.js",
+    "jest.config.js"
+  ]
 }
