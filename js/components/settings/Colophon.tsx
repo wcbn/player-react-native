@@ -6,14 +6,12 @@ import { ThemeContext } from '../../styles/theming'
 import { GITHUB_URL } from '../../config'
 
 const Colophon = () => {
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext)
 
   return (
     <TouchableOpacity
       style={styles.container}
-      onPress={() =>
-        Linking.openURL(GITHUB_URL)
-      }
+      onPress={() => Linking.openURL(GITHUB_URL)}
     >
       <ThemedText style={styles.text}>
         {'Made with '}
@@ -29,9 +27,9 @@ export default Colophon
 const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   text: {
-    textAlign: 'center'
-  }
+    textAlign: 'center',
+  },
 })

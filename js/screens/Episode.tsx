@@ -11,11 +11,11 @@ import { ThemeContext } from '../styles/theming'
 // all of the data is passed in as navigation props, saving us an expensive fetch()
 
 export default function Episode({ navigation, route }) {
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext)
 
   useEffect(() => {
     navigation.setOptions({
-      title: route.params.title
+      title: route.params.title,
     })
   }, [])
 
@@ -27,7 +27,7 @@ export default function Episode({ navigation, route }) {
         onPress={() =>
           navigation.navigate('Profile', {
             url: route.params.dj_url,
-            title: route.params.dj
+            title: route.params.dj,
           })
         }
       />

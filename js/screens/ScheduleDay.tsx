@@ -11,18 +11,18 @@ import { ThemeContext } from '../styles/theming'
 
 const styles = StyleSheet.create({
   showText: {
-    maxWidth: '85%'
+    maxWidth: '85%',
   },
   showHost: {
-    fontStyle: 'italic'
+    fontStyle: 'italic',
   },
   contentContainer: {
-    flexGrow: 1
-  }
+    flexGrow: 1,
+  },
 })
 
 export default function ScheduleDay({ data }) {
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext)
   const navigation = useNavigation()
 
   const renderItem = ({ item, index }) => {
@@ -33,12 +33,12 @@ export default function ScheduleDay({ data }) {
         key={index}
         style={{
           ...ListItemWrapperStyles.view,
-          backgroundColor: isOnAir && theme.onAirBackgroundColor
+          backgroundColor: isOnAir && theme.onAirBackgroundColor,
         }}
         onPress={() =>
           navigation.navigate('Show', {
             url: item.url,
-            title: item.name
+            title: item.name,
           })
         }
       >

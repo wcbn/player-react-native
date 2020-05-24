@@ -13,8 +13,8 @@ export const playlist = (
       times: '',
       show_notes: null,
       songs: [],
-      semester_id: -1
-    }
+      semester_id: -1,
+    },
   },
   action
 ) => {
@@ -23,7 +23,7 @@ export const playlist = (
       return {
         errMess: null,
         isLoading: false,
-        on_air: action.payload
+        on_air: action.payload,
       }
 
     case ActionTypes.PLAYLIST_LOADING:

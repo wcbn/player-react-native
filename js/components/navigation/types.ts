@@ -12,7 +12,6 @@ export type PlaylistStackParamList = {
   Profile: { url: string }
 }
 
-
 //// ScheduleStackParamList Screens ////
 export type ScheduleScreenNavigationProp = StackNavigationProp<
   ScheduleStackParamList,

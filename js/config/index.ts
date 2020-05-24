@@ -13,7 +13,7 @@ export const POLL_INTERVAL = 40000
 export const STREAMS = [
   'http://floyd.wcbn.org:8000/wcbn-mid.mp3',
   'http://floyd.wcbn.org:8000/wcbn-hi.mp3',
-  'http://floyd.wcbn.org:8000/wcbn-hd.mp3'
+  'http://floyd.wcbn.org:8000/wcbn-hd.mp3',
 ]
 
 export const STUDIO_PHONE_FORMATTED = '(734) 763-3500'

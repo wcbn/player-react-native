@@ -42,17 +42,17 @@ const Song = (props: SongProps) => (
 
 const styles = StyleSheet.create({
   textWrapper: {
-    maxWidth: '85%'
+    maxWidth: '85%',
   },
   songName: {
     fontWeight: '600',
     fontSize: 15,
-    marginBottom: 3
+    marginBottom: 3,
   },
   songDetails: {
     fontWeight: '300',
-    fontSize: 13
-  }
+    fontSize: 13,
+  },
 })
 
 export default Song

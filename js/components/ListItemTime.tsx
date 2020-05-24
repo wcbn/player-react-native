@@ -12,8 +12,8 @@ const styles = StyleSheet.create({
   time: {
     fontSize: 11,
     marginRight: -10,
-    marginTop: -5
-  }
+    marginTop: -5,
+  },
 })
 
 export default ListItemTime

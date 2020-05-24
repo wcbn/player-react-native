@@ -7,8 +7,8 @@ const ShowDescription = (props: { text: string }) => {
   const styles = StyleSheet.create({
     text: {
       padding: spacing.md,
-      fontStyle: 'italic'
-    }
+      fontStyle: 'italic',
+    },
   })
 
   return (

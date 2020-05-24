@@ -10,7 +10,7 @@ export default function LazyPlaceholder() {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: theme.primary
+        backgroundColor: theme.primary,
       }}
     >
       <ActivityIndicator size="large" color={theme.textColor} />

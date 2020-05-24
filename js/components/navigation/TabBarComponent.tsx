@@ -1,9 +1,9 @@
-import React, {useContext} from 'react'
+import React, { useContext } from 'react'
 import { BottomTabBar, BottomTabBarProps } from '@react-navigation/bottom-tabs'
 import { ThemeContext } from '../../styles/theming'
 
 export default function TabBarComponent(props: BottomTabBarProps) {
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext)
 
   return (
     <BottomTabBar

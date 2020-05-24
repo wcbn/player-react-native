@@ -15,7 +15,7 @@ const WEEEKDAYS = [
   'Thursday',
   'Friday',
   'Saturday',
-  'Sunday'
+  'Sunday',
 ]
 
 //6 hr offset //TODO but only on east coast?? need to check this
@@ -32,30 +32,30 @@ export default function Schedule() {
     fetch(`${BASE_URL}/semesters`, {
       headers: new Headers({
         Accept: 'application/json',
-        'Content-Type': 'application/json'
-      })
+        'Content-Type': 'application/json',
+      }),
     })
-      .then(response => {
+      .then((response) => {
         if (response.ok) {
           return response.json()
         }
         throw new Error(`Error ${response.status}: cannot fetch schedule`)
       })
-      .then(response => response['shows'])
-      .then(data => {
+      .then((response) => response['shows'])
+      .then((data) => {
         let fetched = {}
         WEEEKDAYS.forEach((day, i) => {
-          data[i + 1].forEach(show => {
+          data[i + 1].forEach((show) => {
             show.beginning = humanizeTime(show.beginning)
           })
 
           fetched[day] = data[i + 1]
         })
         setState({
-          data: fetched
+          data: fetched,
         })
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error)
       })
   }, [])
@@ -67,7 +67,7 @@ export default function Schedule() {
         initialRouteName={WEEEKDAYS[TODAY]}
         lazy
         lazyPlaceholder={() => <LazyPlaceholder />}
-        tabBar={params => <MaterialTopTabBarWrapper {...params} />}
+        tabBar={(params) => <MaterialTopTabBarWrapper {...params} />}
       >
         {WEEEKDAYS.map((name, key) => (
           <Tab.Screen

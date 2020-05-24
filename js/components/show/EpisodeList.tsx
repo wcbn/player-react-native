@@ -23,7 +23,7 @@ export default function EpisodeList(props) {
             title: route.params['title'],
             dj: item.dj,
             dj_url: item.dj_url,
-            date: item.beginning
+            date: item.beginning,
           })
         }
       >
@@ -43,7 +43,7 @@ export default function EpisodeList(props) {
     <FlatList
       data={props.episodes}
       renderItem={renderEpisode}
-      keyExtractor={item => item.beginning}
+      keyExtractor={(item) => item.beginning}
       ListHeaderComponent={<ListHeader text="Recent Episodes" />}
       ItemSeparatorComponent={() => <Separator color={theme.muted} />}
       stickyHeaderIndices={[0]}
@@ -56,9 +56,9 @@ export default function EpisodeList(props) {
 
 const styles = StyleSheet.create({
   episodeListingHeight: {
-    lineHeight: 22
+    lineHeight: 22,
   },
   contentContainer: {
-    flexGrow: 1
-  }
+    flexGrow: 1,
+  },
 })

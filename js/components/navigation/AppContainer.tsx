@@ -11,7 +11,7 @@ import {
   Radio,
   Schedule,
   Settings,
-  Show
+  Show,
 } from '../../screens'
 import { useScreenOptions } from '../../util/navigation'
 import { ThemeContext } from '../../styles/theming'
@@ -79,20 +79,20 @@ export default function AppContainer() {
     <NavigationContainer>
       <Tab.Navigator
         initialRouteName="Radio"
-        tabBar={props => <TabBarComponent {...props} />}
+        tabBar={(props) => <TabBarComponent {...props} />}
       >
         <Tab.Screen
           name="Schedule"
           component={ScheduleStackScreen}
           options={{
-            tabBarIcon: ({ color }) => getIcon('md-calendar', color)
+            tabBarIcon: ({ color }) => getIcon('md-calendar', color),
           }}
         />
         <Tab.Screen
           name="Playlist"
           component={PlaylistStackScreen}
           options={{
-            tabBarIcon: ({ color }) => getIcon('md-musical-notes', color)
+            tabBarIcon: ({ color }) => getIcon('md-musical-notes', color),
           }}
         />
         <Tab.Screen
@@ -100,14 +100,14 @@ export default function AppContainer() {
           component={RadioStackScreen}
           options={{
             title: 'Radio',
-            tabBarIcon: ({ color }) => getIcon('md-radio', color)
+            tabBarIcon: ({ color }) => getIcon('md-radio', color),
           }}
         />
         <Tab.Screen
           name="Settings"
           component={SettingsStackScreen}
           options={{
-            tabBarIcon: ({ color }) => getIcon('md-settings', color)
+            tabBarIcon: ({ color }) => getIcon('md-settings', color),
           }}
         />
       </Tab.Navigator>

@@ -2,7 +2,7 @@ import { Dimensions } from 'react-native'
 
 export const dimensions = {
   fullHeight: Dimensions.get('window').height,
-  fullWidth: Dimensions.get('window').width
+  fullWidth: Dimensions.get('window').width,
 }
 
 // padding, margin etc
@@ -11,7 +11,7 @@ export const spacing = {
   sm: 10,
   md: 15,
   lg: 30,
-  xl: 40
+  xl: 40,
 }
 
 // weird idea I had

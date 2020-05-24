@@ -67,28 +67,28 @@ export default function DjCover(props: DjCoverProps) {
 const styles = StyleSheet.create({
   cover: {
     flexDirection: 'row',
-    marginBottom: spacing.md
+    marginBottom: spacing.md,
   },
   coverAvatar: {
     flex: 1,
     aspectRatio: 1,
-    borderRadius: 10
+    borderRadius: 10,
   },
   coverContact: {
     flexDirection: 'column',
     paddingLeft: spacing.md,
-    flex: 3.5
+    flex: 3.5,
   },
   coverText: {
-    lineHeight: 20
+    lineHeight: 20,
   },
   coverRealName: {
-    fontSize: 20
+    fontSize: 20,
   },
   spinnerContainer: {
     height: 75,
     width: 75,
     justifyContent: 'center',
-    alignItems: 'center'
-  }
+    alignItems: 'center',
+  },
 })

@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import {
   TouchableOpacity,
   StyleSheet,
-  GestureResponderEvent
+  GestureResponderEvent,
 } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
 import ThemedText from './ThemedText'
@@ -47,17 +47,17 @@ const styles = StyleSheet.create({
     height: 50,
     flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   text: {
-    fontSize: 16
+    fontSize: 16,
   },
   host: {
-    maxWidth: '50%'
+    maxWidth: '50%',
   },
   icon: {
-    marginLeft: 5
-  }
+    marginLeft: 5,
+  },
 })
 
 export default Banner

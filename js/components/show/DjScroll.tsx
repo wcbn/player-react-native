@@ -18,22 +18,22 @@ const DjScroll = (props: DjScrollProps) => {
       padding: 12,
       backgroundColor: theme.muted,
       minWidth: dimensions.fullWidth / props.djs.length,
-      marginRight: StyleSheet.hairlineWidth
+      marginRight: StyleSheet.hairlineWidth,
     },
     text: {
       fontSize: 16,
-      textAlign: 'center'
-    }
+      textAlign: 'center',
+    },
   })
 
-  const djButtons = props.djs.map(dj => (
+  const djButtons = props.djs.map((dj) => (
     <TouchableOpacity
       key={dj.url}
       style={styles.button}
       onPress={() =>
         props.navigation.navigate('Profile', {
           url: dj.url,
-          title: dj.name
+          title: dj.name,
         })
       }
     >

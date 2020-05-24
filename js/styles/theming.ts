@@ -36,7 +36,7 @@ export const themes: { light: Theme; dark: Theme } = {
     inactiveTintColor: 'black',
     activeBackgroundColor: 'black',
     anchorColor: '#db3334',
-    onAirBackgroundColor: '#ffe5e5'
+    onAirBackgroundColor: '#ffe5e5',
   },
   dark: {
     name: 'dark',
@@ -54,8 +54,8 @@ export const themes: { light: Theme; dark: Theme } = {
     inactiveTintColor: '#D3D7CE',
     activeBackgroundColor: '#053e62',
     anchorColor: '#5ccfe6',
-    onAirBackgroundColor: '#053e62'
-  }
+    onAirBackgroundColor: '#053e62',
+  },
 }
 
 // purple: '#a068ce',
@@ -63,5 +63,5 @@ export const themes: { light: Theme; dark: Theme } = {
 
 export const ThemeContext = React.createContext({
   theme: themes.light,
-  toggleTheme: () => {}
+  toggleTheme: () => {},
 })

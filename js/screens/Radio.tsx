@@ -6,7 +6,7 @@ import {
   View,
   StyleSheet,
   Image,
-  AsyncStorage
+  AsyncStorage,
 } from 'react-native'
 import { Audio } from 'expo-av'
 import { Song, defaultSong } from '../types'
@@ -36,16 +36,18 @@ function TextScroll({ text }) {
 }
 
 function getArtistAlbumLabelYearStr(now_playing: Song) {
-  return `${now_playing.artist}${now_playing.artist &&
-    now_playing.album &&
-    ' — '}${now_playing.album}${now_playing.label &&
+  return `${now_playing.artist}${
+    now_playing.artist && now_playing.album && ' — '
+  }${now_playing.album}${
+    now_playing.label &&
     now_playing.year &&
-    ' (' + now_playing.label + ', ' + now_playing.year + ')'}`
+    ' (' + now_playing.label + ', ' + now_playing.year + ')'
+  }`
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    playlist: state.playlist
+    playlist: state.playlist,
   }
 }
 
@@ -69,7 +71,7 @@ class Radio extends React.Component<any, RadioState> {
       isBuffering: false,
       isLoading: false,
       isUnloading: false,
-      isLoaded: false
+      isLoaded: false,
     }
 
     this.playbackInstance = null
@@ -83,7 +85,7 @@ class Radio extends React.Component<any, RadioState> {
       playsInSilentModeIOS: true,
       interruptionModeAndroid: Audio.INTERRUPTION_MODE_ANDROID_DO_NOT_MIX,
       playThroughEarpieceAndroid: false,
-      shouldDuckAndroid: true
+      shouldDuckAndroid: true,
     })
     this.setAlbumArtURI()
   }
@@ -101,12 +103,12 @@ class Radio extends React.Component<any, RadioState> {
     const { songs } = this.props.playlist.on_air
     if (songs.length === 0) {
       this.setState({
-        albumArtURI: null
+        albumArtURI: null,
       })
     } else {
       const albumArtURI = await getAlbumArtURI(songs[0])
       this.setState({
-        albumArtURI
+        albumArtURI,
       })
     }
   }
@@ -123,7 +125,7 @@ class Radio extends React.Component<any, RadioState> {
         isPlaying: false,
         isLoading: false,
         isBuffering: false,
-        isUnloading: true
+        isUnloading: true,
       })
 
       // @ts-ignore
@@ -155,7 +157,7 @@ class Radio extends React.Component<any, RadioState> {
       this.setState({
         isPlaying: status.isPlaying,
         isBuffering: status.isBuffering,
-        isLoaded: status.isLoaded
+        isLoaded: status.isLoaded,
       })
     }
   }
@@ -166,7 +168,7 @@ class Radio extends React.Component<any, RadioState> {
       this._unloadPlaybackInstance().then(() => {
         this.setState({
           isUnloading: false,
-          isLoaded: false
+          isLoaded: false,
         })
       })
     } else if (
@@ -178,7 +180,7 @@ class Radio extends React.Component<any, RadioState> {
       this._loadNewPlaybackInstance(true).then(() => {
         this.setState({
           isLoading: false,
-          isLoaded: true
+          isLoaded: true,
         })
       })
     }
@@ -229,38 +231,38 @@ const styles = StyleSheet.create({
   albumArtContainer: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   contentWrapper: {
     alignItems: 'center',
-    flexDirection: 'column-reverse'
+    flexDirection: 'column-reverse',
   },
   imgBG: {
     height: '100%',
     alignItems: 'center',
     paddingLeft: spacing.md,
-    paddingRight: spacing.md
+    paddingRight: spacing.md,
   },
   imageStyle: {
-    opacity: 0.4
+    opacity: 0.4,
   },
   albumArt: {
     width: ALBUM_WIDTH,
     height: ALBUM_WIDTH,
     maxWidth: ALBUM_WIDTH,
     maxHeight: ALBUM_WIDTH,
-    aspectRatio: 1
+    aspectRatio: 1,
   },
   songDetails: {
     alignItems: 'center',
     justifyContent: 'center',
     width: '100%',
-    minHeight: (TEXT_HEIGHT + 10) * 2 + 15
+    minHeight: (TEXT_HEIGHT + 10) * 2 + 15,
   },
   songText: {
-    fontSize: TEXT_HEIGHT
+    fontSize: TEXT_HEIGHT,
   },
   textScroll: {
-    height: TEXT_HEIGHT + 10
-  }
+    height: TEXT_HEIGHT + 10,
+  },
 })

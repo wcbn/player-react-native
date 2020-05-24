@@ -28,14 +28,14 @@ export default function Profile({ route, navigation }) {
     website: '',
     public_email: '',
     real_name: '',
-    image_url: ''
+    image_url: '',
   })
 
   useEffect(() => {
     navigation.setOptions({ title: route.params.title })
     fetch(BASE_URL + `${route.params.url}.json`)
-      .then(response => response.json())
-      .then(data => setState(data))
+      .then((response) => response.json())
+      .then((data) => setState(data))
   }, [])
 
   return (
@@ -71,9 +71,9 @@ export default function Profile({ route, navigation }) {
 
 const styles = StyleSheet.create({
   flatList: {
-    flexGrow: 1
+    flexGrow: 1,
   },
   mediumPad: {
-    padding: spacing.md
-  }
+    padding: spacing.md,
+  },
 })

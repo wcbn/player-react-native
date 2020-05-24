@@ -9,21 +9,21 @@ export default function Show({ route, navigation }) {
   const [state, setState] = useState({
     description: '',
     djs: [],
-    episodes: []
+    episodes: [],
   })
 
   useEffect(() => {
     navigation.setOptions({
-      title: route.params.title
+      title: route.params.title,
     })
 
     fetch(BASE_URL + `${route.params.url}.json`)
-      .then(response => response.json())
-      .then(response => {
-        response.episodes.forEach(e => {
+      .then((response) => response.json())
+      .then((response) => {
+        response.episodes.forEach((e) => {
           e.beginning = humanizeDate(e.beginning)
 
-          e.songs.forEach(song => {
+          e.songs.forEach((song) => {
             song.at = humanizeTime(song.at)
           })
         })
@@ -31,7 +31,7 @@ export default function Show({ route, navigation }) {
         setState({
           description: response.description,
           djs: response.djs,
-          episodes: response.episodes
+          episodes: response.episodes,
         })
       })
   }, [])

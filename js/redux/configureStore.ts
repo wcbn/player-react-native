@@ -6,7 +6,7 @@ import { playlist } from './playlist'
 export const ConfigureStore = () => {
   const store = createStore(
     combineReducers({
-      playlist
+      playlist,
     }),
     applyMiddleware(thunk)
   )

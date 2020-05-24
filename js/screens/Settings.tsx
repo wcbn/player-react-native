@@ -24,6 +24,6 @@ export default function Settings() {
 const styles = StyleSheet.create({
   container: {
     padding: spacing.md,
-    paddingTop: 0
-  }
+    paddingTop: 0,
+  },
 })

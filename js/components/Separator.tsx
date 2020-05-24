@@ -5,7 +5,7 @@ const Separator = (props: { color?: string }) => (
   <View
     style={{
       height: StyleSheet.hairlineWidth,
-      backgroundColor: props.color
+      backgroundColor: props.color,
     }}
   />
 )

@@ -5,20 +5,20 @@ import { dimensions, spacing } from '../../styles/main'
 import { ThemeContext } from '../../styles/theming'
 import { BASE_URL } from '../../config'
 
-export default DjBio = props => {
+export default DjBio = (props) => {
   const { theme } = useContext(ThemeContext)
 
   const styles = StyleSheet.create({
     listsPrefixesRenderers: {
-      marginRight: spacing.xs
+      marginRight: spacing.xs,
     },
     baseFontStyle: {
-      color: theme.textColor
+      color: theme.textColor,
     },
     image: {
       marginTop: spacing.md,
-      marginBottom: 2
-    }
+      marginBottom: 2,
+    },
   })
 
   const renderers = {
@@ -29,13 +29,13 @@ export default DjBio = props => {
           {
             height:
               (parseInt(htmlAttribs.height) * passProps.imagesMaxWidth) /
-              parseInt(htmlAttribs.width)
-          }
+              parseInt(htmlAttribs.width),
+          },
         ]}
         source={{ uri: `${BASE_URL}${htmlAttribs.src}` }}
         key={htmlAttribs.src}
       />
-    )
+    ),
   }
 
   const listsPrefixesRenderers = {
@@ -48,7 +48,7 @@ export default DjBio = props => {
       <ThemedText style={styles.listsPrefixesRenderers} color={'secondary'}>
         {`${passProps.index + 1})`}
       </ThemedText>
-    )
+    ),
   }
 
   // IMPORTANT NOTE : Do NOT use the StyleSheet API to create the styles you're going
@@ -59,17 +59,17 @@ export default DjBio = props => {
 
   const tagsStyles = {
     figure: {
-      marginBottom: spacing.md
+      marginBottom: spacing.md,
     },
     figcaption: {
       textAlign: 'center',
       fontStyle: 'italic',
-      color: theme.secondary
+      color: theme.secondary,
     },
     a: {
       color: theme.anchorColor,
-      textDecorationLine: 'none'
-    }
+      textDecorationLine: 'none',
+    },
   }
 
   return (

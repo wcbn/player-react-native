@@ -1,14 +1,14 @@
-import React, {useContext} from 'react'
+import React, { useContext } from 'react'
 import { ThemeContext } from '../../styles/theming'
 import {
   MaterialTopTabBar,
-  MaterialTopTabBarProps
+  MaterialTopTabBarProps,
 } from '@react-navigation/material-top-tabs'
 
 export default function MaterialTopTabBarWrapper(
   props: MaterialTopTabBarProps
 ) {
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext)
   return (
     <MaterialTopTabBar
       {...props}

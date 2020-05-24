@@ -6,7 +6,7 @@ import { ThemeContext } from '../../styles/theming'
 import { STREAMS } from '../../config'
 
 const StreamSelection = () => {
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext)
   const [selectedStreamIndex, setSelectedStreamIndex] = useState(2) // fetch ASAP, default to high qual
   const setStreamSetting = (index: 0 | 1 | 2) => {
     setSelectedStreamIndex(index)
@@ -30,14 +30,14 @@ const StreamSelection = () => {
         selectedIndex={selectedStreamIndex}
         onTabPress={(i: 0 | 1 | 2) => setStreamSetting(i)}
         activeTabStyle={{
-          backgroundColor: theme.activeBackgroundColor
+          backgroundColor: theme.activeBackgroundColor,
         }}
         tabStyle={{
           backgroundColor: 'transparent',
-          borderColor: theme.secondary
+          borderColor: theme.secondary,
         }}
         activeTabTextStyle={{
-          color: theme.activeTintColor
+          color: theme.activeTintColor,
         }}
         tabTextStyle={{ color: theme.textColor }}
       />
@@ -53,16 +53,16 @@ const StreamSelection = () => {
 const styles = StyleSheet.create({
   title: {
     marginBottom: 3,
-    fontSize: 16
+    fontSize: 16,
   },
   captionView: {
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   captionText: {
     flex: 1,
     padding: 3,
-    fontSize: 11
-  }
+    fontSize: 11,
+  },
 })
 
 export default StreamSelection

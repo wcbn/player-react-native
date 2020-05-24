@@ -13,11 +13,11 @@ import { ThemeContext } from '../styles/theming'
 export default function Playlist({ navigation }) {
   const { theme } = useContext(ThemeContext)
   // @ts-ignore
-  const on_air = useSelector(state => state.playlist.on_air)
+  const on_air = useSelector((state) => state.playlist.on_air)
 
   useEffect(() => {
     navigation.setOptions({
-      title: on_air.name || 'Playlist'
+      title: on_air.name || 'Playlist',
     })
   }, [on_air])
 
@@ -30,7 +30,7 @@ export default function Playlist({ navigation }) {
         onPress={() =>
           navigation.navigate('Profile', {
             url: on_air.dj_url,
-            title: on_air.dj
+            title: on_air.dj,
           })
         }
       />
@@ -58,6 +58,6 @@ const styles = StyleSheet.create({
   infoBox: {
     height: 50,
     justifyContent: 'center',
-    alignItems: 'center'
-  }
+    alignItems: 'center',
+  },
 })

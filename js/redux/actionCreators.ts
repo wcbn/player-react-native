@@ -2,12 +2,12 @@ import * as ActionTypes from './ActionTypes'
 import { BASE_URL } from '../config'
 import { humanizeTime } from '../util/datetime'
 
-export const fetchPlaylist = () => dispatch => {
+export const fetchPlaylist = () => (dispatch) => {
   dispatch(playlistLoading())
 
   return fetch(BASE_URL + '/playlist.json')
     .then(
-      response => {
+      (response) => {
         if (response.ok) {
           return response
         } else {
@@ -17,31 +17,31 @@ export const fetchPlaylist = () => dispatch => {
           throw error
         }
       },
-      error => {
+      (error) => {
         const errMess = new Error(error.message)
         throw errMess
       }
     )
-    .then(response => response.json())
-    .then(data => {
-      data.on_air.songs.forEach(song => {
+    .then((response) => response.json())
+    .then((data) => {
+      data.on_air.songs.forEach((song) => {
         song.at = humanizeTime(song.at)
       })
       dispatch(updatePlaylist(data.on_air))
     })
-    .catch(error => dispatch(playlistFailed(error.message)))
+    .catch((error) => dispatch(playlistFailed(error.message)))
 }
 
 export const playlistLoading = () => ({
-  type: ActionTypes.PLAYLIST_LOADING
+  type: ActionTypes.PLAYLIST_LOADING,
 })
 
-export const updatePlaylist = payload => ({
+export const updatePlaylist = (payload) => ({
   type: ActionTypes.UPDATE_PLAYLIST,
-  payload
+  payload,
 })
 
-export const playlistFailed = errMess => ({
+export const playlistFailed = (errMess) => ({
   type: ActionTypes.PLAYLIST_FAILED,
-  payload: errMess
+  payload: errMess,
 })

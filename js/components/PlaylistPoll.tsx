@@ -4,7 +4,7 @@ import { fetchPlaylist } from '../redux/actionCreators'
 import { POLL_INTERVAL } from '../config'
 
 const mapDispatchToProps = {
-  fetchPlaylist
+  fetchPlaylist,
 }
 
 class PlaylistPoll extends React.Component<{ fetchPlaylist: Function }> {

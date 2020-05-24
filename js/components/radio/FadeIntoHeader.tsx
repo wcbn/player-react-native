@@ -17,6 +17,6 @@ const styles = StyleSheet.create({
     width: dimensions.fullWidth,
     height: '100%',
     top: 0,
-    left: 0
-  }
+    left: 0,
+  },
 })

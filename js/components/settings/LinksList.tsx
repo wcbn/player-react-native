@@ -4,7 +4,7 @@ import {
   View,
   Linking,
   Share,
-  GestureResponderEvent
+  GestureResponderEvent,
 } from 'react-native'
 import * as StoreReview from 'expo-store-review'
 import Separator from '../Separator'
@@ -15,7 +15,7 @@ import {
   GOOGLE_HANGOUTS_URL,
   DONATION_URL,
   STUDIO_PHONE_FORMATTED,
-  STUDIO_PHONE_RAW
+  STUDIO_PHONE_RAW,
 } from '../../config'
 
 interface LinksListProps {
@@ -23,7 +23,7 @@ interface LinksListProps {
 }
 
 const LinksList = (props: LinksListProps) => {
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext)
   return (
     <View style={styles.linksView}>
       <Link
@@ -41,7 +41,7 @@ const LinksList = (props: LinksListProps) => {
       <Link
         onPress={() =>
           Share.share({
-            message: "I'm listening to WCBN-FM Ann Arbor!"
+            message: "I'm listening to WCBN-FM Ann Arbor!",
           })
         }
         text={'Share on social media'}
@@ -74,6 +74,6 @@ export default LinksList
 const styles = StyleSheet.create({
   linksView: {
     marginTop: spacing.sm,
-    marginBottom: spacing.sm
-  }
+    marginBottom: spacing.sm,
+  },
 })

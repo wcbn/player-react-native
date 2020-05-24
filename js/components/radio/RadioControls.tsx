@@ -3,7 +3,7 @@ import {
   ActivityIndicator,
   View,
   TouchableOpacity,
-  StyleSheet
+  StyleSheet,
 } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { spacing } from '../../styles/main'
@@ -44,6 +44,6 @@ const styles = StyleSheet.create({
     margin: spacing.md,
     width: '100%',
     justifyContent: 'center',
-    alignItems: 'center'
-  }
+    alignItems: 'center',
+  },
 })

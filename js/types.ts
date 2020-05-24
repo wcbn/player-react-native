@@ -13,5 +13,5 @@ export const defaultSong = {
   artist: '',
   album: '',
   label: '',
-  year: ''
+  year: '',
 }
