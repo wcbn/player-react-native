@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
   GestureResponderEvent,
 } from 'react-native'
-import Icon from 'react-native-vector-icons/Ionicons'
+import { Ionicons } from '@expo/vector-icons'
 import { ThemeContext } from '../../styles/theming'
 import ThemedText from '../ThemedText'
 
@@ -19,7 +19,7 @@ const Link = (props: LinkProps) => {
   const { theme } = useContext(ThemeContext)
   return (
     <TouchableOpacity style={styles.container} onPress={props.onPress}>
-      <Icon
+      <Ionicons
         name={props.icon}
         size={30}
         color={theme.secondary}
