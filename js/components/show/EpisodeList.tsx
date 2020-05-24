@@ -11,6 +11,7 @@ import { EpisodeAPI } from '../../types'
 
 interface EpisodeListProps {
   episodes: EpisodeAPI[]
+  navigation: any
 }
 
 export default function EpisodeList(props: EpisodeListProps) {
