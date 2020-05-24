@@ -8,6 +8,7 @@ import Banner from '../components/Banner'
 import Screen from '../components/Screen'
 import ThemedText from '../components/ThemedText'
 import { ThemeContext } from '../styles/theming'
+import { Song as SongType } from '../types'
 // import { PlaylistScreenNavigationProp } from '../components/navigation/types'
 
 export default function Playlist({ navigation }) {
@@ -35,7 +36,7 @@ export default function Playlist({ navigation }) {
         }
       />
       <FlatList
-        data={on_air.songs}
+        data={on_air.songs as SongType[]}
         renderItem={({ item }) => <Song data={item} />}
         keyExtractor={(item, index) => index.toString()}
         ListHeaderComponent={

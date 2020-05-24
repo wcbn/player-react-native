@@ -3,14 +3,10 @@ import { StyleSheet, View } from 'react-native'
 import ThemedText from './ThemedText'
 import ListItemTime from './ListItemTime'
 import ListItemWrapper from './ListItemWrapper'
+import { Song as SongType } from '../types'
 
 interface SongProps {
-  data: {
-    name: string
-    artist: string
-    album: string
-    at: string
-  }
+  data: SongType
 }
 
 const SongName = (props: { name: string }) => (
