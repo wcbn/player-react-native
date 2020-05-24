@@ -20,6 +20,7 @@
     "expo": "^37.0.0",
     "expo-av": "~8.1.0",
     "expo-store-review": "~2.1.0",
+    "lint-staged": "^10.2.6",
     "prettier": "^2.0.5",
     "react": "16.9.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-37.0.0.tar.gz",
@@ -41,7 +42,8 @@
   "devDependencies": {
     "@babel/core": "^7.9.0",
     "babel-preset-expo": "^8.1.0",
-    "eslint-plugin-react-hooks": "^3.0.0"
+    "eslint-plugin-react-hooks": "^3.0.0",
+    "husky": "^4.2.5"
   },
   "private": true,
   "prettier": {
@@ -54,6 +56,16 @@
     ],
     "extends": [
       "plugin:react-hooks/recommended"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,md,json,yml,yaml}": [
+      "prettier --write"
     ]
   }
 }
