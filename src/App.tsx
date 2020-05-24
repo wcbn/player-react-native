@@ -14,7 +14,8 @@ export default function App() {
   // immediately get stored theme config,  default to dark
   useEffect(() => {
     async function doAsync() {
-      const themeName = ((await AsyncStorage.getItem('THEME')) || 'dark') as keyof Themes
+      const themeName = ((await AsyncStorage.getItem('THEME')) ||
+        'dark') as keyof Themes
       setTheme(themes[themeName])
     }
     doAsync()
