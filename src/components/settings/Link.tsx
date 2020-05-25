@@ -15,7 +15,7 @@ interface LinkProps {
   text: string
 }
 
-const Link = (props: LinkProps) => {
+export default function Link(props: LinkProps) {
   const { theme } = useContext(ThemeContext)
   return (
     <TouchableOpacity style={styles.container} onPress={props.onPress}>
@@ -31,8 +31,6 @@ const Link = (props: LinkProps) => {
     </TouchableOpacity>
   )
 }
-
-export default Link
 
 const styles = StyleSheet.create({
   container: {
