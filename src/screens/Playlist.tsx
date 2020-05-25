@@ -10,6 +10,7 @@ import ThemedText from '../components/ThemedText'
 import { ThemeContext } from '../styles/theming'
 import { SongAPI } from '../types'
 import { PlaylistNavProp } from '../components/navigation/types'
+import { StoreState } from '../App'
 
 interface PlaylistProps {
   navigation: PlaylistNavProp
@@ -17,8 +18,8 @@ interface PlaylistProps {
 
 export default function Playlist({ navigation }: PlaylistProps) {
   const { theme } = useContext(ThemeContext)
-  // @ts-ignore
-  const on_air = useSelector((state) => state.playlist.on_air)
+
+  const on_air = useSelector((state: StoreState) => state.playlist.on_air)
 
   useEffect(() => {
     navigation.setOptions({

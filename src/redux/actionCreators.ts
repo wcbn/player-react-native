@@ -4,8 +4,7 @@ import { humanizeTime } from '../util/datetime'
 import { SongAPI } from '../types'
 import { PlaylistState } from './ActionTypes'
 
-//@ts-ignore redux-thunk is just annoying to type
-export const fetchPlaylist = () => (dispatch) => {
+export const fetchPlaylist = () => (dispatch: any) => {
   dispatch(playlistLoading())
 
   return fetch(BASE_URL + '/playlist.json')

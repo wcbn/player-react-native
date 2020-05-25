@@ -7,12 +7,14 @@ const mapDispatchToProps = {
   fetchPlaylist,
 }
 
-class PlaylistPoll extends React.Component<{ fetchPlaylist: Function }> {
+class PlaylistPoll extends React.Component<{ fetchPlaylist: any }> {
   componentDidMount() {
     const pollPlaylist = async () => {
       try {
         this.props.fetchPlaylist()
-      } catch (error) {} // should already be caught within fetchPlaylist() anyway
+      } catch (error) {
+        // ignore
+      }
     }
 
     pollPlaylist()

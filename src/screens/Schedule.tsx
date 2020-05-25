@@ -48,7 +48,7 @@ export default function Schedule() {
       })
       .then((response: SemesterAPI) => response['shows'])
       .then((data) => {
-        let fetched: Partial<WeekdayToShows> = {}
+        const fetched: Partial<WeekdayToShows> = {}
         WEEEKDAYS.forEach((day, i) => {
           data[i + 1].forEach((show: ShowAPI) => {
             show.beginning = humanizeTime(show.beginning)

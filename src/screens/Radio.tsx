@@ -129,7 +129,6 @@ class Radio extends React.Component<any, RadioState> {
         isUnloading: true,
       })
 
-      // @ts-ignore
       await this.playbackInstance.unloadAsync()
     }
   }
