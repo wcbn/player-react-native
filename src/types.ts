@@ -60,3 +60,18 @@ export const defaultSong: SongAPI = {
   request: false,
   year: null,
 }
+
+export interface PlaylistAPI {
+  on_air: {
+    name: string
+    dj: string
+    dj_url: string
+    beginning: string
+    ending: string
+    times: string
+    show_notes: string | null
+    songs: SongAPI[]
+    semester_id: number
+  }
+  upcoming_episodes: { name: string; dj: string; times: string }[]
+}

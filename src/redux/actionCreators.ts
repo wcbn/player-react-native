@@ -2,7 +2,9 @@ import * as ActionTypes from './ActionTypes'
 import { BASE_URL } from '../config'
 import { humanizeTime } from '../util/datetime'
 import { SongAPI } from '../types'
+import { PlaylistState } from './ActionTypes'
 
+//@ts-ignore redux-thunk is just annoying to type
 export const fetchPlaylist = () => (dispatch) => {
   dispatch(playlistLoading())
 
@@ -37,12 +39,12 @@ export const playlistLoading = () => ({
   type: ActionTypes.PLAYLIST_LOADING,
 })
 
-export const updatePlaylist = (payload) => ({
+export const updatePlaylist = (payload: PlaylistState) => ({
   type: ActionTypes.UPDATE_PLAYLIST,
   payload,
 })
 
-export const playlistFailed = (errMess) => ({
+export const playlistFailed = (errMess: string) => ({
   type: ActionTypes.PLAYLIST_FAILED,
   payload: errMess,
 })
