@@ -7,6 +7,7 @@ import { ConfigureStore } from './redux/configureStore'
 import PlaylistPoll from './components/PlaylistPoll'
 
 const store = ConfigureStore()
+export type StoreState = ReturnType<typeof store.getState>
 
 export default function App() {
   const [theme, setTheme] = useState(themes.dark)

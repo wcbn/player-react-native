@@ -17,10 +17,11 @@ import ThemedText from '../components/ThemedText'
 import { ScrollView } from 'react-native-gesture-handler'
 import { STREAMS } from '../config'
 import { AVPlaybackStatus, Playback } from 'expo-av/build/AV'
+import { StoreState } from '../App'
 
 const defaultPNG = require('../../assets/album.png')
 
-function TextScroll({ text }) {
+function TextScroll({ text }: { text: string }) {
   return (
     <View style={styles.textScroll}>
       <ScrollView
@@ -45,7 +46,7 @@ function getArtistAlbumLabelYearStr(now_playing: SongAPI) {
   }`
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: StoreState) => {
   return {
     playlist: state.playlist,
   }
@@ -61,9 +62,9 @@ interface RadioState {
 }
 
 class Radio extends React.Component<any, RadioState> {
-  playbackInstance: Playback
+  playbackInstance: Playback | null
 
-  constructor(props) {
+  constructor(props: any) {
     super(props)
     this.state = {
       albumArtURI: null,
@@ -90,7 +91,7 @@ class Radio extends React.Component<any, RadioState> {
     this.setAlbumArtURI()
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps: any) {
     if (
       prevProps.playlist.on_air.songs.length !==
       this.props.playlist.on_air.songs.length
