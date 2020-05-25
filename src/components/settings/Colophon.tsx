@@ -5,7 +5,7 @@ import ThemedText from '../ThemedText'
 import { ThemeContext } from '../../styles/theming'
 import { GITHUB_URL } from '../../config'
 
-const Colophon = () => {
+export default function Colophon() {
   const { theme } = useContext(ThemeContext)
 
   return (
@@ -21,8 +21,6 @@ const Colophon = () => {
     </TouchableOpacity>
   )
 }
-
-export default Colophon
 
 const styles = StyleSheet.create({
   container: {
