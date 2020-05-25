@@ -76,7 +76,8 @@
       "@typescript-eslint/no-var-requires": "off"
     },
     "ignorePatterns": [
-      "node_modules"
+      "node_modules",
+      "babel.config.js"
     ]
   },
   "husky": {
@@ -88,7 +89,7 @@
     "*.{md,json,yml,yaml}": [
       "prettier --write"
     ],
-    "*.{ts,tsx}": [
+    "*.{ts,tsx,js,jsx}": [
       "prettier --write",
       "eslint --fix"
     ]
