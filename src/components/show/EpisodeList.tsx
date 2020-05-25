@@ -5,19 +5,19 @@ import ListItemWrapper from '../ListItemWrapper'
 import Separator from '../Separator'
 import ListHeader from '../ListHeader'
 import { ThemeContext } from '../../styles/theming'
-import { useNavigation, useRoute } from '@react-navigation/native'
 import LazyPlaceholder from '../LazyPlaceholder'
 import { EpisodeAPI } from '../../types'
+import { useNavigation, useRoute } from '@react-navigation/native'
+import { ShowNavigationProp, ShowRouteProp } from '../navigation/types'
 
 interface EpisodeListProps {
   episodes: EpisodeAPI[]
-  navigation: any
 }
 
 export default function EpisodeList(props: EpisodeListProps) {
   const { theme } = useContext(ThemeContext)
-  const navigation = useNavigation()
-  const route = useRoute()
+  const navigation = useNavigation<ShowNavigationProp>()
+  const route = useRoute<ShowRouteProp>()
 
   const renderEpisode = ({ item }: { item: EpisodeAPI }) => {
     return (

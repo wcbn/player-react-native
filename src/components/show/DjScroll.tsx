@@ -3,15 +3,16 @@ import { TouchableOpacity, StyleSheet, View, ScrollView } from 'react-native'
 import ThemedText from '../ThemedText'
 import { ThemeContext } from '../../styles/theming'
 import { dimensions } from '../../styles/main'
-// import { NavigationStackProp } from 'react-navigation-stack'
+import { useNavigation } from '@react-navigation/native'
+import { ShowNavigationProp } from '../navigation/types'
 
 interface DjScrollProps {
-  navigation
   djs: { url: string; name: string }[]
 }
 
 const DjScroll = (props: DjScrollProps) => {
   const { theme } = useContext(ThemeContext)
+  const navigation = useNavigation<ShowNavigationProp>()
 
   const styles = StyleSheet.create({
     button: {
@@ -31,7 +32,7 @@ const DjScroll = (props: DjScrollProps) => {
       key={dj.url}
       style={styles.button}
       onPress={() =>
-        props.navigation.navigate('Profile', {
+        navigation.navigate('Profile', {
           url: dj.url,
           title: dj.name,
         })

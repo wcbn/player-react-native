@@ -29,7 +29,7 @@ const Tab = createMaterialTopTabNavigator()
 
 export default function Schedule() {
   const [state, setState] = useState({ data: {} } as {
-    data: Partial<WeekdayToShows>
+    data: WeekdayToShows
   })
   const { theme } = useContext(ThemeContext)
 
@@ -57,7 +57,7 @@ export default function Schedule() {
           fetched[day] = data[i + 1]
         })
         setState({
-          data: fetched,
+          data: fetched as WeekdayToShows, // since all days are now filled in
         })
       })
       .catch((error) => {

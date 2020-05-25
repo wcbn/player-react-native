@@ -7,11 +7,20 @@ import Banner from '../components/Banner'
 import Screen from '../components/Screen'
 import { ThemeContext } from '../styles/theming'
 import { SongAPI } from '../types'
+import {
+  EpisodeNavProp,
+  EpisodeRouteProp,
+} from '../components/navigation/types'
 
 // since the only way to get to this screen is from a Show,
 // all of the data is passed in as navigation props, saving us an expensive fetch()
 
-export default function Episode({ navigation, route }) {
+interface EpisodeProps {
+  navigation: EpisodeNavProp
+  route: EpisodeRouteProp
+}
+
+export default function Episode({ navigation, route }: EpisodeProps) {
   const { theme } = useContext(ThemeContext)
 
   useEffect(() => {

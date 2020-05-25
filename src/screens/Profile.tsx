@@ -11,6 +11,15 @@ import Separator from '../components/Separator'
 import { ThemeContext } from '../styles/theming'
 import LazyPlaceholder from '../components/LazyPlaceholder'
 import { ProfileAPI, ShowAPI } from '../types'
+import {
+  ProfileNavProp,
+  ProfileRouteProp,
+} from '../components/navigation/types'
+
+interface ProfileProps {
+  navigation: ProfileNavProp
+  route: ProfileRouteProp
+}
 
 const renderShowListing = ({ item }: { item: ShowAPI }) => {
   return (
@@ -20,7 +29,7 @@ const renderShowListing = ({ item }: { item: ShowAPI }) => {
   )
 }
 
-export default function Profile({ route, navigation }) {
+export default function Profile({ route, navigation }: ProfileProps) {
   const { theme } = useContext(ThemeContext)
   const [state, setState] = useState({
     dj_name: '',

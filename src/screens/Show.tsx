@@ -5,12 +5,9 @@ import { humanizeTime, humanizeDate } from '../util/datetime'
 import { DjScroll, ShowDescription, EpisodeList } from '../components/show'
 import { BASE_URL } from '../config'
 import { ShowAPI } from '../types'
-import { StackNavigationProp } from '@react-navigation/stack'
-import { ScheduleStackParamList } from '../components/navigation/types'
 import { useNavigation, useRoute, RouteProp } from '@react-navigation/native'
+import { ShowNavigationProp, ShowRouteProp } from '../components/navigation/types'
 
-type ShowNavigationProp = StackNavigationProp<ScheduleStackParamList, 'Show'>
-type ShowRouteProp = RouteProp<ScheduleStackParamList, 'Show'>
 
 export default function Show() {
   const navigation = useNavigation<ShowNavigationProp>()
@@ -48,10 +45,10 @@ export default function Show() {
 
   return (
     <Screen>
-      <DjScroll djs={state.djs} navigation={navigation} />
+      <DjScroll djs={state.djs} />
       <Separator />
       <ShowDescription text={state.description} />
-      <EpisodeList episodes={state.episodes} navigation={navigation} />
+      <EpisodeList episodes={state.episodes} />
     </Screen>
   )
 }

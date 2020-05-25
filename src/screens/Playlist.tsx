@@ -9,9 +9,13 @@ import Screen from '../components/Screen'
 import ThemedText from '../components/ThemedText'
 import { ThemeContext } from '../styles/theming'
 import { SongAPI } from '../types'
-// import { PlaylistScreenNavigationProp } from '../components/navigation/types'
+import { PlaylistNavProp } from '../components/navigation/types'
 
-export default function Playlist({ navigation }) {
+interface PlaylistProps {
+  navigation: PlaylistNavProp
+}
+
+export default function Playlist({ navigation }: PlaylistProps) {
   const { theme } = useContext(ThemeContext)
   // @ts-ignore
   const on_air = useSelector((state) => state.playlist.on_air)
