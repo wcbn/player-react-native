@@ -11,7 +11,8 @@
     "skipLibCheck": true,
     "target": "esnext",
     "strict": true,
-    "noUnusedLocals": true
+    "noUnusedLocals": true,
+    "noFallthroughCasesInSwitch": true
   },
   "exclude": [
     "legacy",
