@@ -8,7 +8,6 @@ export interface Theme {
   textColor: string
   accent: string
   muted: string
-  blackOrNull: string | null
   listHeaderBackground: string
   listHeaderText: string
   primaryOrSecondary: string
@@ -33,7 +32,6 @@ export const themes: Themes = {
     textColor: 'black',
     accent: 'black',
     muted: 'black',
-    blackOrNull: 'black',
     listHeaderBackground: 'black',
     listHeaderText: 'white',
     primaryOrSecondary: 'white',
@@ -51,7 +49,6 @@ export const themes: Themes = {
     textColor: '#D3D7CE',
     accent: '#bae67e',
     muted: '#2d333f',
-    blackOrNull: null,
     listHeaderBackground: '#2d333f',
     listHeaderText: '#D3D7CE',
     primaryOrSecondary: '#5ccfe6',
