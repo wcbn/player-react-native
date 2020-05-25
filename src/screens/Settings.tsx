@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { StyleSheet, ScrollView, GestureResponderEvent } from 'react-native'
+import { StyleSheet, ScrollView } from 'react-native'
 import Screen from '../components/Screen'
 import { StreamSelection, LinksList, Colophon } from '../components/settings'
 import { spacing } from '../styles/main'

@@ -5,9 +5,11 @@ import { humanizeTime, humanizeDate } from '../util/datetime'
 import { DjScroll, ShowDescription, EpisodeList } from '../components/show'
 import { BASE_URL } from '../config'
 import { ShowAPI } from '../types'
-import { useNavigation, useRoute, RouteProp } from '@react-navigation/native'
-import { ShowNavigationProp, ShowRouteProp } from '../components/navigation/types'
-
+import { useNavigation, useRoute } from '@react-navigation/native'
+import {
+  ShowNavigationProp,
+  ShowRouteProp,
+} from '../components/navigation/types'
 
 export default function Show() {
   const navigation = useNavigation<ShowNavigationProp>()

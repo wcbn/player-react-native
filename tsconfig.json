@@ -10,7 +10,8 @@
     "noEmit": true,
     "skipLibCheck": true,
     "target": "esnext",
-    "strict": true
+    "strict": true,
+    "noUnusedLocals": true
   },
   "exclude": [
     "legacy",
