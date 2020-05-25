@@ -51,16 +51,6 @@ export interface SongAPI {
   year: number | null
 }
 
-export const defaultSong: SongAPI = {
-  at: '',
-  name: '',
-  artist: '',
-  album: '',
-  label: '',
-  request: false,
-  year: null,
-}
-
 export interface PlaylistAPI {
   on_air: {
     name: string

@@ -9,7 +9,7 @@ import {
   AsyncStorage,
 } from 'react-native'
 import { Audio } from 'expo-av'
-import { SongAPI, defaultSong } from '../types'
+import { SongAPI } from '../types'
 import { getAlbumArtURI } from '../util/itunes'
 import { FadeIntoHeader, RadioControls } from '../components/radio'
 import { dimensions, spacing } from '../styles/main'
@@ -20,6 +20,15 @@ import { AVPlaybackStatus, Playback } from 'expo-av/build/AV'
 import { StoreState } from '../App'
 
 const defaultPNG = require('../../assets/album.png')
+const defaultSong: SongAPI = {
+  at: '',
+  name: '',
+  artist: '',
+  album: '',
+  label: '',
+  request: false,
+  year: null,
+}
 
 function TextScroll({ text }: { text: string }) {
   return (
