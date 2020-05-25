@@ -38,6 +38,7 @@ export interface ShowAPI {
   ending: string
   semester?: string
   semester_beginning: string
+  on_air: boolean
 }
 
 export interface SongAPI {

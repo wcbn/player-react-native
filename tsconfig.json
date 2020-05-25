@@ -9,7 +9,8 @@
     "moduleResolution": "node",
     "noEmit": true,
     "skipLibCheck": true,
-    "target": "esnext"
+    "target": "esnext",
+    "strict": true
   },
   "exclude": [
     "legacy",

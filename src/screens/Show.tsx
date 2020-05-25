@@ -5,13 +5,22 @@ import { humanizeTime, humanizeDate } from '../util/datetime'
 import { DjScroll, ShowDescription, EpisodeList } from '../components/show'
 import { BASE_URL } from '../config'
 import { ShowAPI } from '../types'
+import { StackNavigationProp } from '@react-navigation/stack'
+import { ScheduleStackParamList } from '../components/navigation/types'
+import { useNavigation, useRoute, RouteProp } from '@react-navigation/native'
 
-export default function Show({ route, navigation }) {
+type ShowNavigationProp = StackNavigationProp<ScheduleStackParamList, 'Show'>
+type ShowRouteProp = RouteProp<ScheduleStackParamList, 'Show'>
+
+export default function Show() {
+  const navigation = useNavigation<ShowNavigationProp>()
+  const route = useRoute<ShowRouteProp>()
+
   const [state, setState] = useState({
     description: '',
     djs: [],
     episodes: [],
-  })
+  } as Pick<ShowAPI, 'description' | 'djs' | 'episodes'>)
 
   useEffect(() => {
     navigation.setOptions({

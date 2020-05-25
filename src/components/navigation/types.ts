@@ -2,7 +2,7 @@ import { StackNavigationProp } from '@react-navigation/stack'
 
 export type ScheduleStackParamList = {
   Schedule: undefined
-  Show: { url: string }
+  Show: { url: string, title: string }
   Profile: { url: string }
   Episode: undefined
 }
