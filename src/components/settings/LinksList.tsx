@@ -1,11 +1,5 @@
 import React, { useContext } from 'react'
-import {
-  StyleSheet,
-  View,
-  Linking,
-  Share,
-  GestureResponderEvent,
-} from 'react-native'
+import { StyleSheet, View, Linking, Share } from 'react-native'
 import * as StoreReview from 'expo-store-review'
 import Separator from '../Separator'
 import Link from './Link'
@@ -18,12 +12,8 @@ import {
   STUDIO_PHONE_RAW,
 } from '../../config'
 
-interface LinksListProps {
-  handleThemeChange: (event: GestureResponderEvent) => void
-}
-
-const LinksList = (props: LinksListProps) => {
-  const { theme } = useContext(ThemeContext)
+const LinksList = () => {
+  const { theme, toggleTheme } = useContext(ThemeContext)
   return (
     <View style={styles.linksView}>
       <Link
@@ -55,7 +45,7 @@ const LinksList = (props: LinksListProps) => {
       />
       <Separator color={theme.secondary} />
       <Link
-        onPress={props.handleThemeChange}
+        onPress={() => toggleTheme()}
         text={`Switch to ${theme.opposite} mode`}
         icon={'md-bulb'}
       />

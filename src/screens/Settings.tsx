@@ -1,12 +1,10 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { StyleSheet, ScrollView } from 'react-native'
 import Screen from '../components/Screen'
 import { StreamSelection, LinksList, Colophon } from '../components/settings'
 import { spacing } from '../styles/main'
-import { ThemeContext } from '../styles/theming'
 
 export default function Settings() {
-  const { toggleTheme } = useContext(ThemeContext)
   return (
     <Screen>
       <ScrollView
@@ -14,7 +12,7 @@ export default function Settings() {
         overScrollMode={'never'}
       >
         <StreamSelection />
-        <LinksList handleThemeChange={toggleTheme} />
+        <LinksList />
         <Colophon />
       </ScrollView>
     </Screen>
