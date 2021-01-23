@@ -11,7 +11,7 @@ import ThemedText from '../ThemedText'
 
 interface LinkProps {
   onPress: (event: GestureResponderEvent) => void
-  icon: string
+  icon: React.ComponentProps<typeof Ionicons>['name']
   text: string
 }
 
@@ -21,7 +21,7 @@ export default function Link(props: LinkProps) {
     <TouchableOpacity style={styles.container} onPress={props.onPress}>
       <Ionicons
         name={props.icon}
-        size={30}
+        size={28}
         color={theme.secondary}
         style={styles.icon}
       />

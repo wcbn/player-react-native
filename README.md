@@ -6,16 +6,6 @@
 
 ![Screenshots](docs/screenshots.jpg)
 
-┏┓ <br />
-┃┃╱╲ &nbsp; in this<br />
-┃╱╱╲╲ &nbsp; house<br />
-╱╱╭╮╲╲ &nbsp; we <br />
-▔▏┗┛▕▔<br />
-╱▔▔▔▔▔▔▔▔▔▔╲ <br />
-&nbsp;&nbsp;&nbsp; default to dark mode 🌚<br />
-╱╱┏┳┓╭╮┏┳┓ ╲╲ <br />
-▔▏┗┻┛┃┃┗┻┛▕▔<br />
-
 # Demo
 
 [View with the Expo app](https://expo.io/@dctalbot/wcbn-app)
@@ -45,6 +35,6 @@ Fork this repo
 
 # GitHub Actions
 
-I've also hooked this up to publish with the brand-new GitHub actions workflow (thanks @bycedric !). Check out the fork @dctalbot if you're curious how that works.
+This app is published with GitHub Actions on the @dctalbot fork
 
 contact: dctalbot@umich.edu

@@ -7,7 +7,10 @@ const mapDispatchToProps = {
   fetchPlaylist,
 }
 
-class PlaylistPoll extends React.Component<{ fetchPlaylist: any }> {
+class PlaylistPoll extends React.Component<{
+  fetchPlaylist: any
+  children: Element
+}> {
   componentDidMount() {
     const pollPlaylist = async () => {
       try {
