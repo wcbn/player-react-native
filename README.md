@@ -12,9 +12,8 @@
 
 # Things you'll need
 
-- yarn
-- Expo app / account
-- iOS / Android Studio Emulators (optional)
+- [yarn](https://classic.yarnpkg.com/lang/en/)
+- [Expo Client](https://apps.apple.com/us/app/expo-client/id982107779) OR [Xcode](https://apps.apple.com/us/app/xcode/id497799835?mt=12) device simulator OR [Android Studio](https://developer.android.com/studio) AVD emulator
 
 # Some Light Reading
 
@@ -26,9 +25,6 @@
 
 # Getting started
 
-Fork this repo
-
-    git clone https://github.com/<username>/player-react-native.git
     cd player-react-native
     yarn
     yarn start
@@ -36,5 +32,3 @@ Fork this repo
 # GitHub Actions
 
 This app is published with GitHub Actions on the @dctalbot fork
-
-contact: dctalbot@umich.edu
