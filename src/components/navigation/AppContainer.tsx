@@ -23,9 +23,10 @@ const RadioStack = createStackNavigator()
 const SettingsStack = createStackNavigator()
 const Tab = createBottomTabNavigator()
 
-const getIcon = (name: string, color: string) => (
-  <Ionicons name={name} size={25} color={color} />
-)
+const getIcon = (
+  name: React.ComponentProps<typeof Ionicons>['name'],
+  color: string
+) => <Ionicons name={name} size={23} color={color} />
 
 export default function AppContainer() {
   const { theme } = useContext(ThemeContext)
@@ -85,14 +86,14 @@ export default function AppContainer() {
           name="Schedule"
           component={ScheduleStackScreen}
           options={{
-            tabBarIcon: ({ color }) => getIcon('md-calendar', color),
+            tabBarIcon: ({ color }) => getIcon('calendar', color),
           }}
         />
         <Tab.Screen
           name="Playlist"
           component={PlaylistStackScreen}
           options={{
-            tabBarIcon: ({ color }) => getIcon('md-musical-notes', color),
+            tabBarIcon: ({ color }) => getIcon('musical-notes', color),
           }}
         />
         <Tab.Screen
@@ -100,14 +101,14 @@ export default function AppContainer() {
           component={RadioStackScreen}
           options={{
             title: 'Radio',
-            tabBarIcon: ({ color }) => getIcon('md-radio', color),
+            tabBarIcon: ({ color }) => getIcon('radio-outline', color),
           }}
         />
         <Tab.Screen
           name="Settings"
           component={SettingsStackScreen}
           options={{
-            tabBarIcon: ({ color }) => getIcon('md-settings', color),
+            tabBarIcon: ({ color }) => getIcon('settings-sharp', color),
           }}
         />
       </Tab.Navigator>

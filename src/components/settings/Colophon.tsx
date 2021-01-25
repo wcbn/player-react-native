@@ -15,7 +15,7 @@ export default function Colophon() {
     >
       <ThemedText style={styles.text}>
         {'Made with '}
-        <Ionicons name={'md-heart-empty'} size={12} color={theme.secondary} />
+        <Ionicons name={'heart'} size={12} color={theme.secondary} />
         {' by students at the University of Michigan'}
       </ThemedText>
     </TouchableOpacity>

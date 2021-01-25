@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { StatusBar, AsyncStorage, StatusBarStyle } from 'react-native'
+import { AsyncStorage } from 'react-native'
+import { StatusBar, StatusBarStyle } from 'expo-status-bar'
 import { ThemeContext, themes, Themes } from './styles/theming'
 import { AppContainer } from './components/navigation'
 import { Provider } from 'react-redux'
@@ -28,13 +29,13 @@ export default function App() {
     AsyncStorage.setItem('THEME', themeName)
   }
 
-  const barStyle: StatusBarStyle =
-    theme.opposite === 'light' ? `light-content` : 'dark-content'
+  const statusBarStyle: StatusBarStyle =
+    theme.opposite === 'dark' ? 'dark' : 'light'
 
   return (
     <Provider store={store}>
       <ThemeContext.Provider value={{ theme, toggleTheme }}>
-        <StatusBar barStyle={barStyle} />
+        <StatusBar style={statusBarStyle} />
         <PlaylistPoll>
           <AppContainer />
         </PlaylistPoll>

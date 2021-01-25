@@ -19,13 +19,13 @@ const LinksList = () => {
       <Link
         onPress={() => Linking.openURL(`tel:${STUDIO_PHONE_RAW}`)}
         text={`Studio request line${'\n'}${STUDIO_PHONE_FORMATTED}`}
-        icon={'md-call'}
+        icon={'call'}
       />
       <Separator color={theme.secondary} />
       <Link
         onPress={() => Linking.openURL(GOOGLE_HANGOUTS_URL)}
         text={'Message the DJ'}
-        icon={'md-text'}
+        icon={'chatbubble'}
       />
       <Separator color={theme.secondary} />
       <Link
@@ -35,25 +35,25 @@ const LinksList = () => {
           })
         }
         text={'Share on social media'}
-        icon={'md-share'}
+        icon={'share-outline'}
       />
       <Separator color={theme.secondary} />
       <Link
         onPress={() => StoreReview.requestReview()}
         text={'Write a review!'}
-        icon={'md-thumbs-up'}
+        icon={'thumbs-up'}
       />
       <Separator color={theme.secondary} />
       <Link
         onPress={() => toggleTheme()}
         text={`Switch to ${theme.opposite} mode`}
-        icon={'md-bulb'}
+        icon={'bulb'}
       />
       <Separator color={theme.secondary} />
       <Link
         onPress={() => Linking.openURL(DONATION_URL)}
         text={'Give to WCBN'}
-        icon={'md-cash'}
+        icon={'cash'}
       />
     </View>
   )
