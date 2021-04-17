@@ -6,7 +6,6 @@ import ListHeader from '../components/ListHeader'
 import Banner from '../components/Banner'
 import Screen from '../components/Screen'
 import { ThemeContext } from '../styles/theming'
-import { SongAPI } from '../types'
 import {
   EpisodeNavProp,
   EpisodeRouteProp,
@@ -42,7 +41,7 @@ export default function Episode({ navigation, route }: EpisodeProps) {
         }
       />
       <FlatList
-        data={route.params.songs as SongAPI[]}
+        data={route.params.songs}
         renderItem={({ item }) => <Song data={item} />}
         keyExtractor={(item, index) => index.toString()}
         ListHeaderComponent={<ListHeader text={route.params.date} />}

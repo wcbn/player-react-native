@@ -31,7 +31,7 @@ const renderShowListing = ({ item }: { item: ShowAPI }) => {
 
 export default function Profile({ route, navigation }: ProfileProps) {
   const { theme } = useContext(ThemeContext)
-  const [state, setState] = useState({
+  const [state, setState] = useState<ProfileAPI>({
     dj_name: '',
     about: '',
     shows: [],
@@ -39,7 +39,7 @@ export default function Profile({ route, navigation }: ProfileProps) {
     public_email: '',
     real_name: '',
     image_url: '',
-  } as ProfileAPI)
+  })
 
   useEffect(() => {
     navigation.setOptions({ title: route.params.title })
