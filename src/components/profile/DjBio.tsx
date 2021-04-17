@@ -1,7 +1,7 @@
 /* eslint-disable react/display-name */
 import React, { useContext } from 'react'
-import { StyleSheet, Image, Linking } from 'react-native'
-import HTML from 'react-native-render-html'
+import { StyleSheet, Image } from 'react-native'
+import HTML, { RendererDictionary } from 'react-native-render-html'
 import { dimensions, spacing } from '../../styles/main'
 import { ThemeContext } from '../../styles/theming'
 import { BASE_URL } from '../../config'
@@ -27,15 +27,14 @@ export default function DJBio(props: DJBioProps) {
     },
   })
 
-  const renderers: HTML.RendererDictionary = {
+  const renderers: RendererDictionary = {
     img: (htmlAttribs, children, convertedCSSStyles, passProps) => (
       <Image
         style={[
           styles.image,
           {
             height:
-              (parseInt(htmlAttribs.height as string) *
-                passProps.imagesMaxWidth) /
+              (parseInt(htmlAttribs.height as string) * dimensions.fullWidth) /
               parseInt(htmlAttribs.width as string),
           },
         ]}
@@ -45,7 +44,7 @@ export default function DJBio(props: DJBioProps) {
     ),
   }
 
-  const listsPrefixesRenderers: HTML.RendererDictionary = {
+  const listsPrefixesRenderers: RendererDictionary = {
     ul: () => (
       <ThemedText style={styles.listsPrefixesRenderers} color={'secondary'}>
         •
@@ -67,11 +66,12 @@ export default function DJBio(props: DJBioProps) {
   const tagsStyles = {
     figure: {
       marginBottom: spacing.md,
+      textAlign: 'center',
     },
     figcaption: {
       textAlign: 'center',
       fontStyle: 'italic',
-      color: theme.secondary,
+      color: theme.textColor,
     },
     a: {
       color: theme.anchorColor,
@@ -83,15 +83,12 @@ export default function DJBio(props: DJBioProps) {
     <>
       {!!props.about && (
         <HTML
-          html={props.about}
+          source={{ html: props.about }}
           baseFontStyle={styles.baseFontStyle}
           renderers={renderers}
           listsPrefixesRenderers={listsPrefixesRenderers}
           tagsStyles={tagsStyles}
-          imagesMaxWidth={dimensions.fullWidth}
-          onLinkPress={(event, href) => {
-            Linking.openURL(href)
-          }}
+          computeEmbeddedMaxWidth={() => dimensions.fullWidth}
         />
       )}
     </>
