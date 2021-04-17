@@ -1,13 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Screen from '../components/Screen'
-import {
-  ImageBackground,
-  View,
-  StyleSheet,
-  Image,
-  AsyncStorage,
-} from 'react-native'
+import { ImageBackground, View, StyleSheet, Image } from 'react-native'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import { Audio } from 'expo-av'
 import { SongAPI } from '../types'
 import { getAlbumArtURI } from '../util/itunes'
