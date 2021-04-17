@@ -1,31 +1,28 @@
-import React from 'react'
-import { connect } from 'react-redux'
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 import { fetchPlaylist } from '../redux/actionCreators'
 import { POLL_INTERVAL } from '../config'
 
-const mapDispatchToProps = {
-  fetchPlaylist,
-}
+function PlaylistPoll(props: { children: Element }) {
+  const dispatch = useDispatch()
 
-class PlaylistPoll extends React.Component<{
-  fetchPlaylist: any
-  children: Element
-}> {
-  componentDidMount() {
+  useEffect(() => {
     const pollPlaylist = async () => {
       try {
-        this.props.fetchPlaylist()
+        dispatch(fetchPlaylist())
       } catch (error) {
         // ignore
       }
     }
 
     pollPlaylist()
-    setInterval(pollPlaylist, POLL_INTERVAL)
-  }
-  render() {
-    return this.props.children
-  }
+    const timeout = setInterval(pollPlaylist, POLL_INTERVAL)
+
+    // clean up
+    return () => clearInterval(timeout)
+  }, [])
+
+  return props.children
 }
 
-export default connect(null, mapDispatchToProps)(PlaylistPoll)
+export default PlaylistPoll
