@@ -16,7 +16,7 @@ const WEEEKDAYS = [
   'Thursday',
   'Friday',
   'Saturday',
-  'Sundday',
+  'Sunday',
 ] as const
 type Weekday = typeof WEEEKDAYS[number]
 type WeekdayToShows = Record<Weekday, ShowAPI[]>
