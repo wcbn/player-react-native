@@ -28,7 +28,3 @@
     cd player-react-native
     yarn
     yarn start
-
-# GitHub Actions
-
-This app is published with GitHub Actions on the @dctalbot fork
