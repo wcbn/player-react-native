@@ -1,21 +1,18 @@
-# playbook
+# Deployment Playbook
 
-## app.json
+1. Create a PR
+2. Bump `expo.android.versionCode` and `expo.version` in `app.json`
+3. CLI stuff
 
-Bump `expo.android.versionCode` and `expo.version`
+   ```sh
+   expo login
+   expo whoami
+   expo doctor
+   expo build:android --type app-bundle
+   ```
 
-## cli
-
-    expo login
-    expo whoami
-    expo doctor
-    expo build:android --type app-bundle
-    open https://expo.io/turtle-status
-
-Download build artifact (.aab)
-
-## google play console
-
-https://play.google.com/console
-
-Upload and roll out 🎉
+4. Download build artifact (.aab)
+5. Upload to https://play.google.com/console and roll out
+6. Wait for google to review
+7. Once the app has been reviewed + rolled out to the public, merge to master
+8. On-merge, github actions will publish to expo
