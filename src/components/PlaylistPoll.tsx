@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { fetchPlaylist } from '../redux/actionCreators'
 import { POLL_INTERVAL } from '../config'
 
-function PlaylistPoll(props: { children: Element }) {
+function PlaylistPoll(props: { children: JSX.Element }) {
   const dispatch = useDispatch()
 
   useEffect(() => {
