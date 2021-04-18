@@ -8,3 +8,6 @@ npm-debug.*
 temp/
 .vscode/
 yarn-error.log
+
+# macOS
+.DS_Store
