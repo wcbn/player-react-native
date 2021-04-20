@@ -38,7 +38,7 @@ export default function AppContainer() {
         <ScheduleStack.Screen
           name="Schedule"
           component={Schedule}
-          options={{ title: 'WCBN-FM Schedule' }}
+          options={{ title: 'WCBN Schedule' }}
         />
         <ScheduleStack.Screen name="Show" component={Show} />
         <ScheduleStack.Screen name="Profile" component={Profile} />
@@ -81,6 +81,7 @@ export default function AppContainer() {
       <Tab.Navigator
         initialRouteName="Radio"
         tabBar={(props) => <TabBarComponent {...props} />}
+        sceneContainerStyle={{ backgroundColor: theme.primary }}
       >
         <Tab.Screen
           name="Schedule"

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { StyleSheet, View, AsyncStorage } from 'react-native'
+import { StyleSheet, View } from 'react-native'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import SegmentedControlTab from 'react-native-segmented-control-tab'
 import ThemedText from '../ThemedText'
 import { ThemeContext } from '../../styles/theming'

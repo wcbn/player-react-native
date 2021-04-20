@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { AsyncStorage } from 'react-native'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import { StatusBar, StatusBarStyle } from 'expo-status-bar'
 import { ThemeContext, themes, Themes } from './styles/theming'
 import { AppContainer } from './components/navigation'

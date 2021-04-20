@@ -1,5 +1,5 @@
-import React, { useContext } from 'react'
-import { StyleSheet, View, Linking, Share } from 'react-native'
+import React, { useContext, useEffect, useState } from 'react'
+import { StyleSheet, View, Linking, Share, Alert } from 'react-native'
 import * as StoreReview from 'expo-store-review'
 import Separator from '../Separator'
 import Link from './Link'
@@ -14,6 +14,16 @@ import {
 
 const LinksList = () => {
   const { theme, toggleTheme } = useContext(ThemeContext)
+  const [canRequestReview, setCanRequestReview] = useState(true)
+
+  useEffect(() => {
+    const doAsync = async () => {
+      const hasAction = await StoreReview.hasAction()
+      setCanRequestReview(hasAction)
+    }
+    doAsync()
+  }, [])
+
   return (
     <View style={styles.linksView}>
       <Link
@@ -39,7 +49,11 @@ const LinksList = () => {
       />
       <Separator color={theme.secondary} />
       <Link
-        onPress={() => StoreReview.requestReview()}
+        onPress={() =>
+          canRequestReview
+            ? StoreReview.requestReview()
+            : Alert.alert('Store review not available on this device.')
+        }
         text={'Write a review!'}
         icon={'thumbs-up'}
       />

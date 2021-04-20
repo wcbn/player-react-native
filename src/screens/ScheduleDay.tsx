@@ -1,10 +1,5 @@
 import React, { useContext } from 'react'
-import {
-  TouchableOpacity,
-  StyleSheet,
-  View,
-  FlatList,
-} from 'react-native'
+import { TouchableOpacity, StyleSheet, View, FlatList } from 'react-native'
 import Screen from '../components/Screen'
 import Separator from '../components/Separator'
 import ThemedText from '../components/ThemedText'
