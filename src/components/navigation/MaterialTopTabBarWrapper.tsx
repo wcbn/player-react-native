@@ -15,7 +15,7 @@ export default function MaterialTopTabBarWrapper(
       style={{ backgroundColor: theme.primary }}
       activeTintColor={theme.secondary}
       inactiveTintColor={theme.textColor}
-      indicatorStyle={{ backgroundColor: theme.anchorColor }}
+      indicatorStyle={{ backgroundColor: theme.linkColor }}
       pressColor={theme.primary}
     />
   )

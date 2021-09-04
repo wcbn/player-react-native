@@ -14,7 +14,7 @@ export interface Theme {
   activeTintColor: string
   inactiveTintColor: string
   activeBackgroundColor: string
-  anchorColor: string
+  linkColor: string
   onAirBackgroundColor: string
 }
 
@@ -38,7 +38,7 @@ export const themes: Themes = {
     activeTintColor: 'white',
     inactiveTintColor: 'black',
     activeBackgroundColor: 'black',
-    anchorColor: '#db3334',
+    linkColor: '#db3334',
     onAirBackgroundColor: '#ffe5e5',
   },
   dark: {
@@ -55,7 +55,7 @@ export const themes: Themes = {
     activeTintColor: '#5ccfe6',
     inactiveTintColor: '#D3D7CE',
     activeBackgroundColor: '#053e62',
-    anchorColor: '#5ccfe6',
+    linkColor: '#5ccfe6',
     onAirBackgroundColor: '#053e62',
   },
 }

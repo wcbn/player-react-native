@@ -74,7 +74,7 @@ export default function DJBio(props: DJBioProps) {
       color: theme.textColor,
     },
     a: {
-      color: theme.anchorColor,
+      color: theme.linkColor,
       textDecorationLine: 'none',
     },
   }

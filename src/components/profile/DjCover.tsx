@@ -34,7 +34,7 @@ export default function DjCover(props: DjCoverProps) {
 
         {!!props.website && (
           <ThemedText
-            color={'anchorColor'}
+            color={'linkColor'}
             style={styles.coverText}
             numberOfLines={1}
             onPress={() => {
@@ -47,7 +47,7 @@ export default function DjCover(props: DjCoverProps) {
 
         {!!props.public_email && (
           <ThemedText
-            color={'anchorColor'}
+            color={'linkColor'}
             style={styles.coverText}
             numberOfLines={1}
             onPress={() => {
