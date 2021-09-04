@@ -54,7 +54,7 @@ export default function Profile({ route, navigation }: ProfileProps) {
         scrollEnabled
         data={state.shows}
         renderItem={renderShowListing}
-        keyExtractor={(item, index) => index.toString()}
+        keyExtractor={(_, i) => i.toString()}
         ListHeaderComponent={
           <>
             <View style={styles.mediumPad}>

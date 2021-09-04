@@ -43,7 +43,7 @@ export default function Episode({ navigation, route }: EpisodeProps) {
       <FlatList
         data={route.params.songs}
         renderItem={({ item }) => <Song data={item} />}
-        keyExtractor={(item, index) => index.toString()}
+        keyExtractor={(_, i) => i.toString()}
         ListHeaderComponent={<ListHeader text={route.params.date} />}
         stickyHeaderIndices={[0]}
         overScrollMode={'never'}

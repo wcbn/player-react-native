@@ -49,7 +49,7 @@ export default function EpisodeList(props: EpisodeListProps) {
     <FlatList
       data={props.episodes}
       renderItem={renderEpisode}
-      keyExtractor={(item) => item.beginning}
+      keyExtractor={(_, i) => i.toString()}
       ListHeaderComponent={<ListHeader text="Recent Episodes" />}
       ItemSeparatorComponent={() => <Separator color={theme.muted} />}
       stickyHeaderIndices={[0]}

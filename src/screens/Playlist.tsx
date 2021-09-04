@@ -42,7 +42,7 @@ export default function Playlist({ navigation }: PlaylistProps) {
       <FlatList
         data={on_air.songs}
         renderItem={({ item }) => <Song data={item} />}
-        keyExtractor={(item, index) => index.toString()}
+        keyExtractor={(_, i) => i.toString()}
         ListHeaderComponent={
           on_air.songs.length > 0 ? <ListHeader text="Recent Songs" /> : null
         }

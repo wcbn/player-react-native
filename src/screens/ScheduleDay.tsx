@@ -61,7 +61,7 @@ export default function ScheduleDay({ data }: { data: ShowAPI[] }) {
       <FlatList
         contentContainerStyle={styles.contentContainer}
         renderItem={renderItem}
-        keyExtractor={(item, index) => index.toString()}
+        keyExtractor={(_, i) => i.toString()}
         overScrollMode={'never'}
         ItemSeparatorComponent={() => <Separator color={theme.muted} />}
         data={data}
