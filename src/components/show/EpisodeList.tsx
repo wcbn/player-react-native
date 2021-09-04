@@ -14,7 +14,7 @@ interface EpisodeListProps {
   episodes: EpisodeAPI[]
 }
 
-export default function EpisodeList(props: EpisodeListProps) {
+function EpisodeList(props: EpisodeListProps) {
   const { theme } = useContext(ThemeContext)
   const navigation = useNavigation<ShowNavigationProp>()
   const route = useRoute<ShowRouteProp>()
@@ -68,3 +68,5 @@ const styles = StyleSheet.create({
     flexGrow: 1,
   },
 })
+
+export default EpisodeList

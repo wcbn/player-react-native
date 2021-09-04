@@ -10,7 +10,7 @@ interface DjScrollProps {
   djs: { url: string; name: string }[]
 }
 
-const DjScroll = (props: DjScrollProps) => {
+function DjScroll(props: DjScrollProps) {
   const { theme } = useContext(ThemeContext)
   const navigation = useNavigation<ShowNavigationProp>()
 
