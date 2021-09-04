@@ -1,15 +1,20 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import Screen from '../components/Screen'
-import { ImageBackground, View, StyleSheet, Image } from 'react-native'
+import {
+  ImageBackground,
+  View,
+  StyleSheet,
+  Image,
+  ScrollView,
+} from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { Audio } from 'expo-av'
+import Screen from '../components/Screen'
 import { SongAPI } from '../types'
 import { getAlbumArtURI } from '../util/itunes'
 import { FadeIntoHeader, RadioControls } from '../components/radio'
 import { dimensions, spacing } from '../styles/main'
 import ThemedText from '../components/ThemedText'
-import { ScrollView } from 'react-native-gesture-handler'
 import { STREAMS } from '../config'
 import { AVPlaybackStatus, Playback } from 'expo-av/build/AV'
 import { StoreState } from '../App'

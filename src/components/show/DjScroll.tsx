@@ -15,16 +15,18 @@ interface DjScrollProps {
   djs: { url: string; name: string }[]
 }
 
-function DjScroll(props: DjScrollProps) {
+function DjScroll({ djs = [] }: DjScrollProps) {
   const { theme } = useContext(ThemeContext)
   const navigation = useNavigation<ShowNavigationProp>()
   const { width } = useWindowDimensions()
+
+  if (djs.length === 0) return null
 
   const styles = StyleSheet.create({
     button: {
       padding: 12,
       backgroundColor: theme.muted,
-      minWidth: width / props.djs.length,
+      minWidth: width / djs.length,
       marginRight: StyleSheet.hairlineWidth,
     },
     text: {
@@ -33,7 +35,7 @@ function DjScroll(props: DjScrollProps) {
     },
   })
 
-  const djButtons = props.djs.map((dj) => (
+  const djButtons = djs.map((dj) => (
     <TouchableOpacity
       key={dj.url}
       style={styles.button}
@@ -52,7 +54,11 @@ function DjScroll(props: DjScrollProps) {
 
   return (
     <View>
-      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        scrollEnabled={djs.length > 1}
+      >
         {djButtons}
       </ScrollView>
     </View>

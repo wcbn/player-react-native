@@ -3,11 +3,11 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import Screen from '../components/Screen'
 import ScheduleDay from './ScheduleDay'
 import { humanizeTime } from '../util/datetime'
-import MaterialTopTabBarWrapper from '../components/navigation/MaterialTopTabBarWrapper'
 import LazyPlaceholder from '../components/LazyPlaceholder'
 import { BASE_URL } from '../config'
 import { ThemeContext } from '../styles/theming'
 import { ShowAPI, SemesterAPI } from '../types'
+import { useScreenOptions } from '../util/navigation'
 
 const WEEEKDAYS = [
   'Monday',
@@ -32,6 +32,7 @@ export default function Schedule() {
     data: WeekdayToShows
   })
   const { theme } = useContext(ThemeContext)
+  const screenOptions = useScreenOptions(theme)
 
   useEffect(() => {
     fetch(`${BASE_URL}/semesters`, {
@@ -70,15 +71,23 @@ export default function Schedule() {
       <Tab.Navigator
         sceneContainerStyle={{ backgroundColor: theme.primary }}
         initialRouteName={WEEEKDAYS[TODAY]}
-        lazy
-        lazyPlaceholder={() => <LazyPlaceholder />}
-        tabBar={(params) => <MaterialTopTabBarWrapper {...params} />}
+        screenOptions={{
+          ...screenOptions,
+          // todo improve theming structure to avoid this
+          tabBarActiveTintColor: theme.linkColor,
+        }}
       >
         {WEEEKDAYS.map((name, key) => (
           <Tab.Screen
             key={key.toString()}
             name={name}
-            options={{ tabBarLabel: name[0] }}
+            options={{
+              tabBarLabel: name[0],
+              lazy: true,
+              lazyPlaceholder: function TabScreenLazyPlaceholer() {
+                return <LazyPlaceholder />
+              },
+            }}
           >
             {() => <ScheduleDay data={state.data[name]} />}
           </Tab.Screen>

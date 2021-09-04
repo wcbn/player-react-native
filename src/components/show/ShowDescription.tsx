@@ -29,7 +29,6 @@ const styles = StyleSheet.create({
   },
   web: {
     padding: spacing.md,
-    paddingTop: 0,
     fontStyle: 'italic',
   },
 })

@@ -1,8 +1,7 @@
 import React, { useContext } from 'react'
 import { NavigationContainer } from '@react-navigation/native'
-import { createStackNavigator } from '@react-navigation/stack'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import TabBarComponent from './TabBarComponent'
 import { Ionicons } from '@expo/vector-icons'
 import {
   Episode,
@@ -17,10 +16,8 @@ import { useScreenOptions } from '../../util/navigation'
 import { ThemeContext } from '../../styles/theming'
 import { ScheduleStackParamList, PlaylistStackParamList } from './types'
 
-const ScheduleStack = createStackNavigator<ScheduleStackParamList>()
-const PlaylistStack = createStackNavigator<PlaylistStackParamList>()
-const RadioStack = createStackNavigator()
-const SettingsStack = createStackNavigator()
+const ScheduleStack = createNativeStackNavigator<ScheduleStackParamList>()
+const PlaylistStack = createNativeStackNavigator<PlaylistStackParamList>()
 const Tab = createBottomTabNavigator()
 
 const getIcon = (
@@ -56,58 +53,42 @@ export default function AppContainer() {
     )
   }
 
-  function RadioStackScreen() {
-    return (
-      <RadioStack.Navigator screenOptions={screenOptions}>
-        <RadioStack.Screen
-          name="Radio"
-          component={Radio}
-          options={{ title: 'WCBN-FM Ann Arbor' }}
-        />
-      </RadioStack.Navigator>
-    )
-  }
-
-  function SettingsStackScreen() {
-    return (
-      <SettingsStack.Navigator screenOptions={screenOptions}>
-        <SettingsStack.Screen name="Settings" component={Settings} />
-      </SettingsStack.Navigator>
-    )
-  }
-
   return (
     <NavigationContainer>
       <Tab.Navigator
         initialRouteName="Radio"
-        tabBar={(props) => <TabBarComponent {...props} />}
         sceneContainerStyle={{ backgroundColor: theme.primary }}
+        screenOptions={screenOptions}
       >
         <Tab.Screen
-          name="Schedule"
+          name="ScheduleScreen"
           component={ScheduleStackScreen}
           options={{
+            tabBarLabel: 'Schedule',
             tabBarIcon: ({ color }) => getIcon('calendar', color),
+            headerShown: false,
           }}
         />
         <Tab.Screen
-          name="Playlist"
+          name="PlaylistScreen"
           component={PlaylistStackScreen}
           options={{
+            tabBarLabel: 'Playlist',
             tabBarIcon: ({ color }) => getIcon('musical-notes', color),
+            headerShown: false,
           }}
         />
         <Tab.Screen
           name="Radio"
-          component={RadioStackScreen}
+          component={Radio}
           options={{
-            title: 'Radio',
+            headerTitle: 'WCBN-FM Ann Arbor',
             tabBarIcon: ({ color }) => getIcon('radio-outline', color),
           }}
         />
         <Tab.Screen
           name="Settings"
-          component={SettingsStackScreen}
+          component={Settings}
           options={{
             tabBarIcon: ({ color }) => getIcon('settings-sharp', color),
           }}

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useMemo } from 'react'
 import { useWindowDimensions } from 'react-native'
 import RenderHtml, {
   RenderHTMLProps,
@@ -13,17 +13,16 @@ interface DJBioProps {
 }
 
 function ImgRenderer(props: any) {
-  const { Renderer, rendererProps } = useInternalRenderer('img', props)
+  const { Renderer, rendererProps: _rp } = useInternalRenderer('img', props)
+  const { source, ...rendererProps } = _rp
 
-  const source = {
-    ...rendererProps.source,
-  }
-
-  // folks over at react-native-render-html thought this was a good idea?
+  // someone who is not me thought this would be a smart default :)
   const dumbPrefix = 'about://'
   if (source.uri?.startsWith(dumbPrefix)) {
-    source.uri = `${BASE_URL}${source.uri.replace(dumbPrefix, '')}`
+    source.uri = source.uri.replace(dumbPrefix, '')
   }
+
+  source.uri = `${BASE_URL}${source.uri}`
 
   return (
     <Renderer
@@ -44,21 +43,26 @@ export default function DJBio(props: DJBioProps) {
   // to deep check each of your style to properly apply the precedence and priorities
   // of your nested tags' styles.
 
-  const tagsStyles: RenderHTMLProps['tagsStyles'] = {
-    figure: {
-      marginBottom: spacing.md,
-      textAlign: 'center',
-    },
-    figcaption: {
-      textAlign: 'center',
-      fontStyle: 'italic',
-      color: theme.textColor,
-    },
-    a: {
-      color: theme.linkColor,
-      textDecorationLine: 'none',
-    },
-  }
+  // this is supposedly helpful
+  // https://stackoverflow.com/questions/68966120/react-native-render-html-you-seem-to-update-the-x-prop-of-the-y-component-in-s
+  const tagsStyles = useMemo<RenderHTMLProps['tagsStyles']>(
+    () => ({
+      figure: {
+        marginBottom: spacing.md,
+        textAlign: 'center',
+      },
+      figcaption: {
+        textAlign: 'center',
+        fontStyle: 'italic',
+        color: theme.textColor,
+      },
+      a: {
+        color: theme.linkColor,
+        textDecorationLine: 'none',
+      },
+    }),
+    [spacing, theme]
+  )
 
   if (!props.about) return null
 
