@@ -1,8 +1,13 @@
 import React, { useContext } from 'react'
-import { TouchableOpacity, StyleSheet, View, ScrollView } from 'react-native'
+import {
+  TouchableOpacity,
+  StyleSheet,
+  View,
+  ScrollView,
+  useWindowDimensions,
+} from 'react-native'
 import ThemedText from '../ThemedText'
 import { ThemeContext } from '../../styles/theming'
-import { dimensions } from '../../styles/main'
 import { useNavigation } from '@react-navigation/native'
 import { ShowNavigationProp } from '../navigation/types'
 
@@ -13,12 +18,13 @@ interface DjScrollProps {
 function DjScroll(props: DjScrollProps) {
   const { theme } = useContext(ThemeContext)
   const navigation = useNavigation<ShowNavigationProp>()
+  const { width } = useWindowDimensions()
 
   const styles = StyleSheet.create({
     button: {
       padding: 12,
       backgroundColor: theme.muted,
-      minWidth: dimensions.fullWidth / props.djs.length,
+      minWidth: width / props.djs.length,
       marginRight: StyleSheet.hairlineWidth,
     },
     text: {
