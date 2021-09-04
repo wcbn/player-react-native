@@ -1,16 +1,9 @@
 import React from 'react'
-import { StyleSheet } from 'react-native'
+import { StyleSheet, TouchableOpacity, Linking } from 'react-native'
 import ThemedText from '../ThemedText'
 import { spacing } from '../../styles/main'
 
-const ShowDescription = (props: { text: string }) => {
-  const styles = StyleSheet.create({
-    text: {
-      padding: spacing.md,
-      fontStyle: 'italic',
-    },
-  })
-
+function ShowDescription(props: { text: string; website: string }) {
   return (
     <>
       {!!props.text && (
@@ -18,8 +11,27 @@ const ShowDescription = (props: { text: string }) => {
           {props.text}
         </ThemedText>
       )}
+      {!!props.website && (
+        <TouchableOpacity onPress={() => Linking.openURL(props.website)}>
+          <ThemedText style={styles.web} numberOfLines={1} color="linkColor">
+            {props.website}
+          </ThemedText>
+        </TouchableOpacity>
+      )}
     </>
   )
 }
+
+const styles = StyleSheet.create({
+  text: {
+    padding: spacing.md,
+    fontStyle: 'italic',
+  },
+  web: {
+    padding: spacing.md,
+    paddingTop: 0,
+    fontStyle: 'italic',
+  },
+})
 
 export default ShowDescription
