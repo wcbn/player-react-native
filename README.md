@@ -21,9 +21,12 @@
     yarn
     yarn start
 
-# Google Play Deployment Notes
+# Deployment Notes
 
 1. Bump `app.json` `expo.android.versionCode`
-2. `expo build:android --type app-bundle
-3. Download from turtle
-4. Upload to Google Play console
+2. Create pull request (make sure github actions checks pass)
+3. `expo build:android --type app-bundle`
+4. Download from turtle
+5. Upload to Google Play console
+6. Wait for Google to approve
+7. Merge PR (github actions will publish to expo)
