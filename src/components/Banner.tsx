@@ -61,5 +61,3 @@ const styles = StyleSheet.create({
 })
 
 export default Banner
-
-//NOTE could sandwich between two <Separator /> components but looked congested to me

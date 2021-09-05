@@ -9,6 +9,7 @@ import { useNavigation } from '@react-navigation/native'
 import LazyPlaceholder from '../components/LazyPlaceholder'
 import { ThemeContext } from '../styles/theming'
 import { ShowAPI } from '../types'
+import { ScheduleNavigationProp } from '../components/navigation/types'
 
 const styles = StyleSheet.create({
   showText: {
@@ -24,7 +25,7 @@ const styles = StyleSheet.create({
 
 export default function ScheduleDay({ data }: { data: ShowAPI[] }) {
   const { theme } = useContext(ThemeContext)
-  const navigation = useNavigation()
+  const navigation = useNavigation<ScheduleNavigationProp>()
 
   const renderItem = ({ item, index }: { item: ShowAPI; index: number }) => {
     const style = item.on_air
@@ -61,7 +62,7 @@ export default function ScheduleDay({ data }: { data: ShowAPI[] }) {
       <FlatList
         contentContainerStyle={styles.contentContainer}
         renderItem={renderItem}
-        keyExtractor={(item, index) => index.toString()}
+        keyExtractor={(_, i) => i.toString()}
         overScrollMode={'never'}
         ItemSeparatorComponent={() => <Separator color={theme.muted} />}
         data={data}

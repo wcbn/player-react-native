@@ -1,5 +1,5 @@
 import { SongAPI } from '../../types'
-import { StackNavigationProp } from '@react-navigation/stack'
+import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import { RouteProp } from '@react-navigation/native'
 
 export type ScheduleStackParamList = {
@@ -20,22 +20,28 @@ export type PlaylistStackParamList = {
   Profile: { url: string; title: string }
 }
 
+// Schedule screen
+export type ScheduleNavigationProp = NativeStackNavigationProp<
+  ScheduleStackParamList,
+  'Schedule'
+>
+
 // Show screen
-export type ShowNavigationProp = StackNavigationProp<
+export type ShowNavigationProp = NativeStackNavigationProp<
   ScheduleStackParamList,
   'Show'
 >
 export type ShowRouteProp = RouteProp<ScheduleStackParamList, 'Show'>
 
 // Episode screen
-export type EpisodeNavProp = StackNavigationProp<
+export type EpisodeNavProp = NativeStackNavigationProp<
   ScheduleStackParamList,
   'Episode'
 >
 export type EpisodeRouteProp = RouteProp<ScheduleStackParamList, 'Episode'>
 
 // Profile screen
-export type ProfileNavProp = StackNavigationProp<
+export type ProfileNavProp = NativeStackNavigationProp<
   ScheduleStackParamList | PlaylistStackParamList,
   'Profile'
 >
@@ -45,7 +51,7 @@ export type ProfileRouteProp = RouteProp<
 >
 
 // Playlist screen
-export type PlaylistNavProp = StackNavigationProp<
+export type PlaylistNavProp = NativeStackNavigationProp<
   PlaylistStackParamList,
   'Playlist'
 >

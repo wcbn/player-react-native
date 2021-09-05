@@ -1,3 +1,4 @@
+import { spacing } from '../styles/main'
 import { Theme } from '../styles/theming'
 
 export const useScreenOptions = (theme: Theme) => {
@@ -10,5 +11,15 @@ export const useScreenOptions = (theme: Theme) => {
     },
     headerHideShadow: true,
     headerTintColor: theme.textColor,
+
+    tabBarStyle: { backgroundColor: theme.primary },
+    tabBarIndicatorStyle: {
+      backgroundColor: theme.linkColor,
+    },
+    tabBarActiveTintColor: theme.activeTintColor,
+    tabBarInactiveTintColor: theme.inactiveTintColor,
+    tabBarInactiveBackgroundColor: theme.primary,
+    tabBarActiveBackgroundColor: theme.activeBackgroundColor,
+    tabBarItemStyle: { padding: spacing.xs },
   }
 }

@@ -1,5 +1,6 @@
 import { Dimensions } from 'react-native'
 
+// Note: use useWindowDimensions instead of this where possible
 export const dimensions = {
   fullHeight: Dimensions.get('window').height,
   fullWidth: Dimensions.get('window').width,

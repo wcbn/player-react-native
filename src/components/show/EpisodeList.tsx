@@ -14,7 +14,7 @@ interface EpisodeListProps {
   episodes: EpisodeAPI[]
 }
 
-export default function EpisodeList(props: EpisodeListProps) {
+function EpisodeList(props: EpisodeListProps) {
   const { theme } = useContext(ThemeContext)
   const navigation = useNavigation<ShowNavigationProp>()
   const route = useRoute<ShowRouteProp>()
@@ -49,7 +49,7 @@ export default function EpisodeList(props: EpisodeListProps) {
     <FlatList
       data={props.episodes}
       renderItem={renderEpisode}
-      keyExtractor={(item) => item.beginning}
+      keyExtractor={(_, i) => i.toString()}
       ListHeaderComponent={<ListHeader text="Recent Episodes" />}
       ItemSeparatorComponent={() => <Separator color={theme.muted} />}
       stickyHeaderIndices={[0]}
@@ -68,3 +68,5 @@ const styles = StyleSheet.create({
     flexGrow: 1,
   },
 })
+
+export default EpisodeList

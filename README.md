@@ -15,16 +15,18 @@
 - [yarn](https://classic.yarnpkg.com/lang/en/)
 - [Expo Client](https://apps.apple.com/us/app/expo-client/id982107779) OR [Xcode](https://apps.apple.com/us/app/xcode/id497799835?mt=12) device simulator OR [Android Studio](https://developer.android.com/studio) AVD emulator
 
-# Some Light Reading
-
-- https://facebook.github.io/react-native/
-- https://docs.expo.io/versions/latest/
-- https://reactnavigation.org/docs/en/getting-started.html
-- https://redux.js.org/
-- https://www.typescriptlang.org/
-
 # Getting started
 
     cd player-react-native
     yarn
     yarn start
+
+# Deployment Notes
+
+1. Bump `app.json` `expo.android.versionCode`
+2. Create pull request (make sure github actions checks pass)
+3. `expo build:android --type app-bundle`
+4. Download from turtle
+5. Upload to Google Play console
+6. Wait for Google to approve
+7. Merge PR (github actions will publish to expo)

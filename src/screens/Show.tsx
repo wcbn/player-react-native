@@ -19,7 +19,8 @@ export default function Show() {
     description: '',
     djs: [],
     episodes: [],
-  } as Pick<ShowAPI, 'description' | 'djs' | 'episodes'>)
+    website: '',
+  } as Pick<ShowAPI, 'description' | 'djs' | 'episodes' | 'website'>)
 
   useEffect(() => {
     navigation.setOptions({
@@ -41,6 +42,7 @@ export default function Show() {
           description: response.description,
           djs: response.djs,
           episodes: response.episodes,
+          website: response.website,
         })
       })
   }, [])
@@ -49,7 +51,7 @@ export default function Show() {
     <Screen>
       <DjScroll djs={state.djs} />
       <Separator />
-      <ShowDescription text={state.description} />
+      <ShowDescription text={state.description} website={state.website ?? ''} />
       <EpisodeList episodes={state.episodes} />
     </Screen>
   )
