@@ -1,0 +1,18 @@
+{
+  "build": {
+    "release": {},
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal"
+    },
+    "development-simulator": {
+      "developmentClient": true,
+      "ios": {
+        "simulator": true
+      }
+    }
+  },
+  "submit": {
+    "release": {}
+  }
+}
