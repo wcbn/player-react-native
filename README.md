@@ -21,6 +21,16 @@
     yarn
     yarn start
 
+# Custom Native Runtime
+
+To extend native capabilities, create a custom dev environment using EAS. e.g.:
+
+    eas build --profile development --platform ios
+    eas build --profile development --platform android
+    eas build --profile development-simulator --platform ios
+
+Then download and install the envionrment on device / simulator.
+
 # Deployment Notes
 
 1. Bump `app.json` `expo.android.versionCode`

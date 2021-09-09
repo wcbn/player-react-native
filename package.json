@@ -34,6 +34,7 @@
     "react-native-screens": "~3.4.0",
     "react-native-segmented-control-tab": "^4.0.0",
     "react-native-tab-view": "^3.1.1",
+    "react-native-track-player": "^2.0.3",
     "react-redux": "^7.2.3",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",

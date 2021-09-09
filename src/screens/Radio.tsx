@@ -18,6 +18,7 @@ import ThemedText from '../components/ThemedText'
 import { STREAMS } from '../config'
 import { AVPlaybackStatus, Playback } from 'expo-av/build/AV'
 import { StoreState } from '../App'
+import TrackPlayer from 'react-native-track-player'
 
 const defaultPNG = require('../../assets/album.png')
 const defaultSong: SongAPI = {
@@ -143,22 +144,47 @@ class Radio extends React.Component<any, RadioState> {
   }
 
   async _loadNewPlaybackInstance(shouldPlay: boolean) {
-    this.setState({ isLoading: shouldPlay })
+    const start = async () => {
+      // Set up the player
+      await TrackPlayer.setupPlayer()
 
-    let streamUrl = await AsyncStorage.getItem('STREAM_URL')
+      let streamUrl = await AsyncStorage.getItem('STREAM_URL')
 
-    if (streamUrl === null) {
-      streamUrl = STREAMS[2] //default
-      AsyncStorage.setItem('STREAM_URL', streamUrl)
+      if (!streamUrl) {
+        streamUrl = STREAMS[2] //default
+        AsyncStorage.setItem('STREAM_URL', streamUrl)
+      }
+
+      // Add a track to the queue
+      await TrackPlayer.add({
+        id: 'trackId',
+        url: streamUrl,
+        title: 'Track Title',
+        artist: 'Track Artist',
+        // artwork: require('track.png'),
+      })
+
+      // Start playing it
+      await TrackPlayer.play()
     }
+    start()
+    return
+    // this.setState({ isLoading: shouldPlay })
 
-    const { sound } = await Audio.Sound.createAsync(
-      { uri: streamUrl },
-      { shouldPlay },
-      this._onPlaybackStatusUpdate,
-      false
-    )
-    this.playbackInstance = sound
+    // let streamUrl = await AsyncStorage.getItem('STREAM_URL')
+
+    // if (streamUrl === null) {
+    //   streamUrl = STREAMS[2] //default
+    //   AsyncStorage.setItem('STREAM_URL', streamUrl)
+    // }
+
+    // const { sound } = await Audio.Sound.createAsync(
+    //   { uri: streamUrl },
+    //   { shouldPlay },
+    //   this._onPlaybackStatusUpdate,
+    //   false
+    // )
+    // this.playbackInstance = sound
   }
 
   _onPlaybackStatusUpdate = (status: AVPlaybackStatus) => {
