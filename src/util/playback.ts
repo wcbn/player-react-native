@@ -6,13 +6,10 @@ module.exports = async function () {
     Capability.PlayFromId,
     Capability.PlayFromSearch,
     Capability.Stop,
-    // Capability.Pause
   ]
+
   TrackPlayer.addEventListener(Event.RemotePlay, () => TrackPlayer.play())
-
   TrackPlayer.addEventListener(Event.RemoteStop, () => TrackPlayer.stop())
-
-  // TrackPlayer.addEventListener(Event.RemotePause, () => TrackPlayer.pause())
 
   TrackPlayer.updateOptions({
     stopWithApp: true,
@@ -21,7 +18,6 @@ module.exports = async function () {
     compactCapabilities: capabilities,
     // options.icon
     // options.playIcon
-    // options.pauseIcon
     // options.stopIcon
     // options.color
   })
