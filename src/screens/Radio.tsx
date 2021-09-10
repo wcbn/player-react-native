@@ -14,12 +14,11 @@ import TrackPlayer, {
   IOSCategory,
   IOSCategoryOptions,
   State,
-  TrackType,
   useTrackPlayerEvents,
 } from 'react-native-track-player'
 import Screen from '../components/Screen'
 import { SongAPI } from '../types'
-import { getAlbumArtURI } from '../util/itunes'
+import { getArtworkURI } from '../util/itunes'
 import { FadeIntoHeader, RadioControls } from '../components/radio'
 import { dimensions, spacing } from '../styles/main'
 import ThemedText from '../components/ThemedText'
@@ -58,23 +57,6 @@ function getArtistAlbumLabelYear(s: SongAPI) {
   }`
 }
 
-async function setup() {
-  return TrackPlayer.setupPlayer({
-    waitForBuffer: true,
-    iosCategory: IOSCategory.Playback,
-    iosCategoryOptions: [
-      IOSCategoryOptions.AllowAirPlay,
-      IOSCategoryOptions.AllowBluetooth,
-      IOSCategoryOptions.AllowBluetoothA2DP,
-      IOSCategoryOptions.DefaultToSpeaker,
-    ],
-  })
-}
-
-async function stop() {
-  return TrackPlayer.reset()
-}
-
 const events = [
   Event.PlaybackState,
   Event.PlaybackError,
@@ -85,13 +67,34 @@ const events = [
   Platform.OS === 'android' ? [Event.RemotePlaySearch, Event.RemotePlayId] : []
 )
 
-export default function Radio() {
-  const playlistData = useSelector((state: StoreState) => state.playlist.on_air)
-  const song =
-    playlistData.songs.length > 0 ? playlistData.songs[0] : defaultSong
+const playerConfig =
+  Platform.OS === 'ios'
+    ? {
+        waitForBuffer: true,
+        iosCategory: IOSCategory.Playback,
+        iosCategoryOptions: [
+          IOSCategoryOptions.AllowAirPlay,
+          IOSCategoryOptions.AllowBluetooth,
+          IOSCategoryOptions.AllowBluetoothA2DP,
+          IOSCategoryOptions.DefaultToSpeaker,
+        ],
+      }
+    : {}
 
-  const [albumArtURI, setAlbumArtURI] = useState('')
-  const albumArtObj = albumArtURI ? { uri: albumArtURI } : defaultArtwork
+async function setup() {
+  return TrackPlayer.setupPlayer(playerConfig)
+}
+
+async function stop() {
+  return TrackPlayer.reset()
+}
+
+export default function Radio() {
+  const playlist = useSelector((state: StoreState) => state.playlist.on_air)
+  const song = playlist.songs.length > 0 ? playlist.songs[0] : defaultSong
+
+  const [artworkURI, setArtworkURI] = useState('')
+  const artworkImgSrc = artworkURI ? { uri: artworkURI } : defaultArtwork
 
   const artistAlbumLabelYear = getArtistAlbumLabelYear(song)
 
@@ -110,11 +113,11 @@ export default function Radio() {
     await TrackPlayer.add({
       id: STREAM_TRACK_ID,
       url,
-      title: song.name,
+      title: song.name || 'WCBN-FM Ann Arbor',
       artist: song.artist,
-      artwork: albumArtURI || defaultArtwork,
+      artwork: artworkURI || defaultArtwork,
       album: song.album,
-      type: TrackType.Dash,
+      // type: TrackType.Dash, // crashes on android emulator
     })
 
     await TrackPlayer.play()
@@ -130,27 +133,27 @@ export default function Radio() {
       return setPlayerState(event.state)
     }
     if (event.type === Event.RemotePlay) {
-      console.log('remote play')
       return play()
     }
     if (event.type === Event.RemoteStop) {
-      console.log('remote stop')
       return stop()
     }
     if (event.type === Event.PlaybackError) {
-      console.warn('Error code: ', event.code, event.message)
       return stop()
     }
     if (event.type === Event.PlaybackMetadataReceived) {
-      console.log('meta ', event)
-      // source 	string 	The metadata source (id3, icy, icy-headers, vorbis-comment, quicktime)
+      // console.log('meta ', event)
+      // TODO decide whether to handle ice cast metadata
+      // source 	string 	The metadata source (icy, icy-headers)
       // title 	  string 	The track title. Might be null
       // url    	string 	The track url. Might be null
       // artist 	string 	The track artist. Might be null
       // album  	string 	The track album. Might be null
       // date   	string 	The track date. Might be null
       // genre  	string 	The track genre. Might be null
-    } else if (event.type === Event.RemotePlaySearch) {
+      return
+    }
+    if (event.type === Event.RemotePlaySearch) {
       // e.g. voice activate
       let q: string = event.query
       q = q.toUpperCase()
@@ -169,17 +172,18 @@ export default function Radio() {
 
   useEffect(() => {
     const doAsync = async () => {
-      if (playlistData.songs.length === 0) {
-        return setAlbumArtURI('')
+      const uri = await getArtworkURI(song)
+      setArtworkURI(uri)
+
+      const q = await TrackPlayer.getQueue()
+      if (q.length > 0) {
+        TrackPlayer.updateMetadataForTrack(0, {
+          artwork: uri || defaultArtwork,
+          title: song.name || 'WCBN-FM Ann Arbor',
+          artist: song.artist,
+          album: song.album,
+        })
       }
-      const albumArtURI = await getAlbumArtURI(playlistData.songs[0])
-      setAlbumArtURI(albumArtURI)
-      TrackPlayer.updateMetadataForTrack(0, {
-        artwork: albumArtURI || defaultArtwork,
-        title: song.name,
-        artist: song.artist,
-        album: song.album,
-      })
     }
     doAsync()
   }, [song])
@@ -196,7 +200,7 @@ export default function Radio() {
       <ImageBackground
         style={styles.imgBG}
         imageStyle={styles.imageStyle}
-        source={albumArtObj}
+        source={artworkImgSrc}
       >
         <FadeIntoHeader />
         <View style={styles.contentWrapper}>
@@ -206,7 +210,7 @@ export default function Radio() {
             <TextScroll text={artistAlbumLabelYear} />
           </View>
           <View style={styles.albumArtContainer}>
-            <Image source={albumArtObj} style={styles.albumArt} />
+            <Image source={artworkImgSrc} style={styles.albumArt} />
           </View>
         </View>
       </ImageBackground>

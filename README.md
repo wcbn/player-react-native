@@ -29,7 +29,9 @@ To extend native capabilities, create a custom dev environment using EAS. e.g.:
     eas build --profile development --platform android
     eas build --profile development-simulator --platform ios
 
-Then download and install the envionrment on device / simulator.
+Then download, install the environment on device / simulator, and run:
+
+    expo start --dev-client
 
 # Deployment Notes
 
