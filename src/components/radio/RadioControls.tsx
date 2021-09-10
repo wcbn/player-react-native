@@ -1,33 +1,38 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import {
   ActivityIndicator,
   View,
   TouchableOpacity,
   StyleSheet,
-  GestureResponderEvent,
+  TouchableOpacityProps,
 } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
+import { useTrackPlayerEvents, Event, State } from 'react-native-track-player'
 import { spacing } from '../../styles/main'
 import { ThemeContext } from '../../styles/theming'
 
 const ICON_SIZE = 60
 
-interface RadioControlsProps {
-  disabled: boolean
-  toggleRadio: (event: GestureResponderEvent) => void
-  showPlayBtn: boolean
-}
-
-export default function RadioControls({
-  disabled,
-  toggleRadio,
-  showPlayBtn,
-}: RadioControlsProps) {
+export default function RadioControls(props: TouchableOpacityProps) {
   const { theme } = useContext(ThemeContext)
+  const [playerState, setPlayerState] = useState(State.None)
   let x
-  if (disabled) {
+
+  useTrackPlayerEvents([Event.PlaybackState], (event) =>
+    setPlayerState(event.state)
+  )
+
+  const waiting = [
+    State.Buffering, // buffering in play mode
+    State.Connecting, // buffering in pause state
+    State.Ready,
+  ].includes(playerState)
+
+  if (playerState === State.Playing) {
+    x = <Ionicons name={'md-square'} size={ICON_SIZE} color={theme.textColor} />
+  } else if (waiting) {
     x = <ActivityIndicator size="large" color={theme.textColor} />
-  } else if (showPlayBtn) {
+  } else {
     x = (
       <Ionicons
         name={'md-play'}
@@ -36,13 +41,11 @@ export default function RadioControls({
         style={{ marginLeft: 5 }}
       />
     )
-  } else {
-    x = <Ionicons name={'md-square'} size={ICON_SIZE} color={theme.textColor} />
   }
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={toggleRadio} disabled={disabled}>
+      <TouchableOpacity disabled={waiting} {...props}>
         {x}
       </TouchableOpacity>
     </View>

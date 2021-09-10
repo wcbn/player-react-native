@@ -18,3 +18,5 @@ export const STREAMS = [
 
 export const STUDIO_PHONE_FORMATTED = '(734) 763-3500'
 export const STUDIO_PHONE_RAW = '17347633500'
+
+export const STREAM_TRACK_ID = 'WCBN'
