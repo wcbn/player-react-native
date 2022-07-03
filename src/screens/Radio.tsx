@@ -8,7 +8,7 @@ import {
   ScrollView,
 } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import { Audio } from 'expo-av'
+import { Audio, InterruptionModeAndroid, InterruptionModeIOS } from 'expo-av'
 import Screen from '../components/Screen'
 import { SongAPI } from '../types'
 import { getAlbumArtURI } from '../util/itunes'
@@ -91,9 +91,9 @@ class Radio extends React.Component<any, RadioState> {
     Audio.setAudioModeAsync({
       staysActiveInBackground: true,
       allowsRecordingIOS: false,
-      interruptionModeIOS: Audio.INTERRUPTION_MODE_IOS_DO_NOT_MIX,
+      interruptionModeIOS: InterruptionModeIOS.DoNotMix,
       playsInSilentModeIOS: true,
-      interruptionModeAndroid: Audio.INTERRUPTION_MODE_ANDROID_DO_NOT_MIX,
+      interruptionModeAndroid: InterruptionModeAndroid.DoNotMix,
       playThroughEarpieceAndroid: false,
       shouldDuckAndroid: true,
     })
