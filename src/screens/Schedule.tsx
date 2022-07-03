@@ -8,6 +8,7 @@ import { BASE_URL } from '../config'
 import { ThemeContext } from '../styles/theming'
 import { ShowAPI, SemesterAPI } from '../types'
 import { useScreenOptions } from '../util/navigation'
+import { dimensions } from '../styles/main'
 
 const WEEEKDAYS = [
   'Monday',
@@ -69,8 +70,14 @@ export default function Schedule() {
   return (
     <Screen>
       <Tab.Navigator
-        sceneContainerStyle={{ backgroundColor: theme.primary }}
+        sceneContainerStyle={{
+          backgroundColor: theme.primary,
+          overflow: 'visible',
+        }}
         initialRouteName={WEEEKDAYS[TODAY]}
+        initialLayout={{
+          width: dimensions.fullWidth,
+        }}
         screenOptions={{
           ...screenOptions,
           // todo improve theming structure to avoid this
