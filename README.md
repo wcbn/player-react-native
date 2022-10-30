@@ -34,9 +34,9 @@ Expo has quarterly releases. Ideally, someone upgrades the app about once per ye
 
 # How to Deploy
 
-1. Bump `app.json` `expo.android.versionCode`
+1. Bump `app.json` `version` and `expo.android.versionCode`
 2. Create pull request (make sure github actions checks pass)
-3. `expo build:android --type app-bundle`
+3. `yarn expo build:android --type app-bundle`
 4. Download from turtle
 5. Upload to Google Play console
 6. Wait for Google to approve
