@@ -23,6 +23,7 @@
     "expo-linking": "~3.2.2",
     "expo-status-bar": "~1.4.0",
     "expo-store-review": "~5.3.0",
+    "expo-updates": "~0.14.6",
     "lint-staged": "^10.5.4",
     "react": "18.0.0",
     "react-native": "0.69.6",
