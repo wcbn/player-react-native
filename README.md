@@ -21,7 +21,18 @@
     yarn
     yarn start
 
-# Deployment Notes
+# How to Update
+
+Expo has quarterly releases. Ideally, someone upgrades the app about once per year.
+
+1. `yarn` to make sure dependencies are good
+1. `git checkout -b sdk46` to create a branch named after the target version e.g. SDK 46
+1. `yarn expo upgrade` ... Would you like to update to the latest version, 46.0.0? … `yes`
+1. Find the release notes on https://blog.expo.dev/. You need to look at remedy all Breaking Changes between the current version and your target upgrade version. So if you're upgrading from SDK 44 to 46, you need to review Breaking Changes for SDK 45 and SDK 46 and make sure all are accounted for.
+1. Fix all breaking changes.
+1. Go to the How to Deploy
+
+# How to Deploy
 
 1. Bump `app.json` `expo.android.versionCode`
 2. Create pull request (make sure github actions checks pass)

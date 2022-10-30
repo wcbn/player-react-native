@@ -5,55 +5,55 @@ import {
   View,
   StyleSheet,
   Image,
-  ScrollView,
+  // ScrollView,
 } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import { Audio } from 'expo-av'
+import { Audio, InterruptionModeAndroid, InterruptionModeIOS } from 'expo-av'
 import Screen from '../components/Screen'
-import { SongAPI } from '../types'
+// import { SongAPI } from '../types'
 import { getAlbumArtURI } from '../util/itunes'
 import { FadeIntoHeader, RadioControls } from '../components/radio'
 import { dimensions, spacing } from '../styles/main'
-import ThemedText from '../components/ThemedText'
+// import ThemedText from '../components/ThemedText'
 import { STREAMS } from '../config'
 import { AVPlaybackStatus, Playback } from 'expo-av/build/AV'
 import { StoreState } from '../App'
 
 const defaultPNG = require('../../assets/album.png')
-const defaultSong: SongAPI = {
-  at: '',
-  name: '',
-  artist: '',
-  album: '',
-  label: '',
-  request: false,
-  year: null,
-}
+// const defaultSong: SongAPI = {
+//   at: '',
+//   name: '',
+//   artist: '',
+//   album: '',
+//   label: '',
+//   request: false,
+//   year: null,
+// }
 
-function TextScroll({ text }: { text: string }) {
-  return (
-    <View style={styles.textScroll}>
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        centerContent
-        overScrollMode="never"
-      >
-        <ThemedText style={styles.songText}>{text || '—'}</ThemedText>
-      </ScrollView>
-    </View>
-  )
-}
+// function TextScroll({ text }: { text: string }) {
+//   return (
+//     <View style={styles.textScroll}>
+//       <ScrollView
+//         horizontal
+//         showsHorizontalScrollIndicator={false}
+//         centerContent
+//         overScrollMode="never"
+//       >
+//         <ThemedText style={styles.songText}>{text || '—'}</ThemedText>
+//       </ScrollView>
+//     </View>
+//   )
+// }
 
-function getArtistAlbumLabelYearStr(now_playing: SongAPI) {
-  return `${now_playing.artist}${
-    now_playing.artist && now_playing.album && ' — '
-  }${now_playing.album}${
-    now_playing.label &&
-    now_playing.year &&
-    ' (' + now_playing.label + ', ' + now_playing.year + ')'
-  }`
-}
+// function getArtistAlbumLabelYearStr(now_playing: SongAPI) {
+//   return `${now_playing.artist}${
+//     now_playing.artist && now_playing.album && ' — '
+//   }${now_playing.album}${
+//     now_playing.label &&
+//     now_playing.year &&
+//     ' (' + now_playing.label + ', ' + now_playing.year + ')'
+//   }`
+// }
 
 const mapStateToProps = (state: StoreState) => {
   return {
@@ -91,9 +91,9 @@ class Radio extends React.Component<any, RadioState> {
     Audio.setAudioModeAsync({
       staysActiveInBackground: true,
       allowsRecordingIOS: false,
-      interruptionModeIOS: Audio.INTERRUPTION_MODE_IOS_DO_NOT_MIX,
+      interruptionModeIOS: InterruptionModeIOS.DoNotMix,
       playsInSilentModeIOS: true,
-      interruptionModeAndroid: Audio.INTERRUPTION_MODE_ANDROID_DO_NOT_MIX,
+      interruptionModeAndroid: InterruptionModeAndroid.DoNotMix,
       playThroughEarpieceAndroid: false,
       shouldDuckAndroid: true,
     })
@@ -197,11 +197,11 @@ class Radio extends React.Component<any, RadioState> {
 
   render() {
     const { albumArtURI, isBuffering, isPlaying, isLoading } = this.state
-    const on_air = this.props.playlist.on_air
-    const now_playing: SongAPI =
-      on_air.songs.length > 0 ? on_air.songs[0] : defaultSong
+    // const on_air = this.props.playlist.on_air
+    // const now_playing: SongAPI =
+    //   on_air.songs.length > 0 ? on_air.songs[0] : defaultSong
     const albumArtSrcObj = albumArtURI ? { uri: albumArtURI } : defaultPNG
-    const artistAlbumLabelYearStr = getArtistAlbumLabelYearStr(now_playing)
+    // const artistAlbumLabelYearStr = getArtistAlbumLabelYearStr(now_playing)
 
     return (
       <Screen>
@@ -217,10 +217,10 @@ class Radio extends React.Component<any, RadioState> {
               disabled={isLoading}
               toggleRadio={this._onPress}
             />
-            <View style={styles.songDetails}>
+            {/* <View style={styles.songDetails}>
               <TextScroll text={now_playing.name} />
               <TextScroll text={artistAlbumLabelYearStr} />
-            </View>
+            </View> */}
             <View style={styles.albumArtContainer}>
               <Image source={albumArtSrcObj} style={styles.albumArt} />
             </View>

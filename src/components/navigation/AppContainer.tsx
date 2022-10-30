@@ -1,23 +1,23 @@
 import React, { useContext } from 'react'
 import { NavigationContainer } from '@react-navigation/native'
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
+// import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { Ionicons } from '@expo/vector-icons'
 import {
-  Episode,
-  Playlist,
-  Profile,
+  // Episode,
+  // Playlist,
+  // Profile,
   Radio,
-  Schedule,
+  // Schedule,
   Settings,
-  Show,
+  // Show,
 } from '../../screens'
 import { useScreenOptions } from '../../util/navigation'
 import { ThemeContext } from '../../styles/theming'
-import { ScheduleStackParamList, PlaylistStackParamList } from './types'
+// import { ScheduleStackParamList, PlaylistStackParamList } from './types'
 
-const ScheduleStack = createNativeStackNavigator<ScheduleStackParamList>()
-const PlaylistStack = createNativeStackNavigator<PlaylistStackParamList>()
+// const ScheduleStack = createNativeStackNavigator<ScheduleStackParamList>()
+// const PlaylistStack = createNativeStackNavigator<PlaylistStackParamList>()
 const Tab = createBottomTabNavigator()
 
 const getIcon = (
@@ -29,29 +29,29 @@ export default function AppContainer() {
   const { theme } = useContext(ThemeContext)
   const screenOptions = useScreenOptions(theme)
 
-  function ScheduleStackScreen() {
-    return (
-      <ScheduleStack.Navigator screenOptions={screenOptions}>
-        <ScheduleStack.Screen
-          name="Schedule"
-          component={Schedule}
-          options={{ title: 'WCBN Schedule' }}
-        />
-        <ScheduleStack.Screen name="Show" component={Show} />
-        <ScheduleStack.Screen name="Profile" component={Profile} />
-        <ScheduleStack.Screen name="Episode" component={Episode} />
-      </ScheduleStack.Navigator>
-    )
-  }
+  // function ScheduleStackScreen() {
+  //   return (
+  //     <ScheduleStack.Navigator screenOptions={screenOptions}>
+  //       <ScheduleStack.Screen
+  //         name="Schedule"
+  //         component={Schedule}
+  //         options={{ title: 'WCBN Schedule' }}
+  //       />
+  //       <ScheduleStack.Screen name="Show" component={Show} />
+  //       <ScheduleStack.Screen name="Profile" component={Profile} />
+  //       <ScheduleStack.Screen name="Episode" component={Episode} />
+  //     </ScheduleStack.Navigator>
+  //   )
+  // }
 
-  function PlaylistStackScreen() {
-    return (
-      <PlaylistStack.Navigator screenOptions={screenOptions}>
-        <PlaylistStack.Screen name="Playlist" component={Playlist} />
-        <PlaylistStack.Screen name="Profile" component={Profile} />
-      </PlaylistStack.Navigator>
-    )
-  }
+  // function PlaylistStackScreen() {
+  //   return (
+  //     <PlaylistStack.Navigator screenOptions={screenOptions}>
+  //       <PlaylistStack.Screen name="Playlist" component={Playlist} />
+  //       <PlaylistStack.Screen name="Profile" component={Profile} />
+  //     </PlaylistStack.Navigator>
+  //   )
+  // }
 
   return (
     <NavigationContainer>
@@ -60,7 +60,7 @@ export default function AppContainer() {
         sceneContainerStyle={{ backgroundColor: theme.primary }}
         screenOptions={screenOptions}
       >
-        <Tab.Screen
+        {/* <Tab.Screen
           name="ScheduleScreen"
           component={ScheduleStackScreen}
           options={{
@@ -77,7 +77,7 @@ export default function AppContainer() {
             tabBarIcon: ({ color }) => getIcon('musical-notes', color),
             headerShown: false,
           }}
-        />
+        /> */}
         <Tab.Screen
           name="Radio"
           component={Radio}
