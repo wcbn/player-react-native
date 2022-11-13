@@ -1,15 +1,15 @@
 import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-import { fetchPlaylist } from '../redux/actionCreators'
+// import { useDispatch } from 'react-redux'
+// import { fetchPlaylist } from '../redux/actionCreators'
 import { POLL_INTERVAL } from '../config'
 
 function PlaylistPoll(props: { children: JSX.Element }) {
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
 
   useEffect(() => {
     const pollPlaylist = async () => {
       try {
-        dispatch(fetchPlaylist())
+        // dispatch(fetchPlaylist())
       } catch (error) {
         // ignore
       }

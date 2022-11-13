@@ -52,7 +52,7 @@ export default function RadioControls({
 const styles = StyleSheet.create({
   container: {
     minHeight: ICON_SIZE + 15,
-    margin: spacing.md,
+    margin: spacing.xl,
     width: '100%',
     justifyContent: 'center',
     alignItems: 'center',

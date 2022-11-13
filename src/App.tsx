@@ -5,7 +5,6 @@ import { ThemeContext, themes, Themes } from './styles/theming'
 import { AppContainer } from './components/navigation'
 import { Provider } from 'react-redux'
 import { ConfigureStore } from './redux/configureStore'
-import PlaylistPoll from './components/PlaylistPoll'
 
 const store = ConfigureStore()
 export type StoreState = ReturnType<typeof store.getState>
@@ -36,9 +35,9 @@ export default function App() {
     <Provider store={store}>
       <ThemeContext.Provider value={{ theme, toggleTheme }}>
         <StatusBar style={statusBarStyle} />
-        <PlaylistPoll>
-          <AppContainer />
-        </PlaylistPoll>
+        {/* <PlaylistPoll> */}
+        <AppContainer />
+        {/* </PlaylistPoll> */}
       </ThemeContext.Provider>
     </Provider>
   )
