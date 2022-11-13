@@ -5,7 +5,7 @@
     "slug": "wcbn-app",
     "githubUrl": "https://github.com/wcbn/player-react-native",
     "privacy": "public",
-    "version": "9.0.0",
+    "version": "9.0.1",
     "orientation": "portrait",
     "icon": "./assets/logo.png",
     "splash": {
@@ -27,7 +27,7 @@
     "android": {
       "package": "org.wcbn",
       "playStoreUrl": "https://play.google.com/store/apps/details?id=org.wcbn",
-      "versionCode": 13,
+      "versionCode": 14,
       "splash": {
         "backgroundColor": "#212733",
         "resizeMode": "contain",
