@@ -30,14 +30,14 @@ export default function RadioControls({
   } else if (showPlayBtn) {
     x = (
       <Ionicons
-        name={'md-play'}
+        name={'play'}
         size={ICON_SIZE}
         color={theme.textColor}
         style={{ marginLeft: 5 }}
       />
     )
   } else {
-    x = <Ionicons name={'md-square'} size={ICON_SIZE} color={theme.textColor} />
+    x = <Ionicons name={'square'} size={ICON_SIZE} color={theme.textColor} />
   }
 
   return (

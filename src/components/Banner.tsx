@@ -34,7 +34,7 @@ const Banner = (props: BannerProps) => {
       </ThemedText>
       <Ionicons
         style={styles.icon}
-        name={'md-arrow-forward'}
+        name={'arrow-forward'}
         size={16}
         color={theme.accent}
       />
