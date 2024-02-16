@@ -27,7 +27,7 @@
     "android": {
       "package": "org.wcbn",
       "playStoreUrl": "https://play.google.com/store/apps/details?id=org.wcbn",
-      "versionCode": 14,
+      "versionCode": 15,
       "splash": {
         "backgroundColor": "#212733",
         "resizeMode": "contain",
@@ -39,6 +39,11 @@
       },
       "permissions": []
     },
-    "platforms": ["android", "ios"]
+    "platforms": ["android", "ios"],
+    "extra": {
+      "eas": {
+        "projectId": "f8dd9750-164f-11e9-8b84-313f96953860"
+      }
+    }
   }
 }
