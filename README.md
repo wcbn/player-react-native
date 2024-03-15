@@ -1,3 +1,5 @@
+⚠️ Archived in favor of https://github.com/wcbn/spinitron-mobile-app.
+
 # React-Native WCBN App for Android and iOS
 
 <a href="https://play.google.com/store/apps/details?id=org.wcbn">
